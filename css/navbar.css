@@ -1,14 +1,19 @@
-    .navbar {
-        position: absolute;
-        background: transparent;
-        width: 100%;
-        z-index: 10;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    body {
+        background-image: url("../img/hd5.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    
+    .navbar-custom {
+        background: white;
+        background: linear-gradient( to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+        z-index: 2;
+        backdrop-filter: blur();
     }
     
     .nav-link {
         color: #fff!important;
-        margin-right: 5x;
+        margin-right: 10x;
     }
     
     .nav-link:hover {
@@ -20,41 +25,87 @@
         margin-right: 5px;
     }
     
-    .login {
-        font-weight: bold;
-        border-radius: 20px;
-        padding: 0.2rem 1rem!important;
-        line-height: 30px;
-        margin: 2px;
-        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease 0s;
-        cursor: pointer;
-        outline: none;
+    .btn-login {
+        background-image: linear-gradient(to right, #283048 0%, #859398 51%, #283048 100%)
     }
     
-    .login:hover {
-        background-color: #4158D0;
-        background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-        box-shadow: 0px 15px 20px #4158D0;
-        transform: translateY(-7px);
+    .btn-login {
+        margin: 10px;
+        padding: 15px 45px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
     }
     
-    .logout {
-        font-weight: bold;
-        margin: 2px;
-        border-radius: 20px;
-        padding: 0.2rem 1rem!important;
-        line-height: 30px;
-        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease 0s;
-        cursor: pointer;
-        outline: none;
-    }
-    
-    .logout:hover {
-        background-color: #FFE53B;
-        background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
-        box-shadow: 0px 15px 20px #FFE53B;
+    .btn-login:hover {
+        background-position: right center;
+        /* change the direction of the change here */
         color: #fff;
-        transform: translateY(-7px);
+        text-decoration: none;
+    }
+    
+    .btn-logout {
+        background-image: linear-gradient(to right, #200122 0%, #6f0000 51%, #200122 100%)
+    }
+    
+    .btn-logout {
+        margin: 10px;
+        padding: 15px 45px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+    }
+    
+    .btn-logout:hover {
+        background-position: right center;
+        /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .btn-grad {
+        background-image: linear-gradient(to right, #bdc3c7 0%, #2c3e50 51%, #bdc3c7 100%)
+    }
+    
+    .btn-grad {
+        margin: 10px;
+        padding: 15px 45px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+    }
+    
+    .btn-grad:hover {
+        background-position: right center;
+        /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .form-custom {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        background: white;
+        width: 60%;
+        background: linear-gradient( to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+        border-radius: 10px;
+        z-index: 2;
+        backdrop-filter: blur(2px);
+        display: flex;
     }

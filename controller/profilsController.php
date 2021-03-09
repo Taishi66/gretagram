@@ -76,7 +76,7 @@ class ProfilsController extends ProfilsModel
                 // redirection vers la route monProfil
                 header('Location: index.php?page=monProfil');
             } else {
-                echo $message = "<center class='alert alert-danger'>Email ou mdp incorrecte</center>";
+                $message = "<center class='alert alert-danger'>Email ou mdp incorrecte</center>";
                 include("view/login.php");
             }
         } else {

@@ -22,20 +22,23 @@
 
 <body>
     <!-- navbar bootstratp custom -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu">
-        <a class="navbar-brand" href="#">
-            𝓖𝓻𝓮𝓽𝓪𝓰𝓻𝓪𝓶
+    <nav class="navbar navbar-custom navbar-expand-lg" id="menu">
+     <a class="navbar-brand" style="font-size: xx-large; color:black;" href="index.php">
+            GRETAGRAM
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav mr-auto">
-                <a class="nav-link active text-dark font-weight-bold" href="?page=profils">Home</a>
-                <a class="nav-link text-dark" href="?page=monProfil"><i class="fas fa-user-circle"></i></a>
-                <a class="nav-link text-dark" href="?page=inscription"><i class="fas fa-user-plus"></i></a>
-                <a class="nav-link text-dark login" href="?page=login"><i class="fas fa-sign-in-alt"></i></a>
-                <a class="nav-link text-dark logout" href="#"><i class="fas fa-power-off"></i></a>
+                <?php if (isset($_SESSION['id_user'])) { ?>
+                    <a class="nav-link text-light btn-login" href="?page=monProfil"><i class="fas fa-user-circle mr-3"></i><?php echo $_SESSION['nom'] . " " . $_SESSION['prenom']; ?></a>
+                    <a class="nav-link text-light btn-logout" href="?page=deconnexion"><i class="fas fa-power-off mr-3"></i>Déconnexion</a>
+                <?php } else { ?>
+                    <a class="nav-link text-light btn-login" href="?page=inscription"><i class="fas fa-user-plus mr-3"></i>Inscription</a>
+                    <a class="nav-link text-light btn-login" href="?page=login"><i class="fas fa-sign-in-alt mr-3"></i>Log In</a>
+                <?php } ?>
+
             </div>
             <div class="col-lg-6 mx-auto">
                 <form>
@@ -48,8 +51,8 @@
                 </form>
             </div>
             <div class="navbar-nav font-weight-bold">
-                <a class="nav-link text-dark" href="#"><i class="fab fa-linux mr-2"></i>Admin</a>
-                <a class="nav-link text-dark" href="#"><i class="fas fa-at mr-2 email"></i>Contact</a>
+                <!--<a class="nav-link text-dark" href="#"><i class="fab fa-linux mr-2"></i>Admin</a>-->
+                <a class="nav-link text-light btn-logout" href="?page=contact"><i class="fas fa-at"></i></a>
             </div>
         </div>
     </nav>

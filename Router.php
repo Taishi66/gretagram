@@ -31,7 +31,17 @@ class Router
                 $profil = new ProfilsController();
                 $profil->getLogin();
                 break;
-           /* case 'monProfil':
+            case 'deconnexion':
+                // vide la session et donc je me deconnecte
+                $_SESSION = array();
+                // redirection vers index.php
+                header('Location: index.php');
+                break;
+            case 'contact':
+                include("view/contact.php");
+                break;
+
+                /* case 'monProfil':
                 $profils = new ProfilsController();
                 $profils->afficherMonProfil();
                 break;*/

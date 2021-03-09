@@ -1,6 +1,6 @@
 <br>
 <div class="form-custom">
-    <div class="card-header" style="font-size: larger; text-align:center; font-weight:bold;">INSCRIPTION</div>
+    <div class="card-header" style="font-size: larger; text-align:center; font-weight:bold;">Contact</div>
     <div class="card-body">
         <p class="card-text">
             <?php echo @$message; ?>
@@ -18,13 +18,12 @@
                 <input type="email" class="form-control" name="email" id="email" placeholder="Entrez votre email">
             </div>
             <div class="form-group">
-                <label>Mot de passe</label>
-                <input type="password" class="form-control" name="mdp" id="mdp" placeholder="Entrez votre mdp">
+                <label>Message</label>
+                <textarea type="text" class="form-control" name="message" id="message" placeholder="Entrez votre message" style="height: 200px;"></textarea>
             </div>
             <br>
-            <button type="submit" class="btn-grad">S'inscrire</button>
+            <button type="submit" class="btn-grad">Envoyer</button>
         </form>
         </p>
     </div>
 </div>
-<br>
