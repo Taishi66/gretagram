@@ -55,6 +55,7 @@ class ProfilsController extends ProfilsModel
 
         if ($this->email && $this->nom && $this->prenom) {
             $this->mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
+
             if ($this->inscription()) {
                 $message = "<center 
                 style='background-color:black; 
@@ -82,7 +83,7 @@ class ProfilsController extends ProfilsModel
             $this->email = $this->verif->verfEmail(@$_POST["email"]);
             $profil = $this->login();
 
-            if (password_verify($_POST["mdp"], $profil['mdp'])) {
+            if (password_verify(@$_POST["mdp"], @$profil['mdp'])) {
 
                 $_SESSION['nom'] = $profil['nom'];
                 $_SESSION['prenom'] = $profil['prenom'];
@@ -99,21 +100,35 @@ class ProfilsController extends ProfilsModel
     }
     public function newAccount()
     {
-        $id = @$_SESSION["id_user"];
+        $id = @$_SESSION['id_user'];
         $this->pseudo = @$_POST['pseudo'];
         $this->description_compte = @$_POST['description_compte'];
 
-        if (isset($_POST["pseudo"])) {
-            $this->creAccount($id);
-            $message = "<center 
+        $this->photo = @$_POST['photo'];
+
+        if (isset($_POST['pseudo'])) {
+            $message = "<center class='alert alert-danger'>Création non prise en compte<br>";
+            if (!$this->pseudo) {
+                $message .= "Pseudo manquant <br>";
+            }
+            $message .= "</center>";
+        }
+
+        if ($this->pseudo) {
+
+            if ($this->creAccount($id)) {
+                $message = "<center 
                 style='background-color:black; 
-                color:white; font-weight:bold; 
+                color:white; 
+                font-weight:bold; 
                 font-size:x-large;'>
                 Création du compte réussie!
                 </center>";
-            header('Location: index.php?page=monProfil');
+                include("view/profil/viewMonProfil");
+            } else {
+                include("view/creAccount.php");
+            }
         } else {
-            $message = "<center class='alert alert-danger'>Pseudo manquant</center>";
             include("view/creAccount.php");
         }
     }
