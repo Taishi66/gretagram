@@ -47,17 +47,17 @@ class ProfilsModel
         return $resultat;
     }
 
-    public function creAccount($id_user)
+    public function creAccount($id)
     {
         $bdd = Bdd::Connexion();
         $sql = 'INSERT INTO compte(pseudo, description_compte, photo, id_user)
-                <br>VALUES (:pseudo,:description_compte,:photo,:id_user)';
+                VALUES (:pseudo,:description_compte,:photo,:id_user)';
         $profil = $bdd->prepare($sql);
         $resultat = $profil->execute([
-            ":pseudo" => $_POST['pseudo'],
-            ":description_compte" => $_POST['description_compte'],
-            ":photo" => $_POST['photo'],
-            ":id_user" => $id_user
+            ":pseudo" => $this->pseudo,
+            ":description_compte" => $this->description_compte,
+            ":photo" => $this->photo,
+            ":id_user" => $id
         ]);
         $bdd = null;
         return $resultat;

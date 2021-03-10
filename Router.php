@@ -25,7 +25,7 @@ class Router
                 break;
             case 'creAccount':
                 $profil = new ProfilsController();
-                $profil->newAccount(@$_SESSION["id_user"]);
+                $profil->newAccount();
                 break;
             case 'profils':
                 $profils = new ProfilsController();
@@ -46,14 +46,14 @@ class Router
                 header('Location: index.php');
                 break;
             case 'noAccount':
-                include("view/creAccount.php");
+                $profil = new ProfilsController();
+                $profil->newAccount();
                 break;
             case 'contact':
                 include("view/contact.php");
                 break;
-                /*case 'creAccount':
-                $profil = new ProfilsController();
-                $profil -> newAccount();
+                /*default:
+                header('location:index.php');
                 break;*/
         }
     }
