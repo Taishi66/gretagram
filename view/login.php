@@ -4,7 +4,7 @@
     <div class="card-body">
         <p class="card-text">
             <?php echo @$message; ?>
-        <form action="" method="POST">
+        <form action="" method="POST" style="font-weight: bold;">
             <div class="form-group">
                 <label>E-mail</label>
                 <input type="email" class="form-control" name="email" id="email" placeholder="Entrez votre email">

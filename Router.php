@@ -23,9 +23,17 @@ class Router
                 $profil = new ProfilsController();
                 $profil->setInscription();
                 break;
+            case 'creAccount':
+                $profil = new ProfilsController();
+                $profil->newAccount(@$_SESSION["id_user"]);
+                break;
             case 'profils':
                 $profils = new ProfilsController();
                 $profils->afficherListeProfils();
+                break;
+            case 'monProfil':
+                $profil = new ProfilsController();
+                $profil->afficherMonprofil(@$_SESSION["id_user"]);
                 break;
             case 'login':
                 $profil = new ProfilsController();
@@ -37,13 +45,15 @@ class Router
                 // redirection vers index.php
                 header('Location: index.php');
                 break;
+            case 'noAccount':
+                include("view/creAccount.php");
+                break;
             case 'contact':
                 include("view/contact.php");
                 break;
-
-                /* case 'monProfil':
-                $profils = new ProfilsController();
-                $profils->afficherMonProfil();
+                /*case 'creAccount':
+                $profil = new ProfilsController();
+                $profil -> newAccount();
                 break;*/
         }
     }

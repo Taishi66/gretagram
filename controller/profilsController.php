@@ -23,6 +23,13 @@ class ProfilsController extends ProfilsModel
         include("view/profil/viewListeProfils.php");
     }
 
+    public function afficherMonprofil($id)
+    {
+        $profil = $this->Profil($id);
+        include("view/profil/viewMonProfil.php");
+    }
+
+
     public function setInscription()
     {
         // je verifie que j'ai envoyé le formulaire
@@ -36,7 +43,7 @@ class ProfilsController extends ProfilsModel
 
         // affiche les messages
         if (isset($_POST['email'])) {
-            $message = "<center class='alert alert-danger'>Inscription n'est pas prise en compte <br>";
+            $message = "<center class='alert alert-danger'>Inscription n'est pas prise en compte<br>";
             if (!$this->email) {
                 $message .= "mail incorrect <br>";
             }
@@ -49,7 +56,14 @@ class ProfilsController extends ProfilsModel
         if ($this->email && $this->nom && $this->prenom) {
             $this->mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
             if ($this->inscription()) {
-                echo $message = "<center class='alert alert-info>Inscription est pris en compte </center>";
+                $message = "<center 
+                style='background-color:black; 
+                color:white; font-weight:bold; 
+                font-size:x-large;'>
+                Inscription réussie!
+                </center>";
+                // header('Location: ?page=creAccount');
+                include("view/creAccount.php");
             } else {
                 include("view/inscription.php");
             }
@@ -81,6 +95,26 @@ class ProfilsController extends ProfilsModel
             }
         } else {
             include("view/login.php");
+        }
+    }
+    public function newAccount()
+    {
+        $id = @$_SESSION["id_user"];
+        $this->pseudo = @$_POST['pseudo'];
+        $this->description_compte = @$_POST['description_compte'];
+
+        if (isset($_POST["pseudo"])) {
+            $this->creAccount($id);
+            $message = "<center 
+                style='background-color:black; 
+                color:white; font-weight:bold; 
+                font-size:x-large;'>
+                Création du compte réussie!
+                </center>";
+            header('Location: index.php?page=monProfil');
+        } else {
+            $message = "<center class='alert alert-danger'>Pseudo manquant</center>";
+            include("view/creAccount.php");
         }
     }
 }
