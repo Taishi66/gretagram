@@ -63,8 +63,9 @@ class ProfilsController extends ProfilsModel
                 font-size:x-large;'>
                 Inscription réussie!
                 </center>";
+                header_remove("index.php");
+                header('Location:?page=creAccount');
                 // header('Location: ?page=creAccount');
-                include("view/creAccount.php");
             } else {
                 include("view/inscription.php");
             }
@@ -88,16 +89,18 @@ class ProfilsController extends ProfilsModel
                 $_SESSION['nom'] = $profil['nom'];
                 $_SESSION['prenom'] = $profil['prenom'];
                 $_SESSION['id_user'] = $profil['id_user'];
-                // redirection vers la route monProfil
-                header('Location: index.php?page=monProfil');
+                header('Location: index.php?page=home');
             } else {
                 $message = "<center class='alert alert-danger'>Email ou mdp incorrecte</center>";
-                include("view/login.php");
+                //include("view/accueil.php");
             }
         } else {
-            include("view/login.php");
+            // include("view/accueil.php");
         }
     }
+
+
+
     public function newAccount()
     {
         $id = @$_SESSION['id_user'];

@@ -1,0 +1,20 @@
+.photo-profil {
+    width: 175px;
+    border: 1px solid grey;
+    border-radius: 50%;
+}
+
+.header-profil {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-modif {
+    width: 115px;
+    height: 30px;
+    border: 1px solid;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: small;
+}

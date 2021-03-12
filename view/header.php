@@ -8,54 +8,78 @@
     <title>Gretagram</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./css/navbar.css">
-    <link rel="stylesheet" href="./css/responsive.css">
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/d3d6f2df1f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/profil.css">
+    <link rel="stylesheet" href="./css/inbox.css">
 
 
-    <!-- bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <!-- Jquery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <!-- navbar bootstratp custom -->
-    <nav class="navbar navbar-custom navbar-expand-lg" id="menu">
-        <a class="navbar-brand" style="font-size: xx-large; color:black;" href="index.php">
-            GRETAGRAM
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav mr-auto">
-                <?php if (isset($_SESSION['id_user'])) { ?>
-                    <a class="nav-link text-light btn-login" href="?page=monProfil"><i class="fas fa-user-circle mr-3"></i><?php echo $_SESSION['nom'] . " " . $_SESSION['prenom']; ?></a>
-                    <a class="nav-link text-light btn-logout" href="?page=deconnexion"><i class="fas fa-power-off mr-3"></i>Déconnexion</a>
-                <?php } else { ?>
-                    <a class="nav-link text-light btn-login" href="?page=inscription"><i class="fas fa-user-plus mr-3"></i>Inscription</a>
-                    <a class="nav-link text-light btn-login" href="?page=login"><i class="fas fa-sign-in-alt mr-3"></i>Log In</a>
-                <?php } ?>
-
-            </div>
-            <div class="col-lg-6 mx-auto">
-                <form>
-                    <div class="input-group">
-                        <input type="search" placeholder="Search profil" class="form-control">
-                        <button class="btn btn-outine-light btn-light" type="button submit">
-                            <i class="fab fa-searchengin"></i>
-                        </button>
+    <!-- navbar bootstrap instagram -->
+    <div>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container justify-content-center">
+                    <div class="d-flex flex-row justify-content-between align-items-center col-9">
+                        <a class="navbar-brand" href="?page=home">
+                            <!-- LOGO INSTA -->
+                            <img src="./img/ig-logo.png" alt="" loading="lazy">
+                        </a>
+                        <!-- Barre de recherche -->
+                        <div>
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search profil" aria-label="Search">
+                            </form>
+                        </div>
+                        <!-- Partie droite de la navbar avec icone HOME INBOX EXPLORE NOTIF PROFIL-->
+                        <div class="d-flex flex-row">
+                            <ul class="list-inline m-0">
+                                <li class="list-inline-item">
+                                    <a href="?page=home" class="link-menu">
+                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house-door-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z" />
+                                            <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item ml-2">
+                                    <a href="?page=inbox" class="link-menu">
+                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-inboxes" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393zm.941.83l.32 2.562a.5.5 0 0 0 .497.438h12.234a.5.5 0 0 0 .496-.438l.32-2.562H10.45a2.5 2.5 0 0 1-4.9 0H1.066zM3.81.563A1.5 1.5 0 0 1 4.98 0h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1-.78.624l-3.7-4.624A.5.5 0 0 0 11.02 1H4.98a.5.5 0 0 0-.39.188L.89 5.812a.5.5 0 1 1-.78-.624L3.81.563z" />
+                                            <path fill-rule="evenodd" d="M.125 5.17A.5.5 0 0 1 .5 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .121-.393zm.941.83l.32 2.562A.5.5 0 0 0 1.884 9h12.234a.5.5 0 0 0 .496-.438L14.933 6H10.45a2.5 2.5 0 0 1-4.9 0H1.066z" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item ml-2">
+                                    <a href="?page=explore" class="link-menu">
+                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-compass" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M8 15.016a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zm0 1a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15z" />
+                                            <path d="M6 1a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2H7a1 1 0 0 1-1-1zm.94 6.44l4.95-2.83-2.83 4.95-4.95 2.83 2.83-4.95z" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item ml-2">
+                                    <a href="?page=notifications" class="link-menu">
+                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item ml-2 align-middle">
+                                    <a href="?page=monProfil" class="link-menu">
+                                        <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
+                                            <img src="./img/profiles/profile-6.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </form>
-            </div>
-            <div class="navbar-nav font-weight-bold">
-                <!--<a class="nav-link text-dark" href="#"><i class="fab fa-linux mr-2"></i>Admin</a>-->
-                <a class="nav-link text-light btn-logout" href="?page=contact"><i class="fas fa-at"></i></a>
-            </div>
+                </div>
+            </nav>
         </div>
-    </nav>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

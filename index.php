@@ -1,8 +1,9 @@
 <?php
 // demarre une session
-session_start();
+//session_start();
 
 require_once("bdd/bdd.php");
+
 include("view/header.php");
 
 include("controller/profilsController.php");
