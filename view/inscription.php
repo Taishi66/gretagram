@@ -15,7 +15,14 @@
             </div>
             <div class="form-group">
                 <label>E-mail</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Entrez votre email">
+                <input type="email" 
+                    class="form-control" 
+                    name="email" 
+                    id="email" 
+                    placeholder="Entrez votre email" 
+                    value="<?php if(!empty($datas['defaultDatas']['email'])) { 
+                            echo $datas['defaultDatas']['email']; 
+                    }?>">
             </div>
             <div class="form-group">
                 <label>Mot de passe</label>

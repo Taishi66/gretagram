@@ -3,15 +3,23 @@
 session_start();
 
 require_once("bdd/bdd.php");
-include("view/header.php");
+// include("view/header.php");
 
 include("controller/profilsController.php");
 
 require_once("Router.php");
+require_once("Render.php");
 
 $router = new Router(@$_GET["page"]); // On récupère la valeur associée à la clé "page" dans l'url
 // exemple localhost/index.php?page=profils 
-$router->getPage();
+$vars = $router->getPage();
 
 
-include("view/footer.php");
+$render = new Render();
+
+$header = $render->renderHeader($vars['datas']);
+$content = $render->renderContent($vars['template'], $vars['datas']);
+$footer = $render->renderFooter($vars['datas']);
+
+$render->showPage($header, $content, $footer);
+// include("view/footer.php");

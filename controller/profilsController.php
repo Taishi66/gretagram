@@ -4,28 +4,33 @@ include("model/profilsModel.php");
 include("controller/verificationController.php");
 
 
-class ProfilsController extends ProfilsModel
+class ProfilsController
 {
     public $nom;
     public $prenom;
     public $email;
     public $mdp;
 
+    private $profilsModel;
+    private $verif;
+
     public function __construct()
     {
         $this->verif = new Verification();
+
+        $this->profilsModel = new profilsModel();
     }
 
 
     public function afficherListeProfils()
     {
-        $listeProfils = $this->listeProfils();
+        $listeProfils = $this->profilsModel->listeProfils();
         include("view/profil/viewListeProfils.php");
     }
 
     public function afficherMonprofil($id)
     {
-        $profil = $this->Profil($id);
+        $profil = $this->profilsModel->Profil($id);
         include("view/profil/viewMonProfil.php");
     }
 
@@ -64,15 +69,34 @@ class ProfilsController extends ProfilsModel
                 Inscription réussie!
                 </center>";
                 // header('Location: ?page=creAccount');
-                include("view/creAccount.php");
+                // include("view/creAccount.php");
+                return array(
+                    'template' => 'account.php',
+                    'datas' => array(
+                        'message' => 'Bienvenue'
+                    )
+                );
             } else {
-                include("view/inscription.php");
+                return array(
+                    'template' => 'inscription.php',
+                    'datas' => array(
+                        'message' => 'Impossible de s\'inscrire'
+                    )
+                );
             }
         }
         // si le formulaire n'est pas envoyé
         // j'affiche la vue du formulaire
         else {
-            include("view/inscription.php");
+            return array(
+                'template' => 'inscription.php',
+                'datas' => [
+                    'defaultDatas' => [
+                        'email' => 'guillaume@ga-creation.fr'
+                    ],
+                ]
+            );
+            // include("view/inscription.php");
         }
     }
 
@@ -93,6 +117,7 @@ class ProfilsController extends ProfilsModel
             } else {
                 $message = "<center class='alert alert-danger'>Email ou mdp incorrecte</center>";
                 include("view/login.php");
+
             }
         } else {
             include("view/login.php");

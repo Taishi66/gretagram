@@ -1,7 +1,5 @@
 <?php
 
-
-
 class Router
 {
     private $page;
@@ -21,8 +19,8 @@ class Router
         switch ($this->page) {
             case 'inscription':
                 $profil = new ProfilsController();
-                $profil->setInscription();
-                break;
+                return $profil->setInscription();
+                // break;
             case 'creAccount':
                 $profil = new ProfilsController();
                 $profil->newAccount();

@@ -14,7 +14,7 @@ class Verification
 
     public function verfEmail($valeur)
     {
-        if (preg_match("#^[a-z0-9._-]{2,50}+@[a-z0-9._-]{2,50}\.[a-z]{2,5}$#", $valeur)) {
+        if(filter_var($valeur, FILTER_VALIDATE_EMAIL)){
             return $valeur; // true
         } else {
             return false;
