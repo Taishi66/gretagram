@@ -2,6 +2,13 @@
 
 class ProfilsModel
 {
+    public $nom;
+    public $prenom;
+    public $email;
+    public $mdp;
+
+
+
     public function listeProfils()
     {
         $bdd = Bdd::Connexion();
@@ -12,10 +19,12 @@ class ProfilsModel
     public function Profil($id_user)
     {
         $bdd = Bdd::Connexion();
-        $profil = $bdd->prepare('SELECT * FROM user WHERE id_user=:id_user');
+        $profil = $bdd->prepare('SELECT * FROM compte 
+                                    INNER JOIN user ON compte.id_user = user.id_user
+                                    WHERE compte.id_user=:id_user');
         $profil->execute([":id_user" => $id_user]);
-        // var_dump($profil->fetch()); //test
-        $resultat = $profil->fetch();
+        var_dump($profil->fetchAll()); //test
+        $resultat = $profil->fetchAll();
 
         $bdd = null;
 

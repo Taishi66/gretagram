@@ -1,27 +1,32 @@
-<br>
-<?php echo @$message; ?>
-<br>
-<div class="form-custom">
-    <div class="card-header" style="font-size: larger; text-align:center; font-weight:bold;"><i class="fas fa-user-alt mr-3"></i>Créez votre compte!</div>
-    <div class="card-body">
-        <p class="card-text">
-        <form action="" method="POST" enctype='multipart/form-data' style="font-weight: bold;">
-            <div class="form-group">
-                <label>Pseudo</label>
-                <input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Choississez votre pseudo">
+<div class="d-flex justify-content-center">
+    <div>
+        <img src="./img/signup.png">
+    </div>
+    <div>
+        <div class="form-custom mt-5">
+            <div class="card-header c-head" style="text-align:center;">Créez votre compte pour pouvoir<br> partager vos photos et vidéos avec vos amis</div>
+            <div class="card card-body">
+            <p><?php echo $message ?></p>
+                <p class="card-text">
+                <form action="?page=monProfil" method="POST" style="font-weight: bold;">
+                    <div class="form-group">
+                        <label>Pseudo</label>
+                        <input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Choississez le pseudo de votre compte">
+                    </div>
+                    <div class="form-group">
+                        <label>Photo</label>
+                        <input type="text" class="form-control" name="photo" id="photo" placeholder="Photo de profil">
+                    </div>
+                        <div class="form-group">
+                        <label>Description</label>
+                        <textarea type="text" class="form-control" name="description_compte" id="description_compte" placeholder="Description du compte"></textarea>
+                    </div>
+                    <br>
+                    <button type="submit" class="form-control btn-primary">Créer le compte</button>
+                    <hr>
+                </form>
+                </p>
             </div>
-            <div class="form-group">
-                <label for="photo">Ajoutez une photo à votre compte</label><br>
-                <input type="file" name="photo" id="photo">
-            </div>
-            <div class="form-group">
-                <label>Description</label>
-                <textarea class="form-control" name="description_compte" id="description_compte" placeholder="Décrivez en quelques mots votre contenu"></textarea>
-            </div>
-            <br>
-            <button type="submit" class="btn-grad">Créez votre compte</button>
-        </form>
-        </p>
+        </div>
     </div>
 </div>
-<br>

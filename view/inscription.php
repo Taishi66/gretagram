@@ -3,10 +3,9 @@
         <img src="./img/insta.jpg">
     </div>
     <div class="card p-5">
-        <?php echo @$message; ?>
         <div class="text-center">
             <img src="./img/ig-logo.png" class="mt-4 mb-4">
-            <div>Inscription</div>
+            <div style="font-weight:bold; font-size:x-large">Inscription</div>
             <form action="" method="POST" style="font-weight: bold;" class="card-body">
                 <div class="form-group">
                     <label>Nom</label>
@@ -28,6 +27,7 @@
                 <button type="submit" class="btn-primary form-control">Connexion</button>
                 <br>
             </form>
+            <?php echo $datas['message']; ?>
         </div>
     </div>
 </div>

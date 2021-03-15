@@ -14,7 +14,7 @@
                                              <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
                                                  <img src="./img/profiles/profile-1.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                              </div>
-                                             <small>samkolder</small>
+                                             <small>JCLAMY</small>
                                          </div>
                                      </button>
                                  </li>
@@ -42,7 +42,7 @@
                                      <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
                                          <img src="./img/profiles/profile-1.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                      </div>
-                                     <span class="font-weight-bold">samkolder</span>
+                                     <span class="font-weight-bold">JCLAMY</span>
                                  </div>
                              </div>
                              <div class="card-body p-0">
@@ -88,8 +88,8 @@
 
                                  <div class="pl-3 pr-3 pb-2">
                                      <strong class="d-block">365.354 likes</strong>
-                                     <strong class="d-block">samkolder</strong>
-                                     <p class="d-block mb-1">Lil drone shot I got a while back but never posted.</p>
+                                     <strong class="d-block">JCLAMY</strong>
+                                     <p class="d-block mb-1">blablablablbalbalblabla</p>
                                      <button class="btn p-0">
                                          <span class="text-muted">View all 2,247 comments</span>
                                      </button>
@@ -128,8 +128,8 @@
                              <img src="assets/images/profiles/profile-6.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                          </div>
                          <div class="profile-info ml-3">
-                             <span class="profile-info-username">codingvenue</span>
-                             <span class="profile-info-name">Coding Venue</span>
+                             <span class="profile-info-username">PAGE TEST username</span>
+                             <span class="profile-info-name">user</span>
                          </div>
                      </div>
                      <!-- SUGGESTION ET LIEN PROFIL-->

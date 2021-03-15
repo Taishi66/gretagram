@@ -2,7 +2,7 @@
     <img class="photo-profil m-3" src="././img/profiles/profile-1.jpg">
     <div style="margin-top: 30px; margin-bottom:30px">
         <div class="header-profil">
-            <div class="mt-4" style="font-weight: bold; margin-left:15px;">PSEUDO COMPTE</div>
+            <div class="mt-4" style="font-weight: bold; margin-left:15px;"><?php echo $profil['pseudo']; ?></div>
             <button class="m-3 btn-modif">Modifier profil</button>
             <button class="m-3 btn-modif"><a href="?page=deconnexion" style="color: black; ;text-decoration:none;">Déconnexion</a></button>
         </div>
@@ -17,8 +17,8 @@
                 <p class="mr-2" style="font-weight:bold;">121</p> Abonnements
             </div>
         </div>
-        <div class=""><?php echo  $profil['prenom']; ?>
-            <?php echo  strtoupper($profil['nom']); ?>
+       <div class=""><?php //echo  $profil['prenom']; ?>
+            <?php //echo  strtoupper($profil['nom']); ?> 
             <p>Description</p>
         </div>
     </div>
