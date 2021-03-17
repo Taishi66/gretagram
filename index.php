@@ -1,14 +1,10 @@
 <?php
 // demarre une session
-
 session_start();
 
+
 require_once("bdd/bdd.php");
-
-//include("view/header.php");
-
 include("controller/profilsController.php");
-
 require_once("Router.php");
 require_once('render.php');
 
@@ -20,8 +16,11 @@ $vars = $router->getPage();
 
 $render = new Render();
 
-$header = $render->renderHeader();
+$header = $render->renderHeader($vars['datas']);
 $content = $render->renderContent($vars['template'], $vars['datas']);
-$footer = $render->renderFooter();
+$footer = $render->renderFooter($vars['datas']);
+
+//session_start();
 
 $render->showPage($header, $content, $footer);
+

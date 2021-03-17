@@ -6,11 +6,11 @@ include("controller/verificationController.php");
 
 class ProfilsController
 {
-    /*public $nom;
+    /* public $nom;
     public $prenom;
     public $email;
-    public $mdp; */
-
+    public $mdp;
+*/
     private $profilsModel;
     private $verif;
 
@@ -34,7 +34,10 @@ class ProfilsController
         $id_user = @$_SESSION['id_user'];
         $profil = $this->profilsModel->Profil($id_user);
         return array(
-            'template' => 'monProfil.php',
+            'template' => 'profil/monProfil.php',
+            'datas' => array(
+                'message' => 'test'
+            )
         );
     }
 
@@ -50,28 +53,16 @@ class ProfilsController
         $this->email = $this->verif->verfEmail(@$_POST["email"]);
 
 
-        //affiche les messages
-        /* if (isset($_POST['email'])) {
-            $message = "<center class='alert alert-danger'>Inscription n'est pas prise en compte<br>";
-            if (!$this->email) {
-                $message .= "mail incorrect <br>";
-            }
-            if (!$this->nom) {
-                $message .= "nom incorrect <br>";
-            }
-            $message .= "</center>";
-        }
-*/
         if ($this->email && $this->nom && $this->prenom) {
             $this->mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
-            //var_dump($_POST);
-            if ($this->profilsModel->inscription()) {
+            //var_dump($this->nom);
+            if ($this->profilsModel->inscription($this->email, $this->nom, $this->prenom, $this->mdp)) {
+                //header('Location:?page=noAccount');
                 return array(
                     'template' => 'creAccount.php',
                     'datas' => array(
-                        'message' => 'Bienvenue!'
+                        'message' => ''
                     )
-
                 );
             } else {
                 return array(
@@ -86,11 +77,9 @@ class ProfilsController
         } else {
             return array(
                 'template' => 'inscription.php',
-                'datas' => [
-                    'defaultDatas' => [
-                        'email' => 'jc@greta.fr'
-                    ]
-                ]
+                'datas' => array(
+                    'message' => ''
+                )
             );
         }
     }
@@ -101,14 +90,19 @@ class ProfilsController
         if (isset($_POST["email"])) {
 
             $this->email = $this->verif->verfEmail(@$_POST["email"]);
-            $profil = $this->profilsModel->login();
+            $profil = $this->profilsModel->login($this->email);
+            var_dump($profil);
 
-            if (password_verify(@$_POST["mdp"], @$profil['mdp'])) {
+
+            if (password_verify($_POST['mdp'], $profil['mdp'])) {
                 $_SESSION['nom'] = $profil['nom'];
                 $_SESSION['prenom'] = $profil['prenom'];
                 $_SESSION['id_user'] = $profil['id_user'];
+
+                var_dump($_SESSION['id_user']);
+                header('Location:?page=monProfil');
                 return array(
-                    'template' => 'monProfil.php',
+                    'template' => 'profil/monProfil.php',
                     'datas' => array(
                         'message' => 'Connexion réussie'
                     )
@@ -123,48 +117,47 @@ class ProfilsController
             }
         } else {
             return array(
-                'template' => 'login.php'
+                'template' => 'login.php',
+                'datas' => array(
+                    'message' => 'Connectez vous'
+                )
             );
         }
     }
 
 
     //-----------------------------------------------------CREER UN COMPTE---------------------------------
-    public function newAccount()
+    public function newAccount($id)
     {
         $id = @$_SESSION['id_user'];
-        $this->pseudo = @$_POST['pseudo'];
-        $this->description_compte = @$_POST['description_compte'];
-        $this->photo = @$_POST['photo'];
+        $pseudo = @$_POST['pseudo'];
+        $description_compte = @$_POST['description_compte'];
+        $photo = @$_POST['photo'];
+        var_dump($id . '=controller');
+        // exit;
 
-        if (isset($_POST['pseudo'])) {
-            $message = "<center class='alert alert-danger'>Création non prise en compte<br>";
-            if (!$this->pseudo) {
-                $message .= "Pseudo manquant <br>";
-            }
-            $message .= "</center>";
-        }
 
-        if ($this->pseudo && $this->photo && $this->description_compte) {
-
-            if ($this->profilsModel->creAccount($id)) {
-                return array(
-                    'template' => 'monProfil.php',
-                    'datas' => array(
-                        'message' => 'Votre compte vient d\'être créé!'
-                    )
-                );
+        if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
+            var_dump($pseudo);
+            if ($this->profilsModel->creAccount($id, $photo, $pseudo, $description_compte)) {
+                header('Location:?page=monProfil');
+                exit;
             } else {
+                var_dump("else1");
                 return array(
                     'template' => 'creAcount.php',
-                    'data' => array(
+                    'datas' => array(
                         'message' => 'Création compte non prise en compte'
                     )
                 );
             }
         } else {
+            var_dump("else2");
             return array(
-                'template' => 'creAccount.php'
+                'template' => 'creAccount.php',
+                'datas' => array(
+                    'message' => 'testCREA'
+                )
             );
         }
     }

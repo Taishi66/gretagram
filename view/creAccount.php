@@ -6,9 +6,8 @@
         <div class="form-custom mt-5">
             <div class="card-header c-head" style="text-align:center;">Créez votre compte pour pouvoir<br> partager vos photos et vidéos avec vos amis</div>
             <div class="card card-body">
-            <p><?php echo $message ?></p>
                 <p class="card-text">
-                <form action="?page=monProfil" method="POST" style="font-weight: bold;">
+                <form action="?page=noAccount" method="POST" style="font-weight: bold;">
                     <div class="form-group">
                         <label>Pseudo</label>
                         <input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Choississez le pseudo de votre compte">

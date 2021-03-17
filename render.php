@@ -6,7 +6,7 @@ class Render
     {
     }
 
-    public function renderHeader()
+    public function renderHeader($datas)
     {
         ob_start();
         include('view/header.php');
@@ -24,7 +24,7 @@ class Render
         return $var;
     }
 
-    public function renderFooter()
+    public function renderFooter($datas)
     {
         ob_start();
         include('view/footer.php');

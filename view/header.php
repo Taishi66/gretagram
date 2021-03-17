@@ -82,3 +82,8 @@
                 </div>
             </nav>
         </div>
+        <?php
+        if (!empty($datas['error'])) {
+            echo '<b>' . $datas['error'] . '</b>';
+        }
+        ?>

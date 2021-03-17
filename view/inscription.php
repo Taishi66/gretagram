@@ -24,7 +24,7 @@
                     <input type="password" class="form-control" name="mdp" id="mdp" placeholder="Entrez votre mdp">
                 </div>
                 <br>
-                <button type="submit" class="btn-primary form-control">Connexion</button>
+                <button type="submit" class="btn-primary form-control">Valider</button>
                 <br>
             </form>
             <?php echo $datas['message']; ?>

@@ -15,23 +15,27 @@ class Router
      */
     function getPage()
     {
+
         switch ($this->page) {
             case '':
                 $profil = new ProfilsController();
                 return $profil->getLogin();
-                //break;
+                // break;
             case 'inscription':
+                var_dump($_SESSION['id_user'] . '=id_user');
                 $profil = new ProfilsController();
                 return $profil->setInscription();
                 //break;
-            case 'nouveauCompte':
+            case 'noAccount':
+                var_dump(@$_SESSION["id_user"] . '=router');
                 $profil = new ProfilsController();
-                return $profil->newAccount();
-              //  break;
+                return $profil->newAccount(@$_SESSION["id_user"]);
+                //  break;
             case 'monProfil':
                 $profil = new ProfilsController();
-                return $profil->afficherMonprofil(@$_SESSION["id_user"]);
-                // break;
+                $profil->afficherMonprofil(@$_SESSION["id_user"]);
+                var_dump(@$_SESSION["id_user"] . '=id_user');
+                break;
             case 'home':
                 ///include("view/home.php");
                 break;
@@ -39,21 +43,8 @@ class Router
                 // vide la session et donc je me deconnecte
                 $_SESSION = array();
                 // redirection vers pas login
-                include('view/accueil.php');
+                header('Location:?page=');
                 break;
-
-
-                /* $profils = new ProfilsController();
-                $profils->afficherListeProfils();
-                break;*/
-                /* 
-            case 'noAccount':
-                $profil = new ProfilsController();
-                $profil->newAccount();
-                break;
-            case 'inbox':
-                include("view/inbox.php");
-                break;*/
                 /*default:
                 header('location:index.php');
                 break;*/
