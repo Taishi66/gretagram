@@ -14,12 +14,26 @@ class ProfilsController
     private $profilsModel;
     private $verif;
 
+    private $message = null;
+    private $template = null;
+
+
     public function __construct()
     {
         $this->verif = new Verification();
         $this->profilsModel = new ProfilsModel();
     }
 
+
+    public function renderController () {
+        return [
+            'template' => $this->template,
+            'datas' => array(
+                'message' => $this->message,
+                'user' => SessionFacade::getUserSession()
+            )
+        ];
+    }
 
     //------------------------------LISTE DES PROFILS------------------------------------------------
     public function afficherListeProfils()
@@ -31,14 +45,11 @@ class ProfilsController
     //-----------------------------PROFIL CONNECTE-------------------------------------------
     public function afficherMonprofil($id_user)
     {
-        $id_user = @$_SESSION['id_user'];
+        $id_user = SessionFacade::getUserId();
         $profil = $this->profilsModel->Profil($id_user);
-        return array(
-            'template' => 'profil/monProfil.php',
-            'datas' => array(
-                'message' => 'test'
-            )
-        );
+        $this->template =  'profil/monProfil.php';
+        $this->message = 'test';
+        return $this->renderController();
     }
 
     //-------------------------------------------INSCRIPTION------------------------------------
@@ -48,81 +59,48 @@ class ProfilsController
         // si le formulaire est envoyé j'entre dans la condition
         // si non j'affiche la vue du formulaire dans else
 
-        $this->nom = $this->verif->verfNomPrenom(@$_POST["nom"]);
-        $this->prenom = $this->verif->verfNomPrenom(@$_POST["prenom"]);
-        $this->email = $this->verif->verfEmail(@$_POST["email"]);
+        $nom = $this->verif->verfNomPrenom(@$_POST["nom"]);
+        $prenom = $this->verif->verfNomPrenom(@$_POST["prenom"]);
+        $email = $this->verif->verfEmail(@$_POST["email"]);
 
+        $this->template = 'inscription.php';
 
-        if ($this->email && $this->nom && $this->prenom) {
-            $this->mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
+        if ($email && $nom && $prenom) {
+            $mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
             //var_dump($this->nom);
-            if ($this->profilsModel->inscription($this->email, $this->nom, $this->prenom, $this->mdp)) {
-                //header('Location:?page=noAccount');
-                return array(
-                    'template' => 'creAccount.php',
-                    'datas' => array(
-                        'message' => ''
-                    )
-                );
+            if ($this->profilsModel->inscription($email, $nom, $prenom, $mdp)) {
+                SessionFacade::setUserSession($profil);
+                $this->redirectTo('noAccount');
             } else {
-                return array(
-                    'template' => 'inscription.php',
-                    'datas' => array(
-                        'message' => 'Inscription non prise en compte'
-                    )
-                );
+                $this->message = 'Inscription non prise en compte';
             }
-            // si le formulaire n'est pas envoyé
-            // j'affiche la vue du formulaire
-        } else {
-            return array(
-                'template' => 'inscription.php',
-                'datas' => array(
-                    'message' => ''
-                )
-            );
         }
+        $this->renderController();
+    }
+
+    public function redirectTo($page){
+        header('Location:?page='.$page);
+        exit;
     }
 
     //--------------------------------------------CONNEXION-----------------------------------------
     public function getLogin()
     {
+        $this->template = 'login.php';
+        
         if (isset($_POST["email"])) {
-
-            $this->email = $this->verif->verfEmail(@$_POST["email"]);
-            $profil = $this->profilsModel->login($this->email);
-            var_dump($profil);
-
+            $email = $this->verif->verfEmail(@$_POST["email"]);
+            $profil = $this->profilsModel->login($email);
 
             if (password_verify($_POST['mdp'], $profil['mdp'])) {
-                $_SESSION['nom'] = $profil['nom'];
-                $_SESSION['prenom'] = $profil['prenom'];
-                $_SESSION['id_user'] = $profil['id_user'];
-
-                var_dump($_SESSION['id_user']);
+                SessionFacade::setUserSession($profil);
                 header('Location:?page=monProfil');
-                return array(
-                    'template' => 'profil/monProfil.php',
-                    'datas' => array(
-                        'message' => 'Connexion réussie'
-                    )
-                );
+                exit;
             } else {
-                return array(
-                    'template' => 'login.php',
-                    'datas' => array(
-                        'message' => 'Connexion échouée'
-                    )
-                );
+                $this->message = 'Erreur de connexion';
             }
-        } else {
-            return array(
-                'template' => 'login.php',
-                'datas' => array(
-                    'message' => 'Connectez vous'
-                )
-            );
         }
+        return $this->renderController();
     }
 
 
@@ -136,6 +114,7 @@ class ProfilsController
         var_dump($id . '=controller');
         // exit;
 
+        $this->template = 'creAccount.php';
 
         if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
             var_dump($pseudo);
@@ -143,22 +122,10 @@ class ProfilsController
                 header('Location:?page=monProfil');
                 exit;
             } else {
-                var_dump("else1");
-                return array(
-                    'template' => 'creAcount.php',
-                    'datas' => array(
-                        'message' => 'Création compte non prise en compte'
-                    )
-                );
+                $this->message = 'Création compte non prise en compte';
             }
-        } else {
-            var_dump("else2");
-            return array(
-                'template' => 'creAccount.php',
-                'datas' => array(
-                    'message' => 'testCREA'
-                )
-            );
         }
+
+        return $this->renderController();
     }
 }
