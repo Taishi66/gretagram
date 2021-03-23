@@ -2,19 +2,13 @@
 
 class ProfilsModel
 {
-    /*
-    public $nom;
-    public $prenom;
-    public $email;
-    public $mdp;
-    public $pseudo;
-    public $photo;
-    public $description_compte;*/
 
 
-
-    //-----------------------------------------------------------------SHOW LISTE COMPTE-------------------------------------------
-
+    /**
+     * listeProfils
+     *
+     * @return void
+     */
     public function listeProfils()
     {
         $bdd = Bdd::Connexion();
@@ -23,8 +17,13 @@ class ProfilsModel
         return $resultat;
     }
 
-    //-----------------------------------------------------------------SHOW COMPTE-------------------------------------------
 
+    /**
+     * Profil
+     *
+     * @param  int $id_user
+     * @return void
+     */
     public function Profil($id_user)
     {
         $bdd = Bdd::Connexion();
@@ -33,15 +32,23 @@ class ProfilsModel
                                     WHERE compte.id_user=:id_user');
         $profil->execute([":id_user" => $id_user]);
         //var_dump($profil->fetchAll()); //test
-        $resultat = $profil->fetchAll();
+        $resultat = $profil->fetch(PDO::FETCH_ASSOC);
 
         $bdd = null;
 
         return $resultat;
     }
 
-    //-----------------------------------------------------------------INSCRIPTION-------------------------------------------
 
+    /**
+     * inscription
+     *
+     * @param  string $nom
+     * @param  string $prenom
+     * @param  string $email
+     * @param  string $mdp
+     * @return void
+     */
     public function inscription($nom, $prenom, $email, $mdp)
     {
         $bdd = Bdd::Connexion();
@@ -56,10 +63,14 @@ class ProfilsModel
 
         return $resultat;
     }
-    //-----------------------------------------------------------------LOGIN-------------------------------------------
 
 
-    //Connexion user
+    /**
+     * login
+     *
+     * @param  mixed $email
+     * @return void
+     */
     public function login($email)
     {
         $bdd = Bdd::Connexion();
@@ -70,9 +81,18 @@ class ProfilsModel
         return $resultat;
     }
 
-    //-----------------------------------------------------------------CREATION COMPTE-------------------------------------------
+    /**
+     * creAccount
+     *
+     * @param  string $id
+     * @param  string $photo
+     * @param  string $pseudo
+     * @param  string $description_compte
+     * @return void
+     */
     public function creAccount($id, $photo, $pseudo, $description_compte)
     {
+        //$id_user ='SELECT id_user FROM user WHERE id_user = LAST_INSERT_ID()';
         $bdd = Bdd::Connexion();
         $sql = 'INSERT INTO compte(pseudo, description_compte, photo, id_user)
                 VALUES (:pseudo,:description_compte,:photo, :id)';

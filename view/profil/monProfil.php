@@ -1,3 +1,4 @@
+<pre><?php var_dump($profil); ?></pre>
 <div class="d-flex justify-content-center" style="align-items:center">
     <img class="photo-profil m-3" src="././img/profiles/profile-1.jpg">
     <div style="margin-top: 30px; margin-bottom:30px">
@@ -8,18 +9,19 @@
         </div>
         <div class="header-profil">
             <div class="d-flex mr-3">
-                <p class="mr-2" style="font-weight:bold;">121</p>Publication
+                <p class="mr-2" style="font-weight:bold;"><?php echo $profil['publications'] ?></p>Publication
             </div>
             <div class="d-flex mr-3">
-                <p class="mr-2" style="font-weight:bold;">121</p> Abonnées
+                <p class="mr-2" style="font-weight:bold;"><?php echo $profil['abonnes'] ?></p> Abonnées
             </div>
             <div class="d-flex">
-                <p class="mr-2" style="font-weight:bold;">121</p> Abonnements
+                <p class="mr-2" style="font-weight:bold;"><?php echo $profil['abonnements'] ?></p> Abonnements
             </div>
         </div>
-       <div class=""><?php //echo  $profil['prenom']; ?>
-            <?php //echo  strtoupper($profil['nom']); ?> 
-            <p>Description</p>
+        <div class="">
+            <b><?php echo SessionFacade::getUserName(); ?>
+                <?php echo SessionFacade::getUserPrenom(); ?></b>
+            <p><?php echo $profil['description_compte'] ?></p>
         </div>
     </div>
 
@@ -28,7 +30,7 @@
 </div>
 <div class="d-flex justify-content-center flex-wrap" id="photo-compte">
     <div class="m-4">
-        <a href="" data-target="#modal" data-toggle="modal"><img src="https://picsum.photos/350/350"></a>
+        <a href=""><img src="https://picsum.photos/350/350"></a>
     </div>
     <div class="m-4">
         <a href=""><img src="https://picsum.photos/350/350"></a>

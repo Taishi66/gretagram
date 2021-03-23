@@ -22,20 +22,18 @@ class Router
                 return $profil->getLogin();
                 // break;
             case 'inscription':
-                var_dump($_SESSION['id_user'] . '=id_user');
                 $profil = new ProfilsController();
                 return $profil->setInscription();
                 //break;
             case 'noAccount':
-                var_dump(@$_SESSION["id_user"] . '=router');
+                var_dump(SessionFacade::getUserId() . '=router');
                 $profil = new ProfilsController();
-                return $profil->newAccount(@$_SESSION["id_user"]);
+                return $profil->newAccount(SessionFacade::getUserId());
                 //  break;
             case 'monProfil':
                 $profil = new ProfilsController();
-                $profil->afficherMonprofil(@$_SESSION["id_user"]);
-                var_dump(@$_SESSION["id_user"] . '=id_user');
-                break;
+                return $profil->afficherMonprofil(SessionFacade::getUserId());
+                //break;
             case 'home':
                 ///include("view/home.php");
                 break;
