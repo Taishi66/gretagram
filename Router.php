@@ -35,7 +35,11 @@ class Router
                 return $profil->afficherMonprofil(SessionFacade::getUserId());
                 //break;
             case 'home':
-                ///include("view/home.php");
+                // $profil = new ProfilsController();
+                //return $profil->afficherListeProfils();
+                // break;
+            case 'inbox':
+                include('view/inbox.php');
                 break;
             case 'deconnexion':
                 // vide la session et donc je me deconnecte

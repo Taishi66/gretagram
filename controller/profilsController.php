@@ -42,7 +42,8 @@ class ProfilsController
     public function afficherListeProfils()
     {
         $listeProfils = $this->profilsModels->listeProfils();
-        include("profil/viewListeProfils.php");
+        $this->template = 'home.php';
+        return $this->renderController();
     }
 
     /**
@@ -52,15 +53,11 @@ class ProfilsController
      * @return void
      */
     public function afficherMonprofil($id_user)
-    {   
-        $this->template='profil/monProfil.php';
-
+    {
+        $this->template = 'profil/monProfil.php';
         $id_user = SessionFacade::getUserId();
-        $profil = $this->profilsModel->Profil($id_user);
-        //var_dump($profil);
-       include('view/profil/monProfil.php');
-        
-       return $this->renderController();
+        $this->message = $this->profilsModel->Profil($id_user);
+        return $this->renderController();
     }
 
     /**

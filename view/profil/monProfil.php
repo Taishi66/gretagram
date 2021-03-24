@@ -1,27 +1,37 @@
-<pre><?php var_dump($profil); ?></pre>
+<pre style="display:none;"><?php var_dump($datas['message']); ?></pre>
 <div class="d-flex justify-content-center" style="align-items:center">
-    <img class="photo-profil m-3" src="././img/profiles/profile-1.jpg">
-    <div style="margin-top: 30px; margin-bottom:30px">
+    <img class="photo-profil m-3" src="<?php echo $datas['message']['photo'] ?>">
+    <div style="margin-top: 30px; margin-bottom:30px; text-align:left;">
         <div class="header-profil">
-            <div class="mt-4" style="font-weight: bold; margin-left:15px;"><?php echo $profil['pseudo']; ?></div>
-            <button class="m-3 btn-modif">Modifier profil</button>
-            <button class="m-3 btn-modif"><a href="?page=deconnexion" style="color: black; ;text-decoration:none;">Déconnexion</a></button>
+            <h2 class="mt-3" style="font-weight: bold; margin-left:15px;"><?php echo $datas['message']['pseudo']; ?></h2>
+
+            <?php if (!empty($_SESSION['user'])) { ?>
+                <!-- Button trigger modal Modif Profil-->
+                <button class="m-3 btn-modif">Modifier profil</button>
+                <!-- Button trigger modal Nouveau Post-->
+                <button type="button" class="m-3 btn-modif" data-toggle="modal" data-target="#postModal">Nouveau Post</button>
+                <button class="m-3 btn-modif"><a href="?page=deconnexion" style="color: black; ;text-decoration:none;">Déconnexion</a></button>
+
+            <?php } else { ?>
+                <button type="button" class="m-3 btn-modif" data-toggle="modal" data-target="#contactModal">Contacter</button>
+                <button class="m-3 btn-modif">S'abonner</button>
+            <?php }  ?>
         </div>
         <div class="header-profil">
             <div class="d-flex mr-3">
-                <p class="mr-2" style="font-weight:bold;"><?php echo $profil['publications'] ?></p>Publication
+                <p class="mr-2" style="font-weight:bold;"><?php echo $datas['message']['publications']; ?>121</p> Publication
             </div>
             <div class="d-flex mr-3">
-                <p class="mr-2" style="font-weight:bold;"><?php echo $profil['abonnes'] ?></p> Abonnées
+                <p class="mr-2" style="font-weight:bold;"><?php echo $datas['message']['abonnes']; ?>111</p> Abonnées
             </div>
             <div class="d-flex">
-                <p class="mr-2" style="font-weight:bold;"><?php echo $profil['abonnements'] ?></p> Abonnements
+                <p class="mr-2" style="font-weight:bold;"><?php echo $datas['message']['abonnements']; ?>121</p> Abonnements
             </div>
         </div>
         <div class="">
             <b><?php echo SessionFacade::getUserName(); ?>
                 <?php echo SessionFacade::getUserPrenom(); ?></b>
-            <p><?php echo $profil['description_compte'] ?></p>
+            <p><?php echo $datas['message']['description_compte'] ?></p>
         </div>
     </div>
 
@@ -30,7 +40,7 @@
 </div>
 <div class="d-flex justify-content-center flex-wrap" id="photo-compte">
     <div class="m-4">
-        <a href=""><img src="https://picsum.photos/350/350"></a>
+        <a data-toggle="modal" data-target="#mediaModal"><img src="https://picsum.photos/350/350"></a>
     </div>
     <div class="m-4">
         <a href=""><img src="https://picsum.photos/350/350"></a>
@@ -50,23 +60,85 @@
 </div>
 
 
-<!-- MODAL ARTICLE-->
-<div class="modal" tabindex="-1" role="dialog" id="modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content d-flex row">
-            <img class="mr-2" src="https://picsum.photos/350/350">
-            <div class="card-body">
-                <p>Modal body text goes here.</p>
+
+
+<!-- Modal Nouveau Post-->
+<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nouveau post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Titre</label>
+                    <input type="text" class="form-control" name="titre" id="titre" placeholder="Titre de votre post">
+                </div>
+                <div class="form-group">
+                    <label>Média</label>
+                    <input type="text" class="form-control" name="media" id="media" placeholder="Photo ou vidéo">
+                </div>
+                <div class="form-group">
+                    <label>Contenu</label>
+                    <input type="text" class="form-control" name="contenu" id="contenu" placeholder="Ajoutez une légende">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary">Publier</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+
+<!-- Modal Contact-->
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <h3><?php echo SessionFacade::getUserName() ?></h3>
+                    <textarea type="text" class="form-control" name="message" id="message" placeholder="Votre message..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal media cliqué-->
+<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <h3><?php echo SessionFacade::getUserName() ?></h3>
+                    <textarea type="text" class="form-control" name="message" id="message" placeholder="Votre message..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
     </div>
 </div>

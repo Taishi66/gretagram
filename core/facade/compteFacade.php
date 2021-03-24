@@ -2,42 +2,51 @@
 
 class compteFacade
 {
-
+    static private $user;
     static private $compte;
 
+    /**
+     * Method setUserCompte
+     *
+     * @param $user $user [explicite description]
+     *
+     * @return void
+     */
     static function setUserCompte($user)
     {
-        static::$compte = $compte;
-        $bdd = Bdd::Connexion();
+        static::$user = $user;
+        $_SESSION['user'] = $user;
 
+        $bdd = Bdd::Connexion();
+        $compte = $bdd->query('SELECT * FROM compte
+                INNER JOIN user ON user.id_user = compte.id_user
+                INNER JOIN article ON article.id_compte = compte.id_compte
+                WHERE compte.id_user = user.id_user')->fetchAll(PDO::FETCH_ASSOC);
+
+        static::$compte = $compte;
     }
 
-    static function getUserCompte()
+    static function getUserCompte($compte)
     {
         if (empty(static::$user)) {
             static::$user = $_SESSION['user'];
+            $compte = self::setUserCompte(static::$user);
         }
-        return static::$user;
+        return static::$compte;
     }
 
     static function getComptePseudo()
     {
-        return self::getUserCompte()['nom'];
+        return self::getUserCompte(static::$compte)['pseudo'];
     }
 
     static function getCompteDescription()
     {
-        return self::getUserSession()['prenom'];
+        return self::getUserCompte(static::$compte)['description_compte'];
     }
 
-    static function getUserId()
+    static function getComptePhoto()
     {
-        return self::getUserSession()['id_user'];
-    }
-
-    static function clearSession()
-    {
-        unset($_SESSION['user']);
-        unset(static::$user['user']);
+        return self::getUserCompte(static::$compte)['photo'];
     }
 }

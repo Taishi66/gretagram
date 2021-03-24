@@ -28,23 +28,23 @@ class ArticleController extends ProfilsController
     /**
      * newArticle
      *
-     * @param  string $img_art
+     * @param  string $media
      * @param  string $titre
      * @param  string $contenu
      * @param  date $date_art
      * @param  int $id_compte
      * @return void
      */
-    function newArticle($img_art, $titre, $contenu, $date_art, $id_compte)
+    function newArticle($media, $titre, $contenu, $date_art, $id_compte)
     {
         $id_compte = '';
-        $img_art = @$_POST['img_art'];
+        $media = @$_POST['media'];
         $titre = @$_POST['titre'];
         $contenu = @$_POST['contenu'];
         $date_art = @$_POST['date_art'];
 
         if (!empty($img_art) && !empty($titre)) {
-            if ($this->articlesModel->créerArticle($img_art, $titre, $contenu, $date_art, $id_compte)) {
+            if ($this->articlesModel->créerArticle($media, $titre, $contenu, $date_art, $id_compte)) {
                 $this->redirectTo('monProfil');
                 exit;
             } else {
@@ -58,7 +58,7 @@ class ArticleController extends ProfilsController
     /**
      * updateArticle
      *
-     * @param  string $img_art
+     * @param  string $media
      * @param  string $titre
      * @param  string $contenu
      * @param  date $date_art
@@ -69,12 +69,12 @@ class ArticleController extends ProfilsController
     function updateArticle($id_article, $img_art, $titre, $contenu, $date_art, $id_compte)
     {
         $id_compte = '';
-        $img_art = @$_POST['img_art'];
+        $media = @$_POST['media'];
         $titre = @$_POST['titre'];
         $contenu = @$_POST['contenu'];
         $date_art = @$_POST['date_art'];
 
-        $this->articlesModel->modifierArticle($id_article, $img_art, $titre, $contenu, $date_art, $id_compte);
+        $this->articlesModel->modifierArticle($id_article, $media, $titre, $contenu, $date_art, $id_compte);
     }
 
     /**
