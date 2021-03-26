@@ -24,11 +24,12 @@ class ProfilsModel
      * @param  int $id_user
      * @return void
      */
-    public function Profil($id_user)
+    public function profil($id_user)
     {
         $bdd = Bdd::Connexion();
         $profil = $bdd->prepare('SELECT * FROM compte 
                                     INNER JOIN user ON compte.id_user = user.id_user
+                                    INNER JOIN article ON compte.id_compte = article.id_compte
                                     WHERE compte.id_user=:id_user');
         $profil->execute([":id_user" => $id_user]);
         //var_dump($profil->fetchAll()); //test

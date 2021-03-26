@@ -2,6 +2,22 @@
 
 class ArticlesModel
 {
+
+    function voirAllArticles($id_compte)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = 'SELECT * FROM article
+                INNER JOIN compte ON compte.id_compte = article.id_compte
+                WHERE article.id_compte = :id_compte';
+        $articles = $bdd->prepare($sql);
+        $articles->execute([':id_compte' => $id_compte]);
+        $resultat = $articles->fetch(PDO::FETCH_ASSOC);
+        // var_dump($resultat);
+        return $resultat;
+    }
+
+
+
     /**
      * voirArticle
      *
@@ -33,12 +49,12 @@ class ArticlesModel
      * @param  int $id_compte
      * @return void
      */
-    function créerArticle($media, $titre, $contenu, $date_art, $id_compte)
+    function createArticle($media, $titre, $contenu, $date_art, $id_compte)
     {
         $bdd = Bdd::Connexion();
 
-        $sql = 'INSERT INTO article (media,titre,contenu,date_art )
-                VALUE (:media,:titre,:contenu, :date_art)';
+        $sql = 'INSERT INTO article (media,titre,contenu,date_art, id_compte )
+                VALUE (:media,:titre,:contenu, :date_art, :id_compte)';
         $article = $bdd->prepare($sql);
         $resultat = $article->execute([
             ":media" => $media,

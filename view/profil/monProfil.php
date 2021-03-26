@@ -34,29 +34,21 @@
             <p><?php echo $datas['message']['description_compte'] ?></p>
         </div>
     </div>
-
-
-
 </div>
+
+<pre><?php var_dump($datas) ?></pre>
+
 <div class="d-flex justify-content-center flex-wrap" id="photo-compte">
-    <div class="m-4">
-        <a data-toggle="modal" data-target="#mediaModal"><img src="https://picsum.photos/350/350"></a>
-    </div>
-    <div class="m-4">
-        <a href=""><img src="https://picsum.photos/350/350"></a>
-    </div>
-    <div class="m-4">
-        <a href=""><img src="https://picsum.photos/350/350"></a>
-    </div>
-    <div class="m-4">
-        <a href=""><img src="https://picsum.photos/350/350"></a>
-    </div>
-    <div class="m-4">
-        <a href=""><img src="https://picsum.photos/350/350"></a>
-    </div>
-    <div class="m-4">
-        <a href=""><img src="https://picsum.photos/350/350"></a>
-    </div>
+    <?php
+
+    foreach ($datas as $data) {
+
+        echo '<div class="m-4">
+        <a data-toggle="modal" data-target="#mediaModal"><img src="' . $data['media'] . '"></a>
+    </div>';
+    }
+    ?>
+
 </div>
 
 
@@ -72,24 +64,30 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Titre</label>
-                    <input type="text" class="form-control" name="titre" id="titre" placeholder="Titre de votre post">
+            <form method="POST" action="" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Titre</label>
+                        <input type="text" class="form-control" name="titre" id="titre" placeholder="Titre de votre post">
+                    </div>
+                    <div class="form-group">
+                        <label>Média</label>
+                        <input type="text" class="form-control" name="media" id="media" placeholder="Photo ou vidéo">
+                    </div>
+                    <div class="form-group">
+                        <label>Contenu</label>
+                        <input type="text" class="form-control" name="contenu" id="contenu" placeholder="Ajoutez une légende">
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" name="date_art" id="date_art" placeholder="date...">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Média</label>
-                    <input type="text" class="form-control" name="media" id="media" placeholder="Photo ou vidéo">
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Publier</button>
                 </div>
-                <div class="form-group">
-                    <label>Contenu</label>
-                    <input type="text" class="form-control" name="contenu" id="contenu" placeholder="Ajoutez une légende">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary">Publier</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>

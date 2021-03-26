@@ -1,16 +1,18 @@
 <?php
-include('./model/articlesModel.php');
+include('model/articlesModel.php');
+//include('controller/managerController.php');
 
-
-class ArticleController extends ProfilsController
+class ArticleController extends ManagerController
 {
 
     private $articlesModel;
+    private $manager;
 
 
     function __construct()
     {
         $this->articlesModel = new ArticlesModel();
+        $this->manager = new ManagerController();
     }
 
     /**
@@ -19,10 +21,11 @@ class ArticleController extends ProfilsController
      * @param  int $id_article
      * @return void
      */
-    function afficheArticle($id_article)
+    function afficheListeArticles($id_compte)
     {
-        $article = $this->articlesModel->voirArticle($id_article);
-        return $article;
+        $id_compte = CompteFacade::getCompteId();
+        $articles = $this->articlesModel->voirAllArticles($id_compte);
+        return $articles;
     }
 
     /**
@@ -37,22 +40,22 @@ class ArticleController extends ProfilsController
      */
     function newArticle($media, $titre, $contenu, $date_art, $id_compte)
     {
-        $id_compte = '';
+        $id_compte = CompteFacade::getCompteId();
         $media = @$_POST['media'];
         $titre = @$_POST['titre'];
         $contenu = @$_POST['contenu'];
         $date_art = @$_POST['date_art'];
 
-        if (!empty($img_art) && !empty($titre)) {
-            if ($this->articlesModel->créerArticle($media, $titre, $contenu, $date_art, $id_compte)) {
-                $this->redirectTo('monProfil');
+        if (!empty($media) && !empty($titre)) {
+            if ($this->articlesModel->createArticle($media, $titre, $contenu, $date_art, $id_compte)) {
+                $this->manager->redirectTo('monProfil');
                 exit;
             } else {
-                $this->message = 'Article non crée';
+                $this->message = 'Article non créé';
             }
             $this->message = 'Données manquantes';
         }
-        return $this->renderController();
+        return $this->manager->renderController();
     }
 
     /**
@@ -86,6 +89,6 @@ class ArticleController extends ProfilsController
     function deleteArticle($id_article)
     {
         $this->articlesModel->deleteArticle($id_article);
-        $this->redirectTo('monProfil');
+        $this->manager->redirectTo('monProfil');
     }
 }

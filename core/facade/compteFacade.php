@@ -1,8 +1,8 @@
 <?php
 
-class compteFacade
+class CompteFacade
 {
-    static private $user;
+    static private $id_user;
     static private $compte;
 
     /**
@@ -12,41 +12,38 @@ class compteFacade
      *
      * @return void
      */
-    static function setUserCompte($user)
+    static function getUserCompte($id_user)
     {
-        static::$user = $user;
-        $_SESSION['user'] = $user;
+        $id_user = SessionFacade::getUserId();
+        static::$id_user = $id_user;
 
         $bdd = Bdd::Connexion();
-        $compte = $bdd->query('SELECT * FROM compte
+        $sql = $bdd->prepare('SELECT * FROM compte
                 INNER JOIN user ON user.id_user = compte.id_user
-                INNER JOIN article ON article.id_compte = compte.id_compte
-                WHERE compte.id_user = user.id_user')->fetchAll(PDO::FETCH_ASSOC);
-
-        static::$compte = $compte;
+                WHERE compte.id_user = :id_user');
+        $sql->execute([":id_user" => $id_user]);
+        static::$compte = $sql->fetch(PDO::FETCH_ASSOC);
+        //var_dump(static::$compte);
+        return static::$compte;
     }
 
-    static function getUserCompte($compte)
+    static function getCompteId()
     {
-        if (empty(static::$user)) {
-            static::$user = $_SESSION['user'];
-            $compte = self::setUserCompte(static::$user);
-        }
-        return static::$compte;
+        return self::getUserCompte(static::$id_user)['id_compte'];
     }
 
     static function getComptePseudo()
     {
-        return self::getUserCompte(static::$compte)['pseudo'];
+        return self::getUserCompte(static::$id_user)['pseudo'];
     }
 
     static function getCompteDescription()
     {
-        return self::getUserCompte(static::$compte)['description_compte'];
+        return self::getUserCompte(static::$id_user)['description_compte'];
     }
 
     static function getComptePhoto()
     {
-        return self::getUserCompte(static::$compte)['photo'];
+        return self::getUserCompte(static::$id_user)['photo'];
     }
 }

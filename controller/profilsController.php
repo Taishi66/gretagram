@@ -2,36 +2,24 @@
 
 include("model/profilsModel.php");
 include("controller/verificationController.php");
+//include("controller/managerController.php");
+//include("controller/articleController.php");
 
-
-class ProfilsController
+class ProfilsController extends ArticleController
 {
+    private $article;
     private $profilsModel;
     private $verif;
-    private $message = null;
-    private $template = null;
+    private $manager;
+
 
 
     public function __construct()
     {
         $this->verif = new Verification();
+        $this->manager = new ManagerController();
+        $this->article = new ArticleController();
         $this->profilsModel = new ProfilsModel();
-    }
-
-    public function renderController()
-    {
-        return [
-            'template' => $this->template,
-            'datas' => array(
-                'message' => $this->message,
-                'user' => SessionFacade::getUserSession()
-            )
-        ];
-    }
-
-    public function redirectTo($page)
-    {
-        header('Location:?page=' . $page);
     }
 
     /**
@@ -42,8 +30,8 @@ class ProfilsController
     public function afficherListeProfils()
     {
         $listeProfils = $this->profilsModels->listeProfils();
-        $this->template = 'home.php';
-        return $this->renderController();
+        $this->manager->template = 'home.php';
+        return $this->manager->renderController();
     }
 
     /**
@@ -52,12 +40,22 @@ class ProfilsController
      * @param  int $id_user
      * @return void
      */
-    public function afficherMonprofil($id_user)
+    public function afficherMonprofil($id_user, $id_compte)
     {
-        $this->template = 'profil/monProfil.php';
+        $this->manager->template = 'profil/monProfil.php';
         $id_user = SessionFacade::getUserId();
-        $this->message = $this->profilsModel->Profil($id_user);
-        return $this->renderController();
+        $this->manager->message = $this->profilsModel->profil($id_user);
+        $this->manager->compte = $this->article->afficheListeArticles($id_compte);
+
+
+        /*  if (!empty($_POST['titre']) && !empty($_POST['media']) && !empty($_POST['contenu'])) {
+            $this->article->newArticle($_POST['media'], $_POST['titre'], $_POST['contenu'], $_POST['date_art'], $this->id_compte);
+            return $this->manager->renderController();
+        } else {
+            //   $this->manager->message = 'Données manquantes';
+            return $this->manager->renderController();
+        }*/
+        return $this->manager->renderController();
     }
 
     /**
@@ -71,7 +69,7 @@ class ProfilsController
         // si le formulaire est envoyé j'entre dans la condition
         // si non j'affiche la vue du formulaire dans else
 
-        $this->template = 'inscription.php';
+        $this->manager->template = 'inscription.php';
 
         $nom = $this->verif->verfNomPrenom(@$_POST["nom"]);
         $prenom = $this->verif->verfNomPrenom(@$_POST["prenom"]);
@@ -84,15 +82,15 @@ class ProfilsController
 
                 $profil = $this->profilsModel->Login($email);
                 SessionFacade::setUserSession($profil);
-                $this->redirectTo('noAccount');
+                $this->manager->redirectTo('noAccount');
                 exit;
             } else {
-                $this->message = 'Inscription échouée';
+                $this->manager->message = 'Inscription échouée';
             }
         } else {
-            $this->renderController();
+            $this->manager->renderController();
         }
-        return  $this->renderController();
+        return  $this->manager->renderController();
     }
 
     /**
@@ -110,19 +108,19 @@ class ProfilsController
         $photo = @$_POST['photo'];
         var_dump($id . '=controller');
         // exit;
-        $this->template = 'creAccount.php';
+        $this->manager->template = 'creAccount.php';
 
         if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
             var_dump($pseudo);
             if ($this->profilsModel->creAccount($id, $photo, $pseudo, $description_compte)) {
-                $this->redirectTo('monProfil');
+                $this->manager->redirectTo('monProfil');
                 exit;
             } else {
-                $this->message = 'Création de compte non enregistrée';
+                $this->manager->message = 'Création de compte non enregistrée';
             }
-            $this->message = 'Données manquantes';
+            $this->manager->message = 'Données manquantes';
         }
-        return $this->renderController();
+        return $this->manager->renderController();
     }
 
     /**
@@ -132,7 +130,7 @@ class ProfilsController
      */
     public function getLogin()
     {
-        $this->template = 'login.php';
+        $this->manager->template = 'login.php';
 
         if (isset($_POST["email"])) {
 
@@ -142,14 +140,14 @@ class ProfilsController
             if (password_verify($_POST['mdp'], $profil['mdp'])) {
 
                 SessionFacade::setUserSession($profil);
-                $this->redirectTo('monProfil');
+                $this->manager->redirectTo('monProfil');
                 exit;
             } else {
-                $this->message = 'Connexion échouée';
+                $this->manager->message = 'Connexion échouée';
             }
         } else {
-            $this->message = 'Données erronées';
+            $this->manager->message = 'Données erronées';
         }
-        return $this->renderController();
+        return $this->manager->renderController();
     }
 }

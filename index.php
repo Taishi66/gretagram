@@ -3,10 +3,15 @@
 session_start();
 
 require_once("core/bdd.php");
-include("controller/profilsController.php");
+
 include("core/facade/sessionFacade.php");
-require_once("Router.php");
+include("core/facade/compteFacade.php");
+include("controller/managerController.php");
+include("controller/articleController.php");
+include("controller/profilsController.php");
+
 require_once("render.php");
+require_once("Router.php");
 
 $router = new Router(@$_GET["page"]); // On récupère la valeur associée à la clé "page" dans l'url
 // exemple localhost/index.php?page=profils 

@@ -32,12 +32,18 @@ class Router
                 //  break;
             case 'monProfil':
                 $profil = new ProfilsController();
-                return $profil->afficherMonprofil(SessionFacade::getUserId());
+                $article = new ArticleController();
+                if (!empty($_POST['titre']) && !empty($_POST['media']) && !empty($_POST['contenu'])) {
+                    $article->newArticle($_POST['media'], $_POST['titre'], $_POST['contenu'], $_POST['date_art'], CompteFacade::getCompteId());
+                    return $profil->afficherMonprofil(SessionFacade::getUserId(), CompteFacade::getCompteId());
+                    exit;
+                }
+                return $profil->afficherMonprofil(SessionFacade::getUserId(), CompteFacade::getCompteId());
                 //break;
             case 'home':
                 // $profil = new ProfilsController();
                 //return $profil->afficherListeProfils();
-                // break;
+                break;
             case 'inbox':
                 include('view/inbox.php');
                 break;
