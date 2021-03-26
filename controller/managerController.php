@@ -11,12 +11,42 @@ class ManagerController
     {
         return [
             'template' => $this->template,
-            'datas' => array(
-                'compte' => $this->compte,
-                'message' => $this->message,
-                'user' => SessionFacade::getUserSession()
-            )
+            'datas' => $this->buildDatas()
         ];
+    }
+
+    public function buildDatas()
+    {
+        $output = [];
+        if (!empty($this->getMessage())) {
+            $output['message'] = $this->getMessage();
+        }
+        if (!empty($this->getCompte())) {
+            $output['compte'] = $this->getCompte();
+        }
+        $output['user'] = SessionFacade::getUserSession();
+
+        return $output;
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    public function getCompte()
+    {
+        return $this->compte;
+    }
+
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
+
+    public function setCompte($compte)
+    {
+        $this->compte = $compte;
     }
 
 

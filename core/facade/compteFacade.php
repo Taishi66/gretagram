@@ -14,22 +14,14 @@ class CompteFacade
      */
     static function getUserCompte($id_user)
     {
-        $id_user = SessionFacade::getUserId();
-        static::$id_user = $id_user;
-
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT * FROM compte
-                INNER JOIN user ON user.id_user = compte.id_user
-                WHERE compte.id_user = :id_user');
-        $sql->execute([":id_user" => $id_user]);
-        static::$compte = $sql->fetch(PDO::FETCH_ASSOC);
-        //var_dump(static::$compte);
-        return static::$compte;
+        $compteService = new CompteService();
+        return $compteService->getCompte($id_user);
     }
 
     static function getCompteId()
     {
-        return self::getUserCompte(static::$id_user)['id_compte'];
+        $compteService = new CompteService();
+        return $compteService->getCompteFromUser(SessionFacade::getUserId())['id_compte'];
     }
 
     static function getComptePseudo()

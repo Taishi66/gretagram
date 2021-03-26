@@ -9,6 +9,9 @@ include("core/facade/compteFacade.php");
 include("controller/managerController.php");
 include("controller/articleController.php");
 include("controller/profilsController.php");
+include("core/Service/CompteService.php");
+include("model/compteModel.php");
+
 
 require_once("render.php");
 require_once("Router.php");

@@ -6,12 +6,10 @@ class ArticlesModel
     function voirAllArticles($id_compte)
     {
         $bdd = Bdd::Connexion();
-        $sql = 'SELECT * FROM article
-                INNER JOIN compte ON compte.id_compte = article.id_compte
-                WHERE article.id_compte = :id_compte';
+        $sql = 'SELECT * FROM article WHERE article.id_compte = :id_compte';
         $articles = $bdd->prepare($sql);
         $articles->execute([':id_compte' => $id_compte]);
-        $resultat = $articles->fetch(PDO::FETCH_ASSOC);
+        $resultat = $articles->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($resultat);
         return $resultat;
     }

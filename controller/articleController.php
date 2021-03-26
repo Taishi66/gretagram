@@ -1,18 +1,15 @@
 <?php
 include('model/articlesModel.php');
-//include('controller/managerController.php');
 
 class ArticleController extends ManagerController
 {
 
     private $articlesModel;
-    private $manager;
 
 
     function __construct()
     {
         $this->articlesModel = new ArticlesModel();
-        $this->manager = new ManagerController();
     }
 
     /**
@@ -48,14 +45,14 @@ class ArticleController extends ManagerController
 
         if (!empty($media) && !empty($titre)) {
             if ($this->articlesModel->createArticle($media, $titre, $contenu, $date_art, $id_compte)) {
-                $this->manager->redirectTo('monProfil');
+                $this->redirectTo('monProfil');
                 exit;
             } else {
                 $this->message = 'Article non créé';
             }
             $this->message = 'Données manquantes';
         }
-        return $this->manager->renderController();
+        return $this->renderController();
     }
 
     /**
@@ -69,7 +66,7 @@ class ArticleController extends ManagerController
      * @param  int $id_compte
      * @return void
      */
-    function updateArticle($id_article, $img_art, $titre, $contenu, $date_art, $id_compte)
+    function updateArticle($id_article, $media, $titre, $contenu, $date_art, $id_compte)
     {
         $id_compte = '';
         $media = @$_POST['media'];
@@ -89,6 +86,6 @@ class ArticleController extends ManagerController
     function deleteArticle($id_article)
     {
         $this->articlesModel->deleteArticle($id_article);
-        $this->manager->redirectTo('monProfil');
+        $this->redirectTo('monProfil');
     }
 }
