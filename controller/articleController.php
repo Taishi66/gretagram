@@ -1,5 +1,4 @@
 <?php
-include('model/articlesModel.php');
 
 class ArticleController extends ManagerController
 {
@@ -10,10 +9,21 @@ class ArticleController extends ManagerController
     function __construct()
     {
         $this->articlesModel = new ArticlesModel();
+        parent::__construct();
+    }
+
+
+    function afficheArticle()
+    {
+        $id_article = $this->validatorHelper->getValue('id_article', 0, 'integer');
+
+        $this->template = 'profil/article.php';
+        $this->setArticle($this->articlesModel->getArticle($id_article));
+        return $this->renderController();
     }
 
     /**
-     * afficheArticle
+     * affichelisteArticle
      *
      * @param  int $id_article
      * @return void
@@ -21,7 +31,7 @@ class ArticleController extends ManagerController
     function afficheListeArticles($id_compte)
     {
         $id_compte = CompteFacade::getCompteId();
-        $articles = $this->articlesModel->voirAllArticles($id_compte);
+        $articles = $this->articlesModel->getAllArticles($id_compte);
         return $articles;
     }
 
@@ -39,6 +49,7 @@ class ArticleController extends ManagerController
     {
         $id_compte = CompteFacade::getCompteId();
         $media = @$_POST['media'];
+
         $titre = @$_POST['titre'];
         $contenu = @$_POST['contenu'];
         $date_art = @$_POST['date_art'];
@@ -46,11 +57,11 @@ class ArticleController extends ManagerController
         if (!empty($media) && !empty($titre)) {
             if ($this->articlesModel->createArticle($media, $titre, $contenu, $date_art, $id_compte)) {
                 $this->redirectTo('monProfil');
-                exit;
+                //exit;
             } else {
-                $this->message = 'Article non créé';
+                $this->setMessage('Article non créé');
             }
-            $this->message = 'Données manquantes';
+            $this->setMessage('Données manquantes');
         }
         return $this->renderController();
     }
@@ -74,7 +85,7 @@ class ArticleController extends ManagerController
         $contenu = @$_POST['contenu'];
         $date_art = @$_POST['date_art'];
 
-        $this->articlesModel->modifierArticle($id_article, $media, $titre, $contenu, $date_art, $id_compte);
+        $this->articlesModel->setArticle($id_article, $media, $titre, $contenu, $date_art, $id_compte);
     }
 
     /**
@@ -87,5 +98,13 @@ class ArticleController extends ManagerController
     {
         $this->articlesModel->deleteArticle($id_article);
         $this->redirectTo('monProfil');
+    }
+
+    function showLastArticles()
+    {
+        $this->template = 'home.php';
+        $this->datas = $this->articlesModel->lastArticles();
+        var_dump($this->datas);
+        return $this->renderController();
     }
 }

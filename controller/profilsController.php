@@ -1,7 +1,5 @@
 <?php
 
-include("model/profilsModel.php");
-include("controller/verificationController.php");
 
 
 class ProfilsController extends ManagerController
@@ -26,7 +24,7 @@ class ProfilsController extends ManagerController
      */
     public function afficherListeProfils()
     {
-        $listeProfils = $this->profilsModels->listeProfils();
+        $listeProfils = $this->profilsModels->getAllProfils();
         $this->template = 'home.php';
         return $this->renderController();
     }
@@ -41,7 +39,6 @@ class ProfilsController extends ManagerController
     {
         $this->template = 'profil/monProfil.php';
         $this->setCompte(CompteFacade::getUserCompte($id_compte));
-
         return $this->renderController();
     }
 

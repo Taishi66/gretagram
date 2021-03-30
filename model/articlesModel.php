@@ -3,7 +3,7 @@
 class ArticlesModel
 {
 
-    function voirAllArticles($id_compte)
+    function getAllArticles($id_compte)
     {
         $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM article WHERE article.id_compte = :id_compte';
@@ -22,16 +22,16 @@ class ArticlesModel
      * @param  int $id_article
      * @return void
      */
-    function voirArticle($id_article)
+    function getArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM article 
             WHERE id_article =:id_article';
         $article = $bdd->prepare($sql);
         $article->execute([
-            "id_article" => $id_article
+            ":id_article" => $id_article
         ]);
-        $resultat = $article->fetch();
+        $resultat = $article->fetch(PDO::FETCH_ASSOC);
 
         $bdd = null;
         return $resultat;
@@ -66,6 +66,8 @@ class ArticlesModel
     }
 
 
+
+
     /**
      * modifierArticle
      *
@@ -77,7 +79,7 @@ class ArticlesModel
      * @param  int $id_compte
      * @return void
      */
-    function modifierArticle($id_article, $media, $titre, $contenu, $date_art, $id_compte)
+    function setArticle($id_article, $media, $titre, $contenu, $date_art, $id_compte)
     {
         $bdd = Bdd::Connexion();
 
@@ -119,5 +121,20 @@ class ArticlesModel
         ]);
         $bdd = null;
         return $resultat;
+    }
+
+    /**
+     * Method lastArticles
+     *
+     * @return void
+     */
+    function lastArticles()
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->query('SELECT * FROM article 
+                            ORDER BY id_article DESC');
+        $article = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $bdd = null;
+        return $article;
     }
 }

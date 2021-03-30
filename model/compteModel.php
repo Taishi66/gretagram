@@ -3,6 +3,9 @@
 class CompteModel
 {
 
+    /**
+     * @var int $id_user
+     */
     function getCompteFromUser($id_user)
     {
         $bdd = Bdd::Connexion();
@@ -29,6 +32,25 @@ class CompteModel
         $articles = $bdd->prepare($sql);
         $articles->execute([':id_compte' => $id_compte]);
         return $articles->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function incrementerPublications($id_compte)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('UPDATE compte 
+                    SET publications= publications + 1
+                    WHERE id_compte =:id_compte');
+        $resultat = $sql->execute([':id_compte' => $id_compte]);
+        return $resultat;
+    }
+
+    function decrementerPublications($id_compte)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('UPDATE compte
+                                SET publications =-1
+                                WHERE id_compte=:id_compte');
+        return $sql->execute([':id_compte' => $id_compte]);
     }
 
     /* function getCompteAll($id_compte)

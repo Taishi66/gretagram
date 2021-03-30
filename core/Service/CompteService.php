@@ -11,10 +11,15 @@ class CompteService
         $this->compteModel = new CompteModel();
     }
 
+    /**
+     * @var int $id_user
+     * @return array $compte
+     */
     public function getCompteFromUser($id_user = null)
     {
         return $this->compteModel->getCompteFromUser($id_user);
     }
+
 
     public function getCompte($id_compte = null)
     {
@@ -23,7 +28,7 @@ class CompteService
         }
 
         $compte = $this->compteModel->getCompte($id_compte);
-        $compte['publications'] = $this->compteModel->getArticles($id_compte);
+        $compte['articles'] = $this->compteModel->getArticles($id_compte);
 
         return $compte;
     }

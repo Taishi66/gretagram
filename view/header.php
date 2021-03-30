@@ -70,7 +70,7 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item ml-2 align-middle">
-                                    <a href="?page=monProfil" class="link-menu">
+                                    <a href="?page=profil" class="link-menu">
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
                                             <img src="./img/profiles/profile-6.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                         </div>

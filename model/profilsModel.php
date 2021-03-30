@@ -9,7 +9,7 @@ class ProfilsModel
      *
      * @return void
      */
-    public function listeProfils()
+    public function getAllProfils()
     {
         $bdd = Bdd::Connexion();
         $resultat = $bdd->query('SELECT * FROM user')->fetchAll();
@@ -24,7 +24,7 @@ class ProfilsModel
      * @param  int $id_user
      * @return void
      */
-    public function profil($id_user)
+    public function getProfil($id_user)
     {
         $bdd = Bdd::Connexion();
         $profil = $bdd->prepare('SELECT * FROM compte 

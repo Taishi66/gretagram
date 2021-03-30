@@ -1,4 +1,5 @@
-<pre style="display:none;"><?php var_dump($datas['compte']); ?></pre>
+<pre style="display:on;"><?php var_dump($datas['compte']); ?></pre>
+
 <div class="d-flex justify-content-center" style="align-items:center">
     <img class="photo-profil m-3" src="<?php echo $datas['compte']['photo'] ?>">
     <div style="margin-top: 30px; margin-bottom:30px; text-align:left;">
@@ -19,13 +20,13 @@
         </div>
         <div class="header-profil">
             <div class="d-flex mr-3">
-                <p class="mr-2" style="font-weight:bold;"><?php echo $datas['compte']['publications']; ?>121</p> Publication
+                <p class="mr-2" style="font-weight:bold;"><?php echo $datas['compte']['publications']; ?></p> Publications
             </div>
             <div class="d-flex mr-3">
-                <p class="mr-2" style="font-weight:bold;"><?php echo $datas['compte']['abonnes']; ?>111</p> Abonnées
+                <p class="mr-2" style="font-weight:bold;"><?php echo $datas['compte']['abonnes']; ?></p> Abonnées
             </div>
             <div class="d-flex">
-                <p class="mr-2" style="font-weight:bold;"><?php echo $datas['compte']['abonnements']; ?>121</p> Abonnements
+                <p class="mr-2" style="font-weight:bold;"><?php echo $datas['compte']['abonnements']; ?></p> Abonnements
             </div>
         </div>
         <div class="">
@@ -36,23 +37,20 @@
     </div>
 </div>
 
-<pre><?php var_dump($datas['compte']) ?></pre>
+<pre style="display:none;"><?php var_dump($datas['compte']) ?></pre>
 
 <div class="d-flex justify-content-center flex-wrap" id="photo-compte">
     <?php
 
-    foreach ($datas['compte']['publications'] as $data) {
+    foreach ($datas['compte']['articles'] as $data) {
 
         echo '<div class="m-4">
-        <a data-toggle="modal" data-target="#mediaModal"><img src="' . $data['media'] . '"></a>
+        <a href="?page=article&id_article=' . $data['id_article'] . '"><img src="' . $data['media'] . '"></a>
     </div>';
     }
     ?>
 
 </div>
-
-
-
 
 <!-- Modal Nouveau Post-->
 <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -99,30 +97,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <h3><?php echo SessionFacade::getUserName() ?></h3>
-                    <textarea type="text" class="form-control" name="message" id="message" placeholder="Votre message..."></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal media cliqué-->
-<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

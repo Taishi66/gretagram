@@ -12,12 +12,28 @@ class CompteFacade
      *
      * @return void
      */
-    static function getUserCompte($id_user)
+    static function getUserCompte($id_compte)
     {
         $compteService = new CompteService();
-        return $compteService->getCompte($id_user);
+        return $compteService->getCompte($id_compte);
     }
 
+    /**
+     * Method 
+     *
+     * @param $user $user [explicite description]
+     *
+     * @return void
+     */
+    static function getUserCompteFromUser($id_user)
+    {
+        $compteService = new CompteService();
+        return $compteService->getCompteFromUser($id_user);
+    }
+
+    /**
+     * @return int $id_compte
+     */
     static function getCompteId()
     {
         $compteService = new CompteService();
@@ -26,16 +42,20 @@ class CompteFacade
 
     static function getComptePseudo()
     {
-        return self::getUserCompte(static::$id_user)['pseudo'];
+        return self::getUserCompteFromUser(static::$id_user)['pseudo'];
     }
 
     static function getCompteDescription()
     {
-        return self::getUserCompte(static::$id_user)['description_compte'];
+        return self::getUserCompteFromUser(static::$id_user)['description_compte'];
     }
 
     static function getComptePhoto()
     {
-        return self::getUserCompte(static::$id_user)['photo'];
+        return self::getUserCompteFromUser(static::$id_user)['photo'];
+    }
+    static function getCompteArticle()
+    {
+        return self::getUserCompteFromUser(static::$id_user)['articles'];
     }
 }

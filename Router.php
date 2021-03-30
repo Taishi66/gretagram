@@ -29,33 +29,36 @@ class Router
                 var_dump(SessionFacade::getUserId() . '=router');
                 $profil = new ProfilsController();
                 return $profil->newAccount(SessionFacade::getUserId());
-                //  break;
-            case 'monProfil':
+                //  break; 
+            case 'article':
+                $article = new ArticleController();
+                return $article->afficheArticle();
+                break;
+            case 'profil':
                 $profil = new ProfilsController();
                 $article = new ArticleController();
+                $compte = new CompteController();
                 if (!empty($_POST['titre']) && !empty($_POST['media']) && !empty($_POST['contenu'])) {
                     $article->newArticle($_POST['media'], $_POST['titre'], $_POST['contenu'], $_POST['date_art'], CompteFacade::getCompteId());
+                    $compte->addPublications(CompteFacade::getCompteId());
                     return $profil->afficherMonprofil(SessionFacade::getUserId(), CompteFacade::getCompteId());
-                    exit;
                 }
                 return $profil->afficherMonprofil(SessionFacade::getUserId(), CompteFacade::getCompteId());
-                //break;
             case 'home':
-                // $profil = new ProfilsController();
-                //return $profil->afficherListeProfils();
-                break;
+                $articles = new ArticleController();
+                return $articles->showLastArticles();
+                //break;
             case 'inbox':
                 include('view/inbox.php');
                 break;
             case 'deconnexion':
                 // vide la session et donc je me deconnecte
                 $_SESSION = array();
-                // redirection vers pas login
                 header('Location:?page=');
                 break;
-                /*default:
-                header('location:index.php');
-                break;*/
+            default:
+                header('location:?page=home');
+                break;
         }
     }
 }

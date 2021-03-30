@@ -5,7 +5,18 @@ class ManagerController
 
     public $message = null;
     public $template = null;
+    public $compte;
+    private $article;
 
+    public $validatorHelper;
+
+    public function __construct()
+    {
+        if (SessionFacade::getUserId()) {
+            $this->compte = CompteFacade::getUserCompteFromUser(SessionFacade::getUserId());
+        }
+        $this->validatorHelper = new ValidatorHelper();
+    }
 
     public function renderController()
     {
@@ -24,6 +35,9 @@ class ManagerController
         if (!empty($this->getCompte())) {
             $output['compte'] = $this->getCompte();
         }
+        if (!empty($this->getArticle())) {
+            $output['article'] = $this->getArticle();
+        }
         $output['user'] = SessionFacade::getUserSession();
 
         return $output;
@@ -33,6 +47,16 @@ class ManagerController
     {
         return $this->message;
     }
+
+    /*public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    public function setTemplate($template)
+    {
+        return $this->template = $template;
+    }*/
 
     public function getCompte()
     {
@@ -47,6 +71,16 @@ class ManagerController
     public function setCompte($compte)
     {
         $this->compte = $compte;
+    }
+
+    public function setArticle($article)
+    {
+        $this->article = $article;
+    }
+
+    public function getArticle()
+    {
+        return $this->article;
     }
 
 
