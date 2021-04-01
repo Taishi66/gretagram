@@ -1,6 +1,6 @@
 <?php
 
-class ArticlesModel
+class ArticleModel
 {
 
     function getAllArticles($id_compte)
@@ -13,8 +13,6 @@ class ArticlesModel
         // var_dump($resultat);
         return $resultat;
     }
-
-
 
     /**
      * voirArticle
@@ -65,9 +63,6 @@ class ArticlesModel
         return $resultat;
     }
 
-
-
-
     /**
      * modifierArticle
      *
@@ -79,7 +74,7 @@ class ArticlesModel
      * @param  int $id_compte
      * @return void
      */
-    function setArticle($id_article, $media, $titre, $contenu, $date_art, $id_compte)
+    function setArticle($media = null, $titre = null, $contenu = null, $date_art = null, $id_article)
     {
         $bdd = Bdd::Connexion();
 
@@ -92,12 +87,11 @@ class ArticlesModel
         $article = $bdd->prepare($sql);
 
         $resultat = $article->execute([
-            ":id_article" => $id_article,
             ":media" => $media,
             ":titre" => $titre,
             ":contenu" => $contenu,
             ":date_art" => $date_art,
-            ":id_compte" => $id_compte
+            ":id_article" => $id_article
         ]);
 
         $bdd = null;

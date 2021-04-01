@@ -6,6 +6,15 @@ class ValidatorHelper
     {
     }
 
+    /**
+     * Method getValue (au lieu d'utiliser superVariable $_GET, c'est plus sécurisé )
+     *
+     * @param $key $key [explicite description]
+     * @param $default_value $default_value [explicite description]
+     * @param $typeOfValue $typeOfValue [explicite description]
+     *
+     * @return $value
+     */
     public function getValue($key, $default_value, $typeOfValue = '')
     {
         if (empty($key) || !is_string($key)) {
@@ -15,6 +24,12 @@ class ValidatorHelper
         $value = '';
         if (isset($_POST[$key]) || isset($_GET[$key])) {
             $value = isset($_POST[$key]) ? $_POST[$key] : $_GET[$key];
+            /* EXPRESSION TERNAIRE 
+            if (isset($_POST[$key])) {
+                return $_POST[$key];
+            } else {
+                return $_GET[$key];
+            }*/
         }
 
         if (!isset($value)) {

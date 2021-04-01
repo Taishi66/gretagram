@@ -11,18 +11,19 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/d3d6f2df1f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/profil.css">
-    <link rel="stylesheet" href="./css/inbox.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <link rel="stylesheet" type="text/css" href="./css/profil.css">
+    <link rel="stylesheet" type="text/css" href="./css/inbox.css">
+    <link rel="stylesheet" type="text/css" href="./css/article.css">
 
 
 </head>
 
-<body>
+<body style="background-color: whitesmoke;">
     <!-- navbar bootstrap instagram -->
     <div>
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light navModif">
                 <div class="container justify-content-center">
                     <div class="d-flex flex-row justify-content-between align-items-center col-9">
                         <a class="navbar-brand" href="?page=home">

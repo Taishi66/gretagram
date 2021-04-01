@@ -1,0 +1,32 @@
+.modalCom textarea {
+    width: 100%;
+}
+
+.btn-com {
+    width: 100%;
+    margin-top: 5px;
+    margin-left: 1px;
+    background: none;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 5px;
+}
+
+.btn-com:hover {
+    background-color: cornflowerblue;
+    color: white;
+    border: black solid 1px;
+}
+
+.cardArticle {
+    background-color: whitesmoke;
+}
+
+.card-entete {
+    border: 1px lightgray solid;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}

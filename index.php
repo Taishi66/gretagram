@@ -2,22 +2,23 @@
 // demarre une session
 session_start();
 
-require_once("core/bdd.php");
-include("core/Helper/ValidatorHelper.php");
 
-include("core/facade/sessionFacade.php");
-include("core/facade/compteFacade.php");
+require_once("core/Bdd.php");
+include("core/Helper/ValidatorHelper.php");
+include("core/facade/SessionFacade.php");
+include("core/facade/CompteFacade.php");
 include("core/Service/CompteService.php");
 
-include("controller/verificationController.php");
-include("controller/managerController.php");
-include("controller/compteController.php");
-include("controller/articleController.php");
-include("controller/profilsController.php");
+include("controller/ManagerController.php");
+include("controller/CompteController.php");
+include("controller/ArticleController.php");
+include("controller/CommentaireController.php");
+include("controller/UserController.php");
 
-include("model/compteModel.php");
-include("model/articlesModel.php");
-include("model/profilsModel.php");
+include("model/CompteModel.php");
+include("model/ArticleModel.php");
+include("model/CommentaireModel.php");
+include("model/UserModel.php");
 
 
 
@@ -51,6 +52,7 @@ $router = new Router(@$_GET["page"]); // On récupère la valeur associée à la
 $vars = $router->getPage();
 
 $vars['datas']['user'] = SessionFacade::getUserSession();
+
 
 $render = new Render();
 

@@ -2,19 +2,22 @@
 
 
 
-class ProfilsController extends ManagerController
+class UserController extends ManagerController
 {
     private $article;
-    private $profilsModel;
-    private $verif;
+    private $UserModel;
+    private $compteModel;
+    private $compteController;
 
 
 
     public function __construct()
     {
-        $this->verif = new Verification();
+        $this->compteController = new CompteController();
         $this->article = new ArticleController();
-        $this->profilsModel = new ProfilsModel();
+        $this->UserModel = new UserModel();
+        $this->compteModel = new CompteModel();
+        parent::__construct();
     }
 
     /**
@@ -24,7 +27,7 @@ class ProfilsController extends ManagerController
      */
     public function afficherListeProfils()
     {
-        $listeProfils = $this->profilsModels->getAllProfils();
+        $listeProfils = $this->UserModel->getAllUsers();
         $this->template = 'home.php';
         return $this->renderController();
     }
@@ -39,6 +42,22 @@ class ProfilsController extends ManagerController
     {
         $this->template = 'profil/monProfil.php';
         $this->setCompte(CompteFacade::getUserCompte($id_compte));
+        //Faire apparaitre les données articles du compte
+        if (!empty($_SESSION['user'])) {
+            $this->article->afficheListeArticles(CompteFacade::getCompteId());
+        }
+        //Si je souhaite modifier mon compte
+        if (!empty($_POST['pseudo'])) {
+            var_dump($_POST['pseudo']);
+            $this->compteController->modifCompte($id_compte);
+            return $this->redirectTo('profil');
+        }
+        //Si je souhaite créer un article
+        if (!empty($_POST['titre']) && !empty($_POST['media']) && !empty($_POST['contenu'])) {
+            $this->article->newArticle($_POST['media'], $_POST['titre'], $_POST['contenu'], $_POST['date_art'], $id_compte);
+            $this->compteController->addPublications(CompteFacade::getCompteId());
+            return $this->redirectTo('profil');
+        }
         return $this->renderController();
     }
 
@@ -55,21 +74,21 @@ class ProfilsController extends ManagerController
 
         $this->template = 'inscription.php';
 
-        $nom = $this->verif->verfNomPrenom(@$_POST["nom"]);
-        $prenom = $this->verif->verfNomPrenom(@$_POST["prenom"]);
-        $email = $this->verif->verfEmail(@$_POST["email"]);
+        $nom = $this->validatorHelper->verfNomPrenom(@$_POST["nom"]);
+        $prenom = $this->validatorHelper->verfNomPrenom(@$_POST["prenom"]);
+        $email = $this->validatorHelper->verfEmail(@$_POST["email"]);
 
         if (!empty($email) && !empty($nom) && !empty($prenom)) {
             $mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
 
-            if ($this->profilsModel->inscription($nom, $prenom, $email, $mdp)) {
+            if ($this->UserModel->inscription($nom, $prenom, $email, $mdp)) {
 
-                $profil = $this->profilsModel->Login($email);
+                $profil = $this->UserModel->Login($email);
                 SessionFacade::setUserSession($profil);
                 $this->redirectTo('noAccount');
-                exit;
             } else {
-                $this->message = 'Inscription échouée';
+                $this->setMessage('Inscription échouée');
+                return $this->renderController();
             }
         } else {
             $this->renderController();
@@ -96,7 +115,7 @@ class ProfilsController extends ManagerController
 
         if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
             var_dump($pseudo);
-            if ($this->profilsModel->creAccount($id, $photo, $pseudo, $description_compte)) {
+            if ($this->compteModel->creAccount($id, $photo, $pseudo, $description_compte)) {
                 $this->redirectTo('monProfil');
                 exit;
             } else {
@@ -118,13 +137,13 @@ class ProfilsController extends ManagerController
 
         if (isset($_POST["email"])) {
 
-            $email = $this->verif->verfEmail(@$_POST["email"]);
-            $profil = $this->profilsModel->login($email);
+            $email = $this->validatorHelper->verfEmail(@$_POST["email"]);
+            $profil = $this->UserModel->login($email);
 
             if (password_verify($_POST['mdp'], $profil['mdp'])) {
 
                 SessionFacade::setUserSession($profil);
-                $this->redirectTo('monProfil');
+                $this->redirectTo('profil');
                 exit;
             } else {
                 $this->message = 'Connexion échouée';

@@ -1,15 +1,16 @@
 <?php
 
-class ProfilsModel
+class UserModel
 {
 
 
+
     /**
-     * listeProfils
+     * Method getAllUsers
      *
-     * @return void
+     * @return array of users
      */
-    public function getAllProfils()
+    public function getAllUsers()
     {
         $bdd = Bdd::Connexion();
         $resultat = $bdd->query('SELECT * FROM user')->fetchAll();
@@ -18,13 +19,15 @@ class ProfilsModel
     }
 
 
+
     /**
-     * Profil
+     * Method getUser
      *
-     * @param  int $id_user
-     * @return void
+     * @param $id_user $id_user [explicite description]
+     *
+     * @return array of tables user & compte by id_user
      */
-    public function getProfil($id_user)
+    public function getUser($id_user)
     {
         $bdd = Bdd::Connexion();
         $profil = $bdd->prepare('SELECT * FROM compte 
@@ -78,34 +81,6 @@ class ProfilsModel
         $profil = $bdd->prepare('SELECT * FROM user WHERE email=:email');
         $profil->execute([":email" => $email]);
         $resultat = $profil->fetch();
-        $bdd = null;
-        return $resultat;
-    }
-
-    /**
-     * creAccount
-     *
-     * @param  string $id
-     * @param  string $photo
-     * @param  string $pseudo
-     * @param  string $description_compte
-     * @return void
-     */
-    public function creAccount($id, $photo, $pseudo, $description_compte)
-    {
-        //$id_user ='SELECT id_user FROM user WHERE id_user = LAST_INSERT_ID()';
-        $bdd = Bdd::Connexion();
-        $sql = 'INSERT INTO compte(pseudo, description_compte, photo, id_user)
-                VALUES (:pseudo,:description_compte,:photo, :id)';
-        $profil = $bdd->prepare($sql);
-        var_dump($id, $photo, $pseudo, $description_compte);
-
-        $resultat = $profil->execute([
-            ":pseudo" => $pseudo,
-            ":description_compte" => $description_compte,
-            ":photo" => $photo,
-            ":id" => $id
-        ]);
         $bdd = null;
         return $resultat;
     }

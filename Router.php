@@ -18,32 +18,26 @@ class Router
 
         switch ($this->page) {
             case '':
-                $profil = new ProfilsController();
-                return $profil->getLogin();
+                $user = new UserController();
+                return $user->getLogin();
                 // break;
             case 'inscription':
-                $profil = new ProfilsController();
-                return $profil->setInscription();
+                $user = new UserController();
+                return $user->setInscription();
                 //break;
             case 'noAccount':
                 var_dump(SessionFacade::getUserId() . '=router');
-                $profil = new ProfilsController();
-                return $profil->newAccount(SessionFacade::getUserId());
+                $user = new UserController();
+                return $user->newAccount(SessionFacade::getUserId());
                 //  break; 
             case 'article':
                 $article = new ArticleController();
                 return $article->afficheArticle();
-                break;
+                //break;
             case 'profil':
-                $profil = new ProfilsController();
-                $article = new ArticleController();
-                $compte = new CompteController();
-                if (!empty($_POST['titre']) && !empty($_POST['media']) && !empty($_POST['contenu'])) {
-                    $article->newArticle($_POST['media'], $_POST['titre'], $_POST['contenu'], $_POST['date_art'], CompteFacade::getCompteId());
-                    $compte->addPublications(CompteFacade::getCompteId());
-                    return $profil->afficherMonprofil(SessionFacade::getUserId(), CompteFacade::getCompteId());
-                }
-                return $profil->afficherMonprofil(SessionFacade::getUserId(), CompteFacade::getCompteId());
+                $user = new UserController();
+                return $user->afficherMonprofil(SessionFacade::getUserId(), CompteFacade::getCompteId());
+                //break;
             case 'home':
                 $articles = new ArticleController();
                 return $articles->showLastArticles();

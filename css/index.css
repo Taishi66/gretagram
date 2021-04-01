@@ -1,3 +1,8 @@
+.navModif {
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+}
+
 .link-menu {
     color: black;
 }
@@ -76,3 +81,5 @@
     background-color: white;
     border: 1px solid whitesmoke;
 }
+
+.footer {}

@@ -1,4 +1,4 @@
-<footer>
+<footer class="footer">
     <div class="d-flex justify-content-around mt-5">
         <a href="#">A propos</a>
         <a href="#">Conditions</a>
