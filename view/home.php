@@ -1,5 +1,5 @@
 <!-- BLOCK  BODY STORIES POST ET PROFIL / SUGGESTION-->
-<pre style="display:on;">DATAS user connecté= <?php var_dump($datas); ?></pre>
+<pre style="display:none;">DATAS user connecté= <?php var_dump($datas); ?></pre>
 
 
 <div class="mt-4">
@@ -15,7 +15,7 @@
                                     <button class="btn p-0 m-0">
                                         <div class="d-flex flex-column align-items-center">
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
-                                                <img src="<?php echo $data['media']; ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                                <img src="........" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                             </div>
                                             <small>JCLAMY</small>
                                         </div>
@@ -35,22 +35,22 @@
                         </div>
                     </div>
                     <!-- END OF STORIES -->
+                    <!-- START OF POSTS -->
                     <?php
-                    foreach ($articles['article'] as $article) {  ?>
-                        <!-- START OF POSTS -->
-                        <div class="d-flex flex-column mt-4 mb-4">
+                    foreach ($datas['article'] as $article) {
+                        echo '<div class="d-flex flex-column mt-4 mb-4">
                             <div class="card">
                                 <div class="card-header p-3">
                                     <div class="d-flex flex-row align-items-center">
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
-                                            <img src="./img/profiles/profile-1.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                            <img src="' . $article['photo'] . '" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                         </div>
-                                        <span class="font-weight-bold"><?php echo "a?"; ?></span>
+                                        <span class="font-weight-bold">' . $article['pseudo'] . '</span>
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="embed-responsive embed-responsive-1by1">
-                                        <img class="embed-responsive-item" src="<?php echo $article['media']; ?>" />
+                                        <img class="embed-responsive-item" src="' . $article['media'] . '"/>
                                     </div>
                                     <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1">
                                         <ul class="list-inline d-flex flex-row align-items-center m-0">
@@ -89,15 +89,15 @@
                                     </div>
                                     <div class="pl-3 pr-3 pb-2">
                                         <strong class="d-block">365.354 likes</strong>
-                                        <strong class="d-block">JCLAMY</strong>
-                                        <p class="d-block mb-1">blablablablbalbalblabla</p>
+                                        <strong class="d-block">' . $article['titre'] . '</strong>
+                                        <p class="d-block mb-1">' . $article['contenu'] . '</p>
                                         <button class="btn p-0">
                                             <span class="text-muted">View all 2,247 comments</span>
                                         </button>
                                         <div>
                                             <div>
-                                                <strong class="d-block">a.7.m3ff</strong>
-                                                <span>❤️💓💓💓💓💓</span>
+                                                <strong class="d-block">' . $article['pseudo'] . '</strong>
+                                                <span>' . $article['contenu_com'] . '</span>
                                             </div>
                                             <div>
                                                 <strong class="d-block">adri_rez77</strong>
@@ -114,8 +114,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php } ?>
+                        </div>';
+                    } ?>
                     <!-- END OF POSTS -->
                 </div>
                 <div class="col-4">

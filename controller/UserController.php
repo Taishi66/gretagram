@@ -47,16 +47,22 @@ class UserController extends ManagerController
             $this->article->afficheListeArticles(CompteFacade::getCompteId());
         }
         //Si je souhaite modifier mon compte
-        if (!empty($_POST['pseudo'])) {
-            var_dump($_POST['pseudo']);
+
+        if (!empty($this->validatorHelper->getValue('pseudo'))) {
+            // var_dump($this->validatorHelper->getValue('pseudo'));
             $this->compteController->modifCompte($id_compte);
             return $this->redirectTo('profil');
+        } else {
+            $this->setMessage('Modification échouée : Données manquantes');
         }
         //Si je souhaite créer un article
-        if (!empty($_POST['titre']) && !empty($_POST['media']) && !empty($_POST['contenu'])) {
-            $this->article->newArticle($_POST['media'], $_POST['titre'], $_POST['contenu'], $_POST['date_art'], $id_compte);
+        if (!empty($this->validatorHelper->getValue('titre')) && !empty($this->validatorHelper->getValue('media')) && !empty($this->validatorHelper->getValue('contenu'))) {
+            $this->article->newArticle($this->validatorHelper->getValue('media'), $this->validatorHelper->getValue('titre'), $this->validatorHelper->getValue('contenu'), $this->validatorHelper->getValue('date_art'), $id_compte);
             $this->compteController->addPublications(CompteFacade::getCompteId());
             return $this->redirectTo('profil');
+        } else {
+            $this->setMessage('Article non posté : Données manquantes', 'danger');
+            return $this->renderController();
         }
         return $this->renderController();
     }
@@ -74,12 +80,12 @@ class UserController extends ManagerController
 
         $this->template = 'inscription.php';
 
-        $nom = $this->validatorHelper->verfNomPrenom(@$_POST["nom"]);
-        $prenom = $this->validatorHelper->verfNomPrenom(@$_POST["prenom"]);
-        $email = $this->validatorHelper->verfEmail(@$_POST["email"]);
+        $nom = $this->validatorHelper->verfNomPrenom($this->validatorHelper->getValue("nom"));
+        $prenom = $this->validatorHelper->verfNomPrenom($this->validatorHelper->getValue("prenom"));
+        $email = $this->validatorHelper->verfEmail($this->validatorHelper->getValue("email"));
 
         if (!empty($email) && !empty($nom) && !empty($prenom)) {
-            $mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
+            $mdp = password_hash($this->validatorHelper->getValue("mdp"), PASSWORD_DEFAULT);
 
             if ($this->UserModel->inscription($nom, $prenom, $email, $mdp)) {
 
@@ -106,9 +112,9 @@ class UserController extends ManagerController
     {
         var_dump(SessionFacade::getUserId());
         $id = SessionFacade::getUserId();
-        $pseudo = @$_POST['pseudo'];
-        $description_compte = @$_POST['description_compte'];
-        $photo = @$_POST['photo'];
+        $pseudo = $this->validatorHelper->getValue('pseudo');
+        $description_compte = $this->validatorHelper->getValue('description_compte');
+        $photo = $this->validatorHelper->getValue('photo');
         var_dump($id . '=controller');
         // exit;
         $this->template = 'creAccount.php';
@@ -135,12 +141,12 @@ class UserController extends ManagerController
     {
         $this->template = 'login.php';
 
-        if (isset($_POST["email"])) {
+        if (!empty($this->validatorHelper->getValue("email"))) {
 
-            $email = $this->validatorHelper->verfEmail(@$_POST["email"]);
+            $email = $this->validatorHelper->getValue->verfEmail($this->validatorHelper->getValue("email"));
             $profil = $this->UserModel->login($email);
 
-            if (password_verify($_POST['mdp'], $profil['mdp'])) {
+            if (password_verify($this->validatorHelper->getValue('mdp'), $profil['mdp'])) {
 
                 SessionFacade::setUserSession($profil);
                 $this->redirectTo('profil');

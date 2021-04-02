@@ -84,7 +84,7 @@
             </nav>
         </div>
         <?php
-        if (!empty($datas['error'])) {
-            echo '<b>' . $datas['error'] . '</b>';
+        if (!empty($datas['message']['message'])) {
+            echo '<center><div class="alert alert-' . $datas['message']['type'] . '">' . $datas['message']['message'] . '</div></center>';
         }
         ?>

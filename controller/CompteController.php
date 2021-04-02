@@ -3,12 +3,10 @@
 
 class CompteController extends ManagerController
 {
-    private $articleController;
     private $compteModel;
 
     function __construct()
     {
-        $this->articleController = new ArticleController();
         $this->compteModel = new CompteModel();
     }
 

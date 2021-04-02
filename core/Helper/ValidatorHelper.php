@@ -2,6 +2,7 @@
 
 class ValidatorHelper
 {
+
     public function __construct()
     {
     }
@@ -15,13 +16,13 @@ class ValidatorHelper
      *
      * @return $value
      */
-    public function getValue($key, $default_value, $typeOfValue = '')
+    public function getValue($key, $default_value = null, $typeOfValue = '')
     {
         if (empty($key) || !is_string($key)) {
             return false;
         }
 
-        $value = '';
+        $value = false;
         if (isset($_POST[$key]) || isset($_GET[$key])) {
             $value = isset($_POST[$key]) ? $_POST[$key] : $_GET[$key];
             /* EXPRESSION TERNAIRE 

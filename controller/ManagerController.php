@@ -5,8 +5,9 @@ class ManagerController
 
     public $message = null;
     public $template = null;
-    public $compte;
+    private $compte;
     private $article;
+    private $commentaire;
 
     public $validatorHelper;
 
@@ -38,6 +39,9 @@ class ManagerController
         if (!empty($this->getArticle())) {
             $output['article'] = $this->getArticle();
         }
+        if (!empty($this->getCom())) {
+            $output['commentaire'] = $this->getCom();
+        }
         $output['user'] = SessionFacade::getUserSession();
 
         return $output;
@@ -63,9 +67,12 @@ class ManagerController
         return $this->compte;
     }
 
-    public function setMessage($message)
+    public function setMessage($message, $type = 'success')
     {
-        $this->message = $message;
+        $this->message = [
+            'message' => $message,
+            'type' => $type,
+        ];
     }
 
     public function setCompte($compte)
@@ -81,6 +88,16 @@ class ManagerController
     public function getArticle()
     {
         return $this->article;
+    }
+
+
+    public function setCom($commentaire)
+    {
+        $this->commentaire = $commentaire;
+    }
+    public function getCom()
+    {
+        return $this->commentaire;
     }
 
 

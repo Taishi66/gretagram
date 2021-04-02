@@ -24,7 +24,7 @@ class ArticleModel
     {
         $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM article 
-            WHERE id_article =:id_article';
+                WHERE id_article =:id_article';
         $article = $bdd->prepare($sql);
         $article->execute([
             ":id_article" => $id_article
@@ -126,7 +126,9 @@ class ArticleModel
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->query('SELECT * FROM article 
-                            ORDER BY id_article DESC');
+                            INNER JOIN compte ON compte.id_compte = article.id_compte
+                            INNER JOIN commentaire ON commentaire.id_article = article.id_article
+                            ORDER BY article.id_article DESC');
         $article = $sql->fetchAll(PDO::FETCH_ASSOC);
         $bdd = null;
         return $article;

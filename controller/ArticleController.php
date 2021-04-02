@@ -5,12 +5,14 @@ class ArticleController extends ManagerController
 
     private $articleModel;
     private $commentaireController;
+    private $compteController;
 
 
     function __construct()
     {
         $this->articleModel = new ArticleModel();
         $this->commentaireController = new CommentaireController();
+        $this->compteController = new CompteController();
         parent::__construct();
     }
 
@@ -19,22 +21,29 @@ class ArticleController extends ManagerController
     {
         $id_article = $this->validatorHelper->getValue('id_article', 0, 'integer');
         $this->template = 'profil/article.php';
-        $this->setArticle($this->articleModel->getArticle($id_article));
+
         //Si je souhaite modifier l'article
         if (!empty($_POST['titre'])) {
             $this->updateArticle($id_article);
-            return $this->renderController();
+            $this->setMessage('article modifié!');
         }
         //Si je souhaite effacer l'article
-        /*if (isset($_POST['submit'])) {
-            $this->article->deleteArticle($id_article);
+        if (isset($_POST['submit'])) {
+            $this->deleteArticle($id_article);
             $this->compteController->minusPublications(CompteFacade::getCompteId());
-            return $this->manager->redirectTo('profil');
-        }*/
-        //Si je souhaite laisser un commentaire à l'article
-        if (isset($_POST['submit-com'])) {
-            $this->commentaireController->addCom($id_article, CompteFacade::getCompteId());
+            return $this->redirectTo('profil');
         }
+        //Si je souhaite laisser un commentaire à l'article
+        else if (!empty($_POST['commentaire'])) {
+            $this->commentaireController->addCom($id_article, CompteFacade::getCompteId());
+            $this->setMessage('commentaire posté!');
+
+            /*} else {
+            $this->setMessage('commentaire non publié');*/
+        }
+
+        $this->setArticle($this->articleModel->getArticle($id_article));
+        $this->setCom($this->commentaireController->afficheListeCom($id_article));
         return $this->renderController();
     }
 
@@ -112,14 +121,13 @@ class ArticleController extends ManagerController
     function deleteArticle($id_article)
     {
         $this->articleModel->deleteArticle($id_article);
-        $this->redirectTo('monProfil');
     }
 
     function showLastArticles()
     {
         $this->template = 'home.php';
-        $articles = $this->datas = $this->articleModel->lastArticles();
-        var_dump($articles);
+        $this->setArticle($this->articleModel->lastArticles());
+
         return $this->renderController();
     }
 }

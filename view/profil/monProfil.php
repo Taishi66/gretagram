@@ -1,5 +1,6 @@
 <pre style="display:none;"><?php var_dump($datas['compte']); ?></pre>
 
+
 <div class="d-flex justify-content-center" style="align-items:center">
     <img class="photo-profil img-thumbnail m-3" src="<?php echo $datas['compte']['photo'] ?>">
     <div style="margin-top: 30px; margin-bottom:30px; text-align:left;">
@@ -44,9 +45,9 @@
         <div class="d-flex flex-wrap">
             <?php
             foreach ($datas['compte']['articles'] as $data) {
-                echo '<div class="mb-4 col-3 thumbpic">
-        <a href="?page=article&id_article=' . $data['id_article'] . '"><img class="img-thumbnail w-100" src="' . $data['media'] . '"></a>
-    </div>';
+                echo '<div class="card thumbpic" style="width: 18rem;">
+                <a href="?page=article&id_article=' . $data['id_article'] . '"><img class="card-img-top" style="object-fit:fill;" src="' . $data['media'] . '"></a>
+                </div>';
             }
             ?>
         </div>
@@ -84,7 +85,7 @@
                     </div>
                 </div>
                 <div class="modal-footer modal-modif">
-                    <button type="submit" class="form-control">Publier</button>
+                    <button type="submit" name="submit-post" class="form-control">Publier</button>
                     <button type="submit" class="form-control" data-dismiss="modal">Annuler</button>
                 </div>
             </form>
