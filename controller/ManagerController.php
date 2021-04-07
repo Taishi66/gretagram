@@ -8,6 +8,8 @@ class ManagerController
     private $compte;
     private $article;
     private $commentaire;
+    private $recherche;
+    private $compteVisite;
 
     public $validatorHelper;
 
@@ -42,6 +44,12 @@ class ManagerController
         if (!empty($this->getCom())) {
             $output['commentaire'] = $this->getCom();
         }
+        if (!empty($this->getSearch())) {
+            $output['recherche'] = $this->getSearch();
+        }
+        if (!empty($this->getCompteVisite())) {
+            $output['compteVisite'] = $this->getCompteVisite();
+        }
         $output['user'] = SessionFacade::getUserSession();
 
         return $output;
@@ -52,27 +60,27 @@ class ManagerController
         return $this->message;
     }
 
-    /*public function getTemplate()
-    {
-        return $this->template;
-    }
-
-    public function setTemplate($template)
-    {
-        return $this->template = $template;
-    }*/
-
-    public function getCompte()
-    {
-        return $this->compte;
-    }
-
     public function setMessage($message, $type = 'success')
     {
         $this->message = [
             'message' => $message,
             'type' => $type,
         ];
+    }
+
+    public function getSearch()
+    {
+        return $this->recherche;
+    }
+
+    public function setSearch($recherche)
+    {
+        return $this->recherche = $recherche;
+    }
+
+    public function getCompte()
+    {
+        return $this->compte;
     }
 
     public function setCompte($compte)
@@ -100,6 +108,15 @@ class ManagerController
         return $this->commentaire;
     }
 
+    public function setCompteVisite($compteVisite)
+    {
+        $this->compteVisite = $compteVisite;
+    }
+
+    public function getCompteVisite()
+    {
+        return $this->compteVisite;
+    }
 
     public function redirectTo($page)
     {

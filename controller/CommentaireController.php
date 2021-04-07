@@ -7,20 +7,39 @@ class CommentaireController extends ManagerController
     function __construct()
     {
         $this->commentaireModel = new CommentaireModel();
+        parent::__construct();
     }
 
-    function afficheListeCom($id_article)
+    function afficheListeCommentaire($id_article)
     {
-        //var_dump($this->commentaireModel->showAllCom($id_article));
         return $this->commentaireModel->showAllCom($id_article);
     }
 
-    function addCom($id_article, $id_compte)
+    function afficheCommentaire($id_com)
+    {
+        $id_com = $this->validatorHelper->getValue('id_com');
+        return $this->commentaireModel->getCommentaireModel($id_com);
+    }
+
+    function ajouterCommentaire($id_article, $id_compte)
     {
         $this->template = 'profil/article.php';
-        $contenu_com = $_POST['commentaire'];
-        if (!empty($_POST['commentaire'])) {
+        $contenu_com = $this->validatorHelper->getValue('commentaire');
+        if (!empty($contenu_com)) {
             $this->commentaireModel->postCom($id_article, $id_compte, $contenu_com);
+        }
+        return $this->renderController();
+    }
+
+    function supprimerCommentaire()
+    {
+        $this->template = "supCom.php";
+        $id_com = $this->validatorHelper->getValue('id_com', 'integer');
+        $this->setCom($this->afficheCommentaire($id_com));
+        if (isset($_POST['submit'])) {
+            $this->commentaireModel->deleteCom($id_com);
+            //$this->setMessage('Commentaire supprimé', 'infos');
+            return $this->redirectTo('profil');
         }
         return $this->renderController();
     }

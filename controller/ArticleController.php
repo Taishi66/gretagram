@@ -5,52 +5,55 @@ class ArticleController extends ManagerController
 
     private $articleModel;
     private $commentaireController;
-    private $compteController;
-
+    //private $compteController;
 
     function __construct()
     {
+        parent::__construct();
+
         $this->articleModel = new ArticleModel();
         $this->commentaireController = new CommentaireController();
-        $this->compteController = new CompteController();
-        parent::__construct();
     }
 
 
-    function afficheArticle()
+    function afficheArticleController()
     {
         $id_article = $this->validatorHelper->getValue('id_article', 0, 'integer');
         $this->template = 'profil/article.php';
 
         //Si je souhaite modifier l'article
-        if (!empty($_POST['titre'])) {
-            $this->updateArticle($id_article);
+        if (!empty($this->validatorHelper->getValue('titre'))) {
+            $this->modifierArticle($id_article);
             $this->setMessage('article modifié!');
         }
         //Si je souhaite effacer l'article
         if (isset($_POST['submit'])) {
-            $this->deleteArticle($id_article);
-            $this->compteController->minusPublications(CompteFacade::getCompteId());
+            $this->effacerArticle($id_article);
+            CompteFacade::soustraitPublications();
             return $this->redirectTo('profil');
         }
         //Si je souhaite laisser un commentaire à l'article
-        else if (!empty($_POST['commentaire'])) {
-            $this->commentaireController->addCom($id_article, CompteFacade::getCompteId());
+        else if (!empty($this->validatorHelper->getValue('commentaire'))) {
+            $this->commentaireController->ajouterCommentaire($id_article, CompteFacade::getCompteId());
             $this->setMessage('commentaire posté!');
-
             /*} else {
             $this->setMessage('commentaire non publié');*/
         }
+        //Aller dans commentaireController pour effacer un com
 
-        $this->setArticle($this->articleModel->getArticle($id_article));
-        $this->setCom($this->commentaireController->afficheListeCom($id_article));
+        $this->setArticle($this->articleModel->getArticleModel($id_article));
+        $this->setCom($this->commentaireController->afficheListeCommentaire($id_article));
+
+        $this->setCompteVisite(CompteFacade::getUserCompte($this->validatorHelper->getValue('id_compte')));
         return $this->renderController();
     }
 
+
     /**
-     * affichelisteArticle
+     * Method afficheListeArticles
      *
-     * @param  int $id_article
+     * @param $id_compte $id_compte [explicite description]
+     *
      * @return void
      */
     function afficheListeArticles($id_compte)
@@ -60,26 +63,27 @@ class ArticleController extends ManagerController
         return $articles;
     }
 
+
     /**
-     * newArticle
+     * Method nouvelArticle
      *
-     * @param  string $media
-     * @param  string $titre
-     * @param  string $contenu
-     * @param  date $date_art
-     * @param  int $id_compte
+     * @param $media $media [explicite description]
+     * @param $titre $titre [explicite description]
+     * @param $contenu $contenu [explicite description]
+     * @param $date_art $date_art [explicite description]
+     * @param $id_compte $id_compte [explicite description]
+     *
      * @return void
      */
-    function newArticle($media, $titre, $contenu, $date_art, $id_compte)
+    function nouvelArticle($media, $titre, $contenu, $date_art, $id_compte)
     {
         $id_compte = CompteFacade::getCompteId();
-        $media = @$_POST['media'];
+        //$this->validatorHelper->upload();
 
-        $titre = @$_POST['titre'];
-        $contenu = @$_POST['contenu'];
-        $date_art = @$_POST['date_art'];
-
-        if (!empty($media) && !empty($titre)) {
+        $titre = $this->validatorHelper->getValue('titre');
+        $contenu = $this->validatorHelper->getValue('contenu');
+        $date_art = $this->validatorHelper->getValue('date_art');
+        if (!empty($media) && !empty($titre) && !empty($contenu) && !empty($date_art)) {
             if ($this->articleModel->createArticle($media, $titre, $contenu, $date_art, $id_compte)) {
                 $this->template = 'monProfil.php';
                 return $this->renderController();
@@ -91,34 +95,33 @@ class ArticleController extends ManagerController
         return $this->renderController();
     }
 
+
     /**
-     * updateArticle
+     * Method modifierArticle
      *
-     * @param  string $media
-     * @param  string $titre
-     * @param  string $contenu
-     * @param  date $date_art
-     * @param  int $id_coid_article
-     * @param  int $id_compte
+     * @param $id_article $id_article [explicite description]
+     *
      * @return void
      */
-    function updateArticle($id_article)
+    function modifierArticle($id_article)
     {
-        $media = @$_POST['media'];
-        $titre = @$_POST['titre'];
-        $contenu = @$_POST['contenu'];
-        $date_art = @$_POST['date_art'];
+        $media = $this->validatorHelper->getValue('media');
+        $titre = $this->validatorHelper->getValue('titre');
+        $contenu = $this->validatorHelper->getValue('contenu');
+        $date_art = $this->validatorHelper->getValue('date_art');
 
-        return $this->articleModel->setArticle($media, $titre, $contenu, $date_art, $id_article);
+        return $this->articleModel->setArticleModel($media, $titre, $contenu, $date_art, $id_article);
     }
 
+
     /**
-     * deleteArticle
+     * Method effacerArticle
      *
-     * @param  int $id_article
+     * @param $id_article $id_article [explicite description]
+     *
      * @return void
      */
-    function deleteArticle($id_article)
+    function effacerArticle($id_article)
     {
         $this->articleModel->deleteArticle($id_article);
     }

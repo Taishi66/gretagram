@@ -9,8 +9,6 @@ class UserController extends ManagerController
     private $compteModel;
     private $compteController;
 
-
-
     public function __construct()
     {
         $this->compteController = new CompteController();
@@ -18,18 +16,6 @@ class UserController extends ManagerController
         $this->UserModel = new UserModel();
         $this->compteModel = new CompteModel();
         parent::__construct();
-    }
-
-    /**
-     * afficherListeProfils
-     *
-     * @return void
-     */
-    public function afficherListeProfils()
-    {
-        $listeProfils = $this->UserModel->getAllUsers();
-        $this->template = 'home.php';
-        return $this->renderController();
     }
 
     /**
@@ -50,20 +36,27 @@ class UserController extends ManagerController
 
         if (!empty($this->validatorHelper->getValue('pseudo'))) {
             // var_dump($this->validatorHelper->getValue('pseudo'));
-            $this->compteController->modifCompte($id_compte);
+            $this->compteController->modifierCompte($id_compte);
             return $this->redirectTo('profil');
         } else {
-            $this->setMessage('Modification échouée : Données manquantes');
+            $this->setMessage('Modification échouée : Données manquantes', 'danger');
         }
         //Si je souhaite créer un article
-        if (!empty($this->validatorHelper->getValue('titre')) && !empty($this->validatorHelper->getValue('media')) && !empty($this->validatorHelper->getValue('contenu'))) {
-            $this->article->newArticle($this->validatorHelper->getValue('media'), $this->validatorHelper->getValue('titre'), $this->validatorHelper->getValue('contenu'), $this->validatorHelper->getValue('date_art'), $id_compte);
-            $this->compteController->addPublications(CompteFacade::getCompteId());
+        $file_name = $this->validatorHelper->upload('media');
+        //DebugFacade::dd($_FILES);
+        if (!empty($this->validatorHelper->getValue('titre')) && !empty($this->validatorHelper->getValue('contenu'))) {
+            $this->article->nouvelArticle($file_name, $this->validatorHelper->getValue('titre'), $this->validatorHelper->getValue('contenu'), $this->validatorHelper->getValue('date_art'), $id_compte);
+            CompteFacade::plusPublication();
             return $this->redirectTo('profil');
         } else {
             $this->setMessage('Article non posté : Données manquantes', 'danger');
-            return $this->renderController();
         }
+        //SI je souhaite supprimer mon compte
+        if (isset($_POST['delete-compte'])) {
+            CompteFacade::EraseAccount();
+            return $this->redirectTo('');
+        }
+
         return $this->renderController();
     }
 
@@ -72,7 +65,7 @@ class UserController extends ManagerController
      *
      * @return void
      */
-    public function setInscription()
+    public function nouvelleInscription()
     {
         // je verifie que j'ai envoyé le formulaire
         // si le formulaire est envoyé j'entre dans la condition
@@ -108,21 +101,19 @@ class UserController extends ManagerController
      * @param  int $id
      * @return void
      */
-    public function newAccount($id)
+    public function nouveauCompte($id)
     {
-        var_dump(SessionFacade::getUserId());
         $id = SessionFacade::getUserId();
-        $pseudo = $this->validatorHelper->getValue('pseudo');
-        $description_compte = $this->validatorHelper->getValue('description_compte');
-        $photo = $this->validatorHelper->getValue('photo');
-        var_dump($id . '=controller');
+        $pseudo = $this->validatorHelper->getValue("pseudo");
+        $description_compte = $this->validatorHelper->getValue("description_compte");
+        $photo = $this->validatorHelper->getValue("photo");
         // exit;
         $this->template = 'creAccount.php';
 
         if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
-            var_dump($pseudo);
+            //var_dump($pseudo);
             if ($this->compteModel->creAccount($id, $photo, $pseudo, $description_compte)) {
-                $this->redirectTo('monProfil');
+                $this->redirectTo('profil');
                 exit;
             } else {
                 $this->message = 'Création de compte non enregistrée';
@@ -137,13 +128,13 @@ class UserController extends ManagerController
      *
      * @return void
      */
-    public function getLogin()
+    public function seConnecter()
     {
         $this->template = 'login.php';
 
         if (!empty($this->validatorHelper->getValue("email"))) {
 
-            $email = $this->validatorHelper->getValue->verfEmail($this->validatorHelper->getValue("email"));
+            $email = $this->validatorHelper->verfEmail($this->validatorHelper->getValue("email"));
             $profil = $this->UserModel->login($email);
 
             if (password_verify($this->validatorHelper->getValue('mdp'), $profil['mdp'])) {

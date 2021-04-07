@@ -118,7 +118,7 @@ class CompteModel
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('UPDATE compte
-                                SET publications =-1
+                                SET publications = publications -1
                                 WHERE id_compte=:id_compte');
         $bdd = null;
 
@@ -126,6 +126,16 @@ class CompteModel
     }
 
 
+    /**
+     * Method setCompteModel
+     *
+     * @param $pseudo $pseudo [explicite description]
+     * @param $photo $photo [explicite description]
+     * @param $description_compte $description_compte [explicite description]
+     * @param $id_compte $id_compte [explicite description]
+     *
+     * @return void
+     */
     function setCompteModel($pseudo = null, $photo = null, $description_compte = null, $id_compte)
     {
         $bdd = Bdd::Connexion();
@@ -142,6 +152,53 @@ class CompteModel
         ]);
         $bdd = null;
         return $compte;
+    }
+
+    /**
+     * Method getAllComFromCompte
+     *
+     * @param $id_compte $id_compte [explicite description]
+     *
+     * @return void
+     */
+    function getAllComFromCompte($id_compte)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('SELECT * FROM commentaire
+                            INNER JOIN compte ON compte.id_compte = commentaire.id_compte
+                            WHERE compte.id_compte = :id_compte');
+        $sql->execute([':id_compte' => $id_compte]);
+        $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $bdd = null;
+        return $resultat;
+    }
+
+    /**
+     * Method deleteCompte
+     *
+     * @param $id_compte $id_compte [explicite description]
+     *
+     * @return void
+     */
+    function deleteCompte($id_compte)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('DELETE FROM compte WHERE id_compte =:id_compte');
+        $resultat = $sql->execute([':id_compte' => $id_compte]);
+        $bdd = null;
+        return $resultat;
+    }
+
+    function showProfil($id_compte)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('SELECT * FROM compte 
+                            INNER JOIN article ON article.id_compte = compte.id_compte
+                            WHERE compte.id_compte = :id_compte');
+        $sql->execute([':id_compte' => $id_compte]);
+        $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $bdd = null;
+        return $resultat;
     }
 
     /* function getCompteAll($id_compte)

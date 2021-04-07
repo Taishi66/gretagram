@@ -2,6 +2,14 @@
 class CommentaireModel
 {
 
+
+    /*function showCommentPostModel($id_article)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('SELECT * FROM commentaire WHERE ');
+        $bdd=null;
+    }*/
+
     function showAllCom($id_article)
     {
         $bdd = Bdd::Connexion();
@@ -27,5 +35,27 @@ class CommentaireModel
         ]);
         $bdd = null;
         return $com;
+    }
+
+    function deleteCom($id_com)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = 'DELETE FROM commentaire WHERE id_com = :id_com';
+        $commentaire = $bdd->prepare($sql);
+        $resultat = $commentaire->execute([
+            ":id_com" => $id_com
+        ]);
+        $bdd = null;
+        return $resultat;;
+    }
+
+    function getCommentaireModel($id_com)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('SELECT * FROM commentaire WHERE id_com =:id_com');
+        $sql->execute([':id_com' => $id_com]);
+        $resultat = $sql->fetch(PDO::FETCH_ASSOC);
+        $bdd = null;
+        return $resultat;
     }
 }

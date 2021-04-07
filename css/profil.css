@@ -10,6 +10,15 @@
     justify-content: center;
 }
 
+.ellipse {
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: small;
+    background-color: transparent;
+    border: 1px solid lightgray;
+}
+
 .btn-modif {
     width: 115px;
     height: 30px;

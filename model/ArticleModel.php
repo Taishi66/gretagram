@@ -20,7 +20,7 @@ class ArticleModel
      * @param  int $id_article
      * @return void
      */
-    function getArticle($id_article)
+    function getArticleModel($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM article 
@@ -64,7 +64,7 @@ class ArticleModel
     }
 
     /**
-     * modifierArticle
+     * setArticle
      *
      * @param  int $id_article
      * @param  mixed $media
@@ -74,7 +74,7 @@ class ArticleModel
      * @param  int $id_compte
      * @return void
      */
-    function setArticle($media = null, $titre = null, $contenu = null, $date_art = null, $id_article)
+    function setArticleModel($media = null, $titre = null, $contenu = null, $date_art = null, $id_article)
     {
         $bdd = Bdd::Connexion();
 
@@ -127,7 +127,7 @@ class ArticleModel
         $bdd = Bdd::Connexion();
         $sql = $bdd->query('SELECT * FROM article 
                             INNER JOIN compte ON compte.id_compte = article.id_compte
-                            INNER JOIN commentaire ON commentaire.id_article = article.id_article
+                            GROUP BY article.id_article 
                             ORDER BY article.id_article DESC');
         $article = $sql->fetchAll(PDO::FETCH_ASSOC);
         $bdd = null;

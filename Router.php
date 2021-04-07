@@ -19,24 +19,31 @@ class Router
         switch ($this->page) {
             case '':
                 $user = new UserController();
-                return $user->getLogin();
+                return $user->seConnecter();
                 // break;
             case 'inscription':
                 $user = new UserController();
-                return $user->setInscription();
+                return $user->nouvelleInscription();
                 //break;
             case 'noAccount':
-                var_dump(SessionFacade::getUserId() . '=router');
                 $user = new UserController();
-                return $user->newAccount(SessionFacade::getUserId());
-                //  break; 
+                return $user->nouveauCompte(SessionFacade::getUserId());
+                //  break;
             case 'article':
                 $article = new ArticleController();
-                return $article->afficheArticle();
+                return $article->afficheArticleController();
+                //break;
+            case 'delete_com':
+                $commentaire = new CommentaireController();
+                return $commentaire->supprimerCommentaire();
                 //break;
             case 'profil':
                 $user = new UserController();
                 return $user->afficherMonprofil(SessionFacade::getUserId(), CompteFacade::getCompteId());
+                //break;
+            case 'compte':
+                $compte = new compteController();
+                return $compte->afficheProfil($_GET['id_compte']);
                 //break;
             case 'home':
                 $articles = new ArticleController();
@@ -50,6 +57,14 @@ class Router
                 $_SESSION = array();
                 header('Location:?page=');
                 break;
+            case 'recherche':
+                $result = new RechercheController();
+                return $result->recherche(@$_GET['q']);
+                //break;
+            case 'explore':
+                $explore = new RechercheController();
+                return $explore->explorer(@$_GET['e']);
+                //break;
             default:
                 header('location:?page=home');
                 break;

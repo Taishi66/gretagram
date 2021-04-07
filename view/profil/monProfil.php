@@ -12,7 +12,9 @@
                 <button class="m-3 btn-modif" data-toggle="modal" data-target="#modifierModal">Modifier profil</button>
                 <!-- Button trigger modal Nouveau Post-->
                 <button type="button" class="m-3 btn-modif" data-toggle="modal" data-target="#postModal">Nouveau Post</button>
+                <!-- Button trigger vider la session-->
                 <button class="m-3 btn-modif"><a href="?page=deconnexion" style="color: black; ;text-decoration:none;">Déconnexion</a></button>
+                <button class="m-3 ellipse" style="color: black; ;text-decoration:none;" data-toggle="modal" data-target="#account-delete"><i class="fas fa-ellipsis-v"></i></button>
 
             <?php } else { ?>
                 <button type="button" class="m-3 btn-modif" data-toggle="modal" data-target="#contactModal">Contacter</button>
@@ -41,7 +43,7 @@
 <pre style="display:none;"><?php var_dump($datas['compte']) ?></pre>
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="align-items-center">
         <div class="d-flex flex-wrap">
             <?php
             foreach ($datas['compte']['articles'] as $data) {
@@ -73,7 +75,7 @@
                     </div>
                     <div class="form-group">
                         <label>Média</label>
-                        <input type="text" class="form-control" name="media" id="media" placeholder="Photo ou vidéo">
+                        <input type="file" class="form-control" name="media" id="media" placeholder="Photo ou vidéo">
                     </div>
                     <div class="form-group">
                         <label>Contenu</label>
@@ -116,12 +118,32 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea type="text" class="form-control" name="description_compte" id="description_compte" placeholder="<?php echo $datas['compte']['description_compte']; ?>"></textarea>
+                        <input style="height:100px;" type="text" class="form-control" name="description_compte" id="description_compte" value="<?php echo $datas['compte']['description_compte']; ?>"></input>
                     </div>
                 </div>
                 <div class="modal-modif modal-footer">
                     <button type="submit" class="form-control">Valider Modifications</button>
                     <button type="submit" class="form-control" data-dismiss="modal">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Modifier Profil-->
+<div class="modal fade" id="account-delete" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-modif">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Effacez le compte</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="" enctype="multipart/form-data">
+                <div class="modal-footer">
+                    <p>Êtes-vous sûr de vouloir effacer votre compte? Cette suppression sera irréversible et les données effacées.</p>
+                    <button type="submit" name="delete-compte" class="btn-com"><i class="mr-2 fas fa-skull-crossbones"></i>Oui, je suis sûr</button>
                 </div>
             </form>
         </div>

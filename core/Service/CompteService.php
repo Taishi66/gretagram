@@ -33,7 +33,29 @@ class CompteService
         return $compte;
     }
 
-    public function getTopArticles()
+
+    public function addPublications($id_compte)
     {
+        $resultat = $this->compteModel->incrementerPublications($id_compte);
+        return $resultat;
+    }
+
+    public function minusPublications($id_compte)
+    {
+        $resultat = $this->compteModel->decrementerPublications($id_compte);
+        return $resultat;
+    }
+
+    public function AllComFromCompte($id_compte)
+    {
+        $resultat = $this->compteModel->getAllComFromCompte($id_compte);
+        return $resultat;
+    }
+
+    public function deleteAccount($id_compte)
+    {
+        $resultat = $this->compteModel->deleteCompte($id_compte);
+        $_SESSION = array('');
+        return $resultat;
     }
 }

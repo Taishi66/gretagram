@@ -45,12 +45,12 @@
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
                                             <img src="' . $article['photo'] . '" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                         </div>
-                                        <span class="font-weight-bold">' . $article['pseudo'] . '</span>
+                                        <a href="?page=compte&id_compte=' . $article['id_compte'] . '" style="text-decoration:none; color:black;"><span class="font-weight-bold">' . $article['pseudo'] . '</span></a>
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="embed-responsive embed-responsive-1by1">
-                                        <img class="embed-responsive-item" src="' . $article['media'] . '"/>
+                                        <a href="?page=article&id=' . $article['id_article'] . '"><img class="embed-responsive-item" src="' . $article['media'] . '"/></a>
                                     </div>
                                     <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1">
                                         <ul class="list-inline d-flex flex-row align-items-center m-0">
@@ -99,17 +99,13 @@
                                                 <strong class="d-block">' . $article['pseudo'] . '</strong>
                                                 <span>' . $article['contenu_com'] . '</span>
                                             </div>
-                                            <div>
-                                                <strong class="d-block">adri_rez77</strong>
-                                                <span>Hi</span>
-                                            </div>
                                         </div>
                                         <small class="text-muted">4 HOURS AGO</small>
                                     </div>
                                     <div class="position-relative comment-box">
-                                        <form>
-                                            <input class="w-100 border-0 p-3 input-post" placeholder="Add a comment...">
-                                            <button class="btn btn-primary position-absolute btn-ig">Post</button>
+                                        <form action="" method="POST">
+                                            <input class="w-100 border-0 p-3 input-post" name="comment" id="comment" placeholder="Add a comment...">
+                                            <button type="submit" class="btn btn-primary position-absolute btn-ig">Post</button>
                                         </form>
                                     </div>
                                 </div>

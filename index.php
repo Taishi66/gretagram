@@ -5,21 +5,25 @@ session_start();
 
 require_once("core/Bdd.php");
 include("core/Helper/ValidatorHelper.php");
+include("core/Helper/DebugHelper.php");
 include("core/facade/SessionFacade.php");
 include("core/facade/CompteFacade.php");
+include("core/facade/DebugFacade.php");
 include("core/Service/CompteService.php");
+
 
 include("controller/ManagerController.php");
 include("controller/CompteController.php");
 include("controller/ArticleController.php");
 include("controller/CommentaireController.php");
 include("controller/UserController.php");
+include("controller/RechercheController.php");
 
 include("model/CompteModel.php");
 include("model/ArticleModel.php");
 include("model/CommentaireModel.php");
 include("model/UserModel.php");
-
+include("model/RechercheModel.php");
 
 
 require_once("Render.php");

@@ -2,6 +2,19 @@
     width: 100%;
 }
 
+.com-sup {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    margin-top: 5px;
+    margin-left: 1px;
+    background: none;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 5px;
+}
+
 .btn-com {
     width: 100%;
     margin-top: 5px;

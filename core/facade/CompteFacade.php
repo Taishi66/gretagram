@@ -5,6 +5,7 @@ class CompteFacade
     static private $id_user;
     static private $compte;
 
+
     /**
      * Method setUserCompte
      *
@@ -57,5 +58,29 @@ class CompteFacade
     static function getCompteArticle()
     {
         return self::getUserCompteFromUser(static::$id_user)['articles'];
+    }
+
+    static function plusPublication()
+    {
+        $compteService = new CompteService();
+        return $compteService->addPublications(CompteFacade::getCompteId());
+    }
+
+    static function soustraitPublications()
+    {
+        $compteService = new CompteService();
+        return $compteService->minusPublications(CompteFacade::getCompteId());
+    }
+
+    static function getAllComFromAccount()
+    {
+        $compteService = new CompteService();
+        return $compteService->AllComFromCompte(CompteFacade::getCompteId());
+    }
+
+    static function EraseAccount()
+    {
+        $compteService = new CompteService();
+        return $compteService->deleteAccount(CompteFacade::getCompteId());
     }
 }

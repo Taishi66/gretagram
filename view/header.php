@@ -32,12 +32,14 @@
                         </a>
                         <!-- Barre de recherche -->
                         <div>
-                            <form class="form-inline my-2 my-lg-0">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search profil" aria-label="Search">
+                            <form class="form-inline my-2 my-lg-0" action="?page=recherche" method="GET">
+                                <input type="hidden" name="page" value="recherche">
+                                <input class="form-control mr-sm-2" type="search" name="q" id="q" placeholder="Search profil">
+                                <button type="submit" style="display:none;" name="submit"></button>
                             </form>
                         </div>
                         <!-- Partie droite de la navbar avec icone HOME INBOX EXPLORE NOTIF PROFIL-->
-                        <div class="d-flex flex-row">
+                        <div class=" d-flex flex-row">
                             <ul class="list-inline m-0">
                                 <li class="list-inline-item">
                                     <a href="?page=home" class="link-menu">
