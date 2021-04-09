@@ -1,6 +1,6 @@
 <!-- BLOCK  BODY STORIES POST ET PROFIL / SUGGESTION-->
 <pre style="display:none;">DATAS user connecté= <?php var_dump($datas); ?></pre>
-
+<? DebugFacade::dump($datas); ?>
 
 <div class="mt-4">
     <div class="container d-flex justify-content-center">
@@ -37,20 +37,20 @@
                     <!-- END OF STORIES -->
                     <!-- START OF POSTS -->
                     <?php
-                    foreach ($datas['article'] as $article) {
-                        echo '<div class="d-flex flex-column mt-4 mb-4">
+                    foreach ($datas['article'] as $article) { ?>
+                        <div class="d-flex flex-column mt-4 mb-4">
                             <div class="card">
                                 <div class="card-header p-3">
                                     <div class="d-flex flex-row align-items-center">
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
-                                            <img src="' . $article['photo'] . '" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                            <img src="<?= $article['photo'] ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                         </div>
-                                        <a href="?page=compte&id_compte=' . $article['id_compte'] . '" style="text-decoration:none; color:black;"><span class="font-weight-bold">' . $article['pseudo'] . '</span></a>
+                                        <a href="?page=compte&id_compte=<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><span class="font-weight-bold"><?= $article['pseudo'] ?></span></a>
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="embed-responsive embed-responsive-1by1">
-                                        <a href="?page=article&id=' . $article['id_article'] . '"><img class="embed-responsive-item" src="' . $article['media'] . '"/></a>
+                                        <img class="embed-responsive-item" src="<?= $article['media'] ?>" />
                                     </div>
                                     <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1">
                                         <ul class="list-inline d-flex flex-row align-items-center m-0">
@@ -89,18 +89,18 @@
                                     </div>
                                     <div class="pl-3 pr-3 pb-2">
                                         <strong class="d-block">365.354 likes</strong>
-                                        <strong class="d-block">' . $article['titre'] . '</strong>
-                                        <p class="d-block mb-1">' . $article['contenu'] . '</p>
-                                        <button class="btn p-0">
-                                            <span class="text-muted">View all 2,247 comments</span>
-                                        </button>
+                                        <strong class="d-block"><?= $article['titre'] ?></strong>
+                                        <p class="d-block mb-1"><?= $article['contenu'] ?></p>
                                         <div>
                                             <div>
-                                                <strong class="d-block">' . $article['pseudo'] . '</strong>
-                                                <span>' . $article['contenu_com'] . '</span>
+                                                <strong class="d-block"><?= $article['pseudo'] ?></strong>
+                                                <span><?= $article['commentaire']['contenu_com'] ?></span>
                                             </div>
                                         </div>
-                                        <small class="text-muted">4 HOURS AGO</small>
+                                        <button class="btn p-0">
+                                            <span class="text-muted">Voir commentaires</span>
+                                        </button>
+                                        <small class="text-muted"><?= $article['date_art'] ?></small>
                                     </div>
                                     <div class="position-relative comment-box">
                                         <form action="" method="POST">
@@ -110,8 +110,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>';
-                    } ?>
+                        </div>
+                    <?php   } ?>
                     <!-- END OF POSTS -->
                 </div>
                 <div class="col-4">
@@ -128,37 +128,21 @@
                     <div class="mt-4">
                         <div class="d-flex flex-row justify-content-between">
                             <small class="text-muted font-weight-normal">Suggestions For You</small>
-                            <small>See All</small>
+                            <a href="?page=explore" style="text-decoration:none;"><small>See All</small></a>
                         </div>
-                        <div>
-                            <div class="d-flex flex-row justify-content-between align-items-center mt-3 mb-3">
-                                <div class="d-flex flex-row align-items-center">
-                                    <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sugest-profile-photo">
-                                        <img src="./img/profiles/profile-3.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                        <?php foreach ($datas['suggestion'] as $suggestion) { ?>
+                            <div>
+                                <div class="d-flex flex-row justify-content-between align-items-center mt-3 mb-3">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sugest-profile-photo">
+                                            <img src="<?= $suggestion['photo'] ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                        </div>
+                                        <strong class="ml-3 sugest-username"><?= $suggestion['pseudo'] ?></strong>
                                     </div>
-                                    <strong class="ml-3 sugest-username">instagram</strong>
+                                    <a href="?page=compte&id_compte=<?= $suggestion['id_compte'] ?>" class="btn btn-primary btn-sm p-0 btn-ig">Voir le profil</a>
                                 </div>
-                                <button class="btn btn-primary btn-sm p-0 btn-ig ">Follow</button>
                             </div>
-                            <div class="d-flex flex-row justify-content-between align-items-center mt-3 mb-3">
-                                <div class="d-flex flex-row align-items-center">
-                                    <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sugest-profile-photo">
-                                        <img src="./img/profiles/profile-4.png" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
-                                    </div>
-                                    <strong class="ml-3 sugest-username">dccomics</strong>
-                                </div>
-                                <button class="btn btn-primary btn-sm p-0 btn-ig ">Follow</button>
-                            </div>
-                            <div class="d-flex flex-row justify-content-between align-items-center mt-3 mb-3">
-                                <div class="d-flex flex-row align-items-center">
-                                    <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sugest-profile-photo">
-                                        <img src="./img/profiles/profile-5.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
-                                    </div>
-                                    <strong class="ml-3 sugest-username">thecw</strong>
-                                </div>
-                                <button class="btn btn-primary btn-sm p-0 btn-ig">Follow</button>
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

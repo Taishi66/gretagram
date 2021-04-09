@@ -75,7 +75,7 @@
                     </div>
                     <div class="form-group">
                         <label>Média</label>
-                        <input type="file" class="form-control" name="media" id="media" placeholder="Photo ou vidéo">
+                        <input type="file" class="file" name="media" id="media" placeholder="Photo ou vidéo">
                     </div>
                     <div class="form-group">
                         <label>Contenu</label>

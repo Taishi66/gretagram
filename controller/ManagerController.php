@@ -10,6 +10,7 @@ class ManagerController
     private $commentaire;
     private $recherche;
     private $compteVisite;
+    private $suggestion;
 
     public $validatorHelper;
 
@@ -50,6 +51,10 @@ class ManagerController
         if (!empty($this->getCompteVisite())) {
             $output['compteVisite'] = $this->getCompteVisite();
         }
+        if (!empty($this->getSuggestion())) {
+            $output['suggestion'] = $this->getSuggestion();
+        }
+
         $output['user'] = SessionFacade::getUserSession();
 
         return $output;
@@ -76,6 +81,16 @@ class ManagerController
     public function setSearch($recherche)
     {
         return $this->recherche = $recherche;
+    }
+
+    public function getSuggestion()
+    {
+        return $this->suggestion;
+    }
+
+    public function setSuggestion($suggestion)
+    {
+        return $this->suggestion = $suggestion;
     }
 
     public function getCompte()

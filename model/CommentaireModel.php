@@ -3,13 +3,21 @@ class CommentaireModel
 {
 
 
-    /*function showCommentPostModel($id_article)
+    function showCommentFromDb()
     {
         $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT * FROM commentaire WHERE ');
-        $bdd=null;
-    }*/
+        $sql = $bdd->query('SELECT * FROM commentaire');
+        $bdd = null;
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+    /**
+     * Method showAllCom
+     *
+     * @param $id_article $id_article [explicite description]
+     *
+     * @return Tout les commentaires d'un article 
+     */
     function showAllCom($id_article)
     {
         $bdd = Bdd::Connexion();
@@ -23,6 +31,15 @@ class CommentaireModel
         return $commentaire;
     }
 
+    /**
+     * Method postCom
+     *
+     * @param $id_article $id_article [explicite description]
+     * @param $id_compte $id_compte [explicite description]
+     * @param $contenu_com $contenu_com [explicite description]
+     *
+     * @return void
+     */
     function postCom($id_article, $id_compte, $contenu_com = null)
     {
         $bdd = Bdd::Connexion();
@@ -37,6 +54,13 @@ class CommentaireModel
         return $com;
     }
 
+    /**
+     * Method deleteCom
+     *
+     * @param $id_com $id_com [explicite description]
+     *
+     * @return void
+     */
     function deleteCom($id_com)
     {
         $bdd = Bdd::Connexion();
@@ -49,6 +73,25 @@ class CommentaireModel
         return $resultat;;
     }
 
+    function deleteAllCom($id_compte)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = 'DELETE FROM commentaire WHERE id_compte = :id_compte';
+        $commentaire = $bdd->prepare($sql);
+        $resultat = $commentaire->execute([
+            ":id_compte" => $id_compte
+        ]);
+        $bdd = null;
+        return $resultat;;
+    }
+
+    /**
+     * Method getCommentaireModel
+     *
+     * @param $id_com $id_com [explicite description]
+     *
+     * @return void
+     */
     function getCommentaireModel($id_com)
     {
         $bdd = Bdd::Connexion();

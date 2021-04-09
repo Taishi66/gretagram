@@ -15,6 +15,19 @@ class CompteController extends ManagerController
         parent::__construct();
     }
 
+    function suggestionCompte()
+    {
+        return $this->compteModel->accountSuggestion();
+    }
+
+
+    /**
+     * Method afficheProfil
+     *
+     * @param $id_compte $id_compte [explicite description]
+     *
+     * @return void
+     */
     function afficheProfil($id_compte)
     {
         $this->template = ('profil/compte.php');
@@ -24,7 +37,13 @@ class CompteController extends ManagerController
         return $this->renderController();
     }
 
-
+    /**
+     * Method modifierCompte
+     *
+     * @param $id_compte $id_compte [explicite description]
+     *
+     * @return void
+     */
     function modifierCompte($id_compte)
     {
         $id_compte = CompteFacade::getCompteId();

@@ -55,7 +55,7 @@ class CompteService
     public function deleteAccount($id_compte)
     {
         $resultat = $this->compteModel->deleteCompte($id_compte);
-        $_SESSION = array('');
+        // $_SESSION = array('');
         return $resultat;
     }
 }

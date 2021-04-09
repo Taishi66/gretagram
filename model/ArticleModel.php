@@ -117,6 +117,19 @@ class ArticleModel
         return $resultat;
     }
 
+    function deleteAllArticles($id_compte)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = 'DELETE FROM article
+                WHERE id_compte = :id_compte';
+        $article = $bdd->prepare($sql);
+        $resultat = $article->execute([
+            ":id_compte" => $id_compte
+        ]);
+        $bdd = null;
+        return $resultat;
+    }
+
     /**
      * Method lastArticles
      *

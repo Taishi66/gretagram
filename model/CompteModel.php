@@ -201,6 +201,15 @@ class CompteModel
         return $resultat;
     }
 
+    function accountSuggestion()
+    {
+        $bdd = Bdd::connexion();
+        $sql = $bdd->query('SELECT * FROM compte ORDER BY RAND() LIMIT 3');
+        $bdd = null;
+        $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $resultat;
+    }
+
     /* function getCompteAll($id_compte)
     {
         $bdd = Bdd::Connexion();

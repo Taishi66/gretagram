@@ -10,17 +10,49 @@ class CommentaireController extends ManagerController
         parent::__construct();
     }
 
+    /**
+     * Method afficherToutLesCommentaires
+     *
+     * @return void
+     */
+    function afficherToutLesCommentaires()
+    {
+        return $this->commentaireModel->showCommentFromDb();
+    }
+
+    /**
+     * Method afficheListeCommentaire
+     *
+     * @param $id_article $id_article [explicite description]
+     *
+     * @return void
+     */
     function afficheListeCommentaire($id_article)
     {
         return $this->commentaireModel->showAllCom($id_article);
     }
 
+    /**
+     * Method afficheCommentaire
+     *
+     * @param $id_com $id_com [explicite description]
+     *
+     * @return void
+     */
     function afficheCommentaire($id_com)
     {
         $id_com = $this->validatorHelper->getValue('id_com');
         return $this->commentaireModel->getCommentaireModel($id_com);
     }
 
+    /**
+     * Method ajouterCommentaire
+     *
+     * @param $id_article $id_article [explicite description]
+     * @param $id_compte $id_compte [explicite description]
+     *
+     * @return void
+     */
     function ajouterCommentaire($id_article, $id_compte)
     {
         $this->template = 'profil/article.php';
@@ -31,6 +63,11 @@ class CommentaireController extends ManagerController
         return $this->renderController();
     }
 
+    /**
+     * Method supprimerCommentaire
+     *
+     * @return void
+     */
     function supprimerCommentaire()
     {
         $this->template = "supCom.php";
@@ -42,5 +79,9 @@ class CommentaireController extends ManagerController
             return $this->redirectTo('profil');
         }
         return $this->renderController();
+    }
+    function supprimerToutLesCommentaires($id_compte)
+    {
+        return $this->commentaireModel->deleteCom($id_compte);
     }
 }

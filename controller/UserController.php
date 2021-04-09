@@ -8,6 +8,7 @@ class UserController extends ManagerController
     private $UserModel;
     private $compteModel;
     private $compteController;
+    private $commentaireController;
 
     public function __construct()
     {
@@ -15,6 +16,7 @@ class UserController extends ManagerController
         $this->article = new ArticleController();
         $this->UserModel = new UserModel();
         $this->compteModel = new CompteModel();
+        $this->commentaireController = new CommentaireController();
         parent::__construct();
     }
 
@@ -43,9 +45,10 @@ class UserController extends ManagerController
         }
         //Si je souhaite créer un article
         $file_name = $this->validatorHelper->upload('media');
+        $media = $file_name;
         //DebugFacade::dd($_FILES);
         if (!empty($this->validatorHelper->getValue('titre')) && !empty($this->validatorHelper->getValue('contenu'))) {
-            $this->article->nouvelArticle($file_name, $this->validatorHelper->getValue('titre'), $this->validatorHelper->getValue('contenu'), $this->validatorHelper->getValue('date_art'), $id_compte);
+            $this->article->nouvelArticle($media, $this->validatorHelper->getValue('titre'), $this->validatorHelper->getValue('contenu'), $this->validatorHelper->getValue('date_art'), $id_compte);
             CompteFacade::plusPublication();
             return $this->redirectTo('profil');
         } else {
@@ -53,7 +56,12 @@ class UserController extends ManagerController
         }
         //SI je souhaite supprimer mon compte
         if (isset($_POST['delete-compte'])) {
+            $id_compte = CompteFacade::getCompteId();
+            $this->commentaireController->supprimerToutLesCommentaires($id_compte);
+            $this->article->effacerToutLesArticle($id_compte);
             CompteFacade::EraseAccount();
+            $this->userModel->deleteUser(SessionFacade::getUserId());
+            $_SESSION = array('');
             return $this->redirectTo('');
         }
 

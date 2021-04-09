@@ -84,4 +84,13 @@ class UserModel
         $bdd = null;
         return $resultat;
     }
+
+    public function deleteUser($id_user)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('DELETE FROM user WHERE id_user = :id_user');
+        $user = $sql->execute([':id_user' => $id_user]);
+        $bdd = null;
+        return $user;
+    }
 }
