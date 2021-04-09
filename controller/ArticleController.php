@@ -1,11 +1,17 @@
 <?php
 
+use CompteModel;
+use ArticleModel;
+use CompteFacade;
+use ManagerController;
+use CommentaireController;
+
 class ArticleController extends ManagerController
 {
 
     private $articleModel;
     private $commentaireController;
-    //private $compteController;
+    private $compteModel;
 
     function __construct()
     {
@@ -13,6 +19,7 @@ class ArticleController extends ManagerController
 
         $this->articleModel = new ArticleModel();
         $this->commentaireController = new CommentaireController();
+        $this->compteModel = new CompteModel();
     }
 
 
@@ -79,7 +86,6 @@ class ArticleController extends ManagerController
     {
         $id_compte = CompteFacade::getCompteId();
         //$this->validatorHelper->upload();
-
         $titre = $this->validatorHelper->getValue('titre');
         $contenu = $this->validatorHelper->getValue('contenu');
         $date_art = $this->validatorHelper->getValue('date_art');
@@ -126,11 +132,29 @@ class ArticleController extends ManagerController
         $this->articleModel->deleteArticle($id_article);
     }
 
+    /**
+     * Method effacerToutLesArticle
+     *
+     * @param $id_compte $id_compte [explicite description]
+     *
+     * @return void
+     */
+    function effacerToutLesArticle($id_compte)
+    {
+        $this->articleModel->deleteAllArticles($id_compte);
+    }
+
+    /**
+     * Method showLastArticles
+     *
+     * @return void
+     */
     function showLastArticles()
     {
         $this->template = 'home.php';
         $this->setArticle($this->articleModel->lastArticles());
-
+        $this->setCom($this->commentaireController->afficherToutLesCommentaires());
+        $this->setSuggestion($this->compteModel->accountSuggestion());
         return $this->renderController();
     }
 }
