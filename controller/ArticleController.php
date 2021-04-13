@@ -91,12 +91,13 @@ class ArticleController extends ManagerController
         $date_art = $this->validatorHelper->getValue('date_art');
         if (!empty($media) && !empty($titre) && !empty($contenu) && !empty($date_art)) {
             if ($this->articleModel->createArticle($media, $titre, $contenu, $date_art, $id_compte)) {
+                CompteFacade::plusPublication();
                 $this->template = 'monProfil.php';
                 return $this->renderController();
             } else {
-                $this->setMessage('Article non créé');
+                $this->setMessage('Article non créé', 'warning');
+                return $this->renderController();
             }
-            $this->setMessage('Données manquantes');
         }
         return $this->renderController();
     }

@@ -4,7 +4,7 @@
 
 <div class="mt-4">
     <div class="container d-flex justify-content-center">
-        <div class="col-9">
+        <div class="col-10">
             <div class="row">
                 <div class="col-8">
                     <!-- START OF STORIES -->
@@ -15,7 +15,7 @@
                                     <button class="btn p-0 m-0">
                                         <div class="d-flex flex-column align-items-center">
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
-                                                <img src="........" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                                <img src="<?= $datas['compte']['photo'] ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                             </div>
                                             <small>JCLAMY</small>
                                         </div>

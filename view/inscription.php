@@ -27,7 +27,6 @@
                 <button type="submit" class="btn-primary form-control">Valider</button>
                 <br>
             </form>
-            <?php echo $datas['message']; ?>
         </div>
     </div>
 </div>

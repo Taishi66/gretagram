@@ -20,7 +20,6 @@
                 <br>
             </form>
             <p>Vous n'avez pas de compte? <a href="?page=inscription">Inscrivez-vous.</a></p>
-            <?php echo $datas['message']; ?>
         </div>
     </div>
 </div>

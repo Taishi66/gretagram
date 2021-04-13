@@ -35,13 +35,10 @@ class UserController extends ManagerController
             $this->article->afficheListeArticles(CompteFacade::getCompteId());
         }
         //Si je souhaite modifier mon compte
-
         if (!empty($this->validatorHelper->getValue('pseudo'))) {
             // var_dump($this->validatorHelper->getValue('pseudo'));
             $this->compteController->modifierCompte($id_compte);
             return $this->redirectTo('profil');
-        } else {
-            $this->setMessage('Modification échouée : Données manquantes', 'danger');
         }
         //Si je souhaite créer un article
         $file_name = $this->validatorHelper->upload('media');
@@ -49,10 +46,8 @@ class UserController extends ManagerController
         //DebugFacade::dd($_FILES);
         if (!empty($this->validatorHelper->getValue('titre')) && !empty($this->validatorHelper->getValue('contenu'))) {
             $this->article->nouvelArticle($media, $this->validatorHelper->getValue('titre'), $this->validatorHelper->getValue('contenu'), $this->validatorHelper->getValue('date_art'), $id_compte);
-            CompteFacade::plusPublication();
+            //CompteFacade::plusPublication();
             return $this->redirectTo('profil');
-        } else {
-            $this->setMessage('Article non posté : Données manquantes', 'danger');
         }
         //SI je souhaite supprimer mon compte
         if (isset($_POST['delete-compte'])) {
@@ -60,8 +55,9 @@ class UserController extends ManagerController
             $this->commentaireController->supprimerToutLesCommentaires($id_compte);
             $this->article->effacerToutLesArticle($id_compte);
             CompteFacade::EraseAccount();
-            $this->userModel->deleteUser(SessionFacade::getUserId());
+            $this->UserModel->deleteUser(SessionFacade::getUserId());
             $_SESSION = array('');
+            $this->setMessage('Votre compte a définitivement été supprimé');
             return $this->redirectTo('');
         }
 
@@ -94,7 +90,7 @@ class UserController extends ManagerController
                 SessionFacade::setUserSession($profil);
                 $this->redirectTo('noAccount');
             } else {
-                $this->setMessage('Inscription échouée');
+                $this->setMessage('Inscription échouée', 'warning');
                 return $this->renderController();
             }
         } else {
@@ -124,9 +120,9 @@ class UserController extends ManagerController
                 $this->redirectTo('profil');
                 exit;
             } else {
-                $this->message = 'Création de compte non enregistrée';
+                $this->setMessage('Création de compte non enregistrée', 'warning');
             }
-            $this->message = 'Données manquantes';
+            $this->setMessage('Données manquantes', 'warning');
         }
         return $this->renderController();
     }
@@ -151,10 +147,9 @@ class UserController extends ManagerController
                 $this->redirectTo('profil');
                 exit;
             } else {
-                $this->message = 'Connexion échouée';
+                $this->setMessage('Connexion échouée', 'warning');
+                return $this->renderController();
             }
-        } else {
-            $this->message = 'Données erronées';
         }
         return $this->renderController();
     }

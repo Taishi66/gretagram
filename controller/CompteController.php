@@ -47,16 +47,17 @@ class CompteController extends ManagerController
     function modifierCompte($id_compte)
     {
         $id_compte = CompteFacade::getCompteId();
-        $pseudo = $_POST["pseudo"];
+        $pseudo = $this->validatorHelper->getValue("pseudo");
         $photo = $_POST["photo"];
-        $description_compte = $_POST["description_compte"];
+        $description_compte = $this->validatorHelper->getValue("description_compte");
         $this->template = 'monProfil.php';
 
-        if (!empty($_POST['pseudo']) && !empty($_POST['photo']) && !empty($_POST['description_compte'])) {
+        if (!empty($pseudo) && !empty($_POST['photo']) && !empty($description_compte)) {
             $this->compteModel->setCompteModel($pseudo, $photo, $description_compte, $id_compte);
             return $this->renderController();
         } else {
-            $this->setMessage('Modification échouée');
+            $this->setMessage('Modification échouée', 'warning');
+            return $this->renderController();
         }
         return $this->renderController();
     }

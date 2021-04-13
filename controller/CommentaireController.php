@@ -80,8 +80,17 @@ class CommentaireController extends ManagerController
         }
         return $this->renderController();
     }
+
+
+    /**
+     * Method supprimerToutLesCommentaires
+     *
+     * @param $id_compte $id_compte [explicite description]
+     *
+     * @return void
+     */
     function supprimerToutLesCommentaires($id_compte)
     {
-        return $this->commentaireModel->deleteCom($id_compte);
+        return $this->commentaireModel->deleteAllCom($id_compte);
     }
 }
