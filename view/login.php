@@ -1,12 +1,12 @@
 <div class="container d-flex mt-5 mr-auto">
     <div>
-        <img src="./img/login.png">
+        <img src="/img/login.png">
     </div>
     <div class="card p-5">
         <div class="text-center">
-            <img src="./img/ig-logo.png" class="mt-4 mb-4">
+            <img src="/img/ig-logo.png" class="mt-4 mb-4">
             <div style="font-weight: bold; font-size:x-large;">Connexion</div>
-            <form action="" method="POST" style="font-weight: bold;" class="card-body">
+            <form action="/" method="POST" style="font-weight: bold;" class="card-body">
                 <div class="form-group">
                     <label>E-mail</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="Entrez votre email">
@@ -19,7 +19,7 @@
                 <button type="submit" class="btn-primary form-control">Connexion</button>
                 <br>
             </form>
-            <p>Vous n'avez pas de compte? <a href="?page=inscription">Inscrivez-vous.</a></p>
+            <p>Vous n'avez pas de compte? <a href="inscription">Inscrivez-vous.</a></p>
         </div>
     </div>
 </div>

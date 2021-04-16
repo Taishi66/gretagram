@@ -1,6 +1,3 @@
-<pre style="display:none;">DATAS =  <?php var_dump($datas); ?></pre>
-
-
 <div class="d-flex justify-content-center" style="align-items:center">
     <img class="photo-profil img-thumbnail m-3" src="<?php echo $datas['compte'][0]['photo'] ?>">
     <div style="margin-top: 30px; margin-bottom:30px; text-align:left;">
@@ -34,7 +31,7 @@
             <?php
             foreach ($datas['compte'] as $data) {
                 echo '<div class="card thumbpic" style="width: 18rem;">
-                <a href="?page=article&id_compte=' . $data['id_compte'] . '&id_article=' . $data["id_article"] . '"><img class="card-img-top" style="object-fit:fill;" src="' . $data['media'] . '"></a>
+                <a href="/article&id_compte=' . $data['id_compte'] . '&id_article=' . $data["id_article"] . '"><img class="card-img-top" style="object-fit:fill;" src="' . $data['media'] . '"></a>
                 </div>';
             }
             ?>

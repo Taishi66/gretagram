@@ -45,7 +45,7 @@
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
                                             <img src="<?= $article['photo'] ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                         </div>
-                                        <a href="?page=compte&id_compte=<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><span class="font-weight-bold"><?= $article['pseudo'] ?></span></a>
+                                        <a href="/compte&id_compte=<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><span class="font-weight-bold"><?= $article['pseudo'] ?></span></a>
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
@@ -105,7 +105,7 @@
                                     <div class="position-relative comment-box">
                                         <form action="" method="POST">
                                             <input class="w-100 border-0 p-3 input-post" name="comment" id="comment" placeholder="Add a comment...">
-                                            <button type="submit" class="btn btn-primary position-absolute btn-ig">Post</button>
+                                            <button type="submit" class="btn btn-primary position-absolute btn-ig">Publier</button>
                                         </form>
                                     </div>
                                 </div>
@@ -117,18 +117,18 @@
                 <div class="col-4">
                     <div class="d-flex flex-row align-items-center">
                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sidenav-profile-photo">
-                            <img src="<?php echo $datas['compte']['photo']; ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                            <img src="<?= $datas['compte']['photo']; ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                         </div>
                         <div class="profile-info ml-3">
-                            <span class="profile-info-username"><?php echo $datas['compte']['pseudo']; ?></span>
-                            <span class="profile-info-name"><?php echo $datas['user']['nom']; ?> <?php echo $datas['user']['prenom']; ?></span>
+                            <span class="profile-info-username"><?= $datas['compte']['pseudo']; ?></span>
+                            <span class="profile-info-name"><?= $datas['user']['nom']; ?> <?= $datas['user']['prenom']; ?></span>
                         </div>
                     </div>
                     <!-- SUGGESTION ET LIEN PROFIL-->
                     <div class="mt-4">
                         <div class="d-flex flex-row justify-content-between">
                             <small class="text-muted font-weight-normal">Suggestions For You</small>
-                            <a href="?page=explore" style="text-decoration:none;"><small>See All</small></a>
+                            <a href="/explore" style="text-decoration:none;"><small>See All</small></a>
                         </div>
                         <?php foreach ($datas['suggestion'] as $suggestion) { ?>
                             <div>
@@ -139,7 +139,7 @@
                                         </div>
                                         <strong class="ml-3 sugest-username"><?= $suggestion['pseudo'] ?></strong>
                                     </div>
-                                    <a href="?page=compte&id_compte=<?= $suggestion['id_compte'] ?>" class="btn btn-primary btn-sm p-0 btn-ig">Voir le profil</a>
+                                    <a href="/compte&id_compte=<?= $suggestion['id_compte'] ?>" class="btn btn-primary btn-sm p-0 btn-ig">Voir le profil</a>
                                 </div>
                             </div>
                         <?php } ?>

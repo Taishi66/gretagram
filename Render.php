@@ -1,5 +1,4 @@
 <?php
-
 class Render
 {
     function __construct()

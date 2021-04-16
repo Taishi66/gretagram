@@ -13,7 +13,7 @@
                 <!-- Button trigger modal Nouveau Post-->
                 <button type="button" class="m-3 btn-modif" data-toggle="modal" data-target="#postModal">Nouveau Post</button>
                 <!-- Button trigger vider la session-->
-                <button class="m-3 btn-modif"><a href="?page=deconnexion" style="color: black; ;text-decoration:none;">Déconnexion</a></button>
+                <button class="m-3 btn-modif"><a href="/deconnexion" style="color: black; ;text-decoration:none;">Déconnexion</a></button>
                 <button class="m-3 ellipse" style="color: black; ;text-decoration:none;" data-toggle="modal" data-target="#account-delete"><i class="fas fa-ellipsis-v"></i></button>
 
             <?php } else { ?>
@@ -48,7 +48,7 @@
             <?php
             foreach ($datas['compte']['articles'] as $data) {
                 echo '<div class="card thumbpic" style="width: 18rem;">
-                <a href="?page=article&id_article=' . $data['id_article'] . '"><img class="card-img-top" style="object-fit:fill;" src="' . $data['media'] . '"></a>
+                <a href="/article&id_article=' . $data['id_article'] . '"><img class="card-img-top" style="object-fit:fill;" src="' . $data['media'] . '"></a>
                 </div>';
             }
             ?>
@@ -143,7 +143,7 @@
             <form method="POST" action="" enctype="multipart/form-data">
                 <div class="modal-footer">
                     <p>Êtes-vous sûr de vouloir effacer votre compte? Cette suppression sera irréversible et les données effacées.</p>
-                    <button type="submit" name="delete-compte" class="btn-com"><i class="mr-2 fas fa-skull-crossbones"></i>Oui, je suis sûr</button>
+                    <button type="submit" name="delete-compte" class="btn-com"><i class="far fa-check-circle"></i></button>
                 </div>
             </form>
         </div>

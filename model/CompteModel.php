@@ -210,6 +210,15 @@ class CompteModel
         return $resultat;
     }
 
+    function seeAllAccounts()
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->query('SELECT * FROM compte');
+        $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $bdd = null;
+        return $resultat;
+    }
+
     /* function getCompteAll($id_compte)
     {
         $bdd = Bdd::Connexion();

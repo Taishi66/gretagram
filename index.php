@@ -2,7 +2,6 @@
 // demarre une session
 session_start();
 
-
 require_once("core/Bdd.php");
 include("core/Helper/ValidatorHelper.php");
 include("core/Helper/DebugHelper.php");
@@ -18,16 +17,19 @@ include("controller/ArticleController.php");
 include("controller/CommentaireController.php");
 include("controller/UserController.php");
 include("controller/RechercheController.php");
+include("controller/likeController.php");
 
 include("model/CompteModel.php");
 include("model/ArticleModel.php");
 include("model/CommentaireModel.php");
 include("model/UserModel.php");
 include("model/RechercheModel.php");
+include('model/likeModel.php');
 
 
 require_once("Render.php");
 require_once("Router.php");
+require_once("Routes.php");
 
 
 /*
@@ -50,19 +52,30 @@ curl_close($curl);
 var_dump($response);
 exit;*/
 
-$router = new Router(@$_GET["page"]); // On récupère la valeur associée à la clé "page" dans l'url
-// exemple localhost/index.php?page=profils 
-//$router->getPage();
-$vars = $router->getPage();
+$router = new Router($_GET['url']);
+$router->get('/favicon.ico', function () {
+});
 
-$vars['datas']['user'] = SessionFacade::getUserSession();
+//Route login pour se connecter
+$router->get('/', 'User#seConnecter');
+$router->post('/', 'User#seConnecter');
+
+//Route pour aller au compte du profil connecté
+
+if (!empty(SessionFacade::getUserSession())) {
+    $router->get('profil', 'User#afficherMonprofil');
+}
+
+
+
+$vars = $router->run();
 
 
 $render = new Render();
+$vars['datas']['user'] = SessionFacade::getUserSession();
 
 $header = $render->renderHeader($vars['datas']);
 $content = $render->renderContent($vars['template'], $vars['datas']);
 $footer = $render->renderFooter($vars['datas']);
 
-
-$render->showPage($header, $content, $footer);
+return $render->showPage($header, $content, $footer);

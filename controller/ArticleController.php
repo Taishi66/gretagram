@@ -6,12 +6,14 @@ use CompteFacade;
 use ManagerController;
 use CommentaireController;
 
+
 class ArticleController extends ManagerController
 {
 
     private $articleModel;
     private $commentaireController;
     private $compteModel;
+    private $likeController;
 
     function __construct()
     {
@@ -20,6 +22,7 @@ class ArticleController extends ManagerController
         $this->articleModel = new ArticleModel();
         $this->commentaireController = new CommentaireController();
         $this->compteModel = new CompteModel();
+        $this->likeController = new LikeController();
     }
 
 
@@ -48,8 +51,15 @@ class ArticleController extends ManagerController
         }
         //Aller dans commentaireController pour effacer un com
 
+        //Si je osuhaite liker l'article
+        if (isset($_POST['like'])) {
+            $this->likeController->toggleLike();
+        }
+
         $this->setArticle($this->articleModel->getArticleModel($id_article));
         $this->setCom($this->commentaireController->afficheListeCommentaire($id_article));
+        $this->setNbLikesForArticle($this->likeController->getNbLikes($id_article));
+        $this->setArticleAlreadyLiked($this->likeController->checkIfUserHasLiked($id_article));
 
         $this->setCompteVisite(CompteFacade::getUserCompte($this->validatorHelper->getValue('id_compte')));
         return $this->renderController();

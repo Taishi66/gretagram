@@ -24,10 +24,13 @@ class UserController extends ManagerController
      * afficherMonprofil
      *
      * @param  int $id_user
-     * @return void
+     * @return Compte User + Article
      */
-    public function afficherMonprofil($id_user, $id_compte)
+    public function afficherMonprofil()
     {
+
+        $id_compte = CompteFacade::getCompteId();
+
         $this->template = 'profil/monProfil.php';
         $this->setCompte(CompteFacade::getUserCompte($id_compte));
         //Faire apparaitre les données articles du compte
@@ -137,12 +140,10 @@ class UserController extends ManagerController
         $this->template = 'login.php';
 
         if (!empty($this->validatorHelper->getValue("email"))) {
-
             $email = $this->validatorHelper->verfEmail($this->validatorHelper->getValue("email"));
             $profil = $this->UserModel->login($email);
 
             if (password_verify($this->validatorHelper->getValue('mdp'), $profil['mdp'])) {
-
                 SessionFacade::setUserSession($profil);
                 $this->redirectTo('profil');
                 exit;

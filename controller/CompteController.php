@@ -61,4 +61,11 @@ class CompteController extends ManagerController
         }
         return $this->renderController();
     }
+
+    function afficherToutLesComptes()
+    {
+        $this->template = 'explore.php';
+        $this->setCompte($this->compteModel->seeAllAccounts());
+        return $this->renderController();
+    }
 }

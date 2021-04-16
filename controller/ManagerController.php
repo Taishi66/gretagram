@@ -12,6 +12,8 @@ class ManagerController
     private $compteVisite;
     private $suggestion;
 
+    private $nbLikesForArticle;
+    private $articleAlreadyLiked;
     public $validatorHelper;
 
     public function __construct()
@@ -54,6 +56,14 @@ class ManagerController
         if (!empty($this->getSuggestion())) {
             $output['suggestion'] = $this->getSuggestion();
         }
+
+        if (!empty($this->getNbLikesForArticle())) {
+            $output['nbLikesForArticle'] = $this->getNbLikesForArticle();
+        }
+        if (!empty($this->getArticleAlreadyLiked())) {
+            $output['articleAlreadyLiked'] = $this->getArticleAlreadyLiked();
+        }
+
 
         $output['user'] = SessionFacade::getUserSession();
 
@@ -133,8 +143,32 @@ class ManagerController
         return $this->compteVisite;
     }
 
+
+
+
+    public function setNbLikesForArticle($nbLikesForArticle)
+    {
+        $this->nbLikesForArticle = $nbLikesForArticle;
+    }
+
+    public function getNbLikesForArticle()
+    {
+        return $this->nbLikesForArticle;
+    }
+
+    public function setArticleAlreadyLiked($articleAlreadyLiked)
+    {
+        $this->articleAlreadyLiked = $articleAlreadyLiked;
+    }
+
+    public function getArticleAlreadyLiked()
+    {
+        return $this->articleAlreadyLiked;
+    }
+
+
     public function redirectTo($page)
     {
-        header('Location:?page=' . $page);
+        header('Location:/' . $page);
     }
 }

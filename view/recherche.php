@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <h5 class="card-title">' . $data['pseudo'] . '</h5>
                         <p class="card-text">' . $data['description_compte'] . '</p>
-                        <a href="?page=compte&id_compte=' . $data['id_compte'] . '" style="text-decoration:none;" class="btn-com">Voir le profil</a>
+                        <a href="/compte&id_compte=' . $data['id_compte'] . '" style="text-decoration:none;" class="btn-com">Voir le profil</a>
                     </div>
                 </div>';
         }
