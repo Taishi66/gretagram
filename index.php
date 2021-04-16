@@ -52,6 +52,8 @@ curl_close($curl);
 var_dump($response);
 exit;*/
 
+
+
 $router = new Router($_GET['url']);
 $router->get('/favicon.ico', function () {
 });
