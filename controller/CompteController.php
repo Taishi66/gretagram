@@ -15,12 +15,44 @@ class CompteController extends ManagerController
         parent::__construct();
     }
 
+    /**
+     * newAccount
+     *
+     * @param  int $id
+     * @return void
+     */
+    public function nouveauCompte()
+    {
+        $id = SessionFacade::getUserId();
+        $pseudo = $this->validatorHelper->getValue("pseudo");
+        $description_compte = $this->validatorHelper->getValue("description_compte");
+        $photo = $this->validatorHelper->upload("photo");
+        // exit;
+        $this->template = 'creAccount.php';
+
+        if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
+            //var_dump($pseudo);
+            if ($this->compteModel->creAccount($id, $photo, $pseudo, $description_compte)) {
+                $this->redirectTo('profil');
+                exit;
+            } else {
+                $this->setMessage('Création de compte non enregistrée', 'warning');
+            }
+            $this->setMessage('Données manquantes', 'warning');
+        }
+        return $this->renderController();
+    }
+
+    function voirCompteArticle()
+    {
+        $id_article = $this->validatorHelper->getValue('id_article');
+        return $this->compteModel->getCompteFromArticle($id_article);
+    }
+
     function suggestionCompte()
     {
         return $this->compteModel->accountSuggestion();
     }
-
-
     /**
      * Method afficheProfil
      *
@@ -28,8 +60,14 @@ class CompteController extends ManagerController
      *
      * @return void
      */
-    function afficheProfil($id_compte)
+    function afficheProfil($id_compte = null)
     {
+        //$id_compte = $this->validatorHelper->getValue('id_compte');
+        if ($id_compte == CompteFacade::getCompteId()) {
+            $this->redirectTo('profil');
+            exit;
+        }
+
         $this->template = ('profil/compte.php');
         //$id_compte = $this->validatorHelper->getValue('id_compte');
         $this->setCompte($this->compteModel->showProfil($id_compte));
@@ -65,7 +103,7 @@ class CompteController extends ManagerController
     function afficherToutLesComptes()
     {
         $this->template = 'explore.php';
-        $this->setCompte($this->compteModel->seeAllAccounts());
+        $this->setCompteVisite($this->compteModel->seeAllAccounts());
         return $this->renderController();
     }
 }

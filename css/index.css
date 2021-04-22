@@ -3,6 +3,16 @@
     border-bottom: 1px solid lightgray;
 }
 
+.hidden {
+    display: none;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    pointer-events: all !important;
+}
+
 .link-menu {
     color: black;
 }

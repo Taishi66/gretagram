@@ -40,7 +40,7 @@ class CommentaireModel
      *
      * @return void
      */
-    function postCom($id_article, $id_compte, $contenu_com = null)
+    function postCom($id_article, $id_compte, $contenu_com = null, $date_com = null)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('INSERT INTO commentaire(id_article,id_compte,contenu_com)

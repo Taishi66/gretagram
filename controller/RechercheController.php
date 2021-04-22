@@ -11,8 +11,9 @@ class RechercheController extends ManagerController
     }
 
 
-    public function recherche($q = null)
+    public function recherche()
     {
+        $q = $this->validatorHelper->getValue("q");
         if ($q !== null) {
             $this->template = "recherche.php";
             $q = $this->validatorHelper->getValue("q");
@@ -23,20 +24,5 @@ class RechercheController extends ManagerController
             $this->template = "error404.php";
             return $this->renderController();
         }
-    }
-
-    public function explorer($e = null)
-    {
-        $this->template = "explore.php";
-        if ($e !== null) {
-            $e = $this->validatorHelper->getValue("e");
-            $resultat = $this->rechercheModel->research($e);
-            $this->setSearch($resultat);
-            return $this->renderController();
-        } else {
-            $this->template = "error404.php";
-            return $this->renderController();
-        }
-        return $this->renderController();
     }
 }

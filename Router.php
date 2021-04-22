@@ -41,9 +41,11 @@ class Router
         foreach ($this->routes[$_SERVER['REQUEST_METHOD']] as $route) {
             if ($route->match($this->url)) {
                 return $route->call();
-            }
+            } //Route pour aller au compte du profil connecté
+
         }
         error_log('No matching routes for ' . $this->url);
+        return false;
     }
 
     public function url($name, $params = [])

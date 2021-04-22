@@ -3,6 +3,23 @@
 class CompteModel
 {
 
+
+    function getCompteFromArticle($id_article)
+    {
+
+        $bdd = Bdd::Connexion();
+        $sql = 'SELECT * FROM compte 
+                INNER JOIN article ON article.id_compte=compte.id_compte
+                WHERE id_article = :id_article';
+        $resultat = $bdd->prepare($sql);
+        $resultat->execute([
+            ':id_article' => $id_article
+        ]);
+        $compte = $resultat->fetch(PDO::FETCH_ASSOC);
+        $bdd = null;
+        return $compte;
+    }
+
     /**
      * creAccount
      *

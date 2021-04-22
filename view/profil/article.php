@@ -1,4 +1,5 @@
 <?php $myAccount = ($datas['compte']['id_compte'] == $datas['article']['id_compte']); ?>
+<? DebugFacade::dump($datas); ?>
 <div class="card mb-5 mt-5 ml-5 cardArticle">
     <div class="row no-gutters">
         <div class="col-md-4 btn-art">
@@ -22,7 +23,7 @@
         <div class="col-md-8">
             <div class="card-body">
                 <div class="card-entete">
-                    <a href="/compte&id_compte=<?= $datas['compteVisite']['id_compte'] ?>" style="text-decoration: none; color:black;">
+                    <a href="/compte/<?= $datas['compteVisite']['id_compte'] ?>" style="text-decoration: none; color:black;">
                         <h2><img class="photo-profil p-1" style="width: 20%;" src="<?php echo (!empty($datas['compteVisite']['photo'])) ? $datas['compteVisite']['photo'] : $datas['compte']['photo']  ?>">
                             <?php echo (!empty($datas['compteVisite']['pseudo'])) ? $datas['compteVisite']['pseudo'] : $datas['compte']['pseudo']  ?>
                         </h2>
@@ -31,7 +32,7 @@
                 <h3 class="card-title"><?php echo $datas['article']['titre']; ?></h3>
                 <h4 class="card-text"><?php echo $datas['article']['contenu']; ?></h4>
                 <?php foreach ($datas['commentaire'] as $data) { ?>
-                    <div class="mb-2 card-header">
+                    <div class="mb-2 card-header cardCom">
                         <strong class="d-block"><?= $data['pseudo'] ?>
                             <a href="/delete_com&id_com=<?= $data['id_com'] ?>">
                                 <?php if ($myAccount) { ?>
@@ -41,11 +42,11 @@
                                 <?php } ?>
                             </a>
                         </strong>
-
                         <span><?= $data['contenu_com'] ?></span>
+                        <p class="text-muted" style="font-size: small;"><?= $data['date_com'] ?></p>
                     </div>
                 <?php } ?>
-                <p class="card-text"><small class="text-muted"><?php echo $datas['article']['date_art'] ?></small></p>
+                <p class="card-text"><small class="text-muted">Article créé le :<?php echo $datas['article']['date_art'] ?></small></p>
             </div>
         </div>
     </div>
@@ -99,10 +100,6 @@
                     <div class="form-group">
                         <label>Contenu</label>
                         <textarea type="text" class="form-control" name="contenu" id="contenu" placeholder="<?php echo $datas['article']['contenu']; ?>"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" class="form-control" name="date_art" id="date_art" placeholder="date...">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn-com"><i class="far fa-paper-plane mr-1"></i></button>
