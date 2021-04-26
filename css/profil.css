@@ -36,4 +36,35 @@
 
 .thumbpic {
     object-fit: fill;
+    margin: 15px;
+}
+
+.thumbpic:hover {
+    z-index: 10
+}
+
+.card-overlay:hover .img-overlay {}
+
+.card-overlay:hover .overlay {
+    display: flex;
+}
+
+.card-overlay {
+    position: relative;
+    margin: 20px;
+    overflow: hidden;
+}
+
+.overlay {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    align-items: center;
+    justify-content: center;
 }

@@ -41,22 +41,20 @@ class ArticleModel
      * @param  int $media
      * @param  mixed $titre
      * @param  mixed $contenu
-     * @param  date $date_art
      * @param  int $id_compte
      * @return void
      */
-    function createArticle($media, $titre, $contenu, $date_art, $id_compte)
+    function createArticle($media, $titre, $contenu, $id_compte)
     {
         $bdd = Bdd::Connexion();
 
-        $sql = 'INSERT INTO article (media,titre,contenu,date_art, id_compte )
-                VALUE (:media,:titre,:contenu, :date_art, :id_compte)';
+        $sql = 'INSERT INTO article (media,titre,contenu,id_compte )
+                VALUES (:media,:titre,:contenu, :id_compte)';
         $article = $bdd->prepare($sql);
         $resultat = $article->execute([
             ":media" => $media,
             ":titre" => $titre,
             ":contenu" => $contenu,
-            ":date_art" => $date_art,
             ":id_compte" => $id_compte
         ]);
         $bdd = null;
@@ -70,19 +68,17 @@ class ArticleModel
      * @param  mixed $media
      * @param  mixed $titre
      * @param  mixed $contenu
-     * @param  date $date_art
      * @param  int $id_compte
      * @return void
      */
-    function setArticleModel($media = null, $titre = null, $contenu = null, $date_art = null, $id_article)
+    function setArticleModel($media, $titre, $contenu, $id_article)
     {
         $bdd = Bdd::Connexion();
 
         $sql = 'UPDATE article
                 SET media = :media, 
                     titre = :titre, 
-                    contenu =:contenu, 
-                    date_art =:date_art
+                    contenu =:contenu 
                 WHERE id_article =:id_article';
         $article = $bdd->prepare($sql);
 
@@ -90,7 +86,6 @@ class ArticleModel
             ":media" => $media,
             ":titre" => $titre,
             ":contenu" => $contenu,
-            ":date_art" => $date_art,
             ":id_article" => $id_article
         ]);
 
@@ -142,8 +137,17 @@ class ArticleModel
                             INNER JOIN compte ON compte.id_compte = article.id_compte
                             GROUP BY article.id_article 
                             ORDER BY article.id_article DESC');
-        $article = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $articles = $sql->fetchAll(PDO::FETCH_ASSOC);
         $bdd = null;
-        return $article;
+        return $articles;
+    }
+
+    function showArticlesByLikes()
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('SELECT * FROM articles ORDER BY likes DESC');
+        $articles = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $bdd = null;
+        return $articles;
     }
 }

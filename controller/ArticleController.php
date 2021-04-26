@@ -1,16 +1,15 @@
 <?php
 
-use CompteModel;
 use ArticleModel;
-use CompteFacade;
+use CommentaireModel;
 use ManagerController;
-use CommentaireController;
-
 
 class ArticleController extends ManagerController
 {
 
     private $articleModel;
+    private $commentaireModel;
+    private $LikeModel;
     private $commentaireController;
     private $compteModel;
     private $likeController;
@@ -20,6 +19,8 @@ class ArticleController extends ManagerController
         parent::__construct();
 
         $this->articleModel = new ArticleModel();
+        $this->commentaireModel = new CommentaireModel();
+        $this->LikeModel = new LikeModel();
         $this->commentaireController = new CommentaireController();
         $this->compteModel = new CompteModel();
         $this->likeController = new LikeController();
@@ -33,8 +34,9 @@ class ArticleController extends ManagerController
 
         //Si je souhaite modifier l'article
         if (!empty($this->validatorHelper->getValue('titre'))) {
-            $this->modifierArticle($id_article);
+            $this->modifierArticle();
             $this->setMessage('article modifié!');
+            //return $this->redirectTo('article');
         }
         //Si je souhaite effacer l'article
         if (isset($_POST['submit'])) {
@@ -51,7 +53,7 @@ class ArticleController extends ManagerController
         }
         //Aller dans commentaireController pour effacer un com
 
-        //Si je osuhaite liker l'article
+        //Si je souhaite liker l'article
         if (isset($_POST['like'])) {
             $this->likeController->toggleLike();
         }
@@ -61,7 +63,7 @@ class ArticleController extends ManagerController
         $this->setNbLikesForArticle($this->likeController->getNbLikes($id_article));
         $this->setArticleAlreadyLiked($this->likeController->checkIfUserHasLiked($id_article));
 
-        $this->setCompteVisite(CompteFacade::getUserCompte($this->validatorHelper->getValue('id_compte')));
+        $this->setCompteVisite($this->compteModel->getCompteFromArticle($id_article));
         return $this->renderController();
     }
 
@@ -77,7 +79,20 @@ class ArticleController extends ManagerController
     {
         $id_compte = CompteFacade::getCompteId();
         $articles = $this->articleModel->getAllArticles($id_compte);
-        return $articles;
+        $articles_ = array();
+        if (isset($articles)) {
+            foreach ($articles as $article) {
+                $article_ = $article;
+                $article_['nbLikesForArticle'] = $this->likeController->getNbLikes($article['id_article']);
+                $article_['nbCommentaireForArticle'] = $this->commentaireModel->getNbcomFromArticle($article['id_article']);
+                array_push($articles_, $article_);
+            }
+        }
+        /*echo '<pre>';
+        var_dump($articles_);
+        echo '</pre>';
+        exit;*/
+        return $articles_;
     }
 
 
@@ -92,15 +107,14 @@ class ArticleController extends ManagerController
      *
      * @return void
      */
-    function nouvelArticle($media, $titre, $contenu, $date_art, $id_compte)
+    function nouvelArticle($media = null, $id_compte = null, $titre = null, $contenu = null)
     {
+        $media = $this->validatorHelper->upload('media');
         $id_compte = CompteFacade::getCompteId();
-        //$this->validatorHelper->upload();
         $titre = $this->validatorHelper->getValue('titre');
         $contenu = $this->validatorHelper->getValue('contenu');
-        $date_art = $this->validatorHelper->getValue('date_art');
-        if (!empty($media) && !empty($titre) && !empty($contenu) && !empty($date_art)) {
-            if ($this->articleModel->createArticle($media, $titre, $contenu, $date_art, $id_compte)) {
+        if (!empty($media) && !empty($titre) && !empty($contenu)) {
+            if ($this->articleModel->createArticle($media, $titre, $contenu, $id_compte)) {
                 CompteFacade::plusPublication();
                 $this->template = 'monProfil.php';
                 return $this->renderController();
@@ -120,14 +134,14 @@ class ArticleController extends ManagerController
      *
      * @return void
      */
-    function modifierArticle($id_article)
+    function modifierArticle()
     {
+        $id_article = $this->validatorHelper->getValue('id_article', 0, 'integer');
         $media = $this->validatorHelper->getValue('media');
         $titre = $this->validatorHelper->getValue('titre');
         $contenu = $this->validatorHelper->getValue('contenu');
-        $date_art = $this->validatorHelper->getValue('date_art');
 
-        return $this->articleModel->setArticleModel($media, $titre, $contenu, $date_art, $id_article);
+        return $this->articleModel->setArticleModel($media, $titre, $contenu, $id_article);
     }
 
 
@@ -140,6 +154,8 @@ class ArticleController extends ManagerController
      */
     function effacerArticle($id_article)
     {
+        $this->LikeModel->supprimeLike($id_article);
+        $this->CommentaireModel->deleteComAllFromArticle($id_article);
         $this->articleModel->deleteArticle($id_article);
     }
 
@@ -163,8 +179,20 @@ class ArticleController extends ManagerController
     function showLastArticles()
     {
         $this->template = 'home.php';
-        $this->setArticle($this->articleModel->lastArticles());
-        $this->setCom($this->commentaireController->afficherToutLesCommentaires());
+        $articles = $this->articleModel->lastArticles();
+
+        $articles_ = array();
+        if (!empty($articles)) {
+            foreach ($articles as $article) {
+                $article_ = $article;
+                $article_['commentaires'] = $this->commentaireModel->showAllComFromArticle($article['id_article']);
+                $article_['nbLikesForArticle'] = $this->likeController->getNbLikes($article['id_article']);
+                $article_['articleAlreadyLiked'] = $this->likeController->checkIfUserHasLiked($article['id_article']);
+
+                array_push($articles_, $article_);
+            }
+        }
+        $this->setArticle($articles_);
         $this->setSuggestion($this->compteModel->accountSuggestion());
         return $this->renderController();
     }

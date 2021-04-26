@@ -18,7 +18,7 @@ class CommentaireModel
      *
      * @return Tout les commentaires d'un article 
      */
-    function showAllCom($id_article)
+    function showAllComFromArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT * FROM commentaire 
@@ -40,7 +40,7 @@ class CommentaireModel
      *
      * @return void
      */
-    function postCom($id_article, $id_compte, $contenu_com = null)
+    function postCom($id_article, $id_compte, $contenu_com = null, $date_com = null)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('INSERT INTO commentaire(id_article,id_compte,contenu_com)
@@ -73,6 +73,18 @@ class CommentaireModel
         return $resultat;;
     }
 
+    function deleteComAllFromArticle($id_article)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = 'DELETE FROM commentaire WHERE id_article = :id_article';
+        $commentaire = $bdd->prepare($sql);
+        $resultat = $commentaire->execute([
+            ":id_article" => $id_article
+        ]);
+        $bdd = null;
+        return $resultat;;
+    }
+
     function deleteAllCom($id_compte)
     {
         $bdd = Bdd::Connexion();
@@ -100,5 +112,16 @@ class CommentaireModel
         $resultat = $sql->fetch(PDO::FETCH_ASSOC);
         $bdd = null;
         return $resultat;
+    }
+
+    function getNbComFromArticle($id_article)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('SELECT id_com FROM commentaire WHERE id_article = :id_article');
+        $sql->execute([
+            ':id_article' => $id_article
+        ]);
+        $bdd = null;
+        return $sql->rowcount();
     }
 }

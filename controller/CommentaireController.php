@@ -29,7 +29,7 @@ class CommentaireController extends ManagerController
      */
     function afficheListeCommentaire($id_article)
     {
-        return $this->commentaireModel->showAllCom($id_article);
+        return $this->commentaireModel->showAllComFromArticle($id_article);
     }
 
     /**

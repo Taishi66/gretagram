@@ -3,6 +3,28 @@
 class LikeModel
 {
 
+    function supprimeLike($id_article)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('DELETE FROM likes WHERE id_article = :id_article');
+        $resultat = $sql->execute([
+            ':id_article' => $id_article
+        ]);
+        $bdd = null;
+        return $resultat;
+    }
+
+    function supprimeAllLike($id_compte)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('DELETE FROM likes WHERE id_compte = :id_compte');
+        $resultat = $sql->execute([
+            ':id_compte' => $id_compte
+        ]);
+        $bdd = null;
+        return $resultat;
+    }
+
     function ajouterLike($id_article, $id_compte)
     {
         $bdd = Bdd::Connexion();

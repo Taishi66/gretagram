@@ -5,22 +5,56 @@ class CompteController extends ManagerController
 {
     private $commentaireModel;
     private $compteModel;
-    private $commentaireController;
+    private $articleController;
+    private $likeController;
 
     function __construct()
     {
         $this->compteModel = new CompteModel();
         $this->commentaireModel = new CommentaireModel();
-        $this->commentaireController = new CommentaireController();
+        $this->articleController = new ArticleController();
+        $this->likeController = new LikeController();
         parent::__construct();
+    }
+
+    /**
+     * newAccount
+     *
+     * @param  int $id
+     * @return void
+     */
+    public function nouveauCompte()
+    {
+        $id = SessionFacade::getUserId();
+        $pseudo = $this->validatorHelper->getValue("pseudo");
+        $description_compte = $this->validatorHelper->getValue("description_compte");
+        $photo = $this->validatorHelper->upload("photo");
+        // exit;
+        $this->template = 'creAccount.php';
+
+        if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
+            //var_dump($pseudo);
+            if ($this->compteModel->creAccount($id, $photo, $pseudo, $description_compte)) {
+                $this->redirectTo('profil');
+                exit;
+            } else {
+                $this->setMessage('Création de compte non enregistrée', 'warning');
+            }
+            $this->setMessage('Données manquantes', 'warning');
+        }
+        return $this->renderController();
+    }
+
+    function voirCompteArticle()
+    {
+        $id_article = $this->validatorHelper->getValue('id_article');
+        return $this->compteModel->getCompteFromArticle($id_article);
     }
 
     function suggestionCompte()
     {
         return $this->compteModel->accountSuggestion();
     }
-
-
     /**
      * Method afficheProfil
      *
@@ -28,12 +62,27 @@ class CompteController extends ManagerController
      *
      * @return void
      */
-    function afficheProfil($id_compte)
+    function afficheProfil($id_compte = null)
     {
+        if ($id_compte == CompteFacade::getCompteId()) {
+            $this->redirectTo('profil');
+            exit;
+        }
+
         $this->template = ('profil/compte.php');
-        //$id_compte = $this->validatorHelper->getValue('id_compte');
-        $this->setCompte($this->compteModel->showProfil($id_compte));
-        $this->setCom($this->commentaireModel->showAllcom($id_compte));
+        //$this->setCompte($this->compteModel->showProfil($id_compte));
+        $this->setCom($this->commentaireModel->showAllcomFromArticle($id_compte));
+        $compteVisite = $this->compteModel->showProfil($id_compte);
+        $compteVisite_ = array();
+        if (isset($compteVisite)) {
+            foreach ($compteVisite as $compte) {
+                $compte_ = $compte;
+                $compte_['nbLikesForArticle'] = $this->likeController->getNbLikes($compte['id_article']);
+                $compte_['nbCommentaireForArticle'] = $this->commentaireModel->getNbcomFromArticle($compte['id_article']);
+                array_push($compteVisite_, $compte_);
+            }
+            $this->setCompteVisite($compteVisite_);
+        }
         return $this->renderController();
     }
 
@@ -65,7 +114,7 @@ class CompteController extends ManagerController
     function afficherToutLesComptes()
     {
         $this->template = 'explore.php';
-        $this->setCompte($this->compteModel->seeAllAccounts());
+        $this->setCompteVisite($this->compteModel->seeAllAccounts());
         return $this->renderController();
     }
 }

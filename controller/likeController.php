@@ -16,13 +16,20 @@ class LikeController extends ManagerController
         $this->template = 'article.php';
         $id_article = $this->validatorHelper->getValue("id_article");
         $id_compte = CompteFacade::getCompteId();
+        $is_liked = false;
         if ($this->likeModel->getLikeForArticleForCompte($id_article, $id_compte)) {
             $this->likeModel->enleverLike($id_article, $id_compte);
         } else {
             $this->likeModel->ajouterLike($id_article, $id_compte);
+            $is_liked = true;
         }
 
-
+        $output = [
+            'nb_likes' => $this->likeModel->getNbLikeForArticle($id_article),
+            'is_liked' => $is_liked,
+        ];
+        echo json_encode($output);
+        exit;
         return $this->renderController();
     }
 

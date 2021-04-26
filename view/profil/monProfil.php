@@ -1,4 +1,4 @@
-<pre style="display:none;"><?php var_dump($datas['compte']); ?></pre>
+<pre style="display:none;"><?php var_dump($datas); ?></pre>
 
 
 <div class="d-flex justify-content-center" style="align-items:center">
@@ -44,12 +44,27 @@
 
 <div class="container">
     <div class="align-items-center">
-        <div class="d-flex flex-wrap">
+        <div class="d-flex flex-wrap justify-content-center">
             <?php
-            foreach ($datas['compte']['articles'] as $data) {
-                echo '<div class="card thumbpic" style="width: 18rem;">
-                <a href="/article&id_article=' . $data['id_article'] . '"><img class="card-img-top" style="object-fit:fill;" src="' . $data['media'] . '"></a>
-                </div>';
+            foreach ($datas['article'] as $data) {
+                echo '
+                    <div class="card card-overlay" style="width: 18rem;">
+                        <a href="/article&id_article=' . $data['id_article'] . '">
+                            <div class="img-overlay" style="
+                                background-image: url(' . $data['media'] . '); 
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                background-position: center; 
+                                height: 300px;
+                            "></div>
+                            <div class="overlay">
+                                <ul>
+                                    <li style="list-style-type:none;"><i class="fas fa-heart mr-2"></i> (' . $data['nbLikesForArticle'] . ')</li>
+                                    <li style="list-style-type:none;"><i class="fas fa-comment mr-2"></i> (' . $data['nbCommentaireForArticle'] . ')</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </div>';
             }
             ?>
         </div>
@@ -80,10 +95,6 @@
                     <div class="form-group">
                         <label>Contenu</label>
                         <input type="text" class="form-control" name="contenu" id="contenu" placeholder="Ajoutez une légende">
-                    </div>
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" class="form-control" name="date_art" id="date_art" placeholder="date...">
                     </div>
                 </div>
                 <div class="modal-footer modal-modif">

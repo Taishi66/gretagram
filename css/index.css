@@ -3,6 +3,16 @@
     border-bottom: 1px solid lightgray;
 }
 
+.hidden {
+    display: none;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    pointer-events: all !important;
+}
+
 .link-menu {
     color: black;
 }
@@ -82,4 +92,14 @@
     border: 1px solid whitesmoke;
 }
 
-.footer {}
+.icon-post i {
+    font-size: xx-large;
+}
+
+.open-commentaire {
+    font-size: large;
+    font-weight: bold;
+    margin-top: 5px;
+    border: none;
+    background: none;
+}

@@ -9,7 +9,7 @@ class UserController extends ManagerController
     private $compteModel;
     private $compteController;
     private $commentaireController;
-
+    private $likeModel;
     public function __construct()
     {
         $this->compteController = new CompteController();
@@ -17,39 +17,34 @@ class UserController extends ManagerController
         $this->UserModel = new UserModel();
         $this->compteModel = new CompteModel();
         $this->commentaireController = new CommentaireController();
+        $this->likeModel = new LikeModel();
         parent::__construct();
     }
 
     /**
      * afficherMonprofil
      *
-     * @param  int $id_user
      * @return Compte User + Article
      */
     public function afficherMonprofil()
     {
 
         $id_compte = CompteFacade::getCompteId();
-
         $this->template = 'profil/monProfil.php';
         $this->setCompte(CompteFacade::getUserCompte($id_compte));
         //Faire apparaitre les données articles du compte
         if (!empty($_SESSION['user'])) {
-            $this->article->afficheListeArticles(CompteFacade::getCompteId());
+            $this->setArticle($this->article->afficheListeArticles(CompteFacade::getCompteId()));
         }
         //Si je souhaite modifier mon compte
         if (!empty($this->validatorHelper->getValue('pseudo'))) {
-            // var_dump($this->validatorHelper->getValue('pseudo'));
+            //var_dump($this->validatorHelper->getValue('pseudo'));
             $this->compteController->modifierCompte($id_compte);
             return $this->redirectTo('profil');
         }
         //Si je souhaite créer un article
-        $file_name = $this->validatorHelper->upload('media');
-        $media = $file_name;
-        //DebugFacade::dd($_FILES);
         if (!empty($this->validatorHelper->getValue('titre')) && !empty($this->validatorHelper->getValue('contenu'))) {
-            $this->article->nouvelArticle($media, $this->validatorHelper->getValue('titre'), $this->validatorHelper->getValue('contenu'), $this->validatorHelper->getValue('date_art'), $id_compte);
-            //CompteFacade::plusPublication();
+            $this->article->nouvelArticle();
             return $this->redirectTo('profil');
         }
         //SI je souhaite supprimer mon compte
@@ -57,6 +52,7 @@ class UserController extends ManagerController
             $id_compte = CompteFacade::getCompteId();
             $this->commentaireController->supprimerToutLesCommentaires($id_compte);
             $this->article->effacerToutLesArticle($id_compte);
+            $this->likeModel->supprimeAllLike($id_compte);
             CompteFacade::EraseAccount();
             $this->UserModel->deleteUser(SessionFacade::getUserId());
             $_SESSION = array('');
@@ -103,34 +99,6 @@ class UserController extends ManagerController
     }
 
     /**
-     * newAccount
-     *
-     * @param  int $id
-     * @return void
-     */
-    public function nouveauCompte($id)
-    {
-        $id = SessionFacade::getUserId();
-        $pseudo = $this->validatorHelper->getValue("pseudo");
-        $description_compte = $this->validatorHelper->getValue("description_compte");
-        $photo = $this->validatorHelper->getValue("photo");
-        // exit;
-        $this->template = 'creAccount.php';
-
-        if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
-            //var_dump($pseudo);
-            if ($this->compteModel->creAccount($id, $photo, $pseudo, $description_compte)) {
-                $this->redirectTo('profil');
-                exit;
-            } else {
-                $this->setMessage('Création de compte non enregistrée', 'warning');
-            }
-            $this->setMessage('Données manquantes', 'warning');
-        }
-        return $this->renderController();
-    }
-
-    /**
      * getLogin
      *
      * @return void
@@ -153,5 +121,11 @@ class UserController extends ManagerController
             }
         }
         return $this->renderController();
+    }
+
+    public function deconnexion()
+    {
+        $_SESSION = null;
+        return header('Location:/');
     }
 }
