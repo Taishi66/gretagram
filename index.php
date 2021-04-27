@@ -82,6 +82,7 @@ if (!empty(SessionFacade::getUserSession())) {
     $router->get('deconnexion', 'User#deconnexion');
     //Route pour voir le feed des derniers posts
     $router->get('home', 'Article#showLastArticles');
+    $router->post('home', 'Article#showLastArticles');
     //Route pour voir l'ensemble des comptes
     $router->get('explore', 'Compte#afficherToutLesComptes');
     //Route pour rediriger vers la visite d'un compte 
@@ -89,6 +90,8 @@ if (!empty(SessionFacade::getUserSession())) {
     $router->get('compte', 'Compte#afficheProfil');
     //Route pour rechercher un profil
     $router->get('recherche', 'Recherche#recherche');
+    //Se déconnecter
+    $router->get('deconnexion', 'User#deconnexion');
 } else {
     $router->get('/', 'User#seConnecter');
     $router->post('/', 'User#seConnecter');

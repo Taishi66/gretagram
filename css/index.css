@@ -18,8 +18,8 @@
 }
 
 .topbar-profile-photo {
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.7em;
+    height: 1.7em;
     position: relative;
 }
 
@@ -102,4 +102,9 @@
     margin-top: 5px;
     border: none;
     background: none;
+}
+
+.menu-btn {
+    font-size: 25px;
+    vertical-align: middle;
 }

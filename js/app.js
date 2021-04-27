@@ -36,20 +36,17 @@ $(document).ready(function() {
 
     })
 
-    /*$('#comment-form').on('submit', function(event) {
-        event.preventDefault();
-        var form_data = $(this).serialize();
-        $.ajax({
-            url: "home.php",
-            method: "POST",
-            data: form_data,
-            dataType: "JSON",
-            success: function(data) {
-                if (data.error != '') {
-                    $('#comment-form')[0].reset();
-                    $('#comment-form')
+    $("#commentButton").click(function() {
+        var com = $(this).find("input[name=comment]").val();
+        $.post("/article", {
+                com: com,
+            },
+            function(data) {
+                if (data == 'success') {
+                    $("#postCom").html(com);
                 }
             }
-        });
-    });*/
-})
+        );
+
+    });
+});

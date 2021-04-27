@@ -7,7 +7,7 @@
             <div class="d-flex flex-row justify-content-around ">
                 <form method="POST">
                     <button name='like' class="btn-com toggle-like" id="like" data-article="<?= $datas['article']['id_article']; ?>"><i class="fa-heart 
-                        <?php echo ($datas['articleAlreadyLiked']) ? 'fas' : 'far'; ?>
+                        <?= ($datas['articleAlreadyLiked']) ? 'fas' : 'far'; ?>
                     "></i></button>
                     (
                     <?php echo (!empty($datas['nbLikesForArticle'])) ? $datas['nbLikesForArticle'] : '0'; ?>

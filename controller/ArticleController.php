@@ -62,7 +62,6 @@ class ArticleController extends ManagerController
         $this->setCom($this->commentaireController->afficheListeCommentaire($id_article));
         $this->setNbLikesForArticle($this->likeController->getNbLikes($id_article));
         $this->setArticleAlreadyLiked($this->likeController->checkIfUserHasLiked($id_article));
-
         $this->setCompteVisite($this->compteModel->getCompteFromArticle($id_article));
         return $this->renderController();
     }
@@ -155,7 +154,7 @@ class ArticleController extends ManagerController
     function effacerArticle($id_article)
     {
         $this->LikeModel->supprimeLike($id_article);
-        $this->CommentaireModel->deleteComAllFromArticle($id_article);
+        $this->commentaireModel->deleteComAllFromArticle($id_article);
         $this->articleModel->deleteArticle($id_article);
     }
 
@@ -192,6 +191,7 @@ class ArticleController extends ManagerController
                 array_push($articles_, $article_);
             }
         }
+
         $this->setArticle($articles_);
         $this->setSuggestion($this->compteModel->accountSuggestion());
         return $this->renderController();

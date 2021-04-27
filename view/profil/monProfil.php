@@ -125,7 +125,7 @@
                     </div>
                     <div class="form-group">
                         <label>Photo</label>
-                        <input type="text" class="form-control" name="photo" id="photo" value="<?php echo $datas['compte']['photo']; ?>">
+                        <input type="file" class="form-control" name="photo" id="photo" value="<?php echo $datas['compte']['photo']; ?>">
                     </div>
                     <div class="form-group">
                         <label>Description</label>

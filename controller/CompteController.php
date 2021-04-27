@@ -97,11 +97,11 @@ class CompteController extends ManagerController
     {
         $id_compte = CompteFacade::getCompteId();
         $pseudo = $this->validatorHelper->getValue("pseudo");
-        $photo = $_POST["photo"];
+        $photo = $this->validatorHelper->upload("photo");
         $description_compte = $this->validatorHelper->getValue("description_compte");
         $this->template = 'monProfil.php';
 
-        if (!empty($pseudo) && !empty($_POST['photo']) && !empty($description_compte)) {
+        if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
             $this->compteModel->setCompteModel($pseudo, $photo, $description_compte, $id_compte);
             return $this->renderController();
         } else {

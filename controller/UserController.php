@@ -50,9 +50,9 @@ class UserController extends ManagerController
         //SI je souhaite supprimer mon compte
         if (isset($_POST['delete-compte'])) {
             $id_compte = CompteFacade::getCompteId();
+            $this->likeModel->supprimeAllLike($id_compte);
             $this->commentaireController->supprimerToutLesCommentaires($id_compte);
             $this->article->effacerToutLesArticle($id_compte);
-            $this->likeModel->supprimeAllLike($id_compte);
             CompteFacade::EraseAccount();
             $this->UserModel->deleteUser(SessionFacade::getUserId());
             $_SESSION = array('');
@@ -125,7 +125,7 @@ class UserController extends ManagerController
 
     public function deconnexion()
     {
-        $_SESSION = null;
+        $_SESSION = array('');
         return header('Location:/');
     }
 }

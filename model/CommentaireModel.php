@@ -85,13 +85,13 @@ class CommentaireModel
         return $resultat;;
     }
 
-    function deleteAllCom($id_compte)
+    function deleteAllCom($id_article)
     {
         $bdd = Bdd::Connexion();
-        $sql = 'DELETE FROM commentaire WHERE id_compte = :id_compte';
+        $sql = 'DELETE FROM commentaire WHERE id_article = :id_article';
         $commentaire = $bdd->prepare($sql);
         $resultat = $commentaire->execute([
-            ":id_compte" => $id_compte
+            ":id_article" => $id_article
         ]);
         $bdd = null;
         return $resultat;;

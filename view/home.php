@@ -1,7 +1,7 @@
 <!-- BLOCK  BODY STORIES POST ET PROFIL / SUGGESTION-->
 <? DebugFacade::dump($datas); ?>
 
-<div class="mt-4">
+<div class="mt-4 feed">
     <div class="container d-flex justify-content-center">
         <div class="col-10">
             <div class="row">
@@ -42,7 +42,7 @@
                                 <div class="card-header p-3">
                                     <div class="d-flex flex-row align-items-center">
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
-                                            <a href="/compte/<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><img src="<?= $article['photo'] ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;"></a>
+                                            <a href="/compte/<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><img src="<?= $article['photo'] ?>" style="transform: scale(1.5); width: 100%; position: absolute; left: 0;"></a>
                                         </div>
                                         <a href="/compte/<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><span class="font-weight-bold"><?= $article['pseudo'] ?></span></a>
                                     </div>
@@ -83,23 +83,25 @@
                                             foreach ($article['commentaires'] as $key => $commentaire) { ?>
                                                 <div class="commentaire <?php echo ($key > 0) ? 'hidden' : ''; ?>" data-article="<?= $article['id_article'] ?>">
                                                     <div>
-                                                        <strong class="d-block"><?= $commentaire['pseudo'] ?></strong>
-                                                        <span><?= $commentaire['contenu_com'] ?></span>
+                                                        <strong id="comePseudo" class="d-block"><?= $commentaire['pseudo'] ?></strong>
+                                                        <span id="comPost"><?= $commentaire['contenu_com'] ?></span>
                                                     </div>
                                                 </div>
                                             <?php } ?>
                                         <?php } else { ?>
                                             <p> Aucun commentaire </p>
                                         <?php } ?>
-                                        <button class="open-commentaire text-muted" data-article="<?= $article['id_article'] ?>">
-                                            Voir commentaires
-                                        </button>
+                                        <?php if (!empty($article['commentaires']) && $article['commentaires'] > 3) { ?>
+                                            <button class="open-commentaire text-muted" data-article="<?= $article['id_article'] ?>">
+                                                Voir commentaires
+                                            </button>
+                                        <?php } ?>
                                         <br><small class="text-muted">Article posté le <?= $article['date_art'] ?></small>
                                     </div>
                                     <div class="position-relative comment-box">
-                                        <form action="" method="POST" id="comment-form">
+                                        <form action="" method="GET" id="comment-form">
                                             <input type="text" class="w-100 border-0 p-3 input-post" name="comment" id="comment" placeholder="Add a comment...">
-                                            <button type="submit" class="btn btn-primary position-absolute btn-ig">Publier</button>
+                                            <button type="submit" name="submit" class="btn btn-primary position-absolute btn-ig">Publier</button>
                                         </form>
                                     </div>
                                 </div>
@@ -108,7 +110,7 @@
                     <?php   } ?>
                     <!-- END OF POSTS -->
                 </div>
-                <div class="col-4">
+                <div class="col-4 suggestions">
                     <div class="d-flex flex-row align-items-center">
                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sidenav-profile-photo">
                             <img src="<?= $datas['compte']['photo']; ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
@@ -119,7 +121,7 @@
                         </div>
                     </div>
                     <!-- SUGGESTION ET LIEN PROFIL-->
-                    <div class="mt-4">
+                    <div class="mt-4 suggestions">
                         <div class="d-flex flex-row justify-content-between">
                             <small class="text-muted font-weight-normal">Suggestions For You</small>
                             <a href="/explore" style="text-decoration:none;"><small>See All</small></a>

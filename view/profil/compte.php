@@ -1,6 +1,6 @@
 <? DebugFacade::dump($datas); ?>
 <div class="d-flex justify-content-center" style="align-items:center">
-    <img class="photo-profil img-thumbnail m-3" src="<?= $datas['compteVisite'][0]['photo'] ?>">
+    <img class="photo-profil img-thumbnail m-3" src="/<?= $datas['compteVisite'][0]['photo'] ?>">
     <div style="margin-top: 30px; margin-bottom:30px; text-align:left;">
         <div class="header-profil">
             <h2 class="mt-3" style="font-weight: bold; margin-left:15px;"><?= $datas['compteVisite'][0]['pseudo']; ?></h2>
@@ -32,7 +32,7 @@
                 echo '<div class="card card-overlay" style="width: 18rem;">
                 <a href="/article&id_compte=' . $data['id_compte'] . '&id_article=' . $data["id_article"] . '">
                   <div class="img-overlay" style="
-                                background-image: url(' . $data['media'] . '); 
+                                background-image: url(/' . $data['media'] . '); 
                                 background-size: cover;
                                 background-repeat: no-repeat;
                                 background-position: center; 

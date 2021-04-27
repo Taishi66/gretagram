@@ -38,6 +38,19 @@ class LikeModel
         return $resultat;
     }
 
+    function ajouterLikeArticle($id_article)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('UPDATE article 
+                    SET likes= likes + 1
+                    WHERE id_article =:id_article');
+        $resultat = $sql->execute([
+            ':id_article' => $id_article
+        ]);
+        $bdd = null;
+        return $resultat;
+    }
+
     function enleverLike($id_article, $id_compte)
     {
         $bdd = Bdd::Connexion();
@@ -49,6 +62,19 @@ class LikeModel
         ]);
         $bdd = null;
         return $resultat;;
+    }
+
+    function enleverLikeArticle($id_article)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('UPDATE article 
+                    SET likes = likes - 1
+                    WHERE id_article =:id_article');
+        $resultat = $sql->execute([
+            ':id_article' => $id_article
+        ]);
+        $bdd = null;
+        return $resultat;
     }
 
     function getLikeForArticle($id_article)
