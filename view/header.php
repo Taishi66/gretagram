@@ -44,7 +44,7 @@
                     <!-- Partie droite de la navbar avec icone HOME INBOX EXPLORE NOTIF PROFIL-->
                     <button type="button" class="navbar-toggler bg-light" data-toggle="collapse" data-target="#nav"><i style="font-size: xx-large;" class="fas fa-camera-retro"></i></button>
                     <div id="nav" class="collapse navbar-collapse">
-                        <div class=" d-flex flex-row">
+                        <div class="d-flex flex-row">
                             <ul class="list-inline m-0">
                                 <li class="list-inline-item">
                                     <a href="/home" class="link-menu">

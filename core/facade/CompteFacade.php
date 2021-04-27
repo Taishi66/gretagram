@@ -43,7 +43,8 @@ class CompteFacade
 
     static function getComptePseudo()
     {
-        return self::getUserCompteFromUser(static::$id_user)['pseudo'];
+        $compteService = new CompteService();
+        return $compteService->getCompteFromUser(SessionFacade::getUserId())['pseudo'];
     }
 
     static function getCompteDescription()

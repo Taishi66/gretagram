@@ -1,6 +1,3 @@
-<pre style="display:none;"><?php var_dump($datas); ?></pre>
-
-
 <div class="d-flex justify-content-center" style="align-items:center">
     <img class="photo-profil img-thumbnail m-3" src="<?php echo $datas['compte']['photo'] ?>">
     <div style="margin-top: 30px; margin-bottom:30px; text-align:left;">

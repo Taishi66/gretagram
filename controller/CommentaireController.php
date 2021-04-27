@@ -91,6 +91,6 @@ class CommentaireController extends ManagerController
      */
     function supprimerToutLesCommentaires($id_compte)
     {
-        return $this->commentaireModel->deleteAllCom($id_compte);
+        return $this->commentaireModel->deleteAllComFromCompte($id_compte);
     }
 }

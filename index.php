@@ -9,6 +9,7 @@ include("core/facade/SessionFacade.php");
 include("core/facade/CompteFacade.php");
 include("core/facade/DebugFacade.php");
 include("core/Service/CompteService.php");
+include("core/Service/InstagramService.php");
 
 
 include("controller/ManagerController.php");
@@ -32,24 +33,10 @@ require_once("Router.php");
 require_once("Routes.php");
 
 
-/*
-$curl = curl_init();
+/*$instagramService = new InstagramService();
+$medias = $instagramService->getMedias();
 
-curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,username,timestamp&access_token=IGQVJYMFNhM1c2dmxsb29qTXU3ZAUV2RUVtU25jTFNxTzliR1dxd2padjFRb2VpSHJPVnk4Ul93TkRZAVWw2ZAzFTd0lVSEJBX1BNN2xCdkFFbVpYZAEl6TklweEhjY2xVbHZAEQURLeUVB',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'GET',
-));
-
-$response = curl_exec($curl);
-
-curl_close($curl);
-var_dump($response);
+var_dump($medias);
 exit;*/
 
 
@@ -70,6 +57,7 @@ $router->get('noAccount', 'Compte#nouveauCompte');
 $router->post('noAccount', 'Compte#nouveauCompte');
 //Route pour aller au compte du profil connecté
 if (!empty(SessionFacade::getUserSession())) {
+    //$router->get('instagram', 'Instagram#afficherMesmedias');
     $router->get('profil', 'User#afficherMonprofil');
     $router->post('profil', 'User#afficherMonprofil');
     //Route pour voir un article 

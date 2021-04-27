@@ -54,7 +54,7 @@
                                     <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1">
                                         <ul class="list-inline d-flex flex-row align-items-center m-0">
                                             <li class="list-inline-item">
-                                                <button class="btn p-0 toggle-like icon-post" data-article="<?= $article['id_article']; ?>">
+                                                <button class="btn p-0 toggle-like icon-post" data-text="Like" data-article="<?= $article['id_article']; ?>">
                                                     <i class="fa-heart <?php echo ($article['articleAlreadyLiked']) ? 'fas' : 'far'; ?>"></i>
                                                 </button>
                                             </li>
@@ -76,33 +76,36 @@
                                         </div>
                                     </div>
                                     <div class="pl-3 pr-3 pb-2">
-                                        <strong class="d-block nb_likes" data-article="<?= $article['id_article'] ?>"><?php echo (!empty($article['nbLikesForArticle'])) ? $article['nbLikesForArticle'] : '0'; ?> Like</strong>
+                                        <strong class="d-block nb_likes" data-article="<?= $article['id_article'] ?>"><?php echo (!empty($article['nbLikesForArticle'])) ? $article['nbLikesForArticle'] : '0'; ?> Like<?php echo ($article['nbLikesForArticle'] && $article['nbLikesForArticle'] > 1) ? 's' : ''; ?> </strong>
                                         <strong class="d-block"><?= $article['titre'] ?></strong>
                                         <p class="d-block mb-1"><?= $article['contenu'] ?></p>
-                                        <?php if (!empty($article['commentaires'])) {
-                                            foreach ($article['commentaires'] as $key => $commentaire) { ?>
-                                                <div class="commentaire <?php echo ($key > 0) ? 'hidden' : ''; ?>" data-article="<?= $article['id_article'] ?>">
-                                                    <div>
-                                                        <strong id="comePseudo" class="d-block"><?= $commentaire['pseudo'] ?></strong>
-                                                        <span id="comPost"><?= $commentaire['contenu_com'] ?></span>
+
+                                        <span class="comment-list" data-article="<?= $article['id_article'] ?>">
+                                            <?php if (!empty($article['commentaires'])) {
+                                                foreach ($article['commentaires'] as $key => $commentaire) { ?>
+                                                    <div class="commentaire <?php echo ($key > 0) ? 'hidden' : ''; ?>" data-article="<?= $article['id_article'] ?>">
+                                                        <div>
+                                                            <strong id="comePseudo" class="d-block"><?= $commentaire['pseudo'] ?></strong>
+                                                            <span id="comPost"><?= $commentaire['contenu_com'] ?></span>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <p class="no-comment"> Aucun commentaire </p>
                                             <?php } ?>
-                                        <?php } else { ?>
-                                            <p> Aucun commentaire </p>
-                                        <?php } ?>
-                                        <?php if (!empty($article['commentaires']) && $article['commentaires'] > 3) { ?>
-                                            <button class="open-commentaire text-muted" data-article="<?= $article['id_article'] ?>">
-                                                Voir commentaires
-                                            </button>
-                                        <?php } ?>
+                                            <?php if (!empty($article['commentaires']) && $article['commentaires'] > 3) { ?>
+                                                <button class="open-commentaire text-muted" data-article="<?= $article['id_article'] ?>">
+                                                    Voir commentaires
+                                                </button>
+                                            <?php } ?>
+                                        </span>
                                         <br><small class="text-muted">Article posté le <?= $article['date_art'] ?></small>
                                     </div>
-                                    <div class="position-relative comment-box">
-                                        <form action="" method="GET" id="comment-form">
+                                    <div class="comment-box">
+                                        <div class="position-relative  form-comment" data-article="<?= $article['id_article'] ?>">
                                             <input type="text" class="w-100 border-0 p-3 input-post" name="comment" id="comment" placeholder="Add a comment...">
-                                            <button type="submit" name="submit" class="btn btn-primary position-absolute btn-ig">Publier</button>
-                                        </form>
+                                            <button type="submit" name="submit" class="btn btn-primary position-absolute btn-ig btn-post-comment">Publier</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

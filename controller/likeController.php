@@ -32,8 +32,6 @@ class LikeController extends ManagerController
 
         echo json_encode($output);
         exit;
-
-        return $this->renderController();
     }
 
     function getNbLikes($id_article)

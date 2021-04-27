@@ -5,14 +5,13 @@
         <div class="col-md-4 btn-art">
             <img src="<?php echo $datas['article']['media']; ?>" class="card-img w-80" alt="...">
             <div class="d-flex flex-row justify-content-around ">
-                <form method="POST">
-                    <button name='like' class="btn-com toggle-like" id="like" data-article="<?= $datas['article']['id_article']; ?>"><i class="fa-heart 
-                        <?= ($datas['articleAlreadyLiked']) ? 'fas' : 'far'; ?>
-                    "></i></button>
-                    (
-                    <?php echo (!empty($datas['nbLikesForArticle'])) ? $datas['nbLikesForArticle'] : '0'; ?>
-                    )
-                </form>
+                <div>
+                    <button class="btn p-0 toggle-like icon-post" data-text="" data-article="<?= $datas['article']['id_article'] ?>">
+                        <i class="fa-heart <?php echo ($datas['articleAlreadyLiked']) ? 'fas' : 'far'; ?>"></i>
+                    </button>
+                    (<strong class="d-block nb_likes" data-article="<?= $datas['article']['id_article'] ?>"><?php echo (!empty($datas['nbLikesForArticle'])) ? $datas['nbLikesForArticle'] : '0'; ?></strong>)
+
+                </div>
                 <button class="btn-com" data-toggle="modal" data-target="#modal-com"><i class="far fa-comment"></i></button>
                 <?php if ($myAccount) { ?>
                     <button class="btn-com" data-toggle="modal" data-target="#modif-article"><i class="mr-2 fas fa-pencil-alt"></i></button>

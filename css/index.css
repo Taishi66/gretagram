@@ -3,6 +3,10 @@
     border-bottom: 1px solid lightgray;
 }
 
+.navbar-collapse {
+    flex-grow: unset!important;
+}
+
 .hidden {
     display: none;
 }
@@ -107,4 +111,17 @@
 .menu-btn {
     font-size: 25px;
     vertical-align: middle;
+}
+
+.notif-temporaire {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    bottom: -300px;
+    transition: 1s;
+    width: 200px;
+}
+
+.notif-temporaire.open {
+    bottom: 0px
 }
