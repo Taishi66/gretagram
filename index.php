@@ -4,6 +4,7 @@ session_start();
 
 require_once("core/Bdd.php");
 include("core/Helper/ValidatorHelper.php");
+include("core/Helper/UploadHelper.php");
 include("core/Helper/DebugHelper.php");
 include("core/facade/SessionFacade.php");
 include("core/facade/CompteFacade.php");

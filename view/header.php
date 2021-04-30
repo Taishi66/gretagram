@@ -52,7 +52,7 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item ml-2">
-                                    <a href="/inbox" class="link-menu">
+                                    <a href="/home" class="link-menu">
                                         <i class="far fa-paper-plane menu-btn disabled bi bi-house-door-fill"></i>
                                     </a>
                                 </li>
@@ -62,14 +62,14 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item ml-2">
-                                    <a href="/notifications" class="link-menu">
+                                    <a href="/home" class="link-menu">
                                         <i class="far fa-heart disabled menu-btn"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item ml-2 align-middle">
                                     <a href="/profil" class="link-menu">
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
-                                            <img src="<?= $datas['compte']['photo']; ?>" style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                            <img src="/<?= CompteFacade::getComptePhoto(); ?>" style="transform: scale(3); width: 100%; position: absolute; left: 0;">
                                         </div>
                                     </a>
                                 </li>

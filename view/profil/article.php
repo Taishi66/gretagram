@@ -4,13 +4,11 @@
     <div class="row no-gutters">
         <div class="col-md-4 btn-art">
             <img src="<?php echo $datas['article']['media']; ?>" class="card-img w-80" alt="...">
-            <div class="d-flex flex-row justify-content-around ">
-                <div>
-                    <button class="btn p-0 toggle-like icon-post" data-text="" data-article="<?= $datas['article']['id_article'] ?>">
-                        <i class="fa-heart <?php echo ($datas['articleAlreadyLiked']) ? 'fas' : 'far'; ?>"></i>
-                    </button>
-                    (<strong class="d-block nb_likes" data-article="<?= $datas['article']['id_article'] ?>"><?php echo (!empty($datas['nbLikesForArticle'])) ? $datas['nbLikesForArticle'] : '0'; ?></strong>)
-
+            <div class="d-flex flex-row no-wrap justify-content-around ">
+                <div class="pl-3 pr-3 pb-2">
+                    <button class="toggle-like btn-com" data-text="" data-article="<?= $datas['article']['id_article'] ?>">
+                        <i class="fa-heart <?php echo ($datas['articleAlreadyLiked']) ? 'fas' : 'far'; ?>"><strong class="d-block nb_likes" data-article="<?= $datas['article']['id_article'] ?>">(<?php echo (!empty($datas['nbLikesForArticle'])) ? $datas['nbLikesForArticle'] : '0'; ?>)</strong>
+                        </i></button>
                 </div>
                 <button class="btn-com" data-toggle="modal" data-target="#modal-com"><i class="far fa-comment"></i></button>
                 <?php if ($myAccount) { ?>

@@ -78,27 +78,4 @@ class ValidatorHelper
             return false;
         }
     }
-
-    /**
-     * Method upload
-     * Vérifie l'extension du fichier uploadé
-     * @param $type $type [explicite description]
-     * @param $user $user [explicite description]
-     *
-     * @return void
-     */
-    public function upload($media)
-    {
-        $nomFichier = $_FILES[$media]["name"]; //1822636_1920.pdf
-        $extension = explode(".", $nomFichier); // tranforme la chaine de caractere en tableau array()
-        $target = "uploads/" . basename($nomFichier);
-
-        $extension = end($extension); // je recupere la dernière donnée du tableau 
-        $fichierTmp = $_FILES[$media]["tmp_name"];
-
-        if (move_uploaded_file($fichierTmp, $target)) {
-            chmod("uploads/" . $nomFichier, 0777);
-            return $target;
-        }
-    }
 }

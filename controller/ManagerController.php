@@ -15,6 +15,7 @@ class ManagerController
     private $nbLikesForArticle;
     private $articleAlreadyLiked;
     public $validatorHelper;
+    public $uploadHelper;
 
     public function __construct()
     {
@@ -22,6 +23,7 @@ class ManagerController
             $this->compte = CompteFacade::getUserCompteFromUser(SessionFacade::getUserId());
         }
         $this->validatorHelper = new ValidatorHelper();
+        $this->uploadHelper = new UploadHelper();
     }
 
     public function renderController()

@@ -112,6 +112,8 @@ class ArticleModel
         return $resultat;
     }
 
+
+
     function deleteAllArticles($id_compte)
     {
         $bdd = Bdd::Connexion();

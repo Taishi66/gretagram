@@ -10,6 +10,7 @@ class UserController extends ManagerController
     private $compteController;
     private $commentaireController;
     private $likeModel;
+
     public function __construct()
     {
         $this->compteController = new CompteController();

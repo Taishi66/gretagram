@@ -97,7 +97,7 @@ class CompteController extends ManagerController
     {
         $id_compte = CompteFacade::getCompteId();
         $pseudo = $this->validatorHelper->getValue("pseudo");
-        $photo = $this->validatorHelper->upload("photo");
+        $photo = $this->uploadHelper->upload("photo", CompteFacade::getComptePseudo());
         $description_compte = $this->validatorHelper->getValue("description_compte");
         $this->template = 'monProfil.php';
 

@@ -1,9 +1,5 @@
 <?php
 
-use ArticleModel;
-use CommentaireModel;
-use ManagerController;
-
 class ArticleController extends ManagerController
 {
 
@@ -113,7 +109,7 @@ class ArticleController extends ManagerController
      */
     function nouvelArticle($media = null, $id_compte = null, $titre = null, $contenu = null)
     {
-        $media = $this->validatorHelper->upload('media');
+        $media = $this->uploadHelper->upload('media', CompteFacade::getComptePseudo());
         $id_compte = CompteFacade::getCompteId();
         $titre = $this->validatorHelper->getValue('titre');
         $contenu = $this->validatorHelper->getValue('contenu');

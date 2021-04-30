@@ -7,11 +7,11 @@
             <div class="row">
                 <div class="col-8">
                     <!-- START OF STORIES -->
-                    <div class="card">
+                    <div class="card disabled">
                         <div class="card-body d-flex justify-content-start">
                             <ul class="list-unstyled mb-0">
                                 <li class="list-inline-item">
-                                    <button class="btn p-0 m-0">
+                                    <button class="btn p-0 m-0 disabled">
                                         <div class="d-flex flex-column align-items-center">
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
                                                 <img src="<?= $datas['compte']['photo'] ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
@@ -21,7 +21,7 @@
                                     </button>
                                 </li>
                                 <li class="list-inline-item">
-                                    <button class="btn p-0 m-0">
+                                    <button class="btn p-0 m-0 disabled">
                                         <div class="d-flex flex-column align-items-center">
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
                                                 <img src="./img/profiles/profile-2.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
@@ -42,7 +42,7 @@
                                 <div class="card-header p-3">
                                     <div class="d-flex flex-row align-items-center">
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
-                                            <a href="/compte/<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><img src="<?= $article['photo'] ?>" style="transform: scale(1.5); width: 100%; position: absolute; left: 0;"></a>
+                                            <a href="/compte/<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><img src="<?= $article['photo'] ?>" style="transform: scale(3); width: 100%; position: absolute; left: 0;"></a>
                                         </div>
                                         <a href="/compte/<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><span class="font-weight-bold"><?= $article['pseudo'] ?></span></a>
                                     </div>
@@ -79,14 +79,13 @@
                                         <strong class="d-block nb_likes" data-article="<?= $article['id_article'] ?>"><?php echo (!empty($article['nbLikesForArticle'])) ? $article['nbLikesForArticle'] : '0'; ?> Like<?php echo ($article['nbLikesForArticle'] && $article['nbLikesForArticle'] > 1) ? 's' : ''; ?> </strong>
                                         <strong class="d-block"><?= $article['titre'] ?></strong>
                                         <p class="d-block mb-1"><?= $article['contenu'] ?></p>
-
                                         <span class="comment-list" data-article="<?= $article['id_article'] ?>">
                                             <?php if (!empty($article['commentaires'])) {
                                                 foreach ($article['commentaires'] as $key => $commentaire) { ?>
                                                     <div class="commentaire <?php echo ($key > 0) ? 'hidden' : ''; ?>" data-article="<?= $article['id_article'] ?>">
                                                         <div>
                                                             <strong id="comePseudo" class="d-block"><?= $commentaire['pseudo'] ?></strong>
-                                                            <span id="comPost"><?= $commentaire['contenu_com'] ?></span>
+                                                            <span id="comPost" class="d-block"><?= $commentaire['contenu_com'] ?></span>
                                                         </div>
                                                     </div>
                                                 <?php } ?>
@@ -126,8 +125,8 @@
                     <!-- SUGGESTION ET LIEN PROFIL-->
                     <div class="mt-4 suggestions">
                         <div class="d-flex flex-row justify-content-between">
-                            <small class="text-muted font-weight-normal">Suggestions For You</small>
-                            <a href="/explore" style="text-decoration:none;"><small>See All</small></a>
+                            <small class="text-muted font-weight-normal">Suggestions pour vous</small>
+                            <a href="/explore" style="text-decoration:none;"><small>Voir Tout</small></a>
                         </div>
                         <?php foreach ($datas['suggestion'] as $suggestion) { ?>
                             <div>
@@ -142,6 +141,13 @@
                                 </div>
                             </div>
                         <?php } ?>
+                        <div class="d-flex flex-row justify-content-between">
+                            <small class="text-muted font-weight-normal">À propos Aide Presse API Emplois Confidentialité Conditions
+                                Lieux Comptes principaux Hashtags Langue
+                                Français
+                                <br>
+                                <br>© 2021 INSTAGRAM PAR FACEBOOK</small>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -85,6 +85,8 @@ class CommentaireModel
         return $resultat;;
     }
 
+
+
     function deleteAllComFromCompte($id_compte)
     {
         $bdd = Bdd::Connexion();

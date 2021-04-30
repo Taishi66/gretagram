@@ -54,7 +54,8 @@ class CompteFacade
 
     static function getComptePhoto()
     {
-        return self::getUserCompteFromUser(static::$id_user)['photo'];
+        $compteService = new CompteService();
+        return $compteService->getCompteFromUser(SessionFacade::getUserId())['photo'];
     }
     static function getCompteArticle()
     {
