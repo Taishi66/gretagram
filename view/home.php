@@ -101,7 +101,7 @@
                                         <br><small class="text-muted">Article posté le <?= $article['date_art'] ?></small>
                                     </div>
                                     <div class="comment-box">
-                                        <div class="position-relative  form-comment" data-article="<?= $article['id_article'] ?>">
+                                        <div class="position-relative form-comment" data-article="<?= $article['id_article'] ?>">
                                             <input type="text" class="w-100 border-0 p-3 input-post" name="comment" id="comment" placeholder="Add a comment...">
                                             <button type="submit" name="submit" class="btn btn-primary position-absolute btn-ig btn-post-comment">Publier</button>
                                         </div>

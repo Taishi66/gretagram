@@ -4,7 +4,7 @@
     <div class="row no-gutters">
         <div class="col-md-4 btn-art">
             <img src="<?php echo $datas['article']['media']; ?>" class="card-img w-80" alt="...">
-            <div class="d-flex flex-row no-wrap justify-content-around ">
+            <div class="d-flex flex-row no-wrap justify-content-around">
                 <div class="pl-3 pr-3 pb-2">
                     <button class="toggle-like btn-com" data-text="" data-article="<?= $datas['article']['id_article'] ?>">
                         <i class="fa-heart <?php echo ($datas['articleAlreadyLiked']) ? 'fas' : 'far'; ?>"><strong class="d-block nb_likes" data-article="<?= $datas['article']['id_article'] ?>">(<?php echo (!empty($datas['nbLikesForArticle'])) ? $datas['nbLikesForArticle'] : '0'; ?>)</strong>
@@ -62,14 +62,14 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="" enctype="multipart/form-data">
+            <div class="comment-box">
                 <div class="modal-body modalCom">
-                    <textarea name="commentaire" id="commentaire" placeholder="Tapez votre commentaire!"></textarea>
+                    <input class="w-100 border-0 p-3 input-post" name="commentaire" id="commentaire" placeholder="Tapez votre commentaire!"></input>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" nom="submit-com" class="btn-com"><i class="far fa-paper-plane mr-1"></i></button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

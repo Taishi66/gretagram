@@ -23,7 +23,7 @@
 
 </head>
 
-<body style="background-color: whitesmoke;">
+<body>
     <!-- navbar bootstrap instagram -->
     <div>
         <nav class="navbar navbar-expand-lg navbar-light navModif">

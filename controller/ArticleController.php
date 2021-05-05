@@ -43,7 +43,7 @@ class ArticleController extends ManagerController
         //Si je souhaite laisser un commentaire à l'article
         else if (!empty($this->validatorHelper->getValue('commentaire'))) {
             $this->commentaireController->ajouterCommentaire($id_article, CompteFacade::getCompteId());
-            echo json_encode([
+            /*echo json_encode([
                 'pseudo' => CompteFacade::getComptePseudo(),
                 'message' => 'commentaire posté!',
                 'nb_comments' => $this->commentaireModel->getNbcomFromArticle($id_article)
@@ -51,6 +51,7 @@ class ArticleController extends ManagerController
             exit;
             /*} else {
             $this->setMessage('commentaire non publié');*/
+            return $this->renderController();
         }
         //Aller dans commentaireController pour effacer un com
 

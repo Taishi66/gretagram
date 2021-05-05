@@ -55,12 +55,17 @@ class CommentaireController extends ManagerController
      */
     function ajouterCommentaire($id_article, $id_compte)
     {
-        $this->template = 'profil/article.php';
         $contenu_com = $this->validatorHelper->getValue('commentaire');
         if (!empty($contenu_com)) {
             $this->commentaireModel->postCom($id_article, $id_compte, $contenu_com);
+            $output = [
+                'pseudo' => CompteFacade::getComptePseudo(),
+                'message' => 'commentaire posté!',
+                'nb_comments' => $this->commentaireModel->getNbcomFromArticle($id_article)
+            ];
+            echo json_encode($output);
+            exit;
         }
-        return $this->renderController();
     }
 
     /**
