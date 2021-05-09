@@ -1,11 +1,11 @@
 <!-- BLOCK  BODY STORIES POST ET PROFIL / SUGGESTION-->
 <? DebugFacade::dump($datas); ?>
 
-<div class="mt-4 feed">
-    <div class="container d-flex justify-content-center">
-        <div class="col-10">
+<div class="mt-4">
+    <div class="container d-flex RESPHOME">
+        <div class="w-100">
             <div class="row">
-                <div class="col-8">
+                <div class="col-sm-6 RESPPOST">
                     <!-- START OF STORIES -->
                     <div class="card disabled">
                         <div class="card-body d-flex justify-content-start">
@@ -112,7 +112,7 @@
                     <?php   } ?>
                     <!-- END OF POSTS -->
                 </div>
-                <div class="col-4 suggestions">
+                <div class="col-3 suggestions">
                     <div class="d-flex flex-row align-items-center">
                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sidenav-profile-photo">
                             <img src="<?= $datas['compte']['photo']; ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">

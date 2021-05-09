@@ -27,11 +27,11 @@
     <!-- navbar bootstrap instagram -->
     <div>
         <nav class="navbar navbar-expand-lg navbar-light navModif">
-            <div class="container justify-content-center">
-                <div class="d-flex flex-row justify-content-between align-items-center col-9">
+            <div class="container">
+                <div class="d-flex flex-row flex-grow justify-content-between align-items-center col-9 RESPNAVBAR">
                     <a class="navbar-brand" href="/home">
                         <!-- LOGO INSTA -->
-                        <img src="/img/ig-logo.png" alt="" loading="lazy">
+                        <img src="/img/ig-logo.png" loading="lazy">
                     </a>
                     <!-- Barre de recherche -->
                     <div>
@@ -42,45 +42,41 @@
                         </form>
                     </div>
                     <!-- Partie droite de la navbar avec icone HOME INBOX EXPLORE NOTIF PROFIL-->
-                    <button type="button" class="navbar-toggler bg-light" data-toggle="collapse" data-target="#nav"><i style="font-size: xx-large;" class="fas fa-camera-retro"></i></button>
-                    <div id="nav" class="collapse navbar-collapse">
-                        <div class="d-flex flex-row">
-                            <ul class="list-inline m-0">
-                                <li class="list-inline-item">
-                                    <a href="/home" class="link-menu">
-                                        <i class="fas fa-home menu-btn"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item ml-2">
-                                    <a href="/home" class="link-menu">
-                                        <i class="far fa-paper-plane menu-btn disabled bi bi-house-door-fill"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item ml-2">
-                                    <a href="/explore" class="link-menu">
-                                        <i class="far fa-compass menu-btn icon-post"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item ml-2">
-                                    <a href="/home" class="link-menu">
-                                        <i class="far fa-heart disabled menu-btn"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item ml-2 align-middle">
-                                    <a href="/profil" class="link-menu">
-                                        <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
-                                            <img src="/<?= CompteFacade::getComptePhoto(); ?>" style="transform: scale(3); width: 100%; position: absolute; left: 0;">
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="d-flex flex-row responsiveNav">
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item">
+                                <a href="/home" class="link-menu">
+                                    <i class="fas fa-home menu-btn"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item ml-2">
+                                <a href="/home" class="link-menu">
+                                    <i class="far fa-paper-plane menu-btn disabled bi bi-house-door-fill"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item ml-2">
+                                <a href="/explore" class="link-menu">
+                                    <i class="far fa-compass menu-btn icon-post"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item ml-2">
+                                <a href="/home" class="link-menu">
+                                    <i class="far fa-heart disabled menu-btn"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item ml-2 align-middle">
+                                <a href="/profil" class="link-menu">
+                                    <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
+                                        <img src="/<?= CompteFacade::getComptePhoto(); ?>" style="transform: scale(3); width: 100%; position: absolute; left: 0;">
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </nav>
     </div>
-    <!-- MENU BURGER -->
 
     <?php
     if (!empty($datas['message']['message'])) {

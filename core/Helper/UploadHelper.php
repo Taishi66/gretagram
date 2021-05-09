@@ -26,7 +26,7 @@ class UploadHelper
             return false; // si il entre dans la condition il s'arrete
         }
 
-        $nomModifiee = $user . '/' . $nomFichier . '.' . $extension;
+        $nomModifiee = $user . '/' . $nomFichier;
         $fichierFinal = "uploads/" . basename($nomModifiee);
 
         if (move_uploaded_file($fichierTmp, $fichierFinal)) {

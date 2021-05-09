@@ -4,7 +4,7 @@
 }
 
 .navbar-collapse {
-    flex-grow: unset!important;
+    flex-grow: unset;
 }
 
 .hidden {

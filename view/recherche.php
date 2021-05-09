@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center m-3">
+<div class="d-flex justify-content-center m-3 flex-wrap">
 
     <?php
     if (!empty($datas['recherche'])) {

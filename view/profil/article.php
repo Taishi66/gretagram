@@ -1,6 +1,6 @@
 <?php $myAccount = ($datas['compte']['id_compte'] == $datas['article']['id_compte']); ?>
 <? DebugFacade::dump($datas); ?>
-<div class="card mb-5 mt-5 ml-5 cardArticle">
+<div class="card mb-5 mt-5 ml-5 cardArticle RESPARTICLE">
     <div class="row no-gutters">
         <div class="col-md-4 btn-art">
             <img src="<?php echo $datas['article']['media']; ?>" class="card-img w-80" alt="...">
@@ -64,10 +64,10 @@
             </div>
             <div class="comment-box">
                 <div class="modal-body modalCom">
-                    <input class="w-100 border-0 p-3 input-post" name="commentaire" id="commentaire" placeholder="Tapez votre commentaire!"></input>
+                    <input class="w-100 border-0 p-3 input-post" name="comment" id="comment" placeholder="Tapez votre commentaire!"></input>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" nom="submit-com" class="btn-com"><i class="far fa-paper-plane mr-1"></i></button>
+                    <button type="submit" nom="submit-com" class="btn-com btn-post-comment"><i class="far fa-paper-plane mr-1"></i></button>
                 </div>
             </div>
         </div>

@@ -1,8 +1,8 @@
 <? DebugFacade::dump($datas); ?>
-<div class="d-flex justify-content-center" style="align-items:center">
+<div class="d-flex justify-content-center RESPPROFIL" style="align-items:center">
     <img class="photo-profil img-thumbnail m-3" src="/<?= $datas['compteVisite'][0]['photo'] ?>">
-    <div style="margin-top: 30px; margin-bottom:30px; text-align:left;">
-        <div class="header-profil">
+    <div class="" style="margin-top: 30px; margin-bottom:30px; text-align:left;">
+        <div class="header-profil RESPCOMPTE">
             <h2 class="mt-3" style="font-weight: bold; margin-left:15px;"><?= $datas['compteVisite'][0]['pseudo']; ?></h2>
             <button type="button" class="m-3 btn-modif" data-toggle="modal" data-target="#contactModal">Contacter</button>
             <button class="m-3 btn-modif">S'abonner</button>

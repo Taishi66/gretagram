@@ -51,19 +51,14 @@ $(document).ready(function() {
             function(data, status) {
                 if (status == 'success') {
                     var datas = JSON.parse(data);
-
                     // datas.nb_comments
-
                     var notif = '<div class="alert alert-success notif-temporaire">' + datas.message + '</div>';
-
                     var comment_template = '<div class="commentaire" data-article="' + article + '">' +
                         '<div>' +
                         '   <strong id="comPseudo" class="d-block">' + datas.pseudo + '</strong>' +
                         '   <span id="comPost">' + com + '</span>' +
                         '</div>' +
                         '</div>';
-
-
                     //parentElement.after(notif);
                     parentElement.find("input[name=comment]").val('');
                     $('.comment-list[data-article="' + article + '"]').find('.no-comment').remove();

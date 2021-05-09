@@ -1,8 +1,8 @@
-<div class="container d-flex mt-5 mr-auto">
-    <div>
+<div class="container-fluid d-flex mt-5 mr-auto">
+    <div class="ResponsiveImg">
         <img src="/img/login.png">
     </div>
-    <div class="card p-5">
+    <div class="card p-5 responsiveLogin">
         <div class="text-center">
             <img src="/img/ig-logo.png" class="mt-4 mb-4">
             <div style="font-weight: bold; font-size:x-large;">Connexion</div>

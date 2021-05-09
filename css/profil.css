@@ -40,10 +40,8 @@
 }
 
 .thumbpic:hover {
-    z-index: 10
+    z-index: 10;
 }
-
-.card-overlay:hover .img-overlay {}
 
 .card-overlay:hover .overlay {
     display: flex;
@@ -67,4 +65,8 @@
     color: white;
     align-items: center;
     justify-content: center;
+}
+
+.RESPBURGER {
+    display: none;
 }
