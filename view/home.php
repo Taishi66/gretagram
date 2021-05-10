@@ -4,7 +4,7 @@
 <div class="mt-4">
     <div class="container d-flex RESPHOME">
         <div class="w-100">
-            <div class="row">
+            <div class="row  justify-content-center">
                 <div class="col-sm-6 RESPPOST">
                     <!-- START OF STORIES -->
                     <div class="card disabled">
@@ -84,7 +84,7 @@
                                                 foreach ($article['commentaires'] as $key => $commentaire) { ?>
                                                     <div class="commentaire <?php echo ($key > 0) ? 'hidden' : ''; ?>" data-article="<?= $article['id_article'] ?>">
                                                         <div>
-                                                            <strong id="comePseudo" class="d-block"><?= $commentaire['pseudo'] ?></strong>
+                                                            <strong id="comPseudo" class="d-block"><?= $commentaire['pseudo'] ?></strong>
                                                             <span id="comPost" class="d-block"><?= $commentaire['contenu_com'] ?></span>
                                                         </div>
                                                     </div>

@@ -38,6 +38,8 @@ $(document).ready(function() {
 
     })
 
+
+
     $(".btn-post-comment").click(function() {
         var parentElement = $(this).parent();
 

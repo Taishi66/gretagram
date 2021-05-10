@@ -1,4 +1,4 @@
-<div class="container-fluid d-flex mt-5 mr-auto">
+<div class="container d-flex mt-5 center">
     <div class="ResponsiveImg">
         <img src="/img/login.png">
     </div>

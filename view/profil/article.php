@@ -28,25 +28,25 @@
                 </div>
                 <h3 class="card-title"><?php echo $datas['article']['titre']; ?></h3>
                 <h4 class="card-text"><?php echo $datas['article']['contenu']; ?></h4>
+            </div>
+            <hr>
+            <span class="comment-list" data-article="<?= $datas['article']['id_article'] ?>">
                 <?php foreach ($datas['commentaire'] as $data) { ?>
-                    <div class="mb-2 card-header cardCom">
-                        <strong class="d-block"><?= $data['pseudo'] ?>
+                    <div class="mb-2 card-header cardCom commentaire" data-article="<?= $datas['article']['id_article'] ?>">
+                        <strong id="comPseudo" class="d-block"><?= $data['pseudo'] ?>
                             <a href="/delete_com&id_com=<?= $data['id_com'] ?>">
-                                <?php if ($myAccount) { ?>
-                                    <span class="com-sup">
-                                        <i class="far fa-trash-alt"></i>
-                                    </span>
-                                <?php } ?>
+                                <?php if ($myAccount) { ?><span class="com-sup"><i class="far fa-trash-alt"></i></span><?php } ?>
                             </a>
                         </strong>
-                        <span><?= $data['contenu_com'] ?></span>
+                        <span id="comPost"><?= $data['contenu_com'] ?></span>
                         <p class="text-muted" style="font-size: small;"><?= $data['date_com'] ?></p>
                     </div>
                 <?php } ?>
-                <p class="card-text"><small class="text-muted">Article créé le :<?php echo $datas['article']['date_art'] ?></small></p>
-            </div>
+            </span>
+            <p class="card-text"><small class="text-muted">Article créé le :<?php echo $datas['article']['date_art'] ?></small></p>
         </div>
     </div>
+</div>
 </div>
 
 
@@ -67,7 +67,7 @@
                     <input class="w-100 border-0 p-3 input-post" name="comment" id="comment" placeholder="Tapez votre commentaire!"></input>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" nom="submit-com" class="btn-com btn-post-comment"><i class="far fa-paper-plane mr-1"></i></button>
+                    <button type="submit" nom="submit" class="btn-com btn-post-comment"><i class="far fa-paper-plane mr-1"></i></button>
                 </div>
             </div>
         </div>
