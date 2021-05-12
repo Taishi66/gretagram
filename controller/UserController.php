@@ -120,4 +120,10 @@ class UserController extends ManagerController
         }
         return $this->renderController();
     }
+
+    public function deconnexion()
+    {
+        $_SESSION = array('');
+        return header('Location:/');
+    }
 }
