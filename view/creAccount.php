@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
     <div>
-        <img src="./img/signup.png">
+        <img src="/asset/img/signup.png">
     </div>
     <div>
         <div class="form-custom mt-5">

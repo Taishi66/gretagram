@@ -24,7 +24,7 @@
                                     <button class="btn p-0 m-0">
                                         <div class="d-flex flex-column align-items-center">
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
-                                                <img src="./img/profiles/profile-2.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                                <img src="/asset/img/profiles/profile-2.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                             </div>
                                             <small>petermckinnon</small>
                                         </div>

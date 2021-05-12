@@ -11,10 +11,10 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/d3d6f2df1f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    <link rel="stylesheet" type="text/css" href="/css/profil.css">
-    <link rel="stylesheet" type="text/css" href="/css/inbox.css">
-    <link rel="stylesheet" type="text/css" href="/css/article.css">
+    <link rel="stylesheet" type="text/css" href="/asset/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/asset/css/profil.css">
+    <link rel="stylesheet" type="text/css" href="/asset/css/inbox.css">
+    <link rel="stylesheet" type="text/css" href="/asset/css/article.css">
 
 
 </head>
@@ -28,7 +28,7 @@
                     <div class="d-flex flex-row justify-content-between align-items-center col-9">
                         <a class="navbar-brand" href="/home">
                             <!-- LOGO INSTA -->
-                            <img src="/img/ig-logo.png" alt="" loading="lazy">
+                            <img src="/asset//img/ig-logo.png" alt="" loading="lazy">
                         </a>
                         <!-- Barre de recherche -->
                         <div>

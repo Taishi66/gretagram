@@ -1,10 +1,10 @@
 <div class="container d-flex mt-5 mr-auto">
     <div>
-        <img src="/img/login.png">
+        <img src="/asset/img/login.png">
     </div>
     <div class="card p-5">
         <div class="text-center">
-            <img src="/img/ig-logo.png" class="mt-4 mb-4">
+            <img src="/asset/img/ig-logo.png" class="mt-4 mb-4">
             <div style="font-weight: bold; font-size:x-large;">Connexion</div>
             <form action="/" method="POST" style="font-weight: bold;" class="card-body">
                 <div class="form-group">
