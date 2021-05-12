@@ -21,7 +21,7 @@
             <div class="card-body">
                 <div class="card-entete">
                     <a href="/compte/<?= $datas['compteVisite']['id_compte'] ?>" style="text-decoration: none; color:black;">
-                        <h2><img class="photo-profil p-1" style="width: 20%;" src="<?php echo (!empty($datas['compteVisite']['photo'])) ? $datas['compteVisite']['photo'] : $datas['compte']['photo']  ?>">
+                        <h2><img class="photo-profil p-1" src="<?php echo (!empty($datas['compteVisite']['photo'])) ? $datas['compteVisite']['photo'] : $datas['compte']['photo']  ?>">
                             <?php echo (!empty($datas['compteVisite']['pseudo'])) ? $datas['compteVisite']['pseudo'] : $datas['compte']['pseudo']  ?>
                         </h2>
                     </a>
@@ -32,13 +32,15 @@
             <hr>
             <span class="comment-list" data-article="<?= $datas['article']['id_article'] ?>">
                 <?php foreach ($datas['commentaire'] as $data) { ?>
-                    <div class="mb-2 card-header cardCom commentaire" data-article="<?= $datas['article']['id_article'] ?>">
-                        <strong id="comPseudo" class="d-block"><?= $data['pseudo'] ?>
-                            <a href="/delete_com&id_com=<?= $data['id_com'] ?>">
-                                <?php if ($myAccount) { ?><span class="com-sup"><i class="far fa-trash-alt"></i></span><?php } ?>
-                            </a>
+                    <div class="mb-2 card-header cardCom commentaire">
+                        <strong class="d-block"><?= $data['pseudo'] ?>
+                            <?php if ($myAccount) { ?>
+                                <a href="/delete_com&id_com=<?= $data['id_com'] ?>">
+                                    <span class="com-sup"><i class="far fa-trash-alt"></i></span>
+                                </a>
+                            <?php } ?>
                         </strong>
-                        <span id="comPost"><?= $data['contenu_com'] ?></span>
+                        <span><?= $data['contenu_com'] ?></span>
                         <p class="text-muted" style="font-size: small;"><?= $data['date_com'] ?></p>
                     </div>
                 <?php } ?>
@@ -58,15 +60,13 @@
         <div class="modal-content modal-modif">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Commentaire</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="comment-box">
-                <div class="modal-body modalCom">
+                <div class="modal-body modalCom" data-article="<?php echo $datas['article']['id_article']; ?>" data-mediapage="media" data-myaccount="<?php echo ($myAccount) ? 'true' : 'false'; ?>">
                     <input class="w-100 border-0 p-3 input-post" name="comment" id="comment" placeholder="Tapez votre commentaire!"></input>
-                </div>
-                <div class="modal-footer">
                     <button type="submit" nom="submit" class="btn-com btn-post-comment"><i class="far fa-paper-plane mr-1"></i></button>
                 </div>
             </div>

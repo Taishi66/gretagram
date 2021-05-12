@@ -45,6 +45,8 @@ $(document).ready(function() {
 
         var com = parentElement.find("input[name=comment]").val();
         var article = parentElement.data('article');
+        var media_page = parentElement.data('mediapage');
+        var myaccount = parentElement.data('myaccount');
 
         $.post("/article", {
                 commentaire: com,
@@ -55,20 +57,45 @@ $(document).ready(function() {
                     var datas = JSON.parse(data);
                     // datas.nb_comments
                     var notif = '<div class="alert alert-success notif-temporaire">' + datas.message + '</div>';
-                    var comment_template = '<div class="commentaire" data-article="' + article + '">' +
-                        '<div>' +
-                        '   <strong id="comPseudo" class="d-block">' + datas.pseudo + '</strong>' +
-                        '   <span id="comPost">' + com + '</span>' +
-                        '</div>' +
-                        '</div>';
-                    //parentElement.after(notif);
-                    parentElement.find("input[name=comment]").val('');
+                    if (media_page == "media") {
+                        parentElement.find("input[name=comment]").val('');
+                        $('.modal .close').trigger('click');
+
+                        var myaccount_template = '';
+                        if (myaccount == true) {
+                            myaccount_template = '<a href="/delete_com&id_com=' + datas.commentaire.id_com + '">' +
+                                '<span class="com-sup"><i class="far fa-trash-alt"></i></span>' +
+                                '</a>';
+                        }
+
+                        var comment_template = '<div class="mb-2 card-header cardCom commentaire">' +
+                            '<strong class="d-block">' + datas.pseudo +
+                            myaccount_template +
+                            '</strong>' +
+                            '<span>' + com + '</span>' +
+                            '<p class="text-muted" style="font-size: small;">' + datas.commentaire.date_com + '</p>' +
+                            '</div>';
+
+                    } else {
+                        var comment_template = '<div class="commentaire" data-article="' + article + '">' +
+                            '<div>' +
+                            '   <strong id="comPseudo" class="d-block">' + datas.pseudo + '</strong>' +
+                            '   <span id="comPost">' + com + '</span>' +
+                            '</div>' +
+                            '</div>';
+                        //parentElement.after(notif);
+                        parentElement.find("input[name=comment]").val('');
+
+
+                    }
+
                     $('.comment-list[data-article="' + article + '"]').find('.no-comment').remove();
                     $('.comment-list[data-article="' + article + '"]').prepend(comment_template);
 
                     $('.notif-temporaire').remove();
                     $('body').append(notif)
                     $('.notif-temporaire').addClass('open');
+
                     window.setTimeout(function() {
                         $('.notif-temporaire').removeClass('open');
                     }, 3000)

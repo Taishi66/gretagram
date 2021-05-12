@@ -107,15 +107,15 @@ class ArticleController extends ManagerController
         $titre = $this->validatorHelper->getValue('titre');
         $contenu = $this->validatorHelper->getValue('contenu');
         if (!empty($media) && !empty($titre) && !empty($contenu)) {
-            if ($this->articleModel->createArticle($media, $titre, $contenu, $id_compte)) {
-                CompteFacade::plusPublication();
-                $this->template = 'monProfil.php';
-                return $this->renderController();
-            } else {
-                $this->setMessage('Article non créé', 'warning');
-                return $this->renderController();
-            }
+            $this->articleModel->createArticle($media, $titre, $contenu, $id_compte);
+            CompteFacade::plusPublication();
+            $this->template = 'monProfil.php';
+            return $this->renderController();
+        } else {
+            $this->setMessage('Article non créé', 'warning');
+            return $this->renderController();
         }
+
         return $this->renderController();
     }
 

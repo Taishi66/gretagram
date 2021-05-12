@@ -61,7 +61,8 @@ class CommentaireController extends ManagerController
             $output = [
                 'pseudo' => CompteFacade::getComptePseudo(),
                 'message' => 'commentaire posté!',
-                'nb_comments' => $this->commentaireModel->getNbcomFromArticle($id_article)
+                'nb_comments' => $this->commentaireModel->getNbcomFromArticle($id_article),
+                'commentaire' => $this->commentaireModel->getLastComFromArticle($id_article)
             ];
             echo json_encode($output);
             exit;

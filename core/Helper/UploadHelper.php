@@ -7,6 +7,7 @@ class UploadHelper
     {
 
         $nomFichier = $_FILES[$media]["name"]; //elephant.1822636_1920.pdf
+        $sanitizedNomFichier = preg_replace("/\s+/", "", $nomFichier,);
         $extension = explode(".", $nomFichier); // tranforme la chaise decaractere en tableau array()
 
         $extension = end($extension); // je recupere la dernier donnée du tableau 
@@ -15,7 +16,7 @@ class UploadHelper
         // je teste l'extension
         // si different de "true" donc "false" entre dans la condition
         if (!$this->extensionFichier($extension)) {
-            echo "erreur du extension";
+            echo "erreur extension";
             return false; // si il entre dans la condition il s'arrete
         }
 
@@ -26,11 +27,19 @@ class UploadHelper
             return false; // si il entre dans la condition il s'arrete
         }
 
-        $nomModifiee = $user . '/' . $nomFichier;
+        //Function récupérée de wordpress
+        /*private function sanitize_tag_type( $tag ) {
+		$tag = preg_replace( '/[^a-zA-Z0-9_*]+/', '_', $tag );
+		$tag = rtrim( $tag, '_' );
+		$tag = strtolower( $tag );
+		return $tag;
+	}*/
+
+        $nomModifiee = $user . '/' . $sanitizedNomFichier;
         $fichierFinal = "uploads/" . basename($nomModifiee);
 
         if (move_uploaded_file($fichierTmp, $fichierFinal)) {
-            chmod("uploads/" . $nomFichier, 0777);
+            chmod("uploads/" . $nomModifiee, 0777);
             return $fichierFinal;
         } else {
             return false;

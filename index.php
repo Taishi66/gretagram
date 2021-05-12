@@ -20,6 +20,7 @@ include("controller/CommentaireController.php");
 include("controller/UserController.php");
 include("controller/RechercheController.php");
 include("controller/likeController.php");
+include("controller/InstaController.php");
 
 include("model/CompteModel.php");
 include("model/ArticleModel.php");
@@ -33,12 +34,6 @@ require_once("Render.php");
 require_once("Router.php");
 require_once("Routes.php");
 
-
-/*$instagramService = new InstagramService();
-$medias = $instagramService->getMedias();
-
-var_dump($medias);
-exit;*/
 
 
 
@@ -58,7 +53,7 @@ $router->get('noAccount', 'Compte#nouveauCompte');
 $router->post('noAccount', 'Compte#nouveauCompte');
 //Route pour aller au compte du profil connecté
 if (!empty(SessionFacade::getUserSession())) {
-    //$router->get('instagram', 'Instagram#afficherMesmedias');
+    $router->get('instagram', 'Instagram#afficherMesMedias');
     $router->get('profil', 'User#afficherMonprofil');
     $router->post('profil', 'User#afficherMonprofil');
     //Route pour voir un article 

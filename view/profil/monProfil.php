@@ -10,6 +10,8 @@
                     <button class="m-3 btn-modif" data-toggle="modal" data-target="#modifierModal">Modifier profil</button>
                     <!-- Button trigger modal Nouveau Post-->
                     <button type="button" class="m-3 btn-modif" data-toggle="modal" data-target="#postModal">Nouveau Post</button>
+                    <!-- Button récupérer ses donnés instagram-->
+                    <a href="instagram"><button class="m-3 btn-modif">Instagram</button></a>
                     <!-- Button trigger vider la session-->
                     <button class="m-3 btn-modif"><a href="/deconnexion" style="color: black; ;text-decoration:none;">Déconnexion</a></button>
                     <button class="m-3 ellipse" style="color: black; ;text-decoration:none;" data-toggle="modal" data-target="#account-delete"><i class="fas fa-ellipsis-v"></i></button>
@@ -72,7 +74,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-modif">
             <div class="modal-header modal-modif">
-                <h5 class="modal-title" id="exampleModalLongTitle">Nouveau post</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Nouveau post<p class="text-muted small">Pensez à remplir tout les champs!</p>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -80,20 +83,20 @@
             <form method="POST" action="" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Titre</label>
+                        <label>Titre*</label>
                         <input type="text" class="form-control" name="titre" id="titre" placeholder="Titre de votre post">
                     </div>
                     <div class="form-group">
-                        <label>Média</label>
+                        <label>Média*</label>
                         <input type="file" class="file" name="media" id="media" placeholder="Photo ou vidéo">
                     </div>
                     <div class="form-group">
-                        <label>Contenu</label>
+                        <label>Contenu*</label>
                         <input type="text" class="form-control" name="contenu" id="contenu" placeholder="Ajoutez une légende">
                     </div>
                 </div>
                 <div class="modal-footer modal-modif">
-                    <button type="submit" name="submit-post" class="form-control">Publier</button>
+                    <button type="submit" name="submit-post" id="submit-post" class="form-control">Publier</button>
                     <button type="submit" class="form-control" data-dismiss="modal">Annuler</button>
                 </div>
             </form>
@@ -115,20 +118,20 @@
             <form method="POST" action="" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Pseudo</label>
-                        <input type="text" class="form-control" name="pseudo" id="pseudo" value="<?php echo $datas['compte']['pseudo']; ?>">
+                        <label>Pseudo*</label>
+                        <input type="text" class="form-control" name="pseudo" id="pseudo" value="<?= $datas['compte']['pseudo']; ?>">
                     </div>
                     <div class="form-group">
-                        <label>Photo</label>
-                        <input type="file" class="form-control" name="photo" id="photo" value="<?php echo $datas['compte']['photo']; ?>">
+                        <label>Photo*</label>
+                        <input type="file" class="form-control" name="photo" id="photo" value="<?= $datas['compte']['photo']; ?>">
                     </div>
                     <div class="form-group">
-                        <label>Description</label>
-                        <input style="height:100px;" type="text" class="form-control" name="description_compte" id="description_compte" value="<?php echo $datas['compte']['description_compte']; ?>"></input>
+                        <label>Description*</label>
+                        <input style="height:100px;" type="text" class="form-control" name="description_compte" id="description_compte" value="<?= $datas['compte']['description_compte']; ?>"></input>
                     </div>
                 </div>
                 <div class="modal-modif modal-footer">
-                    <button type="submit" class="form-control">Valider Modifications</button>
+                    <button type="submit" name="submit-modif" class="form-control">Valider Modifications</button>
                     <button type="submit" class="form-control" data-dismiss="modal">Annuler</button>
                 </div>
             </form>

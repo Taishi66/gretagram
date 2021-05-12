@@ -28,7 +28,7 @@ class CompteController extends ManagerController
         $id = SessionFacade::getUserId();
         $pseudo = $this->validatorHelper->getValue("pseudo");
         $description_compte = $this->validatorHelper->getValue("description_compte");
-        $photo = $this->validatorHelper->upload("photo");
+        $photo = $this->uploadHelper->upload("photo", SessionFacade::getUserName());
         // exit;
         $this->template = 'creAccount.php';
 
@@ -101,7 +101,7 @@ class CompteController extends ManagerController
         $description_compte = $this->validatorHelper->getValue("description_compte");
         $this->template = 'monProfil.php';
 
-        if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
+        if (!empty($pseudo) || !empty($photo) || !empty($description_compte)) {
             $this->compteModel->setCompteModel($pseudo, $photo, $description_compte, $id_compte);
             return $this->renderController();
         } else {

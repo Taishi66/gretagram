@@ -19,7 +19,7 @@ class UserController extends ManagerController
         $this->compteModel = new CompteModel();
         $this->commentaireController = new CommentaireController();
         $this->likeModel = new LikeModel();
-        parent::__construct();
+        parent::__construct(); //récupère les méthodes de la classe parente = validatorHelper
     }
 
     /**
@@ -39,12 +39,11 @@ class UserController extends ManagerController
         }
         //Si je souhaite modifier mon compte
         if (!empty($this->validatorHelper->getValue('pseudo'))) {
-            //var_dump($this->validatorHelper->getValue('pseudo'));
             $this->compteController->modifierCompte($id_compte);
             return $this->redirectTo('profil');
         }
         //Si je souhaite créer un article
-        if (!empty($this->validatorHelper->getValue('titre')) && !empty($this->validatorHelper->getValue('contenu'))) {
+        if ($_POST['submit-post'] !== null) {
             $this->article->nouvelArticle();
             return $this->redirectTo('profil');
         }

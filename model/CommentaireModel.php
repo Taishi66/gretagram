@@ -32,6 +32,25 @@ class CommentaireModel
     }
 
     /**
+     * Method get last comment
+     *
+     * @param $id_article $id_article [explicite description]
+     *
+     * @return Le dernier commentaire
+     */
+    function getLastComFromArticle($id_article)
+    {
+        $bdd = Bdd::Connexion();
+        $sql = $bdd->prepare('SELECT * FROM commentaire 
+                            WHERE id_article =:id_article
+                            ORDER BY id_com DESC LIMIT 1');
+        $sql->execute([':id_article' => $id_article]);
+        $commentaire = $sql->fetch(PDO::FETCH_ASSOC);
+        $bdd = null;
+        return $commentaire;
+    }
+
+    /**
      * Method postCom
      *
      * @param $id_article $id_article [explicite description]
