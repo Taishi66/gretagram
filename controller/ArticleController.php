@@ -171,7 +171,7 @@ class ArticleController extends ManagerController
      */
     function showLastArticles()
     {
-        $this->template = 'home.php';
+        $this->template = 'view_page/home.php';
         $articles = $this->articleModel->lastArticles();
 
         $articles_ = array();

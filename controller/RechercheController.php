@@ -15,7 +15,7 @@ class RechercheController extends ManagerController
     {
         $q = $this->validatorHelper->getValue("q");
         if ($q !== null) {
-            $this->template = "recherche.php";
+            $this->template = "view_page/recherche.php";
             $q = $this->validatorHelper->getValue("q");
             $resultat = $this->rechercheModel->research($q);
             $this->setSearch($resultat);

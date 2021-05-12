@@ -103,7 +103,7 @@ class UserController extends ManagerController
      */
     public function seConnecter()
     {
-        $this->template = 'login.php';
+        $this->template = 'view_page/login.php';
 
         if (!empty($this->validatorHelper->getValue("email"))) {
             $email = $this->validatorHelper->verfEmail($this->validatorHelper->getValue("email"));

@@ -111,7 +111,7 @@ class CompteController extends ManagerController
 
     function afficherToutLesComptes()
     {
-        $this->template = 'explore.php';
+        $this->template = 'view_page/explore.php';
         $this->setCompteVisite($this->compteModel->seeAllAccounts());
         return $this->renderController();
     }
