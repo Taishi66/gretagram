@@ -5,6 +5,12 @@ class Render
     {
     }
 
+
+    /**
+     * Renvoie la vue du header 
+     * @param $datas 
+     * @return $var = contenu de l'include
+     */
     public function renderHeader($datas)
     {
         ob_start();
@@ -14,6 +20,12 @@ class Render
         return $var;
     }
 
+    /**
+     * Renvoie la vue envoyée par le contrôleur
+     * @param $template 
+     * @param $datas  
+     * @return $var = contenu de l'include
+     */
     public function renderContent($template, $datas)
     {
         ob_start();
@@ -23,6 +35,11 @@ class Render
         return $var;
     }
 
+    /**
+     * Renvoie la vue du footer
+     * @param $datas 
+     * @return void
+     */
     public function renderFooter($datas)
     {
         ob_start();
@@ -32,6 +49,16 @@ class Render
         return $var;
     }
 
+
+    /**
+     * Les fonctions précèdentes sont stockées dans des variables
+     * On peut donc concaténer les vues dans l'ordre que l'on veut 
+     * @param $header $header
+     * @param $content $content 
+     * @param $footer $footer 
+     *
+     * @return void
+     */
     public function showPage($header, $content, $footer)
     {
         echo $header . $content . $footer;

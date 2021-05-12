@@ -10,16 +10,33 @@ class Router
         $this->url = $url;
     }
 
+
+    //Récupère les données en GET
     public function get($path, $callable, $name = null)
     {
         return $this->add($path, $callable, $name, 'GET');
     }
 
+    //Envoie les données en POST
     public function post($path, $callable, $name = null)
     {
         return $this->add($path, $callable, $name, 'POST');
     }
 
+
+
+    /**
+     * Instancie un nouvel objet Route, si le callable est une string
+     * et que le $name est null alors il prends la valeur du callable.
+     * Si il ya un $name
+     *
+     * @param $path !nécessaire au construct de la classe Route!
+     * @param $callable !nécessaire au construc de la classe Route!
+     * @param $name 
+     * @param $method 
+     *
+     * @return la route!
+     */
     private function add($path, $callable, $name, $method)
     {
         $route = new Route($path, $callable);
@@ -33,6 +50,16 @@ class Router
         return $route;
     }
 
+
+    /**
+     * Verifie que la route n'existe pas dans la superglobal SERVEUR
+     * Si true alors message d'erreur dans la console
+     * Boucle qui parcours l'ensemble des routes de $_SERVEUR 
+     * S'il y a une correspondance (match) avec l'url alors la
+     * route trouvée est appelée
+     *
+     * @return bool
+     */
     public function run()
     {
         if (!isset($this->routes[$_SERVER['REQUEST_METHOD']])) {
@@ -47,13 +74,7 @@ class Router
         return false;
     }
 
-    public function url($name, $params = [])
-    {
-        if (!isset($this->namedRoutes[$name])) {
-            error_log('No route matches this name');
-        }
-        return $this->namedRoutes[$name]->getUrl($params);
-    }
+
     /**
      * Déclenche l'appel au controller adéquat en fonction de la page demandée par l'utilisateur.
      * 

@@ -89,7 +89,7 @@ if (!empty(SessionFacade::getUserSession())) {
 
 
 
-
+//lance le routeur pour trouver la route
 $vars = $router->run();
 
 if (!$vars) {
@@ -98,10 +98,16 @@ if (!$vars) {
 }
 
 $render = new Render();
+//les datas de l'user connecté seront renvoyées sur chaque nouvelle page
 $vars['datas']['user'] = SessionFacade::getUserSession();
 
+
+/*Les variables contiennent les méthodes de la classe Render puis 
+utilisée en tant que paramètre de la méthode showpage() qui décide de l'ordre de présentation
+des vues.
+Dans ce cas c'est donc l'index qui renvoit la vue correspondante et non le contrôleur*/
 $header = $render->renderHeader($vars['datas']);
 $content = $render->renderContent($vars['template'], $vars['datas']);
 $footer = $render->renderFooter($vars['datas']);
-
+//cela permet de meilleur performance et une organisation plus propre
 return $render->showPage($header, $content, $footer);

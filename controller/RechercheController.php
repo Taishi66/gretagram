@@ -7,7 +7,7 @@ class RechercheController extends ManagerController
     function __construct()
     {
         $this->rechercheModel = new rechercheModel();
-        parent::__construct();
+        parent::__construct(); //validatorHelper est le parent
     }
 
 
