@@ -19,14 +19,14 @@ include("controller/ArticleController.php");
 include("controller/CommentaireController.php");
 include("controller/UserController.php");
 include("controller/RechercheController.php");
-include("controller/likeController.php");
+include("controller/LikeController.php");
 include("controller/InstaController.php");
 
-include("model/CompteModel.php");
-include("model/ArticleModel.php");
-include("model/CommentaireModel.php");
-include("model/UserModel.php");
-include("model/RechercheModel.php");
+include("model/compteModel.php");
+include("model/articleModel.php");
+include("model/commentaireModel.php");
+include("model/userModel.php");
+include("model/rechercheModel.php");
 include('model/likeModel.php');
 
 

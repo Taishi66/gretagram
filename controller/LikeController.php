@@ -7,7 +7,7 @@ class LikeController extends ManagerController
 
     function __construct()
     {
-        $this->likeModel = new LikeModel();
+        $this->likeModel = new likeModel();
         parent::__construct();
     }
 

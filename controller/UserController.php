@@ -5,8 +5,7 @@
 class UserController extends ManagerController
 {
     private $article;
-    private $UserModel;
-    private $compteModel;
+    private $userModel;
     private $compteController;
     private $commentaireController;
     private $likeModel;
@@ -15,10 +14,9 @@ class UserController extends ManagerController
     {
         $this->compteController = new CompteController();
         $this->article = new ArticleController();
-        $this->UserModel = new UserModel();
-        $this->compteModel = new CompteModel();
+        $this->userModel = new userModel();
         $this->commentaireController = new CommentaireController();
-        $this->likeModel = new LikeModel();
+        $this->likeModel = new likeModel();
         parent::__construct(); //récupère les méthodes de la classe parente = validatorHelper
     }
 
@@ -54,7 +52,7 @@ class UserController extends ManagerController
             $this->commentaireController->supprimerToutLesCommentaires($id_compte);
             $this->article->effacerToutLesArticle($id_compte);
             CompteFacade::EraseAccount();
-            $this->UserModel->deleteUser(SessionFacade::getUserId());
+            $this->userModel->deleteUser(SessionFacade::getUserId());
             $_SESSION = array('');
             $this->setMessage('Votre compte a définitivement été supprimé');
             return $this->redirectTo('');
@@ -121,11 +119,5 @@ class UserController extends ManagerController
             }
         }
         return $this->renderController();
-    }
-
-    public function deconnexion()
-    {
-        $_SESSION = array('');
-        return header('Location:/');
     }
 }

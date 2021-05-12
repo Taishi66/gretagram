@@ -5,14 +5,12 @@ class CompteController extends ManagerController
 {
     private $commentaireModel;
     private $compteModel;
-    private $articleController;
     private $likeController;
 
     function __construct()
     {
-        $this->compteModel = new CompteModel();
-        $this->commentaireModel = new CommentaireModel();
-        $this->articleController = new ArticleController();
+        $this->compteModel = new compteModel();
+        $this->commentaireModel = new commentaireModel();
         $this->likeController = new LikeController();
         parent::__construct();
     }

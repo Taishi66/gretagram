@@ -5,7 +5,6 @@ class ArticleController extends ManagerController
 
     private $articleModel;
     private $commentaireModel;
-    private $LikeModel;
     private $commentaireController;
     private $compteModel;
     private $likeController;
@@ -14,11 +13,10 @@ class ArticleController extends ManagerController
     {
         parent::__construct();
 
-        $this->articleModel = new ArticleModel();
-        $this->commentaireModel = new CommentaireModel();
-        $this->LikeModel = new LikeModel();
+        $this->articleModel = new articleModel();
+        $this->commentaireModel = new commentaireModel();
         $this->commentaireController = new CommentaireController();
-        $this->compteModel = new CompteModel();
+        $this->compteModel = new compteModel();
         $this->likeController = new LikeController();
     }
 
