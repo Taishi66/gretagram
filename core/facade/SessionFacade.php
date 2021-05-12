@@ -38,5 +38,6 @@ class SessionFacade
     {
         unset($_SESSION['user']);
         unset(static::$user['user']);
+        return Header('Location:/');
     }
 }

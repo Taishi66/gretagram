@@ -81,9 +81,9 @@ class UserController extends ManagerController
         if (!empty($email) && !empty($nom) && !empty($prenom)) {
             $mdp = password_hash($this->validatorHelper->getValue("mdp"), PASSWORD_DEFAULT);
 
-            if ($this->UserModel->inscription($nom, $prenom, $email, $mdp)) {
+            if ($this->userModel->inscription($nom, $prenom, $email, $mdp)) {
 
-                $profil = $this->UserModel->Login($email);
+                $profil = $this->userModel->Login($email);
                 SessionFacade::setUserSession($profil);
                 $this->redirectTo('noAccount');
             } else {
@@ -107,7 +107,7 @@ class UserController extends ManagerController
 
         if (!empty($this->validatorHelper->getValue("email"))) {
             $email = $this->validatorHelper->verfEmail($this->validatorHelper->getValue("email"));
-            $profil = $this->UserModel->login($email);
+            $profil = $this->userModel->login($email);
 
             if (password_verify($this->validatorHelper->getValue('mdp'), $profil['mdp'])) {
                 SessionFacade::setUserSession($profil);
@@ -119,5 +119,10 @@ class UserController extends ManagerController
             }
         }
         return $this->renderController();
+    }
+
+    function deconnexion()
+    {
+        return SessionFacade::clearSession();
     }
 }
