@@ -1,13 +1,13 @@
 <div class="d-flex justify-content-center">
     <div>
-        <img src="./img/signup.png">
+        <img src="/asset/img/signup.png">
     </div>
     <div>
         <div class="form-custom mt-5">
             <div class="card-header c-head" style="text-align:center;">Créez votre compte pour pouvoir<br> partager vos photos et vidéos avec vos amis</div>
             <div class="card card-body">
                 <p class="card-text">
-                <form action="/noAccount" method="POST" style="font-weight: bold;" enctype="multipart/form-data">
+                <form action="/NoAccount" method="POST" style="font-weight: bold;" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Pseudo</label>
                         <input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Choississez le pseudo de votre compte">

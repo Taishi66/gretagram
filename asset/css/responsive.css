@@ -1,0 +1,76 @@
+    @media only screen and (max-width:1050px) {
+        .RESPNAVBAR {
+            flex-wrap: wrap;
+            justify-content: center!important;
+            margin-left: auto!important;
+            margin-right: auto!important;
+        }
+        .ResponsiveImg img {
+            display: none;
+        }
+        .responsiveLogin {
+            margin-left: auto!important;
+            margin-right: auto!important;
+        }
+        .suggestions {
+            display: none!important;
+        }
+        .RESPPOST {
+            margin-left: auto!important;
+            margin-right: auto!important;
+        }
+        .RESPHOME {
+            width: 100%!important;
+        }
+        .RESPPROFIL {
+            flex-direction: column;
+            justify-content: center!important;
+            text-align: center!important;
+            flex-wrap: wrap!important;
+        }
+        .RESPBTN {
+            display: flex;
+            flex-direction: column;
+            margin: 0!important;
+        }
+    }
+    
+    @media only screen and (max-width:800px) {
+        .ResponsiveImg img {
+            display: none!important;
+        }
+        .RESPHOME {
+            width: 100%!important;
+        }
+        .RESPPOST {
+            width: 100%!important;
+        }
+        .RESPBURGER {
+            display: block!important;
+        }
+    }
+    
+    @media only screen and (max-width:800px) {
+        .RESPCOMPTE {
+            display: flex;
+            flex-direction: column!important;
+            justify-content: center!important;
+            text-align: center!important;
+            flex-wrap: wrap!important;
+        }
+        .RESPCOMPTE button {
+            margin-left: auto!important;
+            margin-right: auto!important;
+        }
+        .RESPARTICLE {
+            justify-content: center!important;
+            margin-left: auto!important;
+            margin-right: auto!important;
+        }
+    }
+    
+    @media only screen and(max-width: 375px) {
+        * {
+            font-size: small!important;
+        }
+    }

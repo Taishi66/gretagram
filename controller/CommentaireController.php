@@ -6,7 +6,7 @@ class CommentaireController extends ManagerController
 
     function __construct()
     {
-        $this->commentaireModel = new CommentaireModel();
+        $this->commentaireModel = new commentaireModel();
         parent::__construct();
     }
 

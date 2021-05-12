@@ -1,0 +1,61 @@
+.modalCom textarea {
+    width: 100%;
+    border: 1px solid lightgray;
+}
+
+.com-sup {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    margin-top: 5px;
+    margin-left: 1px;
+    background: none;
+    border-radius: 50px;
+    background-color: none;
+    padding: 5px;
+}
+
+.com-sup:hover {
+    color: red;
+}
+
+.btn-art {
+    background-color: white;
+    border: lightgray 1px solid;
+}
+
+.btn-com {
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: none;
+    border-radius: 50px;
+    background-color: white;
+    border: none;
+    padding: 10px;
+}
+
+.btn-com i {
+    font-size: x-large;
+}
+
+.btn-com i:hover {
+    color: #f50057;
+}
+
+.cardArticle {
+    background-color: whitesmoke;
+}
+
+.card-entete {
+    border: 1px lightgray solid;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.cardCom {
+    background-color: white!important;
+}

@@ -5,20 +5,20 @@ class ArticleController extends ManagerController
 
     private $articleModel;
     private $commentaireModel;
-    private $LikeModel;
     private $commentaireController;
     private $compteModel;
     private $likeController;
+    private $likeModel;
 
     function __construct()
     {
         parent::__construct();
 
-        $this->articleModel = new ArticleModel();
-        $this->commentaireModel = new CommentaireModel();
-        $this->LikeModel = new LikeModel();
+        $this->articleModel = new articleModel();
+        $this->commentaireModel = new commentaireModel();
         $this->commentaireController = new CommentaireController();
-        $this->compteModel = new CompteModel();
+        $this->compteModel = new compteModel();
+        $this->likeModel = new likeModel();
         $this->likeController = new LikeController();
     }
 
@@ -147,7 +147,7 @@ class ArticleController extends ManagerController
      */
     function effacerArticle($id_article)
     {
-        $this->LikeModel->supprimeLike($id_article);
+        $this->likeModel->supprimeLike($id_article);
         $this->commentaireModel->deleteComAllFromArticle($id_article);
         $this->articleModel->deleteArticle($id_article);
     }
