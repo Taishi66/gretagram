@@ -11,7 +11,7 @@
                     <!-- Button trigger modal Nouveau Post-->
                     <button type="button" class="m-3 btn-modif" data-toggle="modal" data-target="#postModal">Nouveau Post</button>
                     <!-- Button récupérer ses donnés instagram-->
-                    <a href="profil"><button type="button" class="m-3 btn-modif">Gretagram</button></a>
+                    <a href="Profil"><button type="button" class="m-3 btn-modif">Gretagram</button></a>
                     <!-- Button trigger vider la session-->
                     <button class="m-3 btn-modif"><a href="/deconnexion" style="color: black; ;text-decoration:none;">Déconnexion</a></button>
                     <button class="m-3 ellipse" style="color: black; ;text-decoration:none;" data-toggle="modal" data-target="#account-delete"><i class="fas fa-ellipsis-v"></i></button>

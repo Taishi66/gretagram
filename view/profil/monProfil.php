@@ -11,9 +11,9 @@
                     <!-- Button trigger modal Nouveau Post-->
                     <button type="button" class="m-3 btn-modif" data-toggle="modal" data-target="#postModal">Nouveau Post</button>
                     <!-- Button récupérer ses donnés instagram-->
-                    <a href="instagram"><button class="m-3 btn-modif">Instagram</button></a>
+                    <a href="Instagram"><button class="m-3 btn-modif">Instagram</button></a>
                     <!-- Button trigger vider la session-->
-                    <button class="m-3 btn-modif"><a href="/deconnexion" style="color: black; ;text-decoration:none;">Déconnexion</a></button>
+                    <button class="m-3 btn-modif"><a href="/Deconnexion" style="color: black; ;text-decoration:none;">Déconnexion</a></button>
                     <button class="m-3 ellipse" style="color: black; ;text-decoration:none;" data-toggle="modal" data-target="#account-delete"><i class="fas fa-ellipsis-v"></i></button>
                 <?php }  ?>
             </div>
@@ -46,7 +46,7 @@
             foreach ($datas['article'] as $data) {
                 echo '
                     <div class="card card-overlay" style="width: 18rem;">
-                        <a href="/article&id_article=' . $data['id_article'] . '">
+                        <a href="/Article&id_article=' . $data['id_article'] . '">
                             <div class="img-overlay" style="
                                 background-image: url(' . $data['media'] . '); 
                                 background-size: cover;

@@ -7,7 +7,7 @@
                     <h5 class="card-title"><?= $data['pseudo'] ?></h5>
                     <p class="card-text"><?= $data['description_compte'] ?></p>
                     <p class="font-weight-bold"><?= $data['publications'] ?> publications</p>
-                    <a href="/compte/<?= $data['id_compte'] ?>" style="text-decoration:none; color:blue; font-size:x-large;">Voir le profil</a>
+                    <a href="/Compte/<?= $data['id_compte'] ?>" style="text-decoration:none; color:blue; font-size:x-large;">Voir le profil</a>
                 </div>
             </div>
         <?php } ?>
