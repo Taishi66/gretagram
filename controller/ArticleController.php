@@ -26,7 +26,7 @@ class ArticleController extends ManagerController
     function afficheArticleController()
     {
         $id_article = $this->validatorHelper->getValue('id_article', 0, 'integer');
-        $this->template = 'profil/article.php';
+        $this->template = 'view_profil/article.php';
 
         //Si je souhaite modifier l'article
         if (!empty($this->validatorHelper->getValue('titre'))) {
@@ -38,7 +38,7 @@ class ArticleController extends ManagerController
         if (isset($_POST['submit'])) {
             $this->effacerArticle($id_article);
             CompteFacade::soustraitPublications();
-            return $this->redirectTo('profil');
+            return $this->redirectTo('Profil');
         }
         //Si je souhaite laisser un commentaire à l'article
         else if (!empty($this->validatorHelper->getValue('commentaire'))) {
@@ -109,7 +109,7 @@ class ArticleController extends ManagerController
         if (!empty($media) && !empty($titre) && !empty($contenu)) {
             $this->articleModel->createArticle($media, $titre, $contenu, $id_compte);
             CompteFacade::plusPublication();
-            $this->template = 'monProfil.php';
+            $this->template = 'view_profil/monProfil.php';
             return $this->renderController();
         } else {
             $this->setMessage('Article non créé', 'warning');

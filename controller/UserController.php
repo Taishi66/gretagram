@@ -29,7 +29,7 @@ class UserController extends ManagerController
     {
 
         $id_compte = CompteFacade::getCompteId();
-        $this->template = 'profil/monProfil.php';
+        $this->template = 'view_profil/monProfil.php';
         $this->setCompte(CompteFacade::getUserCompte($id_compte));
         //Faire apparaitre les données articles du compte
         if (!empty($_SESSION['user'])) {
@@ -38,12 +38,12 @@ class UserController extends ManagerController
         //Si je souhaite modifier mon compte
         if (!empty($this->validatorHelper->getValue('pseudo'))) {
             $this->compteController->modifierCompte($id_compte);
-            return $this->redirectTo('profil');
+            return $this->redirectTo('Profil');
         }
         //Si je souhaite créer un article
         if ($_POST['submit-post'] !== null) {
             $this->article->nouvelArticle();
-            return $this->redirectTo('profil');
+            return $this->redirectTo('Profil');
         }
         //SI je souhaite supprimer mon compte
         if (isset($_POST['delete-compte'])) {
@@ -55,7 +55,7 @@ class UserController extends ManagerController
             $this->userModel->deleteUser(SessionFacade::getUserId());
             $_SESSION = array('');
             $this->setMessage('Votre compte a définitivement été supprimé');
-            return $this->redirectTo('');
+            return $this->redirectTo('/');
         }
 
         return $this->renderController();
@@ -85,7 +85,7 @@ class UserController extends ManagerController
 
                 $profil = $this->userModel->Login($email);
                 SessionFacade::setUserSession($profil);
-                $this->redirectTo('noAccount');
+                $this->redirectTo('NoAccount');
             } else {
                 $this->setMessage('Inscription échouée', 'warning');
                 return $this->renderController();
@@ -111,7 +111,7 @@ class UserController extends ManagerController
 
             if (password_verify($this->validatorHelper->getValue('mdp'), $profil['mdp'])) {
                 SessionFacade::setUserSession($profil);
-                $this->redirectTo('profil');
+                $this->redirectTo('Profil');
                 exit;
             } else {
                 $this->setMessage('Connexion échouée', 'warning');

@@ -6,7 +6,7 @@ class UploadHelper
     public function upload($media, $user)
     {
 
-        $nomFichier = $_FILES[$media]["name"]; //elephant.1822636_1920.pdf
+        $nomFichier = $_FILES[$media]["name"]; //elephanieeec.jpg
         $sanitizedNomFichier = preg_replace("/\s+/", "", $nomFichier,);
         $extension = explode(".", $nomFichier); // tranforme la chaise decaractere en tableau array()
 

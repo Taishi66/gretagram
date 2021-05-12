@@ -28,12 +28,12 @@ class CompteController extends ManagerController
         $description_compte = $this->validatorHelper->getValue("description_compte");
         $photo = $this->uploadHelper->upload("photo", SessionFacade::getUserName());
         // exit;
-        $this->template = 'creAccount.php';
+        $this->template = 'view_inscription/creAccount.php';
 
         if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
             //var_dump($pseudo);
             if ($this->compteModel->creAccount($id, $photo, $pseudo, $description_compte)) {
-                $this->redirectTo('profil');
+                $this->redirectTo('Profil');
                 exit;
             } else {
                 $this->setMessage('Création de compte non enregistrée', 'warning');
@@ -63,11 +63,11 @@ class CompteController extends ManagerController
     function afficheProfil($id_compte = null)
     {
         if ($id_compte == CompteFacade::getCompteId()) {
-            $this->redirectTo('profil');
+            $this->redirectTo('Profil');
             exit;
         }
 
-        $this->template = ('profil/compte.php');
+        $this->template = ('view_profil/compte.php');
         //$this->setCompte($this->compteModel->showProfil($id_compte));
         $this->setCom($this->commentaireModel->showAllcomFromArticle($id_compte));
         $compteVisite = $this->compteModel->showProfil($id_compte);
@@ -97,7 +97,7 @@ class CompteController extends ManagerController
         $pseudo = $this->validatorHelper->getValue("pseudo");
         $photo = $this->uploadHelper->upload("photo", CompteFacade::getComptePseudo());
         $description_compte = $this->validatorHelper->getValue("description_compte");
-        $this->template = 'monProfil.php';
+        $this->template = 'view_profil/monProfil.php';
 
         if (!empty($pseudo) || !empty($photo) || !empty($description_compte)) {
             $this->compteModel->setCompteModel($pseudo, $photo, $description_compte, $id_compte);
