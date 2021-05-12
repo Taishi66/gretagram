@@ -72,7 +72,7 @@ class UserController extends ManagerController
         // si le formulaire est envoyé j'entre dans la condition
         // si non j'affiche la vue du formulaire dans else
 
-        $this->template = 'inscription.php';
+        $this->template = 'view_inscription/inscription.php';
 
         $nom = $this->validatorHelper->verfNomPrenom($this->validatorHelper->getValue("nom"));
         $prenom = $this->validatorHelper->verfNomPrenom($this->validatorHelper->getValue("prenom"));

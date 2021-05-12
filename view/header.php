@@ -45,27 +45,27 @@
                     <div class="d-flex flex-row responsiveNav">
                         <ul class="list-inline m-0">
                             <li class="list-inline-item">
-                                <a href="/home" class="link-menu">
+                                <a href="/Home" class="link-menu">
                                     <i class="fas fa-home menu-btn"></i>
                                 </a>
                             </li>
                             <li class="list-inline-item ml-2">
-                                <a href="/home" class="link-menu">
+                                <a href="/Home" class="link-menu">
                                     <i class="far fa-paper-plane menu-btn disabled bi bi-house-door-fill"></i>
                                 </a>
                             </li>
                             <li class="list-inline-item ml-2">
-                                <a href="/explore" class="link-menu">
+                                <a href="/Explore" class="link-menu">
                                     <i class="far fa-compass menu-btn icon-post"></i>
                                 </a>
                             </li>
                             <li class="list-inline-item ml-2">
-                                <a href="/home" class="link-menu">
+                                <a href="" class="link-menu">
                                     <i class="far fa-heart disabled menu-btn"></i>
                                 </a>
                             </li>
                             <li class="list-inline-item ml-2 align-middle">
-                                <a href="/profil" class="link-menu">
+                                <a href="/Profil" class="link-menu">
                                     <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
                                         <img src="/<?= CompteFacade::getComptePhoto(); ?>" style="transform: scale(3); width: 100%; position: absolute; left: 0;">
                                     </div>
