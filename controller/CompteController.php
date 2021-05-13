@@ -16,10 +16,8 @@ class CompteController extends ManagerController
     }
 
     /**
-     * newAccount
+     * Methode pour créer un nouveau compte
      *
-     * @param  int $id
-     * @return void
      */
     public function nouveauCompte()
     {
@@ -27,7 +25,6 @@ class CompteController extends ManagerController
         $pseudo = $this->validatorHelper->getValue("pseudo");
         $description_compte = $this->validatorHelper->getValue("description_compte");
         $photo = $this->uploadHelper->upload("photo", SessionFacade::getUserName());
-        // exit;
         $this->template = 'view_inscription/creAccount.php';
 
         if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
@@ -85,11 +82,9 @@ class CompteController extends ManagerController
     }
 
     /**
-     * Method modifierCompte
+     * Method modifier son compte
      *
-     * @param $id_compte $id_compte [explicite description]
-     *
-     * @return void
+     * @param $id_compte 
      */
     function modifierCompte($id_compte)
     {
@@ -100,7 +95,7 @@ class CompteController extends ManagerController
         $this->template = 'view_profil/monProfil.php';
 
         if (!empty($pseudo) || !empty($photo) || !empty($description_compte)) {
-            $this->compteModel->setCompteModel($pseudo, $photo, $description_compte, $id_compte);
+            $this->compteModel->setCompte($pseudo, $photo, $description_compte, $id_compte);
             return $this->renderController();
         } else {
             $this->setMessage('Modification échouée', 'warning');

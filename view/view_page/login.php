@@ -1,4 +1,4 @@
-//Formulaire de connexion à son compte et également page de retour après déconnexion
+<!-- Formulaire de connexion à son compte et également page de retour après déconnexion -->
 <div class="container d-flex mt-5 center">
     <div class="ResponsiveImg">
         <img src="/asset/img/login.png">

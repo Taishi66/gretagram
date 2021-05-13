@@ -65,8 +65,8 @@ if (!empty(SessionFacade::getUserSession())) {
     //Route pour se déconnecter
     $router->get('Deconnexion', 'User#deconnexion');
     //Route pour voir le feed des derniers posts
-    $router->get('Home', 'Article#showLastArticles');
-    $router->post('Home', 'Article#showLastArticles');
+    $router->get('Home', 'Article#AfficherDerniersArticles');
+    $router->post('Home', 'Article#AfficherDerniersArticles');
     //Route pour voir l'ensemble des comptes
     $router->get('Explore', 'Compte#afficherToutLesComptes');
     //Route pour rediriger vers la visite d'un compte 

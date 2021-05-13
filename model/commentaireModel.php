@@ -3,7 +3,10 @@ class CommentaireModel
 {
 
 
-    function showCommentFromDb()
+    /**
+     * Renvoie tout les commentaires de la BDD
+     */
+    function toutLesCommentairesBDD()
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->query('SELECT * FROM commentaire');
@@ -12,9 +15,7 @@ class CommentaireModel
     }
 
     /**
-     * Method showAllCom
-     *
-     * @param $id_article $id_article [explicite description]
+     * @param $id_article 
      *
      * @return Tout les commentaires d'un article 
      */
@@ -32,11 +33,9 @@ class CommentaireModel
     }
 
     /**
-     * Method get last comment
+     * Renvoie le dernier commentaire d'un article 
      *
-     * @param $id_article $id_article [explicite description]
-     *
-     * @return Le dernier commentaire
+     * @param $id_article 
      */
     function getLastComFromArticle($id_article)
     {
@@ -51,13 +50,12 @@ class CommentaireModel
     }
 
     /**
-     * Method postCom
+     * Méthode pour poster un commentaire
      *
-     * @param $id_article $id_article [explicite description]
-     * @param $id_compte $id_compte [explicite description]
-     * @param $contenu_com $contenu_com [explicite description]
+     * @param $id_article 
+     * @param $id_compte
+     * @param $contenu_com
      *
-     * @return void
      */
     function postCom($id_article, $id_compte, $contenu_com = null, $date_com = null)
     {
@@ -74,11 +72,9 @@ class CommentaireModel
     }
 
     /**
-     * Method deleteCom
+     * Method pour effacer un commentaire
      *
-     * @param $id_com $id_com [explicite description]
-     *
-     * @return void
+     * @param $id_com 
      */
     function deleteCom($id_com)
     {
@@ -92,6 +88,11 @@ class CommentaireModel
         return $resultat;;
     }
 
+    /**
+     * Methode effacer tous les commentaires d'un article
+     *
+     * @param $id_article 
+     */
     function deleteComAllFromArticle($id_article)
     {
         $bdd = Bdd::Connexion();
@@ -106,6 +107,11 @@ class CommentaireModel
 
 
 
+    /**
+     * Effacer tous les commentaires postés par un compte
+     * 
+     * @param $id_compte $id_compte [explicite description]
+     */
     function deleteAllComFromCompte($id_compte)
     {
         $bdd = Bdd::Connexion();
@@ -119,13 +125,11 @@ class CommentaireModel
     }
 
     /**
-     * Method getCommentaireModel
+     * Récupérer un commentaire
      *
-     * @param $id_com $id_com [explicite description]
-     *
-     * @return void
+     * @param $id_com
      */
-    function getCommentaireModel($id_com)
+    function getCommentaire($id_com)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT * FROM commentaire WHERE id_com =:id_com');
@@ -135,6 +139,11 @@ class CommentaireModel
         return $resultat;
     }
 
+    /**
+     * Récupérer le nombre de commentaire d'un article
+     *
+     * @param $id_article 
+     */
     function getNbComFromArticle($id_article)
     {
         $bdd = Bdd::Connexion();

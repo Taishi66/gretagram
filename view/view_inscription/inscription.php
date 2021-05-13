@@ -1,3 +1,4 @@
+<!-- TEMPLATE D'INSCRIPTION SI LOGIN IMPOSSIBLE -->
 <div class="container d-flex mt-5 mr-auto">
     <div>
         <img src="/asset/img/insta.jpg">

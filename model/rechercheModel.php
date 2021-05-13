@@ -8,6 +8,11 @@ class RechercheModel
     }
 
 
+    /**
+     * Méthode de recherche pour trouver les comptes correspondants
+     *
+     * @param $q $q [explicite description]
+     */
     public function research($q)
     {
         $bdd = Bdd::Connexion();
@@ -18,6 +23,13 @@ class RechercheModel
         return $resultat;
     }
 
+    /**METHOD NOT USED
+     * Affiche tout les comptes correspondant au hashtag
+     *
+     * @param $e $e [explicite description]
+     *
+     * @return void
+     */
     public function explore($e)
     {
         $bdd = Bdd::Connexion();

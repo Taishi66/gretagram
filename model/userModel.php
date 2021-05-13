@@ -6,9 +6,7 @@ class UserModel
 
 
     /**
-     * Method getAllUsers
-     *
-     * @return array of users
+     * Method pour récupérer tout les users de la BDD 
      */
     public function getAllUsers()
     {
@@ -21,7 +19,7 @@ class UserModel
 
 
     /**
-     * Method getUser
+     * Method renvoie les datas des tables users et leur compte par id_user envoyée
      *
      * @param $id_user $id_user [explicite description]
      *
@@ -45,13 +43,12 @@ class UserModel
 
 
     /**
-     * inscription
+     * inscription crée un nouvel user en BDD
      *
      * @param  string $nom
      * @param  string $prenom
      * @param  string $email
      * @param  string $mdp
-     * @return void
      */
     public function inscription($nom, $prenom, $email, $mdp)
     {
@@ -70,10 +67,9 @@ class UserModel
 
 
     /**
-     * login
+     * login se connecter à son compte
      *
      * @param  mixed $email
-     * @return void
      */
     public function login($email)
     {
@@ -85,6 +81,13 @@ class UserModel
         return $resultat;
     }
 
+
+    /**
+     * Method pour effacer un user
+     *
+     * @param $id_user
+     *
+     */
     public function deleteUser($id_user)
     {
         $bdd = Bdd::Connexion();

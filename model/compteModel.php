@@ -4,6 +4,11 @@ class CompteModel
 {
 
 
+    /**
+     * Récupérer un compte à partir d'un article
+     *
+     * @param $id_article 
+     */
     function getCompteFromArticle($id_article)
     {
 
@@ -21,17 +26,15 @@ class CompteModel
     }
 
     /**
-     * creAccount
+     * Créer un nouveau compte
      *
      * @param  string $id
      * @param  string $photo
      * @param  string $pseudo
      * @param  string $description_compte
-     * @return void
      */
     public function creAccount($id, $photo, $pseudo, $description_compte)
     {
-        //$id_user ='SELECT id_user FROM user WHERE id_user = LAST_INSERT_ID()';
         $bdd = Bdd::Connexion();
         $sql = 'INSERT INTO compte(pseudo, description_compte, photo, id_user, publications)
                 VALUES (:pseudo,:description_compte,:photo, :id, 0)';
@@ -48,14 +51,9 @@ class CompteModel
     }
 
     /**
-     * @var int $id_user
-     */
-    /**
-     * Method getCompteFromUser
+     * Récupérer un compte à partir de l'id du user connecté
      *
-     * @param $id_user $id_user [explicite description]
-     *
-     * @return void
+     * @param $id_user
      */
     function getCompteFromUser($id_user)
     {
@@ -69,11 +67,9 @@ class CompteModel
     }
 
     /**
-     * Method getCompte
+     * Récupérer un compte en particulier
      *
-     * @param $id_compte $id_compte [explicite description]
-     *
-     * @return void
+     * @param $id_compte 
      */
     function getCompte($id_compte)
     {
@@ -88,11 +84,9 @@ class CompteModel
 
 
     /**
-     * Method getArticles
+     * Récupérer les articles d'un compte
      *
-     * @param $id_compte $id_compte [explicite description]
-     *
-     * @return void
+     * @param $id_compte
      */
     function getArticles($id_compte)
     {
@@ -106,11 +100,9 @@ class CompteModel
     }
 
     /**
-     * Method incrementerPublications
+     * Augmenter le nombre de publication d'un compte
      *
      * @param $id_compte $id_compte [explicite description]
-     *
-     * @return void
      */
     function incrementerPublications($id_compte)
     {
@@ -125,11 +117,9 @@ class CompteModel
     }
 
     /**
-     * Method decrementerPublications
+     * Diminuer le nombre de publication d'un compte
      *
      * @param $id_compte $id_compte [explicite description]
-     *
-     * @return void
      */
     function decrementerPublications($id_compte)
     {
@@ -144,16 +134,15 @@ class CompteModel
 
 
     /**
-     * Method setCompteModel
+     * Modifier son compte
      *
      * @param $pseudo $pseudo [explicite description]
      * @param $photo $photo [explicite description]
      * @param $description_compte $description_compte [explicite description]
      * @param $id_compte $id_compte [explicite description]
      *
-     * @return void
      */
-    function setCompteModel($pseudo = null, $photo = null, $description_compte = null, $id_compte)
+    function setCompte($pseudo = null, $photo = null, $description_compte = null, $id_compte)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('UPDATE compte 
@@ -172,11 +161,9 @@ class CompteModel
     }
 
     /**
-     * Method getAllComFromCompte
+     * Récupérer tout les commentaires d'un compte
      *
-     * @param $id_compte $id_compte [explicite description]
-     *
-     * @return void
+     * @param $id_compte 
      */
     function getAllComFromCompte($id_compte)
     {
@@ -191,11 +178,9 @@ class CompteModel
     }
 
     /**
-     * Method deleteCompte
+     * Effacer son compte
      *
-     * @param $id_compte $id_compte [explicite description]
-     *
-     * @return void
+     * @param $id_compte
      */
     function deleteCompte($id_compte)
     {
@@ -206,6 +191,11 @@ class CompteModel
         return $resultat;
     }
 
+    /**
+     * Afficher un profil
+     *
+     * @param $id_compte $id_compte [explicite description]
+     */
     function showProfil($id_compte)
     {
         $bdd = Bdd::Connexion();
@@ -218,6 +208,9 @@ class CompteModel
         return $resultat;
     }
 
+    /**
+     * Suggestion des comptes dans la page HOME
+     */
     function accountSuggestion()
     {
         $bdd = Bdd::connexion();
@@ -227,6 +220,10 @@ class CompteModel
         return $resultat;
     }
 
+    /**
+     * Affichage de tout les comptes dans EXPLORE
+     *
+     */
     function seeAllAccounts()
     {
         $bdd = Bdd::Connexion();
@@ -235,15 +232,4 @@ class CompteModel
         $bdd = null;
         return $resultat;
     }
-
-    /* function getCompteAll($id_compte)
-    {
-        $bdd = Bdd::Connexion();
-        $sql = 'SELECT * FROM compte 
-            LEFT JOIN article ON compte.id_compte = article.id_compte
-            WHERE compte.id_compte = :id_compte';
-        $compte = $bdd->prepare($sql);
-        $compte->execute([':id_compte' => $id_compte]);
-        return $compte->fetchAll(PDO::FETCH_ASSOC);
-    } */
 }

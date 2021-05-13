@@ -3,6 +3,12 @@
 class ArticleModel
 {
 
+    /**
+     * Method qui récupère tout les articles d'un compte avec l'id_compte
+     *
+     * @param $id_compte 
+     *
+     */
     function getAllArticles($id_compte)
     {
         $bdd = Bdd::Connexion();
@@ -15,12 +21,11 @@ class ArticleModel
     }
 
     /**
-     * voirArticle
+     * Récupère l'article qui correspond à l'id_article envoyé
      *
      * @param  int $id_article
-     * @return void
      */
-    function getArticleModel($id_article)
+    function getArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM article 
@@ -36,13 +41,12 @@ class ArticleModel
     }
 
     /**
-     * cr
+     * créer un article
      *
      * @param  int $media
      * @param  mixed $titre
      * @param  mixed $contenu
      * @param  int $id_compte
-     * @return void
      */
     function createArticle($media, $titre, $contenu, $id_compte)
     {
@@ -62,16 +66,15 @@ class ArticleModel
     }
 
     /**
-     * setArticle
+     * Modifier un article 
      *
      * @param  int $id_article
      * @param  mixed $media
      * @param  mixed $titre
      * @param  mixed $contenu
      * @param  int $id_compte
-     * @return void
      */
-    function setArticleModel($media, $titre, $contenu, $id_article)
+    function setArticle($media, $titre, $contenu, $id_article)
     {
         $bdd = Bdd::Connexion();
 
@@ -94,10 +97,9 @@ class ArticleModel
     }
 
     /**
-     * deleteArticle
+     * Effacer un article correspondant à l'id_article envoyé
      *
      * @param  int $id_article
-     * @return void
      */
     function deleteArticle($id_article)
     {
@@ -114,6 +116,12 @@ class ArticleModel
 
 
 
+    /**
+     * Effacer tout les articles d'un compte à partir de l'id_compte
+     *
+     * @param $id_compte
+     *
+     */
     function deleteAllArticles($id_compte)
     {
         $bdd = Bdd::Connexion();
@@ -128,9 +136,7 @@ class ArticleModel
     }
 
     /**
-     * Method lastArticles
-     *
-     * @return void
+     * Renvoie les articles par ordre du plus récent au plus vieux 
      */
     function lastArticles()
     {
@@ -144,6 +150,10 @@ class ArticleModel
         return $articles;
     }
 
+    /**METHOD NOT USED
+     * Renvoie les articles par ordre du + liké au - liké
+     *
+     */
     function showArticlesByLikes()
     {
         $bdd = Bdd::Connexion();
