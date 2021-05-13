@@ -1,3 +1,4 @@
+<!-- boucle qui affiche chaque profil de gretagram sous forme de card bootstrap -->
 <div class="container mt-5">
     <div class="d-flex flex-wrap justify-content-around">
         <?php foreach ($datas['compteVisite'] as $data) { ?>

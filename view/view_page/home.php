@@ -1,4 +1,4 @@
-<!-- BLOCK  BODY STORIES POST ET PROFIL / SUGGESTION-->
+<!-- BLOCK BODY STORIES POST ET PROFIL / SUGGESTION-->
 <? DebugFacade::dump($datas); ?>
 
 <div class="mt-4">
@@ -6,7 +6,7 @@
         <div class="w-100">
             <div class="row  justify-content-center">
                 <div class="col-sm-6 RESPPOST">
-                    <!-- START OF STORIES -->
+                    <!-- BLOC DES STORIES fonctionnalitée à produire -->
                     <div class="card disabled">
                         <div class="card-body d-flex justify-content-start">
                             <ul class="list-unstyled mb-0">
@@ -34,25 +34,32 @@
                         </div>
                     </div>
                     <!-- END OF STORIES -->
-                    <!-- START OF POSTS -->
+                    <!-- BLOCK DES POSTS -->
                     <?php
                     foreach ($datas['article'] as $article) { ?>
                         <div class="d-flex flex-column mt-4 mb-4">
                             <div class="card">
                                 <div class="card-header p-3">
                                     <div class="d-flex flex-row align-items-center">
+                                        //Entête cliquable qui redirige vers le compte de l'article
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
-                                            <a href="/Compte/<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><img src="<?= $article['photo'] ?>" style="transform: scale(3); width: 100%; position: absolute; left: 0;"></a>
+                                            <a href="/Compte/<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;">
+                                                <img src="<?= $article['photo'] ?>" style="transform: scale(3); width: 100%; position: absolute; left: 0;"></a>
                                         </div>
-                                        <a href="/Compte/<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;"><span class="font-weight-bold"><?= $article['pseudo'] ?></span></a>
+                                        <a href="/Compte/<?= $article['id_compte'] ?>" style="text-decoration:none; color:black;">
+                                            <span class="font-weight-bold"><?= $article['pseudo'] ?></span>
+                                        </a>
                                     </div>
                                 </div>
+                                //Photo cliquable qui redirige vers le compte de la photo
                                 <div class="card-body p-0">
                                     <div class="embed-responsive embed-responsive-1by1">
-                                        <a href="/Article&id_article=<?= $article['id_article'] ?>" style="text-decoration:none; color:black;"><img class="embed-responsive-item" src="<?= $article['media'] ?>" /></a>
+                                        <a href="/Article&id_article=<?= $article['id_article'] ?>" style="text-decoration:none; color:black;">
+                                            <img class="embed-responsive-item" src="<?= $article['media'] ?>" /></a>
                                     </div>
                                     <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1">
                                         <ul class="list-inline d-flex flex-row align-items-center m-0">
+                                            //On vérifie avec une condition si l'article est déjà liké par le compte connecté
                                             <li class="list-inline-item">
                                                 <button class="btn p-0 toggle-like icon-post" data-text="Like" data-article="<?= $article['id_article']; ?>">
                                                     <i class="fa-heart <?php echo ($article['articleAlreadyLiked']) ? 'fas' : 'far'; ?>"></i>
@@ -76,7 +83,12 @@
                                         </div>
                                     </div>
                                     <div class="pl-3 pr-3 pb-2">
-                                        <strong class="d-block nb_likes" data-article="<?= $article['id_article'] ?>"><?php echo (!empty($article['nbLikesForArticle'])) ? $article['nbLikesForArticle'] : '0'; ?> Like<?php echo ($article['nbLikesForArticle'] && $article['nbLikesForArticle'] > 1) ? 's' : ''; ?> </strong>
+                                        //Conditions pour afficher like ou likeS.
+                                        <strong class="d-block nb_likes" data-article="<?= $article['id_article'] ?>">
+                                            <?php echo (!empty($article['nbLikesForArticle'])) ? $article['nbLikesForArticle'] : '0'; ?>
+                                            Like
+                                            <?php echo ($article['nbLikesForArticle'] && $article['nbLikesForArticle'] > 1) ? 's' : ''; ?>
+                                        </strong>
                                         <strong class="d-block"><?= $article['titre'] ?></strong>
                                         <p class="d-block mb-1"><?= $article['contenu'] ?></p>
                                         <span class="comment-list" data-article="<?= $article['id_article'] ?>">

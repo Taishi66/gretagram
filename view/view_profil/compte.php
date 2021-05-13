@@ -1,3 +1,4 @@
+<!-- TEMPLATE D'UN COMPTE VISITÉ, TEMPLATE DU COMPTE CONNECTÉ :'monProfil.php' -->
 <? DebugFacade::dump($datas); ?>
 <div class="d-flex justify-content-center RESPPROFIL" style="align-items:center">
     <img class="photo-profil img-thumbnail m-3" src="/<?= $datas['compteVisite'][0]['photo'] ?>">
@@ -11,6 +12,7 @@
             <div class="d-flex mr-3">
                 <p class="mr-2" style="font-weight:bold;"><?php echo $datas['compteVisite'][0]['publications']; ?></p> Publications
             </div>
+            <!-- Fonctionnalité d'abonnement à produire, valeur 'abonnes' et 'abonnements' sont NULL -->
             <div class="d-flex mr-3">
                 <p class="mr-2" style="font-weight:bold;"><?php echo $datas['compteVisite'][0]['abonnes']; ?></p> Abonnées
             </div>
@@ -23,11 +25,11 @@
         </div>
     </div>
 </div>
-
+<!-- container des articles du compte -->
 <div class="container">
     <div class="align-items-center">
         <div class="d-flex flex-wrap justify-content-center">
-            <?php
+            <?php //Boucle qui crée un thumbnail photo cliquable vers son article complet pour chaque article du compte
             foreach ($datas['compteVisite'] as $data) {
                 echo '<div class="card card-overlay" style="width: 18rem;">
                 <a href="/Article&id_compte=' . $data['id_compte'] . '&id_article=' . $data["id_article"] . '">

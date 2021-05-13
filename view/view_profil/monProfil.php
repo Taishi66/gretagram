@@ -1,3 +1,4 @@
+<!-- TEMPLATE DU COMPTE CONNECTÉ UNIQUEMENT, LES COMPTES VISITÉS : compte.php -->
 <div class="d-flex justify-content-center RESPPROFIL" style="align-items:center">
     <img class="photo-profil img-thumbnail m-3" src="<?php echo $datas['compte']['photo'] ?>">
     <div style="margin-top: 30px; margin-bottom:30px; text-align:left;">
@@ -42,7 +43,7 @@
 <div class="container">
     <div class="align-items-center">
         <div class="d-flex flex-wrap justify-content-center">
-            <?php
+            <?php //Boucle qui crée un thumbnail photo cliquable vers son article complet pour chaque article du compte 
             foreach ($datas['article'] as $data) {
                 echo '
                     <div class="card card-overlay" style="width: 18rem;">

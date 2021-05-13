@@ -38,7 +38,7 @@ class Render
     /**
      * Renvoie la vue du footer
      * @param $datas 
-     * @return void
+     * @return $var = contenu de l'include 
      */
     public function renderFooter($datas)
     {

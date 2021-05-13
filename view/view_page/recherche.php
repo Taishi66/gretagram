@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center m-3 flex-wrap">
-
+    //affiche chaque profil correspondant à la recherche sous forme de crad bootstrap
     <?php
     if (!empty($datas['recherche'])) {
         foreach ($datas['recherche'] as $data) {

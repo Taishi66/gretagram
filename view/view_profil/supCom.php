@@ -1,6 +1,6 @@
 <div class="card text-center">
     <div class="card-header">
-
+        <!-- Formulaire de suppressiond du commentaire-->
     </div>
     <form action="" method="POST" enctype="multipart/form-data">
         <div class="card-body">

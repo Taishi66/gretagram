@@ -130,7 +130,7 @@ class ArticleController extends ManagerController
     function modifierArticle()
     {
         $id_article = $this->validatorHelper->getValue('id_article', 0, 'integer');
-        $media = $this->validatorHelper->getValue('media');
+        $media = $this->uploadHelper->upload('media', CompteFacade::getComptePseudo());
         $titre = $this->validatorHelper->getValue('titre');
         $contenu = $this->validatorHelper->getValue('contenu');
 

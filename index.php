@@ -109,5 +109,5 @@ Dans ce cas c'est donc l'index qui renvoit la vue correspondante et non le contr
 $header = $render->renderHeader($vars['datas']);
 $content = $render->renderContent($vars['template'], $vars['datas']);
 $footer = $render->renderFooter($vars['datas']);
-//cela permet de meilleur performance et une organisation plus propre
+//cela permet de meilleur performance et un meilleur paramètrage du site
 return $render->showPage($header, $content, $footer);
