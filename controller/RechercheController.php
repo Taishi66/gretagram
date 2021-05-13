@@ -12,16 +12,16 @@ class RechercheController extends ManagerController
 
 
     public function recherche()
-    {
+    {   //On récupère la valeur de l'input
         $q = $this->validatorHelper->getValue("q");
-        if ($q !== null) {
+        if ($q !== null && !empty($q)) {
             $this->template = "view_page/recherche.php";
             $q = $this->validatorHelper->getValue("q");
             $resultat = $this->rechercheModel->research($q);
             $this->setSearch($resultat);
             return $this->renderController();
         } else {
-            $this->template = "error404.php";
+            $this->setMessage('Aucune correspondance', 'warning');
             return $this->renderController();
         }
     }

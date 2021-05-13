@@ -25,7 +25,7 @@
                     <input type="password" class="form-control" name="mdp" id="mdp" placeholder="Entrez votre mdp">
                 </div>
                 <br>
-                <button type="submit" class="btn-primary form-control">Valider</button>
+                <button type="submit" name="inscription" class="btn-primary form-control">Valider</button>
                 <br>
             </form>
         </div>

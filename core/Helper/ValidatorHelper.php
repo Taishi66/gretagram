@@ -10,9 +10,9 @@ class ValidatorHelper
     /**
      * Method getValue (au lieu d'utiliser superVariable $_GET, c'est plus sécurisé )
      *
-     * @param $key $key [explicite description]
-     * @param $default_value $default_value [explicite description]
-     * @param $typeOfValue $typeOfValue [explicite description]
+     * @param $key 
+     * @param $default_
+     * @param $typeOfValue 
      *
      * @return $value
      */
@@ -47,9 +47,9 @@ class ValidatorHelper
 
 
     /**
-     * Method verfNomPrenom
+     * Method pour checker le nom et le prenom 
      *
-     * @param $valeur $valeur [explicite description]
+     * @param $valeur 
      *
      * @return void
      */
@@ -64,9 +64,9 @@ class ValidatorHelper
     }
 
     /**
-     * Method verfEmail
+     * Method Regex pour vérifier le mail
      *
-     * @param $valeur $valeur [explicite description]
+     * @param $valeur
      *
      * @return void
      */

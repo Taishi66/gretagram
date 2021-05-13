@@ -1,6 +1,10 @@
 <?php
 
-class ManagerController
+/**
+ * ManagerController
+ * CLASSE PARENTE ET HERITAGE DE CHAQUE CONTROLLER
+ */
+class ManagerController //
 {
 
     public $message = null;
@@ -17,6 +21,9 @@ class ManagerController
     public $validatorHelper;
     public $uploadHelper;
 
+    /**
+     * S'il ya un User connecté au moment de son appel, $compte prendra en valeur ses données
+     */
     public function __construct()
     {
         if (SessionFacade::getUserId()) {
@@ -26,6 +33,9 @@ class ManagerController
         $this->uploadHelper = new UploadHelper();
     }
 
+    /**
+     * Renvoie la vue et un array de données
+     */
     public function renderController()
     {
         return [
@@ -34,6 +44,10 @@ class ManagerController
         ];
     }
 
+    /**
+     * Me permet de créer un array contenant toute les datas nécessaires
+     * aux requêtes utilisateur à l'aide de setter/getter
+     */
     public function buildDatas()
     {
         $output = [];
@@ -65,7 +79,6 @@ class ManagerController
         if (!empty($this->getArticleAlreadyLiked())) {
             $output['articleAlreadyLiked'] = $this->getArticleAlreadyLiked();
         }
-
 
         $output['user'] = SessionFacade::getUserSession();
 

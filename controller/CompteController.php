@@ -24,28 +24,41 @@ class CompteController extends ManagerController
         $id = SessionFacade::getUserId();
         $pseudo = $this->validatorHelper->getValue("pseudo");
         $description_compte = $this->validatorHelper->getValue("description_compte");
-        $photo = $this->uploadHelper->upload("photo", SessionFacade::getUserName());
         $this->template = 'view_inscription/creAccount.php';
+        $this->setMessage('Créez votre compte pour pouvoir partager vos photos!', 'success');
+        $photo = $this->uploadHelper->upload("photo", SessionFacade::getUserName());
+
 
         if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
-            //var_dump($pseudo);
-            if ($this->compteModel->creAccount($id, $photo, $pseudo, $description_compte)) {
-                $this->redirectTo('Profil');
-                exit;
-            } else {
-                $this->setMessage('Création de compte non enregistrée', 'warning');
-            }
-            $this->setMessage('Données manquantes', 'warning');
+            var_dump("ici");
+            $this->compteModel->creAccount($id, $photo, $pseudo, $description_compte);
+            $this->redirectTo('Profil');
+            exit;
+        } else {
+            $this->setMessage('Compte non enregistrée', 'warning');
         }
+
         return $this->renderController();
     }
 
+
+
+    /**
+     * Method afficher un compte à partir d'un article 
+     *
+     * @return void
+     */
     function voirCompteArticle()
     {
         $id_article = $this->validatorHelper->getValue('id_article');
         return $this->compteModel->getCompteFromArticle($id_article);
     }
 
+    /**
+     * Method Suggestion des comptes dans HOME
+     *
+     * @return void
+     */
     function suggestionCompte()
     {
         return $this->compteModel->accountSuggestion();
@@ -68,8 +81,8 @@ class CompteController extends ManagerController
         //$this->setCompte($this->compteModel->showProfil($id_compte));
         $this->setCom($this->commentaireModel->showAllcomFromArticle($id_compte));
         $compteVisite = $this->compteModel->showProfil($id_compte);
-        $compteVisite_ = array();
-        if (isset($compteVisite)) {
+        $compteVisite_ = array(); //je crée un array vide
+        if (isset($compteVisite)) { //et je push dedans de nouvelles clefs/valeurs pour les afficher ensuite
             foreach ($compteVisite as $compte) {
                 $compte_ = $compte;
                 $compte_['nbLikesForArticle'] = $this->likeController->getNbLikes($compte['id_article']);
@@ -93,10 +106,10 @@ class CompteController extends ManagerController
         $photo = $this->uploadHelper->upload("photo", CompteFacade::getComptePseudo());
         $description_compte = $this->validatorHelper->getValue("description_compte");
         $this->template = 'view_profil/monProfil.php';
-
+        //Pas besoin de remplir tout les champs
         if (!empty($pseudo) || !empty($photo) || !empty($description_compte)) {
             $this->compteModel->setCompte($pseudo, $photo, $description_compte, $id_compte);
-            return $this->renderController();
+            return $this->setMessage('Compte modifié', 'primary');
         } else {
             $this->setMessage('Modification échouée', 'warning');
             return $this->renderController();
@@ -104,6 +117,11 @@ class CompteController extends ManagerController
         return $this->renderController();
     }
 
+    /**
+     * Method afficher Tout Les Comptes
+     *
+     * @return void
+     */
     function afficherToutLesComptes()
     {
         $this->template = 'view_page/explore.php';

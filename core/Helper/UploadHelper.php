@@ -7,23 +7,24 @@ class UploadHelper
     {
 
         $nomFichier = $_FILES[$media]["name"]; //elephanieeec.jpg
-        $sanitizedNomFichier = preg_replace("/\s+/", "", $nomFichier,);
-        $extension = explode(".", $nomFichier); // tranforme la chaise decaractere en tableau array()
+        $trimNomFichier = trim($nomFichier); //supprime les espaces dans le nom du fichier au début et à la fin
+        $sanitizedNomFichier = preg_replace('/\s\s+/', ' ', $trimNomFichier); //Supprime les espaces en milieu de chaine
+        $extension = explode(".", $sanitizedNomFichier); // tranforme la chaine decaractere en tableau array()
 
-        $extension = end($extension); // je recupere la dernier donnée du tableau 
+        $extension = end($extension); // je récupère la dernière donnée du tableau 
         $fichierTmp = $_FILES[$media]["tmp_name"];
 
         // je teste l'extension
         // si different de "true" donc "false" entre dans la condition
         if (!$this->extensionFichier($extension)) {
-            echo "erreur extension";
-            return false; // si il entre dans la condition il s'arrete
+            error_log("erreur extension");
+            return false; // s'il entre dans la condition il s'arrête
         }
 
         // je teste le mime type
         // si different de "true" donc "false" entre dans la condition
         if (!$this->typeContenuFichie($fichierTmp)) {
-            echo "erreur du mime";
+            error_log("erreur du mime");
             return false; // si il entre dans la condition il s'arrete
         }
 
@@ -33,7 +34,7 @@ class UploadHelper
 		$tag = rtrim( $tag, '_' );
 		$tag = strtolower( $tag );
 		return $tag;
-	}*/
+    }*/
 
         $nomModifiee = $user . '/' . $sanitizedNomFichier;
         $fichierFinal = "uploads/" . basename($nomModifiee);
@@ -49,7 +50,7 @@ class UploadHelper
     /**
      * Teste l'extension du fichier 
      * @param $type le type du fichier image ou cv
-     * @param $extension l'extetion du fichier qu'on verifie si il ce trouve dans le tableau
+     * @param $extension l'extention du fichier qu'on verifie s'il se trouve dans le tableau
      */
     public function extensionFichier($extension)
     {

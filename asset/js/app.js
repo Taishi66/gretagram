@@ -1,9 +1,13 @@
 $(document).ready(function() {
+    //une fois la page chargé
     $(document).on('click', 'button.open-commentaire', function() {
+        //crée un onclick sur le button class open-commentaire et on execute la fonction
         var element = $(this);
         var article = element.data('article');
+        //correspond à $this->data-article, attribut div commentaire
 
         $('.commentaire[data-article="' + article + '"]').removeClass('hidden');
+        //on retire 
         element.remove()
     })
 

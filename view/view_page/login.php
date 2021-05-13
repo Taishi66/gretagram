@@ -20,7 +20,7 @@
                 <button type="submit" class="btn-primary form-control">Connexion</button>
                 <br>
             </form>
-            <p>Vous n'avez pas de compte? <a href="view_inscription/inscription">Inscrivez-vous.</a></p>
+            <p>Vous n'avez pas de compte? <a href="Inscription">Inscrivez-vous.</a></p>
         </div>
     </div>
 </div>

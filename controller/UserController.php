@@ -48,44 +48,40 @@ class UserController extends ManagerController
         //SI je souhaite supprimer mon compte
         if (isset($_POST['delete-compte'])) {
             $id_compte = CompteFacade::getCompteId();
-            $this->likeModel->supprimeAllLike($id_compte);
+            $this->likeModel->supprimeAllLike($id_compte); //ordre de suppression de données à suivre
             $this->commentaireController->supprimerToutLesCommentaires($id_compte);
             $this->article->effacerToutLesArticle($id_compte);
             CompteFacade::EraseAccount();
             $this->userModel->deleteUser(SessionFacade::getUserId());
-            $_SESSION = array('');
-            $this->setMessage('Votre compte a définitivement été supprimé');
-            return $this->redirectTo('/');
+            SessionFacade::clearSession();
+            exit;
         }
 
         return $this->renderController();
     }
 
     /**
-     * setInscription
+     * S'inscrire avant de créer son compte
      *
      * @return void
      */
     public function nouvelleInscription()
     {
-        // je verifie que j'ai envoyé le formulaire
-        // si le formulaire est envoyé j'entre dans la condition
-        // si non j'affiche la vue du formulaire dans else
-
         $this->template = 'view_inscription/inscription.php';
-
+        //On récupère les valeurs des inputs
         $nom = $this->validatorHelper->verfNomPrenom($this->validatorHelper->getValue("nom"));
         $prenom = $this->validatorHelper->verfNomPrenom($this->validatorHelper->getValue("prenom"));
         $email = $this->validatorHelper->verfEmail($this->validatorHelper->getValue("email"));
 
-        if (!empty($email) && !empty($nom) && !empty($prenom)) {
+        if (isset($_POST['inscription'])) {
             $mdp = password_hash($this->validatorHelper->getValue("mdp"), PASSWORD_DEFAULT);
+            //hashage du mdp pour sécuriser en BDD
 
-            if ($this->userModel->inscription($nom, $prenom, $email, $mdp)) {
-
-                $profil = $this->userModel->Login($email);
-                SessionFacade::setUserSession($profil);
-                $this->redirectTo('NoAccount');
+            if (!empty($email) && !empty($nom) && !empty($prenom) && !empty($mdp)) {
+                $this->userModel->inscription($nom, $prenom, $email, $mdp);
+                $profil = $this->userModel->Login($email); // stock les données du nouvel user
+                SessionFacade::setUserSession($profil); //Pour ensuite ouvrir la session 
+                $this->redirectTo('NoAccount'); //redirige vers la création du compte
             } else {
                 $this->setMessage('Inscription échouée', 'warning');
                 return $this->renderController();
@@ -93,13 +89,11 @@ class UserController extends ManagerController
         } else {
             $this->renderController();
         }
-        return  $this->renderController();
+        return $this->renderController();
     }
 
     /**
-     * getLogin
-     *
-     * @return void
+     * Se connecter à son compte
      */
     public function seConnecter()
     {
@@ -123,6 +117,6 @@ class UserController extends ManagerController
 
     function deconnexion()
     {
-        return SessionFacade::clearSession();
+        return SessionFacade::clearSession(); //vide l'array SESSION
     }
 }

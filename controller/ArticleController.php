@@ -170,9 +170,9 @@ class ArticleController extends ManagerController
         $this->template = 'view_page/home.php';
         $articles = $this->articleModel->lastArticles();
 
-        $articles_ = array();
+        $articles_ = array(); //je crée un array vide
         if (!empty($articles)) {
-            foreach ($articles as $article) {
+            foreach ($articles as $article) { //Et je push dedans de nouvelles clefs/valeurs pour pouvoir les afficher
                 $article_ = $article;
                 $article_['commentaires'] = $this->commentaireModel->showAllComFromArticle($article['id_article']);
                 $article_['nbLikesForArticle'] = $this->likeController->getNbLikes($article['id_article']);

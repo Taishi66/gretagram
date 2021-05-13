@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Facade données USER
+ */
 class SessionFacade
 {
 

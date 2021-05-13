@@ -40,12 +40,13 @@
 
 <pre style="display:none;"><?php var_dump($datas['compte']) ?></pre>
 
-<div class="container">
-    <div class="align-items-center">
-        <div class="d-flex flex-wrap justify-content-center">
-            <?php //Boucle qui crée un thumbnail photo cliquable vers son article complet pour chaque article du compte 
-            foreach ($datas['article'] as $data) {
-                echo '
+<?php if ($datas['article']) { ?>
+    <div class="container">
+        <div class="align-items-center">
+            <div class="d-flex flex-wrap justify-content-center">
+                <?php //Boucle qui crée un thumbnail photo cliquable vers son article complet pour chaque article du compte 
+                foreach ($datas['article'] as $data) {
+                    echo '
                     <div class="card card-overlay" style="width: 18rem;">
                         <a href="/Article&id_article=' . $data['id_article'] . '">
                             <div class="img-overlay" style="
@@ -63,12 +64,20 @@
                             </div>
                         </a>
                     </div>';
-            }
-            ?>
+                }
+                ?>
+            </div>
         </div>
     </div>
-</div>
-
+<?php } else { ?>
+    <div class="card mb-3 mt-5">
+        <img class="card-img-top" src="https://picsum.photos/1115/200" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title text-center">Hello!</h2>
+            <h3 class="card-text text-center">Tu peux maintenant créer ton premier post en cliquant sur <i class="fas fa-dharmachakra"></i> à côté de ton pseudo!!</h3>
+        </div>
+    </div>
+<?php } ?>
 
 <!-- Modal Nouveau Post-->
 <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-hidden="true">

@@ -95,7 +95,7 @@
                                         <span class="comment-list" data-article="<?= $article['id_article'] ?>">
                                             <?php if (!empty($article['commentaires'])) {
                                                 foreach ($article['commentaires'] as $key => $commentaire) { ?>
-                                                    <!-- Condition si commentaires > 0 alors on les affiches -->
+                                                    <!-- Condition si nombre commentaires > 0 alors on les affiches -->
                                                     <div class="commentaire <?php echo ($key > 0) ? 'hidden' : ''; ?>" data-article="<?= $article['id_article'] ?>">
                                                         <div>
                                                             <strong id="comPseudo" class="d-block"><?= $commentaire['pseudo'] ?></strong>

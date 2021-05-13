@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Façade données du COMPTE de l'user connecté
+ */
 class CompteFacade
 {
     static private $id_user;
