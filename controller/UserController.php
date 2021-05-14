@@ -20,8 +20,12 @@ class UserController extends ManagerController
         parent::__construct(); //récupère les méthodes de la classe parente = validatorHelper
     }
 
-    /**
-     * afficherMonprofil
+    /** 
+     * 
+     *  Afficher mon profil et ses données
+     *  Modifier son compte
+     *  Créer un article
+     *  Supprimer son compte
      *
      * @return Compte User + Article
      */

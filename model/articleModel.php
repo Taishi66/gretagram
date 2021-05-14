@@ -12,7 +12,7 @@ class ArticleModel
     function getAllArticles($id_compte)
     {
         $bdd = Bdd::Connexion();
-        $sql = 'SELECT * FROM article WHERE article.id_compte = :id_compte';
+        $sql = 'SELECT * FROM article WHERE article.id_compte = :id_compte ORDER BY article.id_article DESC';
         $articles = $bdd->prepare($sql);
         $articles->execute([':id_compte' => $id_compte]);
         $resultat = $articles->fetchAll(PDO::FETCH_ASSOC);
