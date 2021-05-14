@@ -8,7 +8,7 @@
 
 ### 🍥 Peux tu nous parler plus en détail du code?
 
- Alors le sité est codé suivant une architecture **MVC**, à 90% en **PHP** pur avec une touche de **Javascript** pour le rendre plus dynamique.
+ Alors le site est codé suivant une architecture **MVC**, à 90% en **PHP** pur avec une touche de **Javascript** pour le rendre plus dynamique.
  Le design est quant à lui réalisé avec **Bootstrap**, le tout avec l'éditeur de code **VSCODE**
  
 ### 🍜 Ok et les fonctionnalitées dans tout ça?
