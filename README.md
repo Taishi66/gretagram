@@ -12,7 +12,7 @@
  Le design est quant à lui réalisé avec **Bootstrap**, le tout avec l'éditeur de code **VSCODE**
  
 ### Ok et les fonctionnalitées dans tout ça?
-<img align="right" width="55%" alt="GIF" src="/asset/img/simpson.gif"></img>
+<img align="right" width="55%" alt="GIF" src="/asset/img/simpson1.gif"></img>
 
 **Bon, pour être honnête, le site est encore en construction, alors il manque pas mal de fonctionnalitées... 😕, mais chaque chose en son temps non ?**
   - [x] Se créer un compte et se connecter
