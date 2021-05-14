@@ -1,37 +1,43 @@
 $(document).ready(function() {
     //une fois la page chargé
     $(document).on('click', 'button.open-commentaire', function() {
-        //crée un onclick sur le button class open-commentaire et on execute la fonction
-        var element = $(this);
-        var article = element.data('article');
-        //correspond à $this->data-article, attribut div commentaire
+            //crée un évènement onclick sur le button class open-commentaire et on execute la fonction
+            var element = $(this);
+            var article = element.data('article');
+            //correspond à $this->data-article, attribut div commentaire
 
-        $('.commentaire[data-article="' + article + '"]').removeClass('hidden');
-        //on retire 
-        element.remove()
-    })
-
+            $('.commentaire[data-article="' + article + '"]').removeClass('hidden');
+            //on retire la classe hidden
+            element.remove()
+        })
+        //Nouvel évènement onclick sur le button avec la classe toggle-like
     $(document).on('click', 'button.toggle-like', function() {
         var element = $(this);
-        var article = element.data('article');
-        var text = element.data('text');
+        var article = element.data('article'); //data-article
+        var text = element.data('text'); //data-text
 
-        $.post("/article", {
+        $.post("/article", { //??????????????????????
                 like: "OK",
                 id_article: article,
             },
             function(data, status) {
 
-                if (status == 'success') {
+                if (status == 'success') { //si le post est envoyé, on parse les données JSON crées par le controller
                     var datas = JSON.parse(data);
+                    /*$output = [
+                                    'nb_likes' => $this->likeModel->getNbLikeForArticle($id_article),
+                                    'is_liked' => $is_liked,
+                                ];
+                                echo json_encode($output); //retourne la représentation JSON d'une valeur
+                                exit;*/
                     var nb_likes = datas.nb_likes;
                     var is_liked = datas.is_liked;
-
+                    //Il n'y pas like dans article.php alors est-ce nécessaire la partie avec data-text?
                     var like = (nb_likes > 1 && text != '') ? text + 's' : text;
                     $('.nb_likes[data-article="' + article + '"]').empty().append(nb_likes + ' ' + like);
                     if (is_liked == true) {
                         $('.toggle-like[data-article="' + article + '"] i').removeClass('far').addClass('fas')
-                    } else {
+                    } else { //Détermine si le coeur du like sera plein ou vide en fonction de s'il est déjà liké par l'user
                         $('.toggle-like[data-article="' + article + '"] i').removeClass('fas').addClass('far')
                     }
 
@@ -59,7 +65,15 @@ $(document).ready(function() {
             function(data, status) {
                 if (status == 'success') {
                     var datas = JSON.parse(data);
-                    // datas.nb_comments
+                    /*$output = [
+                                    'pseudo' => CompteFacade::getComptePseudo(),
+                                    'message' => 'commentaire posté!',
+                                    'nb_comments' => $this->commentaireModel->getNbcomFromArticle($id_article),
+                                    'commentaire' => $this->commentaireModel->getLastComFromArticle($id_article)
+                                ];
+            echo json_encode($output); //retourne la représentation JSON d'une valeur
+            exit;
+                    */
                     var notif = '<div class="alert alert-success notif-temporaire">' + datas.message + '</div>';
                     if (media_page == "media") {
                         parentElement.find("input[name=comment]").val('');
