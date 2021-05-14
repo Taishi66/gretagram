@@ -14,7 +14,7 @@
 ### Ok et les fonctionnalitées dans tout ça?
 <img align="right" width="55%" alt="GIF" src="/asset/img/simpson.gif"></img>
 
-**Bon, pour être honnête, le site est encore en construction, alors il manque encore pas mal de fonctionnalitées... 😕, mais chaque chose en son temps non ?**
+**Bon, pour être honnête, le site est encore en construction, alors il manque pas mal de fonctionnalitées... 😕, mais chaque chose en son temps non ?**
   - [x] Se créer un compte et se connecter
   - [x] Se déconnecter
   - [x] Partager ses photos sous forme de post
@@ -34,7 +34,7 @@
 
 ## On peut voir à quoi ça ressemble?
 
-<p align="center">Oui bien sûr! Il est en ligne depuis peu et tu peux le tester ⬇️ </p>
+<p align="center">Oui bien sûr! Il est en ligne depuis peu et tu peux tester la dernière version déployée à ce jour ⬇️ </p>
  <p align="center"><a href="">
     <img alt="Gretagram" width="50px" src="/asset/img/gramLOGOWHITE.png"/>
  </a></p>
