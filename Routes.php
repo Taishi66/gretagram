@@ -1,7 +1,7 @@
 <?php
+
 class Route
 {
-
     private $path;
     private $callable;
     private $matches = [];
@@ -22,10 +22,10 @@ class Route
      * $path = Regex pour dire le type de string(correspondance) qui sera remplacée par
      * une fonction lors de l'execution de preg_replace_callback()
      * $regex = Permet de vérifier toute la chaine, le 	drapeau ‘i’ permet de vérifier les majuscule/minuscules.
-     * 
-     * preg_match($regex, 2nd param ce que je dois matcher,la variable dans 
-     * laquelle on va sauvegarder les différents match que l’on aura.) 
-     * @param $url 
+     *
+     * preg_match($regex, 2nd param ce que je dois matcher,la variable dans
+     * laquelle on va sauvegarder les différents match que l’on aura.)
+     * @param $url
      *
      * @return bool
      */
@@ -64,8 +64,8 @@ class Route
      * Sépare en deux string à l'aide d'un #
      * Concatène la string Controller à la 1ere partie du callable
      * Ce qui instanciera un nouvel objet controller
-     * Il parcours derrière les méthodes de ce nouvel objet pour trouver celle 
-     * qui correspond à la 2ème partie du callable et l'execute grâce à 
+     * Il parcours derrière les méthodes de ce nouvel objet pour trouver celle
+     * qui correspond à la 2ème partie du callable et l'execute grâce à
      * call_user_func_array
      * @return l'execution d'une methode controller
      * ou alors la méthodes qui correspondra aux différents matches

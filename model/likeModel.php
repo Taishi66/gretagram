@@ -2,13 +2,12 @@
 
 class LikeModel
 {
-
     /**
      * Method pour supprimer un like
      *
-     * @param $id_article 
+     * @param $id_article
      */
-    function supprimeLike($id_article)
+    public function supprimeLike($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('DELETE FROM likes WHERE id_article = :id_article');
@@ -21,9 +20,9 @@ class LikeModel
     /**
      * Supprimer tout les likes d'un compte
      *
-     * @param $id_compte 
+     * @param $id_compte
      */
-    function supprimeAllLike($id_compte)
+    public function supprimeAllLike($id_compte)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('DELETE FROM likes WHERE id_compte = :id_compte');
@@ -34,12 +33,12 @@ class LikeModel
     }
 
     /**
-     * Method ajouter un like 
+     * Method ajouter un like
      *
      * @param $id_article
-     * @param $id_compte 
+     * @param $id_compte
      */
-    function ajouterLike($id_article, $id_compte)
+    public function ajouterLike($id_article, $id_compte)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('INSERT INTO likes (id_article, id_compte)
@@ -55,10 +54,10 @@ class LikeModel
     /**
      * Method enlever un Like
      *
-     * @param $id_article 
-     * @param $id_compte 
+     * @param $id_article
+     * @param $id_compte
      */
-    function enleverLike($id_article, $id_compte)
+    public function enleverLike($id_article, $id_compte)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('DELETE FROM likes
@@ -67,16 +66,17 @@ class LikeModel
             ':id_article' => $id_article,
             ':id_compte' => $id_compte
         ]);
-        return $resultat;;
+        return $resultat;
+        ;
     }
 
 
     /**
      * Récupérer un like pour un article
      *      *
-     * @param $id_article 
+     * @param $id_article
      */
-    function getLikeForArticle($id_article)
+    public function getLikeForArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT * FROM likes WHERE id_article =:id_article');
@@ -90,9 +90,9 @@ class LikeModel
     /**
      * Récupérer le nombre de like
      *
-     * @param $id_article 
+     * @param $id_article
      */
-    function getNbLikeForArticle($id_article)
+    public function getNbLikeForArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT id_like FROM likes WHERE id_article =:id_article');
@@ -108,7 +108,7 @@ class LikeModel
      * @param $id_article $id_article [explicite description]
      * @param $id_compte $id_compte [explicite description]
      */
-    function getLikeForArticleForCompte($id_article, $id_compte)
+    public function getLikeForArticleForCompte($id_article, $id_compte)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT * FROM likes WHERE id_article =:id_article AND id_compte=:id_compte');

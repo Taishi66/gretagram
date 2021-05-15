@@ -2,16 +2,15 @@
 
 class InstagramController extends ManagerController
 {
-
     private $insta;
 
-    function __construct()
+    public function __construct()
     {
         $this->insta = new InstagramService();
         parent::__construct();
     }
 
-    function afficherMesMedias()
+    public function afficherMesMedias()
     {
         $this->template = "profil/profil_Insta.php";
         $this->setArticle($this->insta->getMedias()); //récupère les donnés des articles de mon compte instagram!

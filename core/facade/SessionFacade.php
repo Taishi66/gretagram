@@ -5,16 +5,15 @@
  */
 class SessionFacade
 {
+    private static $user;
 
-    static private $user;
-
-    static function setUserSession($user)
+    public static function setUserSession($user)
     {
         static::$user = $user;
         $_SESSION['user'] = $user;
     }
 
-    static function getUserSession()
+    public static function getUserSession()
     {
         if (empty(static::$user)) {
             static::$user = $_SESSION['user'];
@@ -22,22 +21,22 @@ class SessionFacade
         return static::$user;
     }
 
-    static function getUserName()
+    public static function getUserName()
     {
         return self::getUserSession()['nom'];
     }
 
-    static function getUserPrenom()
+    public static function getUserPrenom()
     {
         return self::getUserSession()['prenom'];
     }
 
-    static function getUserId()
+    public static function getUserId()
     {
         return self::getUserSession()['id_user'];
     }
 
-    static function clearSession()
+    public static function clearSession()
     {
         unset($_SESSION['user']);
         unset(static::$user['user']);

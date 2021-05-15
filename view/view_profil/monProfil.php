@@ -44,7 +44,7 @@
     <div class="container">
         <div class="align-items-center">
             <div class="d-flex flex-wrap justify-content-center">
-                <?php //Boucle qui crée un thumbnail photo cliquable vers son article complet pour chaque article du compte 
+                <?php //Boucle qui crée un thumbnail photo cliquable vers son article complet pour chaque article du compte
                 foreach ($datas['article'] as $data) {
                     echo '
                     <div class="card card-overlay" style="width: 18rem;">

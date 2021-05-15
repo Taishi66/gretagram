@@ -2,16 +2,14 @@
 
 class UploadHelper
 {
-
     public function upload($media, $user)
     {
-
         $nomFichier = $_FILES[$media]["name"]; //elephanieeec.jpg
         $trimNomFichier = trim($nomFichier); //supprime les espaces dans le nom du fichier au début et à la fin
         $sanitizedNomFichier = preg_replace('/\s\s+/', ' ', $trimNomFichier); //Supprime les espaces en milieu de chaine
         $extension = explode(".", $sanitizedNomFichier); // tranforme la chaine decaractere en tableau array()
 
-        $extension = end($extension); // je récupère la dernière donnée du tableau 
+        $extension = end($extension); // je récupère la dernière donnée du tableau
         $fichierTmp = $_FILES[$media]["tmp_name"];
 
         // je teste l'extension
@@ -30,10 +28,10 @@ class UploadHelper
 
         //Function récupérée de wordpress
         /*private function sanitize_tag_type( $tag ) {
-		$tag = preg_replace( '/[^a-zA-Z0-9_*]+/', '_', $tag );
-		$tag = rtrim( $tag, '_' );
-		$tag = strtolower( $tag );
-		return $tag;
+        $tag = preg_replace( '/[^a-zA-Z0-9_*]+/', '_', $tag );
+        $tag = rtrim( $tag, '_' );
+        $tag = strtolower( $tag );
+        return $tag;
     }*/
 
         $nomModifiee = $user . '/' . $sanitizedNomFichier;
@@ -48,7 +46,7 @@ class UploadHelper
     }
 
     /**
-     * Teste l'extension du fichier 
+     * Teste l'extension du fichier
      * @param $type le type du fichier image ou cv
      * @param $extension l'extention du fichier qu'on verifie s'il se trouve dans le tableau
      */
@@ -56,11 +54,10 @@ class UploadHelper
     {
         $aExtension = array("jpg", "png", "jpeg", "gif");
         return in_array($extension, $aExtension); // "true" ou "false"
-
     }
 
     /**
-     * Teste le type-mime du fichier 
+     * Teste le type-mime du fichier
      * @param $type le type du fichier image ou cv
      * @param $typeMime le type-mime du fichier, on verifie si il ce trouve dans le tableau
      */
@@ -73,6 +70,5 @@ class UploadHelper
          */
         $mime = mime_content_type($fichier);
         return in_array($mime, $aTypeMyme); // "true" ou "false"
-
     }
 }

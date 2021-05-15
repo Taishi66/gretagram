@@ -1,4 +1,5 @@
 <?php
+
 // demarre une session
 session_start();
 
@@ -51,12 +52,12 @@ $router->post('Inscription', 'User#nouvelleInscription');
 //Route pour se créer un compte
 $router->get('NoAccount', 'Compte#nouveauCompte');
 $router->post('NoAccount', 'Compte#nouveauCompte');
-//Route pour aller au compte du profil connecté
+//Route accessible si connecté
 if (!empty(SessionFacade::getUserSession())) {
     $router->get('Instagram', 'Instagram#afficherMesMedias');
     $router->get('Profil', 'User#afficherMonprofil');
     $router->post('Profil', 'User#afficherMonprofil');
-    //Route pour voir un article 
+    //Route pour voir un article
     $router->get('Article', 'Article#afficheArticleController');
     $router->post('Article', 'Article#afficheArticleController');
     //Route pour effacer un commentaire
@@ -69,7 +70,7 @@ if (!empty(SessionFacade::getUserSession())) {
     $router->post('Home', 'Article#AfficherDerniersArticles');
     //Route pour voir l'ensemble des comptes
     $router->get('Explore', 'Compte#afficherToutLesComptes');
-    //Route pour rediriger vers la visite d'un compte 
+    //Route pour rediriger vers la visite d'un compte
     $router->get('Compte/:id_compte', 'Compte#afficheProfil');
     $router->get('Compte', 'Compte#afficheProfil');
     //Route pour rechercher un profil

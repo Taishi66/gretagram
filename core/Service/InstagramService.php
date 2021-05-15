@@ -1,7 +1,7 @@
 <?php
+
 class InstagramService
 {
-
     private $url = 'https://graph.instagram.com/';
     private $token = 'IGQVJYMFNhM1c2dmxsb29qTXU3ZAUV2RUVtU25jTFNxTzliR1dxd2padjFRb2VpSHJPVnk4Ul93TkRZAVWw2ZAzFTd0lVSEJBX1BNN2xCdkFFbVpYZAEl6TklweEhjY2xVbHZAEQURLeUVB';
 

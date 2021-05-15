@@ -6,15 +6,14 @@
  */
 class DebugFacade
 {
-
     /**
      * Method dd
      * Dump and Die équivalent de var_dump; puis exit;
      * @param $var
      *
-     * 
+     *
      */
-    static function dd($var)
+    public static function dd($var)
     {
         $debug = new DebugHelper();
         return $debug->dd($var);
@@ -27,7 +26,7 @@ class DebugFacade
      * @param $var $var [explicite description]
      *
      */
-    static function dump($var)
+    public static function dump($var)
     {
         $debug = new DebugHelper();
         return $debug->dump($var);

@@ -4,7 +4,7 @@ class CommentaireController extends ManagerController
 {
     private $commentaireModel;
 
-    function __construct()
+    public function __construct()
     {
         $this->commentaireModel = new commentaireModel();
         parent::__construct();
@@ -13,7 +13,7 @@ class CommentaireController extends ManagerController
     /**
      * Method qui récupère tout les commentaires de la BDD
      */
-    function afficherToutLesCommentaires()
+    public function afficherToutLesCommentaires()
     {
         return $this->commentaireModel->toutLesCommentairesBDD();
     }
@@ -21,9 +21,9 @@ class CommentaireController extends ManagerController
     /**
      * Method affiche la totalité des commentaires d'un article
      *
-     * @param $id_article 
+     * @param $id_article
      */
-    function afficheListeCommentaire($id_article)
+    public function afficheListeCommentaire($id_article)
     {
         return $this->commentaireModel->showAllComFromArticle($id_article);
     }
@@ -33,7 +33,7 @@ class CommentaireController extends ManagerController
      *
      * @param $id_com
      */
-    function afficheCommentaire($id_com)
+    public function afficheCommentaire($id_com)
     {
         $id_com = $this->validatorHelper->getValue('id_com');
         return $this->commentaireModel->getCommentaire($id_com);
@@ -42,10 +42,10 @@ class CommentaireController extends ManagerController
     /**
      * Method ajouter un commentaire
      *
-     * @param $id_article 
-     * @param $id_compte 
+     * @param $id_article
+     * @param $id_compte
      */
-    function ajouterCommentaire($id_article, $id_compte)
+    public function ajouterCommentaire($id_article, $id_compte)
     {
         $contenu_com = $this->validatorHelper->getValue('commentaire');
         if (!empty($contenu_com)) {
@@ -66,7 +66,7 @@ class CommentaireController extends ManagerController
     /**
      * Method supprimer un commentaire
      */
-    function supprimerCommentaire()
+    public function supprimerCommentaire()
     {
         $this->template = "view_profil/supCom.php";
         $id_com = $this->validatorHelper->getValue('id_com', 'integer');
@@ -83,9 +83,9 @@ class CommentaireController extends ManagerController
     /**
      * Method supprimer tout les commentaires posté par un compte
      *
-     * @param $id_compte 
+     * @param $id_compte
      */
-    function supprimerToutLesCommentaires($id_compte)
+    public function supprimerToutLesCommentaires($id_compte)
     {
         return $this->commentaireModel->deleteAllComFromCompte($id_compte);
     }

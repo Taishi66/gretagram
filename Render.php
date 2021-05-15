@@ -1,18 +1,19 @@
 <?php
+
 class Render
 {
     /* Contenu rendu */
     private $content = null;
 
-    function __construct()
+    public function __construct()
     {
     }
 
 
     /**
      * Renvoie la vue envoyée par le contrôleur
-     * @param $template 
-     * @param $datas  
+     * @param $template
+     * @param $datas
      * @return void
      */
     public function renderContent($template, $datas)
@@ -28,12 +29,6 @@ class Render
     }
 
 
-    /**
-     * Les fonctions précèdentes sont stockées dans des variables
-     * On peut donc concaténer les vues dans l'ordre que l'on veut 
-     *
-     * @return void
-     */
     public function showPage()
     {
         echo $this->content;

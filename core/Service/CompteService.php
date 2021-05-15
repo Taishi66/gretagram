@@ -3,7 +3,6 @@
 
 class CompteService
 {
-
     private $compteModel = null;
 
     public function __construct()

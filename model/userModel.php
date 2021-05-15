@@ -2,11 +2,8 @@
 
 class UserModel
 {
-
-
-
     /**
-     * Method pour récupérer tout les users de la BDD 
+     * Method pour récupérer tout les users de la BDD
      */
     public function getAllUsers()
     {

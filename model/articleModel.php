@@ -2,14 +2,13 @@
 
 class ArticleModel
 {
-
     /**
      * Method qui récupère tout les articles d'un compte avec l'id_compte
      *
-     * @param $id_compte 
+     * @param $id_compte
      *
      */
-    function getAllArticles($id_compte)
+    public function getAllArticles($id_compte)
     {
         $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM article WHERE article.id_compte = :id_compte ORDER BY article.id_article DESC';
@@ -25,7 +24,7 @@ class ArticleModel
      *
      * @param  int $id_article
      */
-    function getArticle($id_article)
+    public function getArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM article 
@@ -47,7 +46,7 @@ class ArticleModel
      * @param  mixed $contenu
      * @param  int $id_compte
      */
-    function createArticle($media, $titre, $contenu, $id_compte)
+    public function createArticle($media, $titre, $contenu, $id_compte)
     {
         $bdd = Bdd::Connexion();
 
@@ -64,7 +63,7 @@ class ArticleModel
     }
 
     /**
-     * Modifier un article 
+     * Modifier un article
      *
      * @param  int $id_article
      * @param  mixed $media
@@ -72,7 +71,7 @@ class ArticleModel
      * @param  mixed $contenu
      * @param  int $id_compte
      */
-    function setArticle($media, $titre, $contenu, $id_article)
+    public function setArticle($media, $titre, $contenu, $id_article)
     {
         $bdd = Bdd::Connexion();
 
@@ -98,7 +97,7 @@ class ArticleModel
      *
      * @param  int $id_article
      */
-    function deleteArticle($id_article)
+    public function deleteArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = 'DELETE FROM article
@@ -118,7 +117,7 @@ class ArticleModel
      * @param $id_compte
      *
      */
-    function deleteAllArticles($id_compte)
+    public function deleteAllArticles($id_compte)
     {
         $bdd = Bdd::Connexion();
         $sql = 'DELETE FROM article
@@ -131,9 +130,9 @@ class ArticleModel
     }
 
     /**
-     * Renvoie les articles par ordre du plus récent au plus vieux 
+     * Renvoie les articles par ordre du plus récent au plus vieux
      */
-    function lastArticles()
+    public function lastArticles()
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->query('SELECT * FROM article 
@@ -148,7 +147,7 @@ class ArticleModel
      * Renvoie les articles par ordre du + liké au - liké
      *
      */
-    function showArticlesByLikes()
+    public function showArticlesByLikes()
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT * FROM articles ORDER BY likes DESC');

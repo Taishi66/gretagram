@@ -1,12 +1,11 @@
 <?php
+
 class CommentaireModel
 {
-
-
     /**
      * Renvoie tout les commentaires de la BDD
      */
-    function toutLesCommentairesBDD()
+    public function toutLesCommentairesBDD()
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->query('SELECT * FROM commentaire');
@@ -14,11 +13,11 @@ class CommentaireModel
     }
 
     /**
-     * @param $id_article 
+     * @param $id_article
      *
-     * @return Tout les commentaires d'un article 
+     * @return Tout les commentaires d'un article
      */
-    function showAllComFromArticle($id_article)
+    public function showAllComFromArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT * FROM commentaire 
@@ -31,11 +30,11 @@ class CommentaireModel
     }
 
     /**
-     * Renvoie le dernier commentaire d'un article 
+     * Renvoie le dernier commentaire d'un article
      *
-     * @param $id_article 
+     * @param $id_article
      */
-    function getLastComFromArticle($id_article)
+    public function getLastComFromArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT * FROM commentaire 
@@ -49,12 +48,12 @@ class CommentaireModel
     /**
      * Méthode pour poster un commentaire
      *
-     * @param $id_article 
+     * @param $id_article
      * @param $id_compte
      * @param $contenu_com
      *
      */
-    function postCom($id_article, $id_compte, $contenu_com = null, $date_com = null)
+    public function postCom($id_article, $id_compte, $contenu_com = null, $date_com = null)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('INSERT INTO commentaire(id_article,id_compte,contenu_com)
@@ -70,9 +69,9 @@ class CommentaireModel
     /**
      * Method pour effacer un commentaire
      *
-     * @param $id_com 
+     * @param $id_com
      */
-    function deleteCom($id_com)
+    public function deleteCom($id_com)
     {
         $bdd = Bdd::Connexion();
         $sql = 'DELETE FROM commentaire WHERE id_com = :id_com';
@@ -80,15 +79,16 @@ class CommentaireModel
         $resultat = $commentaire->execute([
             ":id_com" => $id_com
         ]);
-        return $resultat;;
+        return $resultat;
+        ;
     }
 
     /**
      * Methode effacer tous les commentaires d'un article
      *
-     * @param $id_article 
+     * @param $id_article
      */
-    function deleteComAllFromArticle($id_article)
+    public function deleteComAllFromArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = 'DELETE FROM commentaire WHERE id_article = :id_article';
@@ -96,17 +96,18 @@ class CommentaireModel
         $resultat = $commentaire->execute([
             ":id_article" => $id_article
         ]);
-        return $resultat;;
+        return $resultat;
+        ;
     }
 
 
 
     /**
      * Effacer tous les commentaires postés par un compte
-     * 
+     *
      * @param $id_compte $id_compte [explicite description]
      */
-    function deleteAllComFromCompte($id_compte)
+    public function deleteAllComFromCompte($id_compte)
     {
         $bdd = Bdd::Connexion();
         $sql = 'DELETE FROM commentaire WHERE id_compte = :id_compte';
@@ -114,7 +115,8 @@ class CommentaireModel
         $resultat = $commentaire->execute([
             ":id_compte" => $id_compte
         ]);
-        return $resultat;;
+        return $resultat;
+        ;
     }
 
     /**
@@ -122,7 +124,7 @@ class CommentaireModel
      *
      * @param $id_com
      */
-    function getCommentaire($id_com)
+    public function getCommentaire($id_com)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT * FROM commentaire WHERE id_com =:id_com');
@@ -134,9 +136,9 @@ class CommentaireModel
     /**
      * Récupérer le nombre de commentaire d'un article
      *
-     * @param $id_article 
+     * @param $id_article
      */
-    function getNbComFromArticle($id_article)
+    public function getNbComFromArticle($id_article)
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT id_com FROM commentaire WHERE id_article = :id_article');

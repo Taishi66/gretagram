@@ -5,7 +5,7 @@ class LikeController extends ManagerController
     private $likeModel;
 
 
-    function __construct()
+    public function __construct()
     {
         $this->likeModel = new likeModel();
         parent::__construct();
@@ -15,7 +15,7 @@ class LikeController extends ManagerController
      * Method permet de liker/disliker un article
      *
      */
-    function toggleLike()
+    public function toggleLike()
     {
         $this->template = 'article.php';
         $id_article = $this->validatorHelper->getValue("id_article");
@@ -25,7 +25,7 @@ class LikeController extends ManagerController
             //S'il récupère un like qui correspond aux id en paramètre alors on retire le like
             $this->likeModel->enleverLike($id_article, $id_compte);
         } else {
-            //S'il ne trouve pas de correspondance alors on ajoute le like 
+            //S'il ne trouve pas de correspondance alors on ajoute le like
             //is_like devient true
             $this->likeModel->ajouterLike($id_article, $id_compte);
             $is_liked = true;
@@ -42,9 +42,9 @@ class LikeController extends ManagerController
     /**
      * Method récupère le nombre de like d'un article
      *
-     * @param $id_article 
+     * @param $id_article
      */
-    function getNbLikes($id_article)
+    public function getNbLikes($id_article)
     {
         return $this->likeModel->getNbLikeForArticle($id_article);
     }
@@ -54,7 +54,7 @@ class LikeController extends ManagerController
      *
      * @param $id_article $id_article [explicite description]
      */
-    function checkIfUserHasLiked($id_article)
+    public function checkIfUserHasLiked($id_article)
     {
         $id_compte = CompteFacade::getCompteId();
         return $this->likeModel->getLikeForArticleForCompte($id_article, $id_compte);

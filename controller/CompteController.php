@@ -7,7 +7,7 @@ class CompteController extends ManagerController
     private $compteModel;
     private $likeController;
 
-    function __construct()
+    public function __construct()
     {
         $this->compteModel = new compteModel();
         $this->commentaireModel = new commentaireModel();
@@ -44,11 +44,11 @@ class CompteController extends ManagerController
 
 
     /**
-     * Method afficher un compte à partir d'un article 
+     * Method afficher un compte à partir d'un article
      *
      * @return void
      */
-    function voirCompteArticle()
+    public function voirCompteArticle()
     {
         $id_article = $this->validatorHelper->getValue('id_article');
         return $this->compteModel->getCompteFromArticle($id_article);
@@ -59,7 +59,7 @@ class CompteController extends ManagerController
      *
      * @return void
      */
-    function suggestionCompte()
+    public function suggestionCompte()
     {
         return $this->compteModel->accountSuggestion();
     }
@@ -70,7 +70,7 @@ class CompteController extends ManagerController
      *
      * @return void
      */
-    function afficheProfil($id_compte = null)
+    public function afficheProfil($id_compte = null)
     {
         if ($id_compte == CompteFacade::getCompteId()) {
             $this->redirectTo('Profil');
@@ -97,9 +97,9 @@ class CompteController extends ManagerController
     /**
      * Method modifier son compte
      *
-     * @param $id_compte 
+     * @param $id_compte
      */
-    function modifierCompte($id_compte)
+    public function modifierCompte($id_compte)
     {
         $id_compte = CompteFacade::getCompteId();
         $pseudo = $this->validatorHelper->getValue("pseudo");
@@ -122,7 +122,7 @@ class CompteController extends ManagerController
      *
      * @return void
      */
-    function afficherToutLesComptes()
+    public function afficherToutLesComptes()
     {
         $this->template = 'view_page/explore.php';
         $this->setCompteVisite($this->compteModel->seeAllAccounts());

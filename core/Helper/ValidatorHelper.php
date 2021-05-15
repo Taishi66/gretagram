@@ -2,7 +2,6 @@
 
 class ValidatorHelper
 {
-
     public function __construct()
     {
     }
@@ -10,9 +9,9 @@ class ValidatorHelper
     /**
      * Method getValue (au lieu d'utiliser superVariable $_GET, c'est plus sécurisé )
      *
-     * @param $key 
+     * @param $key
      * @param $default_
-     * @param $typeOfValue 
+     * @param $typeOfValue
      *
      * @return $value
      */
@@ -25,7 +24,7 @@ class ValidatorHelper
         $value = false;
         if (isset($_POST[$key]) || isset($_GET[$key])) {
             $value = isset($_POST[$key]) ? $_POST[$key] : $_GET[$key];
-            /* EXPRESSION TERNAIRE 
+            /* EXPRESSION TERNAIRE
             if (isset($_POST[$key])) {
                 return $_POST[$key];
             } else {
@@ -47,9 +46,9 @@ class ValidatorHelper
 
 
     /**
-     * Method pour checker le nom et le prenom 
+     * Method pour checker le nom et le prenom
      *
-     * @param $valeur 
+     * @param $valeur
      *
      * @return void
      */

@@ -1,23 +1,25 @@
+//une fois la page chargé
 $(document).ready(function() {
-    //une fois la page chargé
+    //crée un évènement onclick sur le button class open-commentaire et on execute la fonction
     $(document).on('click', 'button.open-commentaire', function() {
-            //crée un évènement onclick sur le button class open-commentaire et on execute la fonction
-            var element = $(this);
-            var article = element.data('article');
-            //correspond à $this->data-article, attribut div commentaire
+        var element = $(this);
 
-            $('.commentaire[data-article="' + article + '"]').removeClass('hidden');
-            //on retire la classe hidden
-            element.remove()
-        })
-        //Nouvel évènement onclick sur le button avec la classe toggle-like
+        //correspond à data-article="$this->data-article", attribut div commentaire
+        var article = element.data('article');
+        //on retire la classe hidden
+        $('.commentaire[data-article="' + article + '"]').removeClass('hidden');
+        element.remove()
+    })
+
+    //Nouvel évènement onclick sur le button avec la classe toggle-like
     $(document).on('click', 'button.toggle-like', function() {
         var element = $(this);
         var article = element.data('article'); //data-article
         var text = element.data('text'); //data-text
 
-        $.post("/article", { //??????????????????????
-                like: "OK",
+        // Je fais une requête post sur l'url /article
+        $.post("/article", {
+                like: "OK", //On force une valeur au paramètre like
                 id_article: article,
             },
             function(data, status) {
@@ -32,7 +34,7 @@ $(document).ready(function() {
                                 exit;*/
                     var nb_likes = datas.nb_likes;
                     var is_liked = datas.is_liked;
-                    //Il n'y pas like dans article.php alors est-ce nécessaire la partie avec data-text?
+                    //Si "like" n'estp pas écrit dans la présentation alors il renverra le data-text vide comme dans article.php
                     var like = (nb_likes > 1 && text != '') ? text + 's' : text;
                     $('.nb_likes[data-article="' + article + '"]').empty().append(nb_likes + ' ' + like);
                     if (is_liked == true) {
@@ -115,8 +117,8 @@ $(document).ready(function() {
                     $('.notif-temporaire').addClass('open');
 
                     window.setTimeout(function() {
-                        $('.notif-temporaire').removeClass('open');
-                    }, 3000)
+                            $('.notif-temporaire').removeClass('open');
+                        }, 3000) // 3sc temps de la notif
 
                 } else {
                     console.log('error');

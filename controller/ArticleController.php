@@ -2,7 +2,6 @@
 
 class ArticleController extends ManagerController
 {
-
     private $articleModel;
     private $commentaireModel;
     private $commentaireController;
@@ -10,7 +9,7 @@ class ArticleController extends ManagerController
     private $likeController;
     private $likeModel;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
 
@@ -24,14 +23,14 @@ class ArticleController extends ManagerController
 
 
     /**
-     * Method Affiche un article 
+     * Method Affiche un article
      *        Modifier
      *        Effacer
      *        Commenter
      *        Liker
      * @return void
      */
-    function afficheArticleController()
+    public function afficheArticleController()
     {
         $id_article = $this->validatorHelper->getValue('id_article', 0, 'integer');
         $this->template = 'view_profil/article.php';
@@ -49,7 +48,7 @@ class ArticleController extends ManagerController
             return $this->redirectTo('Profil');
         }
         //Si je souhaite laisser un commentaire à l'article
-        else if (!empty($this->validatorHelper->getValue('commentaire'))) {
+        elseif (!empty($this->validatorHelper->getValue('commentaire'))) {
             $this->commentaireController->ajouterCommentaire($id_article, CompteFacade::getCompteId());
             return $this->renderController();
         }
@@ -72,9 +71,9 @@ class ArticleController extends ManagerController
     /**
      * Method affiche la totalité des articles du compte
      *
-     * @param $id_compte 
+     * @param $id_compte
      */
-    function afficheListeArticles($id_compte)
+    public function afficheListeArticles($id_compte)
     {
         $id_compte = CompteFacade::getCompteId();
         $articles = $this->articleModel->getAllArticles($id_compte);
@@ -98,13 +97,13 @@ class ArticleController extends ManagerController
     /**
      * Method Créer un nouvel article
      *
-     * @param $media 
+     * @param $media
      * @param $titre
      * @param $contenu
      * @param $date_art
-     * @param $id_compte 
+     * @param $id_compte
      */
-    function nouvelArticle($media = null, $id_compte = null, $titre = null, $contenu = null)
+    public function nouvelArticle($media = null, $id_compte = null, $titre = null, $contenu = null)
     {
         $media = $this->uploadHelper->upload('media', CompteFacade::getComptePseudo());
         $id_compte = CompteFacade::getCompteId();
@@ -127,9 +126,9 @@ class ArticleController extends ManagerController
     /**
      * Method modifier un article
      *
-     * @param $id_article 
+     * @param $id_article
      */
-    function modifierArticle()
+    public function modifierArticle()
     {
         $id_article = $this->validatorHelper->getValue('id_article', 0, 'integer');
         $media = $this->uploadHelper->upload('media', CompteFacade::getComptePseudo());
@@ -145,7 +144,7 @@ class ArticleController extends ManagerController
      *
      * @param $id_article
      */
-    function effacerArticle($id_article)
+    public function effacerArticle($id_article)
     {
         $this->likeModel->supprimeLike($id_article);
         $this->commentaireModel->deleteComAllFromArticle($id_article);
@@ -157,7 +156,7 @@ class ArticleController extends ManagerController
      *
      * @param $id_compte $id_compte [explicite description]
      */
-    function effacerToutLesArticle($id_compte)
+    public function effacerToutLesArticle($id_compte)
     {
         $this->articleModel->deleteAllArticles($id_compte);
     }
@@ -165,7 +164,7 @@ class ArticleController extends ManagerController
     /**
      * Method afficher les articles dans l'ordre du plus récent au plus vieux
      */
-    function afficherDerniersArticles()
+    public function afficherDerniersArticles()
     {
         $this->template = 'view_page/home.php';
         $articles = $this->articleModel->lastArticles();

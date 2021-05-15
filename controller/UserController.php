@@ -20,8 +20,8 @@ class UserController extends ManagerController
         parent::__construct(); //récupère les méthodes de la classe parente = validatorHelper
     }
 
-    /** 
-     * 
+    /**
+     *
      *  Afficher mon profil et ses données
      *  Modifier son compte
      *  Créer un article
@@ -31,7 +31,6 @@ class UserController extends ManagerController
      */
     public function afficherMonprofil()
     {
-
         $id_compte = CompteFacade::getCompteId();
         $this->template = 'view_profil/monProfil.php';
         $this->setCompte(CompteFacade::getUserCompte($id_compte));
@@ -84,7 +83,7 @@ class UserController extends ManagerController
             if (!empty($email) && !empty($nom) && !empty($prenom) && !empty($mdp)) {
                 $this->userModel->inscription($nom, $prenom, $email, $mdp);
                 $profil = $this->userModel->Login($email); // stock les données du nouvel user
-                SessionFacade::setUserSession($profil); //Pour ensuite ouvrir la session 
+                SessionFacade::setUserSession($profil); //Pour ensuite ouvrir la session
                 $this->redirectTo('NoAccount'); //redirige vers la création du compte
             } else {
                 $this->setMessage('Inscription échouée', 'warning');
@@ -119,7 +118,7 @@ class UserController extends ManagerController
         return $this->renderController();
     }
 
-    function deconnexion()
+    public function deconnexion()
     {
         return SessionFacade::clearSession(); //vide l'array SESSION
     }

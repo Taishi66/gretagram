@@ -32,8 +32,8 @@ class Router
      *
      * @param $path !nécessaire au construct de la classe Route!
      * @param $callable !nécessaire au construc de la classe Route!
-     * @param $name 
-     * @param $method 
+     * @param $name
+     * @param $method
      *
      * @return la route!
      */
@@ -54,7 +54,7 @@ class Router
     /**
      * Verifie que la route n'existe pas dans la superglobal SERVEUR
      * Si true alors message d'erreur dans la console
-     * Boucle qui parcours l'ensemble des routes de $_SERVEUR 
+     * Boucle qui parcours l'ensemble des routes de $_SERVEUR
      * S'il y a une correspondance (match) avec l'url alors la
      * route trouvée est appelée
      *
@@ -77,7 +77,7 @@ class Router
 
     /**
      * Déclenche l'appel au controller adéquat en fonction de la page demandée par l'utilisateur.
-     * 
+     *
      * @param PDO $bdd Objet de connexion à la BDD.
      */
     /*function getPage()

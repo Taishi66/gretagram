@@ -6,7 +6,6 @@
  */
 class ManagerController //
 {
-
     public $message = null;
     public $template = null;
     private $compte;

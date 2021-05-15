@@ -3,7 +3,6 @@
     <?php
     if (!empty($datas['recherche'])) {
         foreach ($datas['recherche'] as $data) {
-
             echo '<div class="card m-3" style="width: 18rem;">
                     <img class="card-img-top" src="' . $data['photo'] . '">
                     <div class="card-body">
@@ -14,7 +13,7 @@
                 </div>';
         }
     } else {
-    ?><div class="alert alert-warning" role="alert">
+        ?><div class="alert alert-warning" role="alert">
             <i class="far fa-times-circle"> Aucun profil trouvé...</i>
         </div>
     <?php
