@@ -11,7 +11,7 @@
 Alors le site est codé suivant une architecture **MVC**, à 90% en **PHP** pur avec une touche de **Javascript** pour le rendre plus dynamique.
 Le design est quant à lui réalisé avec **Bootstrap**, le tout avec l'éditeur de code **VSCODE**
 
-### 🍜 Ok et les fonctionnalitées dans tout ça?
+### 🍜 Ok et les fonctionnalités dans tout ça?
 
 **Bon, pour être honnête, le site est encore en construction, alors il manque pas mal de fonctionnalitées... 😕, mais chaque chose en son temps non ?**
 
