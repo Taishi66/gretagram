@@ -12,7 +12,7 @@ class InstagramController extends ManagerController
 
     public function afficherMesMedias()
     {
-        $this->template = "profil/profil_Insta.php";
+        $this->template = "view_profil/profil_Insta.php";
         $this->setArticle($this->insta->getMedias()); //récupère les donnés des articles de mon compte instagram!
 
         return $this->renderController();
