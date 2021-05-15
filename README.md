@@ -42,9 +42,13 @@ Error: Too many functionalities missing... Go back to work
     <img alt="Gretagram" width="50px" src="/asset/img/gramLOGOWHITE.png"/>
  </a></p>
 
-
 LAUNCH PROJET :
 composer install
+
+renommer le .env.exemple et assigner les variables
+
+recharges les classes dans composer
+composer dump-autoload
 
 Clean code :
 vendor/bin/php-cs-fixer fix ./

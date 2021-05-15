@@ -1,6 +1,5 @@
 <?php
 
-
 class CompteController extends ManagerController
 {
     private $commentaireModel;
@@ -9,8 +8,8 @@ class CompteController extends ManagerController
 
     public function __construct()
     {
-        $this->compteModel = new compteModel();
-        $this->commentaireModel = new commentaireModel();
+        $this->compteModel = new CompteModel();
+        $this->commentaireModel = new CommentaireModel();
         $this->likeController = new LikeController();
         parent::__construct();
     }

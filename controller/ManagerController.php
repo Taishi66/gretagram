@@ -20,6 +20,8 @@ class ManagerController //
     public $validatorHelper;
     public $uploadHelper;
 
+    private $render;
+
     /**
      * S'il ya un User connecté au moment de son appel, $compte prendra en valeur ses données
      */
@@ -30,6 +32,7 @@ class ManagerController //
         }
         $this->validatorHelper = new ValidatorHelper();
         $this->uploadHelper = new UploadHelper();
+        $this->render = new Render();
     }
 
     /**
@@ -37,10 +40,11 @@ class ManagerController //
      */
     public function renderController()
     {
-        return [
-            'template' => $this->template,
-            'datas' => $this->buildDatas()
-        ];
+        /*Je renvoie le contenu header - template & datas - footer */
+        return $this->render->renderContent(
+            $this->template,
+            $this->buildDatas()
+        );
     }
 
     /**

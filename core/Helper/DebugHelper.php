@@ -2,16 +2,13 @@
 
 class DebugHelper
 {
-    private static $enabled = true;
-
-
     public function __construct()
     {
     }
 
     public function dd($var)
     {
-        if (self::$enabled) {
+        if ($_ENV['DEBUG'] == 'true') {
             echo '<pre>';
             var_dump($var);
             exit();
@@ -20,7 +17,7 @@ class DebugHelper
 
     public function dump($var)
     {
-        if (self::$enabled) {
+        if ($_ENV['DEBUG'] == 'true') {
             echo '<pre>';
             var_dump($var);
         }

@@ -18,8 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/asset/css/inbox.css">
     <link rel="stylesheet" type="text/css" href="/asset/css/article.css">
     <link rel="stylesheet" type="text/css" href="/asset/css/responsive.css">
-
-
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
 
 </head>
 

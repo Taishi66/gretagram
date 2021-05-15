@@ -3,5 +3,8 @@
         "friendsofphp/php-cs-fixer": "^3.0",
         "sentry/sdk": "^3.1",
         "vlucas/phpdotenv": "^5.3"
+    },
+    "autoload": {
+        "classmap": ["controller", "model", "core"]
     }
 }

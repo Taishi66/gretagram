@@ -14,9 +14,9 @@ class UserController extends ManagerController
     {
         $this->compteController = new CompteController();
         $this->article = new ArticleController();
-        $this->userModel = new userModel();
+        $this->userModel = new UserModel();
         $this->commentaireController = new CommentaireController();
-        $this->likeModel = new likeModel();
+        $this->likeModel = new LikeModel();
         parent::__construct(); //récupère les méthodes de la classe parente = validatorHelper
     }
 
