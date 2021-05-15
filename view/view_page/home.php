@@ -1,6 +1,4 @@
 <!-- BLOCK BODY STORIES POST ET PROFIL / SUGGESTION-->
-<?php DebugFacade::dump($datas); ?>
-
 <div class="mt-4">
     <div class="container d-flex RESPHOME">
         <div class="w-100">
@@ -94,7 +92,7 @@
                                         <!-- Affichage des commentaires -->
                                         <span class="comment-list" data-article="<?= $article['id_article'] ?>">
                                             <?php if (!empty($article['commentaires'])) {
-                        foreach ($article['commentaires'] as $key => $commentaire) { ?>
+                                                foreach ($article['commentaires'] as $key => $commentaire) { ?>
                                                     <!-- Condition si nombre commentaires > 0 alors on les affiches -->
                                                     <div class="commentaire <?php echo ($key > 0) ? 'hidden' : ''; ?>" data-article="<?= $article['id_article'] ?>">
                                                         <div>
@@ -104,7 +102,7 @@
                                                     </div>
                                                 <?php } ?>
                                             <?php
-                    } else { ?>
+                                            } else { ?>
                                                 <!-- Si commentaire < 0 alors on affiche ce message -->
                                                 <p class="no-comment"> Aucun commentaire </p>
                                             <?php } ?>

@@ -1,7 +1,6 @@
 <!-- La variable $myAccount n'existe que si l'id_compte de 
 l'article visité est le même que l'id_compte du compte connecté-->
 <?php $myAccount = ($datas['compte']['id_compte'] == $datas['article']['id_compte']); ?>
-<?php DebugFacade::dump($datas); ?>
 <div class="card mb-5 mt-5 ml-5 cardArticle RESPARTICLE">
     <div class="row no-gutters">
         <div class="col-md-4 btn-art">

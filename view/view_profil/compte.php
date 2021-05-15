@@ -1,5 +1,4 @@
 <!-- TEMPLATE D'UN COMPTE VISITÉ, TEMPLATE DU COMPTE CONNECTÉ :'monProfil.php' -->
-<?php DebugFacade::dump($datas); ?>
 <div class="d-flex justify-content-center RESPPROFIL" style="align-items:center">
     <img class="photo-profil img-thumbnail m-3" src="/<?= $datas['compteVisite'][0]['photo'] ?>">
     <div class="" style="margin-top: 30px; margin-bottom:30px; text-align:left;">
