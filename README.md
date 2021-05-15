@@ -43,7 +43,6 @@ Error: Too many functionalities missing... Go back to work
  </a></p>
 
 ```
-Error: Too many functionalities missing... Go back to work
 LAUNCH PROJET :
 composer install
 
