@@ -1,7 +1,13 @@
 <?php
 
+//https://github.com/vlucas/phpdotenv
 include('vendor/autoload.php'); //sert à charger toute les classes du vendor
-Sentry\init(['dsn' => 'https://9cac9b5f14674ee9aa255e47aacb6a46@o667484.ingest.sentry.io/5767024']); //clef du projet sur Sentry de guillaume
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+Sentry\init(['dsn' => $_ENV['SENTRY_URL']]); //clef du projet sur Sentry de guillaume
+
 
 // demarre une session
 session_start();
@@ -15,7 +21,6 @@ include("core/facade/CompteFacade.php");
 include("core/facade/DebugFacade.php");
 include("core/Service/CompteService.php");
 include("core/Service/InstagramService.php");
-
 
 include("controller/ManagerController.php");
 include("controller/CompteController.php");
@@ -37,7 +42,6 @@ include('model/likeModel.php');
 require_once("Render.php");
 require_once("Router.php");
 require_once("Routes.php");
-
 
 
 
