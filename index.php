@@ -1,5 +1,8 @@
 <?php
 
+include('vendor/autoload.php'); //sert à charger toute les classes du vendor
+Sentry\init(['dsn' => 'https://9cac9b5f14674ee9aa255e47aacb6a46@o667484.ingest.sentry.io/5767024']); //clef du projet sur Sentry de guillaume
+
 // demarre une session
 session_start();
 
@@ -102,6 +105,9 @@ $render = new Render();
 //les datas de l'user connecté seront renvoyées sur chaque nouvelle page
 $vars['datas']['user'] = SessionFacade::getUserSession();
 
-
-/*Je renvoie le contenu header - template & datas - footer */
-return $render->renderContent($vars['template'], $vars['datas']);
+try {
+    /*Je renvoie le contenu header - template & datas - footer */
+    return $render->renderContent($vars['template'], $vars['datas']);
+} catch (Exception $e) {
+    throw new Exception("Erreur de rendu de template");
+}
