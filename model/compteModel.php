@@ -21,7 +21,6 @@ class CompteModel
             ':id_article' => $id_article
         ]);
         $compte = $resultat->fetch(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $compte;
     }
 
@@ -46,7 +45,6 @@ class CompteModel
             ":photo" => $photo,
             ":id" => $id
         ]);
-        $bdd = null;
         return $resultat;
     }
 
@@ -61,7 +59,6 @@ class CompteModel
         $sql = 'SELECT * FROM compte WHERE id_user = :id_user';
         $compte = $bdd->prepare($sql);
         $compte->execute([':id_user' => $id_user]);
-        $bdd = null;
 
         return $compte->fetch(PDO::FETCH_ASSOC);
     }
@@ -77,7 +74,6 @@ class CompteModel
         $sql = 'SELECT * FROM compte WHERE id_compte = :id_compte';
         $compte = $bdd->prepare($sql);
         $compte->execute([':id_compte' => $id_compte]);
-        $bdd = null;
 
         return $compte->fetch(PDO::FETCH_ASSOC);
     }
@@ -94,7 +90,6 @@ class CompteModel
         $sql = 'SELECT * FROM article WHERE article.id_compte = :id_compte';
         $articles = $bdd->prepare($sql);
         $articles->execute([':id_compte' => $id_compte]);
-        $bdd = null;
 
         return $articles->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -111,7 +106,6 @@ class CompteModel
                     SET publications= publications + 1
                     WHERE id_compte =:id_compte');
         $resultat = $sql->execute([':id_compte' => $id_compte]);
-        $bdd = null;
 
         return $resultat;
     }
@@ -127,7 +121,6 @@ class CompteModel
         $sql = $bdd->prepare('UPDATE compte
                                 SET publications = publications -1
                                 WHERE id_compte=:id_compte');
-        $bdd = null;
 
         return $sql->execute([':id_compte' => $id_compte]);
     }
@@ -156,7 +149,6 @@ class CompteModel
             ':description_compte' => $description_compte,
             ':id_compte' => $id_compte
         ]);
-        $bdd = null;
         return $compte;
     }
 
@@ -173,7 +165,6 @@ class CompteModel
                             WHERE compte.id_compte = :id_compte');
         $sql->execute([':id_compte' => $id_compte]);
         $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $resultat;
     }
 
@@ -187,7 +178,6 @@ class CompteModel
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('DELETE FROM compte WHERE id_compte =:id_compte');
         $resultat = $sql->execute([':id_compte' => $id_compte]);
-        $bdd = null;
         return $resultat;
     }
 
@@ -204,7 +194,6 @@ class CompteModel
                             WHERE compte.id_compte = :id_compte');
         $sql->execute([':id_compte' => $id_compte]);
         $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $resultat;
     }
 
@@ -215,7 +204,6 @@ class CompteModel
     {
         $bdd = Bdd::connexion();
         $sql = $bdd->query('SELECT * FROM compte ORDER BY RAND() LIMIT 3');
-        $bdd = null;
         $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
     }
@@ -229,7 +217,6 @@ class CompteModel
         $bdd = Bdd::Connexion();
         $sql = $bdd->query('SELECT * FROM compte');
         $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $resultat;
     }
 }

@@ -36,7 +36,6 @@ class ArticleModel
         ]);
         $resultat = $article->fetch(PDO::FETCH_ASSOC);
 
-        $bdd = null;
         return $resultat;
     }
 
@@ -61,7 +60,6 @@ class ArticleModel
             ":contenu" => $contenu,
             ":id_compte" => $id_compte
         ]);
-        $bdd = null;
         return $resultat;
     }
 
@@ -92,7 +90,6 @@ class ArticleModel
             ":id_article" => $id_article
         ]);
 
-        $bdd = null;
         return $resultat;
     }
 
@@ -110,7 +107,6 @@ class ArticleModel
         $resultat = $article->execute([
             ":id_article" => $id_article
         ]);
-        $bdd = null;
         return $resultat;
     }
 
@@ -131,7 +127,6 @@ class ArticleModel
         $resultat = $article->execute([
             ":id_compte" => $id_compte
         ]);
-        $bdd = null;
         return $resultat;
     }
 
@@ -146,7 +141,6 @@ class ArticleModel
                             GROUP BY article.id_article 
                             ORDER BY article.id_article DESC');
         $articles = $sql->fetchAll(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $articles;
     }
 
@@ -159,7 +153,6 @@ class ArticleModel
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('SELECT * FROM articles ORDER BY likes DESC');
         $articles = $sql->fetchAll(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $articles;
     }
 }

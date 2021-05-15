@@ -12,7 +12,6 @@ class UserModel
     {
         $bdd = Bdd::Connexion();
         $resultat = $bdd->query('SELECT * FROM user')->fetchAll();
-        $bdd = null;
         return $resultat;
     }
 
@@ -36,8 +35,6 @@ class UserModel
         //var_dump($profil->fetchAll()); //test
         $resultat = $profil->fetch(PDO::FETCH_ASSOC);
 
-        $bdd = null;
-
         return $resultat;
     }
 
@@ -60,7 +57,6 @@ class UserModel
             ":nom" => $nom, ":prenom" => $prenom,
             ":email" => $email, ":mdp" => $mdp
         ]);
-        $bdd = null;
 
         return $resultat;
     }
@@ -77,7 +73,6 @@ class UserModel
         $profil = $bdd->prepare('SELECT * FROM user WHERE email=:email');
         $profil->execute([":email" => $email]);
         $resultat = $profil->fetch();
-        $bdd = null;
         return $resultat;
     }
 
@@ -93,7 +88,6 @@ class UserModel
         $bdd = Bdd::Connexion();
         $sql = $bdd->prepare('DELETE FROM user WHERE id_user = :id_user');
         $user = $sql->execute([':id_user' => $id_user]);
-        $bdd = null;
         return $user;
     }
 }

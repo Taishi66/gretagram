@@ -19,7 +19,6 @@ class RechercheModel
         $sql = $bdd->prepare('SELECT * FROM compte WHERE pseudo LIKE :q');
         $sql->execute([":q" => "%" . $q . "%"]);
         $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $resultat;
     }
 
@@ -39,7 +38,6 @@ class RechercheModel
                             WHERE hashtag_art LIKE :e');
         $sql->execute([":e" => "%" . $e . "%"]);
         $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $resultat;
     }
 }

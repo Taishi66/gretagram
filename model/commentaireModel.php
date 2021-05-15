@@ -10,7 +10,6 @@ class CommentaireModel
     {
         $bdd = Bdd::Connexion();
         $sql = $bdd->query('SELECT * FROM commentaire');
-        $bdd = null;
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -28,7 +27,6 @@ class CommentaireModel
                             ORDER BY id_com DESC');
         $sql->execute([':id_article' => $id_article]);
         $commentaire = $sql->fetchAll(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $commentaire;
     }
 
@@ -45,7 +43,6 @@ class CommentaireModel
                             ORDER BY id_com DESC LIMIT 1');
         $sql->execute([':id_article' => $id_article]);
         $commentaire = $sql->fetch(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $commentaire;
     }
 
@@ -67,7 +64,6 @@ class CommentaireModel
             ':id_compte' => $id_compte,
             ':contenu_com' => $contenu_com
         ]);
-        $bdd = null;
         return $com;
     }
 
@@ -84,7 +80,6 @@ class CommentaireModel
         $resultat = $commentaire->execute([
             ":id_com" => $id_com
         ]);
-        $bdd = null;
         return $resultat;;
     }
 
@@ -101,7 +96,6 @@ class CommentaireModel
         $resultat = $commentaire->execute([
             ":id_article" => $id_article
         ]);
-        $bdd = null;
         return $resultat;;
     }
 
@@ -120,7 +114,6 @@ class CommentaireModel
         $resultat = $commentaire->execute([
             ":id_compte" => $id_compte
         ]);
-        $bdd = null;
         return $resultat;;
     }
 
@@ -135,7 +128,6 @@ class CommentaireModel
         $sql = $bdd->prepare('SELECT * FROM commentaire WHERE id_com =:id_com');
         $sql->execute([':id_com' => $id_com]);
         $resultat = $sql->fetch(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $resultat;
     }
 
@@ -151,7 +143,6 @@ class CommentaireModel
         $sql->execute([
             ':id_article' => $id_article
         ]);
-        $bdd = null;
         return $sql->rowcount();
     }
 }

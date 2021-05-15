@@ -15,7 +15,6 @@ class LikeModel
         $resultat = $sql->execute([
             ':id_article' => $id_article
         ]);
-        $bdd = null;
         return $resultat;
     }
 
@@ -31,7 +30,6 @@ class LikeModel
         $resultat = $sql->execute([
             ':id_compte' => $id_compte
         ]);
-        $bdd = null;
         return $resultat;
     }
 
@@ -50,7 +48,6 @@ class LikeModel
             ':id_article' => $id_article,
             ':id_compte' => $id_compte
         ]);
-        $bdd = null;
         return $resultat;
     }
 
@@ -70,7 +67,6 @@ class LikeModel
             ':id_article' => $id_article,
             ':id_compte' => $id_compte
         ]);
-        $bdd = null;
         return $resultat;;
     }
 
@@ -88,7 +84,6 @@ class LikeModel
             ':id_article' => $id_article
         ]);
         $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
-        $bdd = null;
         return $resultat;
     }
 
