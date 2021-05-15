@@ -42,6 +42,8 @@ Error: Too many functionalities missing... Go back to work
     <img alt="Gretagram" width="50px" src="/asset/img/gramLOGOWHITE.png"/>
  </a></p>
 
+```
+Error: Too many functionalities missing... Go back to work
 LAUNCH PROJET :
 composer install
 
@@ -51,4 +53,5 @@ recharges les classes dans composer
 composer dump-autoload
 
 Clean code :
-vendor/bin/php-cs-fixer fix ./
+vendor/bin/php-cs-fixer fix./
+```
