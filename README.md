@@ -13,7 +13,7 @@ Le design est quant à lui réalisé avec **Bootstrap**, le tout avec l'éditeur
 
 ### 🍜 Ok et les fonctionnalités dans tout ça?
 
-**Bon, pour être honnête, le site est encore en construction, alors il manque pas mal de fonctionnalitées... 😕, mais chaque chose en son temps non ?**
+**Bon, pour être honnête, le site est encore en construction, alors il manque pas mal de fonctionnalités... 😕, mais chaque chose en son temps non ?**
 
 <img align="right" width="60%" alt="GIF" src="/asset/img/yoda1.gif"></img>
 
