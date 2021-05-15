@@ -42,6 +42,7 @@ Error: Too many functionalities missing... Go back to work
     <img alt="Gretagram" width="50px" src="/asset/img/gramLOGOWHITE.png"/>
  </a></p>
 
+**🚀 Si jamais tu veux récupérer les bases du site et t'amuser avec, n'hésites pas! 🚀**
 ```
 LAUNCH PROJET :
 composer install
