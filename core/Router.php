@@ -47,7 +47,7 @@ class Router
             $name = $callable;
         }
         if ($name) {
-            $this->namedRoutes[$name] = $route;
+            $this->$name = $route;
         }
         return $route;
     }

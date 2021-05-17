@@ -8,7 +8,6 @@ class CompteFacade
     private static $id_user;
     private static $compte;
 
-
     /**
      * Method setUserCompte
      *

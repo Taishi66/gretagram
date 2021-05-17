@@ -7,6 +7,7 @@ $dotenv->load(); //charger et parser le fichier .env
 
 Sentry\init(['dsn' => $_ENV['SENTRY_URL']]); //Initialiser Sentry avec la clef d'API
 
+
 // demarre une session
 session_start();
 
