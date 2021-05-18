@@ -6,7 +6,7 @@ class UploadHelper
     {
         $nomFichier = $_FILES[$media]["name"]; //elephanieeec.jpg
         $trimNomFichier = trim($nomFichier); //supprime les espaces dans le nom du fichier au début et à la fin
-        $sanitizedNomFichier = preg_replace('/\s\s+/', ' ', $trimNomFichier); //Supprime les espaces en milieu de chaine
+        $sanitizedNomFichier = preg_replace('/\s+/', ' ', $trimNomFichier); //Supprime les espaces en milieu de chaine
         $extension = explode(".", $sanitizedNomFichier); // tranforme la chaine decaractere en tableau array()
 
         $extension = end($extension); // je récupère la dernière donnée du tableau
