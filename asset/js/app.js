@@ -51,7 +51,7 @@ $(document).ready(function() {
     })
 
 
-
+    //Partie commentaire
     $(".btn-post-comment").click(function() {
         var parentElement = $(this).parent();
 

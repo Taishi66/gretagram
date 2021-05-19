@@ -45,8 +45,7 @@ class UserController extends ManagerController
         }
         //Si je souhaite créer un article
         if ($_POST['submit-post'] !== null) {
-            $this->article->nouvelArticle();
-            return $this->redirectTo('Profil');
+            return $this->article->nouvelArticle();
         }
         //SI je souhaite supprimer mon compte
         if (isset($_POST['delete-compte'])) {

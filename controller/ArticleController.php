@@ -112,10 +112,11 @@ class ArticleController extends ManagerController
         if (!empty($media) && !empty($titre) && !empty($contenu)) {
             $this->articleModel->createArticle($media, $titre, $contenu, $id_compte);
             CompteFacade::plusPublication();
-            $this->template = 'view_profil/monProfil.php';
-            return $this->renderController();
+            return $this->redirectTo('Profil');
         } else {
-            $this->setMessage('Article non créé', 'warning');
+            $this->setMessage('<i class="fas fa-exclamation-triangle"></i> 
+            Article non créé, pensez à remplir tout les champs 
+            <i class="fas fa-exclamation-triangle"></i>', 'warning');
             return $this->renderController();
         }
 

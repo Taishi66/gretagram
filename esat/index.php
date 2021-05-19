@@ -15,7 +15,6 @@
     $dotenv->load();
     ?>
 
-    <?php include('controller.php'); ?>
     <center>
         <form method="post" action="">
             <input type="radio" name="sexe">Homme<br>
@@ -32,8 +31,22 @@
             <button type="submit" name="submit">envoyer</button>
         </form>
     </center>
+    <br>
+    <br>
+
+
+    <center>
+        <form method="POST">
+            <input name="logMail" id="logMail" placeholder="entrez votre mail">
+            <input name="logMdp" id="logMdp" placeholder="entrez votre mdp">
+            <button type="submit" name="connexion">Se connecter</button>
+        </form>
+        <br>
+    </center>
+
     <?php $controller = new Controller();
     $controller->ajout();
+    $controller->login();
     ?>
 </body>
 
