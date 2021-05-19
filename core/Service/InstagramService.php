@@ -10,9 +10,9 @@ class InstagramService
         $access_token = '&access_token=' . $_ENV['T_INSTAGRAM'];
 
         $url = $this->url . $params . $access_token;
-        $curl = curl_init();
+        $curl = curl_init(); //Initialise la session CURL
 
-        curl_setopt_array($curl, array(
+        curl_setopt_array($curl, array( //Définit les options de transfert
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
@@ -24,9 +24,9 @@ class InstagramService
         ));
 
 
-        $response = curl_exec($curl);
+        $response = curl_exec($curl); //Execute la session
 
-        curl_close($curl);
+        curl_close($curl); //Met fin à la session
         return json_decode($response, true);
     }
 }
