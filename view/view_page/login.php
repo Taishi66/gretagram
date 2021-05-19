@@ -5,7 +5,7 @@
     </div>
     <div class="card p-5 responsiveLogin">
         <div class="text-center">
-            <img src="/asset/img/ig-logo.png" class="mt-4 mb-4">
+            <img src="/asset/img/gretagram4.png" class="mt-4 mb-4">
             <div style="font-weight: bold; font-size:x-large;">Connexion</div>
             <form action="/" method="POST" style="font-weight: bold;" class="card-body">
                 <div class="form-group">

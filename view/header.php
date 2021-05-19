@@ -30,11 +30,11 @@
                 <div class="d-flex flex-row flex-grow justify-content-between align-items-center col-9 RESPNAVBAR">
                     <a class="navbar-brand" href="/home">
                         <!-- LOGO INSTA -->
-                        <img src="/asset/img/ig-logo.png" loading="lazy">
+                        <img src="/asset/img/gretagram4.png">
                     </a>
                     <!-- Barre de recherche -->
                     <div>
-                        <form class="form-inline my-2 my-lg-0" action="/recherche" method="GET">
+                        <form class="form-inline my-2 my-lg-0 w-20" action="/recherche" method="GET">
                             <input type="hidden" name="page" value="recherche">
                             <input class="form-control mr-sm-2" type="search" name="q" id="q" placeholder="Search profil">
                             <button type="submit" style="display:none;" name="submit"></button>
