@@ -60,7 +60,7 @@ l'article visité est le même que l'id_compte du compte connecté-->
                 <?php } ?>
             </span>
             <!-- Date de création de l'article -->
-            <p class="card-text"><small class="text-muted">Article créé le :<?php echo $datas['article']['date_art'] ?></small></p>
+            <p class="card-text"><small class="text-muted m-2">Article créé le :<?php echo $datas['article']['date_art'] ?></small></p>
         </div>
     </div>
 </div>

@@ -133,15 +133,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Pseudo*</label>
-                        <input type="text" class="form-control" name="pseudo" id="pseudo" value="<?= $datas['compte']['pseudo']; ?>">
+                        <input type="text" class="form-control" name="pseudo" id="pseudo" value="<?php echo $datas['compte']['pseudo']; ?>">
                     </div>
                     <div class="form-group">
                         <label>Photo*</label>
-                        <input type="file" class="form-control" name="photo" id="photo" value="<?= $datas['compte']['photo']; ?>">
+                        <input type="file" class="form-control" name="photo" id="photo" value="<?php echo $datas['compte']['photo']; ?>">
                     </div>
                     <div class="form-group">
                         <label>Description*</label>
-                        <input style="height:100px;" type="text" class="form-control" name="description_compte" id="description_compte" value="<?= $datas['compte']['description_compte']; ?>"></input>
+                        <input style="height:100px;" type="text" class="form-control" name="description_compte" id="description_compte" value="<?php echo $datas['compte']['description_compte']; ?>"></input>
                     </div>
                 </div>
                 <div class="modal-modif modal-footer">
