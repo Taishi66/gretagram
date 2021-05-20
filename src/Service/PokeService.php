@@ -31,7 +31,7 @@ class PokeService
             var_dump(curl_error($curl));
         } else {
             $pikapika = json_decode($data, true);
-            return $pikapika["forms"][0]["url"];
+            return $pikapika["sprites"]["front_default"];
         }
         curl_close($curl);
     }

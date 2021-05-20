@@ -12,9 +12,9 @@
                                     <button class="btn p-0 m-0">
                                         <div class="d-flex flex-column align-items-center">
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
-                                                <img src="<?= $datas['compte']['photo'] ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                                <img src="<?= PokemonFacade::getPokemon(); ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                             </div>
-                                            <small>JCLAMY</small>
+                                            <small>lululul</small>
                                         </div>
                                     </button>
                                 </li>
@@ -24,7 +24,57 @@
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
                                                 <img src="<?= PokemonFacade::getPokemon(); ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                             </div>
-                                            <small>petermckinnon</small>
+                                            <small>Bientôt</small>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="list-inline-item">
+                                    <button class="btn p-0 m-0 ">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
+                                                <img src="<?= PokemonFacade::getPokemon(); ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                            </div>
+                                            <small>les</small>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="list-inline-item">
+                                    <button class="btn p-0 m-0 ">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
+                                                <img src="<?= PokemonFacade::getPokemon(); ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                            </div>
+                                            <small>stories</small>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="list-inline-item">
+                                    <button class="btn p-0 m-0 ">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
+                                                <img src="<?= PokemonFacade::getPokemon(); ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                            </div>
+                                            <small>seront</small>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="list-inline-item">
+                                    <button class="btn p-0 m-0 ">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
+                                                <img src="<?= PokemonFacade::getPokemon(); ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                            </div>
+                                            <small>disponibles!</small>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="list-inline-item">
+                                    <button class="btn p-0 m-0 ">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
+                                                <img src="<?= PokemonFacade::getPokemon(); ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                            </div>
+                                            <small>!!!!!!!!!!!!!</small>
                                         </div>
                                     </button>
                                 </li>
