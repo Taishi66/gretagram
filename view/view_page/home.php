@@ -5,11 +5,11 @@
             <div class="row justify-content-center">
                 <div class="col-sm-6 RESPPOST">
                     <!-- BLOC DES STORIES fonctionnalitée à produire -->
-                    <div class="card disabled">
+                    <div class="card">
                         <div class="card-body d-flex justify-content-start">
                             <ul class="list-unstyled mb-0">
                                 <li class="list-inline-item">
-                                    <button class="btn p-0 m-0 disabled">
+                                    <button class="btn p-0 m-0">
                                         <div class="d-flex flex-column align-items-center">
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
                                                 <img src="<?= $datas['compte']['photo'] ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
@@ -19,10 +19,10 @@
                                     </button>
                                 </li>
                                 <li class="list-inline-item">
-                                    <button class="btn p-0 m-0 disabled">
+                                    <button class="btn p-0 m-0 ">
                                         <div class="d-flex flex-column align-items-center">
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
-                                                <img src="/asset/img/profiles/profile-2.jpg" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                                <img src="<?= PokemonFacade::getPokemon(); ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                             </div>
                                             <small>petermckinnon</small>
                                         </div>

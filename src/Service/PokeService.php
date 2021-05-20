@@ -7,7 +7,7 @@ class PokeService
 
     public function __construct()
     {
-        $random = random_int(1, 250);
+        $random = random_int(1, 150);
         $this->url = $_ENV['POKEMON'] . $random;
     }
 
@@ -31,7 +31,7 @@ class PokeService
             var_dump(curl_error($curl));
         } else {
             $pikapika = json_decode($data, true);
-            return $pikapika['forms']['url'];
+            return $pikapika["forms"][0]["url"];
         }
         curl_close($curl);
     }
