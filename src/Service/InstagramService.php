@@ -6,8 +6,8 @@ class InstagramService
 
     public function getMedias()
     {
-        $params = 'me/media?fields=id,caption,media_type,media_url,username,timestamp'; //champs à récupérer 
-        $access_token = '&access_token=' . $_ENV['T_INSTAGRAM']; // 
+        $params = 'me/media?fields=id,caption,media_type,media_url,username,timestamp'; //champs à récupérer
+        $access_token = '&access_token=' . $_ENV['T_INSTAGRAM']; //
 
         $url = $this->url . $params . $access_token;
         $curl = curl_init(); //Initialise la session CURL

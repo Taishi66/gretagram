@@ -33,7 +33,7 @@ class CompteController extends ManagerController
             $this->compteModel->creAccount($id, $photo, $pseudo, $description_compte);
             $this->redirectTo('Profil');
             exit;
-        } else if (empty($pseudo) || empty($photo) || empty($description_compte)) {
+        } elseif (empty($pseudo) || empty($photo) || empty($description_compte)) {
             $this->setMessage('Compte non enregistrée - champs invalide', 'warning');
         }
 
