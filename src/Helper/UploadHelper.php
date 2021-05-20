@@ -21,19 +21,29 @@ class UploadHelper
 
         // je teste le mime type
         // si different de "true" donc "false" entre dans la condition
-        if (!$this->typeContenuFichie($fichierTmp)) {
+        if (!$this->typeContenuFichier($fichierTmp)) {
             error_log("erreur du mime");
             return false; // si il entre dans la condition il s'arrete
         }
 
-        //Function récupérée de wordpress
-        /*private function sanitize_tag_type( $tag ) {
-        $tag = preg_replace( '/[^a-zA-Z0-9_*]+/', '_', $tag );
-        $tag = rtrim( $tag, '_' );
-        $tag = strtolower( $tag );
-        return $tag;
-    }*/
 
+
+        /* https://github.com/brandonsavage/Upload
+
+    function sanitize_file_name($string, $forcelowercase = true, $anal = false) {
+        $strip = array("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "", "=", "+", "[", "{", "]",
+                    "}", "\", "|", ";", ":", """, "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
+                    "â€”", "â€“", ",", "<", ".", ">", "/", "?");
+        $clean = trim(str_replace($strip, "", strip_tags($string)));
+        $clean = preg_replace('/\s+/', "-", $clean);
+        $clean = ($anal) ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean ;
+        return ($force_lowercase) ?
+            (function_exists('mb_strtolower')) ?
+                mb_strtolower($clean, 'UTF-8') :
+                strtolower($clean) :
+            $clean;
+    }
+*/
         $nomModifiee = $user . '/' . $sanitizedNomFichier;
         $fichierFinal = "uploads/" . basename($nomModifiee);
 
@@ -61,7 +71,7 @@ class UploadHelper
      * @param $type le type du fichier image ou cv
      * @param $typeMime le type-mime du fichier, on verifie si il ce trouve dans le tableau
      */
-    public function typeContenuFichie($fichier)
+    public function typeContenuFichier($fichier)
     {
         $aTypeMyme = array('image/png', 'image/jpeg', 'image/gif', 'image/jpg');
 

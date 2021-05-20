@@ -7,7 +7,7 @@ class ValidatorHelper
     }
 
     /**
-     * Method getValue (au lieu d'utiliser superVariable $_GET, c'est plus sécurisé )
+     * Method getValue (vérifie leur valeur et sécurise en ajoutant une valeur par défault et en précisant le type)
      *
      * @param $key
      * @param $default_
@@ -15,7 +15,7 @@ class ValidatorHelper
      *
      * @return $value
      */
-    public function getValue($key, $default_value = null, $typeOfValue = '')
+    public function getValue($key, $default_value = null, $typeOfValue = '') //protection injection sql
     {
         if (empty($key) || !is_string($key)) {
             return false;
@@ -24,7 +24,7 @@ class ValidatorHelper
         $value = false;
         if (isset($_POST[$key]) || isset($_GET[$key])) {
             $value = isset($_POST[$key]) ? $_POST[$key] : $_GET[$key];
-            /* EXPRESSION TERNAIRE
+            /* CONDITION TERNAIRE
             if (isset($_POST[$key])) {
                 return $_POST[$key];
             } else {

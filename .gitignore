@@ -2,4 +2,3 @@ vendor/*
 .env
 .php-cs-fixer.cache
 uploads/*
-esat/*
