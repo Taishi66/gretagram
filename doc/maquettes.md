@@ -27,13 +27,13 @@
 ## Zoning Mobile
 
 **Article compte connecté**
-![MobileZoning](Maquettes/Zoning/Mobile/Article_Compte_connecté_Mobile_Zoning.png)
+![MobileZoning](Maquettes/Zoning/Mobile/Article_user_Mobile_Zoning.png)
 
 **Article compte visité**
-![MobileZoning](Maquettes/Zoning/Mobile/Article_Compte_visité_Mobile_Zoning.png)
+![MobileZoning](Maquettes/Zoning/Mobile/Article_Compte_Visité_Mobile_Zoning.png)
 
 **Compte user connecté**
-![MobileZoning](Maquettes/Zoning/Mobile/Compte_user_connecté_Mobile_Zoning.png)
+![MobileZoning](Maquettes/Zoning/Mobile/Compte_connecté_Mobile_Zoning.png)
 
 **Compte visité**
 ![MobileZoning](Maquettes/Zoning/Mobile/Compte_visité_Mobile_Zoning.png)
@@ -49,4 +49,25 @@
 
 
 ## Wireframe Desktop
+
+**Article compte connecté**
+![DesktopWireframe](Maquettes/Wireframe/Desktop/Article_Compte_visité_Desktop_Wireframe.png)
+
+**Article compte visité**
+![MobileZoning](Maquettes/Wireframe/Desktop/Article_user_connecté_Desktop_Wireframe.png)
+
+**Compte user connecté**
+![MobileZoning](Maquettes/Wireframe/Desktop/Compte_user_connecté_Desktop_Wireframe.png)
+
+**Compte visité**
+![MobileZoning](Maquettes/Wireframe/Desktop/Compte_visité_Desktop_Wireframe.png)
+
+**Explore**
+![MobileZoning](Maquettes/Wireframe/Desktop/Explore_Desktop_Wireframe.png)
+
+**Home**
+![MobileZoning](Maquettes/Wireframe/Desktop/Home_Desktop_Wireframe.png)
+
+**Login**
+![MobileZoning](Maquettes/Wireframe/Desktop/Login_Desktop_Wireframe.png)
  
