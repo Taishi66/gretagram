@@ -75,22 +75,22 @@
 ## Wireframe Mobile
 
 **Article compte connecté**
-![MobileWireframe](Maquettes/Wireframe/Desktop/Article_Compte_visité_Mobile_Wireframe.png)
+![MobileWireframe](Maquettes/Wireframe/Mobile/Article_Compte_visité_Mobile_Wireframe.png)
 
 **Article compte visité**
-![MobileWireframe](Maquettes/Wireframe/Desktop/Article_user_Mobile_Wireframe.png)
+![MobileWireframe](Maquettes/Wireframe/Mobile/Article_user_Mobile_Wireframe.png)
 
 **Compte user connecté**
-![MobileWireframe](Maquettes/Wireframe/Desktop/Compte_connecté_Mobile _Wireframe.png)
+![MobileWireframe](Maquettes/Wireframe/Mobile/Compte_connecté_Mobile _Wireframe.png)
 
 **Compte visité**
-![MobileWireframe](Maquettes/Wireframe/Desktop/Compte_visité_Mobile_Wireframe.png)
+![MobileWireframe](Maquettes/Wireframe/Mobile/Compte_visité_Mobile_Wireframe.png)
 
 **Explore**
-![MobileWireframe](Maquettes/Wireframe/Desktop/Explore_Mobile_WIreframe.png)
+![MobileWireframe](Maquettes/Wireframe/Mobile/Explore_Mobile_WIreframe.png)
 
 **Home**
-![MobileWireframe](Maquettes/Wireframe/Desktop/Home_Mobile_Wireframe.png)
+![MobileWireframe](Maquettes/Wireframe/Mobile/Home_Mobile_Wireframe.png)
 
 **Login**
-![MobileWireframe](Maquettes/Wireframe/Desktop/Login_Mobile_Wireframe.png)
+![MobileWireframe](Maquettes/Wireframe/Mobile/Login_Mobile_Wireframe.png)
