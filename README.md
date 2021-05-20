@@ -39,7 +39,7 @@ Error: Too many functionalities missing... Go back to work
 
 <p align="center">Oui bien sûr! Il est en ligne depuis peu et tu peux tester la dernière version déployée à ce jour ⬇️ </p>
  <p align="center"><a href="">
-    <img alt="Gretagram" width="50px" src="/asset/img/gramLOGOWHITE.png"/>
+    <img alt="Gretagram" width="50px" src="/asset/img/gretagram.png"/>
  </a></p>
 
 **🚀 Si jamais tu veux récupérer les bases du site et t'amuser avec, n'hésites pas! 🚀**
