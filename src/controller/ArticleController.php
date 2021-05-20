@@ -8,6 +8,8 @@ class ArticleController extends ManagerController
     private $compteModel;
     private $likeController;
     private $likeModel;
+    private $chuck;
+    private $pokemon;
 
     public function __construct()
     {
@@ -19,6 +21,8 @@ class ArticleController extends ManagerController
         $this->compteModel = new CompteModel();
         $this->likeModel = new LikeModel();
         $this->likeController = new LikeController();
+        $this->chuck = new ChuckService();
+        $this->pokemon = new PokeService();
     }
 
 
@@ -181,7 +185,8 @@ class ArticleController extends ManagerController
                 array_push($articles_, $article_);
             }
         }
-
+        //$poke1 = $this->pokemon->attack();
+        $this->setMessage($this->chuck->omegalul(), 'light');
         $this->setArticle($articles_);
         $this->setSuggestion($this->compteModel->accountSuggestion());
         return $this->renderController();

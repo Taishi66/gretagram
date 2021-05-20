@@ -2,7 +2,7 @@
 <div class="mt-4">
     <div class="container d-flex RESPHOME">
         <div class="w-100">
-            <div class="row  justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-sm-6 RESPPOST">
                     <!-- BLOC DES STORIES fonctionnalitée à produire -->
                     <div class="card disabled">
