@@ -2,11 +2,12 @@
 
 class UploadHelper
 {
-    public function upload($media, $user)
+    public function upload($media)
     {
+
         $nomFichier = $_FILES[$media]["name"]; //elephanieeec.jpg
         $trimNomFichier = trim($nomFichier); //supprime les espaces au début et à la fin
-        $sanitizedNomFichier = preg_replace('/\s+/', ' ', $trimNomFichier); //Supprime les espaces en milieu de chaine
+        $sanitizedNomFichier = preg_replace('/[^\w\d\.]/', '', $trimNomFichier); //Supprime les espaces en milieu de chaine
         $extension = explode(".", $sanitizedNomFichier); // tranforme la chaine decaractere en tableau array()
 
         $extension = end($extension); // je récupère la dernière donnée du tableau
@@ -25,12 +26,11 @@ class UploadHelper
             error_log("erreur du mime");
             return false; // si il entre dans la condition il s'arrete
         }
-
-        $nomModifiee = $user . '/' . $sanitizedNomFichier;
+        $user = CompteFacade::getComptePseudo();
+        $nomModifiee = $sanitizedNomFichier . "/" . $user;
         $fichierFinal = "uploads/" . basename($nomModifiee);
 
         if (move_uploaded_file($fichierTmp, $fichierFinal)) {
-            chmod("uploads/" . $nomModifiee, 0777);
             return $fichierFinal;
         } else {
             return false;

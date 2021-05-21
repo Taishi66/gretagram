@@ -107,7 +107,7 @@ class ArticleController extends ManagerController
      */
     public function nouvelArticle($media = null, $id_compte = null, $titre = null, $contenu = null)
     {
-        $media = $this->uploadHelper->upload('media', CompteFacade::getComptePseudo());
+        $media = $this->uploadHelper->upload('media');
         $id_compte = CompteFacade::getCompteId();
         $titre = $this->validatorHelper->getValue('titre');
         $contenu = $this->validatorHelper->getValue('contenu');
@@ -134,7 +134,7 @@ class ArticleController extends ManagerController
     public function modifierArticle()
     {
         $id_article = $this->validatorHelper->getValue('id_article', 0, 'integer');
-        $media = $this->uploadHelper->upload('media', CompteFacade::getComptePseudo());
+        $media = $this->uploadHelper->upload('media');
         $titre = $this->validatorHelper->getValue('titre');
         $contenu = $this->validatorHelper->getValue('contenu');
 

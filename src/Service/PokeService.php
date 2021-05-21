@@ -7,7 +7,7 @@ class PokeService
 
     public function __construct()
     {
-        $random = random_int(1, 150);
+        $random = random_int(1, 151);
         $this->url = $_ENV['POKEMON'] . $random;
     }
 

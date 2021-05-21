@@ -24,7 +24,7 @@
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
                                                 <img src="<?= PokemonFacade::getPokemon(); ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                             </div>
-                                            <small>Bientôt</small>
+                                            <small>Bientôt...</small>
                                         </div>
                                     </button>
                                 </li>
@@ -34,7 +34,7 @@
                                             <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
                                                 <img src="<?= PokemonFacade::getPokemon(); ?>" alt="..." style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                             </div>
-                                            <small>les</small>
+                                            <small>Les</small>
                                         </div>
                                     </button>
                                 </li>

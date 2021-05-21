@@ -19,7 +19,7 @@ class InstagramService
             CURLOPT_TIMEOUT => 0, //temps maximale d'execution 0 = pas de timeout
             CURLOPT_FOLLOWLOCATION => true, //autorise la redirection/nombre max de redirections http à suivre, à utiliser avec followlocation. 20 par défaut, -1 pour infinie et 0 pour refuser
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET', //type de requête
+            CURLOPT_CUSTOMREQUEST => 'GET' //type de requête
         ));
 
 
