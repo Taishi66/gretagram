@@ -2,7 +2,6 @@
 
 class PokeService
 {
-
     private $url;
 
     public function __construct()

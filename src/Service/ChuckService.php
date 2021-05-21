@@ -2,7 +2,6 @@
 
 class ChuckService
 {
-
     private $url;
 
     public function __construct()

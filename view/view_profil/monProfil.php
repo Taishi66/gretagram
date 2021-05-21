@@ -42,7 +42,7 @@
 ?>
 
 <?php if (!empty($datas['article'])) {
-?>
+    ?>
     <div class="container">
         <div class="align-items-center">
             <div class="d-flex flex-wrap justify-content-center">
@@ -66,13 +66,13 @@
                             </div>
                         </a>
                     </div>';
-                }
-                ?>
+                } ?>
             </div>
         </div>
     </div>
-<?php } else {
-?>
+<?php
+} else {
+                    ?>
     <div class="card mb-3 mt-5">
         <img class="card-img-top" src="https://picsum.photos/1115/200" alt="Card image cap">
         <div class="card-body">
@@ -80,7 +80,8 @@
             <h3 class="card-text text-center">Tu peux maintenant créer ton premier post en cliquant sur <i class="fas fa-dharmachakra"></i> à côté de ton pseudo!!</h3>
         </div>
     </div>
-<?php }
+<?php
+                }
 ?>
 
 <!-- Modal Nouveau Post-->

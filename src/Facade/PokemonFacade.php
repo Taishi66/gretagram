@@ -2,8 +2,6 @@
 
 class PokemonFacade
 {
-
-
     public static function getPokemon()
     {
         $pokelol = new PokeService();
