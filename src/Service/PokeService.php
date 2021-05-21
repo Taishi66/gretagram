@@ -18,10 +18,10 @@ class PokeService
             $curl,
             [
                 CURLOPT_URL => $this->url,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_MAXREDIRS => 10, //permet de rediriger le transfert en cas de changement d'adresse d'API
-                CURLOPT_FOLLOWLOCATION => true, //autorise la redirection,
+                CURLOPT_RETURNTRANSFER => true, //retourne contenu de l'url sous chaîne de caractère
+                CURLOPT_TIMEOUT => 0, //temps d'execution de la fonction url en seconde. 0 = infinie
+                CURLOPT_MAXREDIRS => 10, //nombre max de redirections http à suivre, à utiliser avec followlocation. 20 par défaut, -1 pour infinie et 0 pour refuser
+                CURLOPT_FOLLOWLOCATION => true, //autorise la redireection sur toute les entête "Location:" que le serveurs envoie dans les entêtes HTTP
                 CURLOPT_CUSTOMREQUEST => 'GET', //type de requête
             ]
         );

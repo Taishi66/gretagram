@@ -14,10 +14,10 @@ class InstagramService
 
         curl_setopt_array($curl, array( //Définit les options de transfert
             CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true, //avoir un retour dans la réponse
+            CURLOPT_RETURNTRANSFER => true, //retourne contenu de l'url sous chaîne de caractère
             CURLOPT_MAXREDIRS => 10, //permet de rediriger le transfert en cas de changement d'adresse d'API
             CURLOPT_TIMEOUT => 0, //temps maximale d'execution 0 = pas de timeout
-            CURLOPT_FOLLOWLOCATION => true, //autorise la redirection
+            CURLOPT_FOLLOWLOCATION => true, //autorise la redirection/nombre max de redirections http à suivre, à utiliser avec followlocation. 20 par défaut, -1 pour infinie et 0 pour refuser
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET', //type de requête
         ));
