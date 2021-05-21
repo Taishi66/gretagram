@@ -26,6 +26,6 @@ class InstagramService
         $response = curl_exec($curl); //Execute la session
 
         curl_close($curl); //Met fin à la session
-        return json_decode($response, true);
+        return json_decode($response, true); //true pour renvoyer sous forme de tableau associatif
     }
 }

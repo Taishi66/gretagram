@@ -30,7 +30,7 @@ class PokeService
         if ($data === false) {
             var_dump(curl_error($curl));
         } else {
-            $pikapika = json_decode($data, true);
+            $pikapika = json_decode($data, true); //true pour renvoyer sous forme de tableau associatif
             return $pikapika["sprites"]["front_default"];
         }
         curl_close($curl);
