@@ -54,7 +54,7 @@ class ArticleController extends ManagerController
             $this->commentaireController->ajouterCommentaire($id_article, CompteFacade::getCompteId());
             return $this->renderController();
         }
-        //Aller dans commentaireController pour effacer un com
+        //Aller dans commentaireController pour effacer un commentaire
 
         //Si je souhaite liker l'article
         if (isset($_POST['like'])) {

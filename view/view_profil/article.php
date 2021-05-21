@@ -48,7 +48,7 @@ l'article visité est le même que l'id_compte du compte connecté-->
                         <strong class="d-block"><?= $data['pseudo'] ?>
                             <!-- Button de suppression si myAccount existe -->
                             <?php if ($myAccount) { ?>
-                                <a href="/delete_com&id_com=<?= $data['id_com'] ?>">
+                                <a href="/Delete_com&id_com=<?= $data['id_com'] ?>">
                                     <span class="com-sup"><i class="far fa-trash-alt"></i></span>
                                 </a>
                             <?php } ?>
