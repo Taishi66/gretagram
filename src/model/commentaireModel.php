@@ -2,13 +2,18 @@
 
 class CommentaireModel
 {
+    private $bdd = null;
+
+    public function __construct()
+    {
+        $this->bdd = Bdd::Connexion();
+    }
     /**
      * Renvoie tout les commentaires de la BDD
      */
     public function toutLesCommentairesBDD()
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->query('SELECT * FROM commentaire');
+        $sql = $this->bdd->query('SELECT * FROM commentaire');
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -19,8 +24,7 @@ class CommentaireModel
      */
     public function showAllComFromArticle($id_article)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT * FROM commentaire 
+        $sql = $this->bdd->prepare('SELECT * FROM commentaire 
                             INNER JOIN compte ON compte.id_compte = commentaire.id_compte
                             WHERE id_article =:id_article
                             ORDER BY id_com DESC');
@@ -36,8 +40,7 @@ class CommentaireModel
      */
     public function getLastComFromArticle($id_article)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT * FROM commentaire 
+        $sql = $this->bdd->prepare('SELECT * FROM commentaire 
                             WHERE id_article =:id_article
                             ORDER BY id_com DESC LIMIT 1');
         $sql->execute([':id_article' => $id_article]);
@@ -55,8 +58,7 @@ class CommentaireModel
      */
     public function postCom($id_article, $id_compte, $contenu_com = null, $date_com = null)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('INSERT INTO commentaire(id_article,id_compte,contenu_com)
+        $sql = $this->bdd->prepare('INSERT INTO commentaire(id_article,id_compte,contenu_com)
                             VALUE (:id_article,:id_compte,:contenu_com)');
         $com = $sql->execute([
             ':id_article' => $id_article,
@@ -73,14 +75,12 @@ class CommentaireModel
      */
     public function deleteCom($id_com)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'DELETE FROM commentaire WHERE id_com = :id_com';
-        $commentaire = $bdd->prepare($sql);
+        $commentaire = $this->bdd->prepare($sql);
         $resultat = $commentaire->execute([
             ":id_com" => $id_com
         ]);
-        return $resultat;
-        ;
+        return $resultat;;
     }
 
     /**
@@ -90,14 +90,12 @@ class CommentaireModel
      */
     public function deleteComAllFromArticle($id_article)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'DELETE FROM commentaire WHERE id_article = :id_article';
-        $commentaire = $bdd->prepare($sql);
+        $commentaire = $this->bdd->prepare($sql);
         $resultat = $commentaire->execute([
             ":id_article" => $id_article
         ]);
-        return $resultat;
-        ;
+        return $resultat;;
     }
 
 
@@ -109,14 +107,12 @@ class CommentaireModel
      */
     public function deleteAllComFromCompte($id_compte)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'DELETE FROM commentaire WHERE id_compte = :id_compte';
-        $commentaire = $bdd->prepare($sql);
+        $commentaire = $this->bdd->prepare($sql);
         $resultat = $commentaire->execute([
             ":id_compte" => $id_compte
         ]);
-        return $resultat;
-        ;
+        return $resultat;;
     }
 
     /**
@@ -126,8 +122,7 @@ class CommentaireModel
      */
     public function getCommentaire($id_com)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT * FROM commentaire WHERE id_com =:id_com');
+        $sql = $this->bdd->prepare('SELECT * FROM commentaire WHERE id_com =:id_com');
         $sql->execute([':id_com' => $id_com]);
         $resultat = $sql->fetch(PDO::FETCH_ASSOC);
         return $resultat;
@@ -140,8 +135,7 @@ class CommentaireModel
      */
     public function getNbComFromArticle($id_article)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT id_com FROM commentaire WHERE id_article = :id_article');
+        $sql = $this->bdd->prepare('SELECT id_com FROM commentaire WHERE id_article = :id_article');
         $sql->execute([
             ':id_article' => $id_article
         ]);

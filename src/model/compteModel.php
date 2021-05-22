@@ -2,6 +2,12 @@
 
 class CompteModel
 {
+    private $bdd = null;
+
+    public function __construct()
+    {
+        $this->bdd = Bdd::Connexion();
+    }
     /**
      * Récupérer un compte à partir d'un article
      *
@@ -9,11 +15,10 @@ class CompteModel
      */
     public function getCompteFromArticle($id_article)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM compte 
                 INNER JOIN article ON article.id_compte=compte.id_compte
                 WHERE id_article = :id_article';
-        $resultat = $bdd->prepare($sql);
+        $resultat = $this->bdd->prepare($sql);
         $resultat->execute([
             ':id_article' => $id_article
         ]);
@@ -31,10 +36,9 @@ class CompteModel
      */
     public function creAccount($id, $photo, $pseudo, $description_compte)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'INSERT INTO compte(pseudo, description_compte, photo, id_user, publications)
                 VALUES (:pseudo,:description_compte,:photo, :id, 0)';
-        $profil = $bdd->prepare($sql);
+        $profil = $this->bdd->prepare($sql);
 
         $resultat = $profil->execute([
             ":pseudo" => $pseudo,
@@ -52,9 +56,8 @@ class CompteModel
      */
     public function getCompteFromUser($id_user)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM compte WHERE id_user = :id_user';
-        $compte = $bdd->prepare($sql);
+        $compte = $this->bdd->prepare($sql);
         $compte->execute([':id_user' => $id_user]);
 
         return $compte->fetch(PDO::FETCH_ASSOC);
@@ -67,9 +70,8 @@ class CompteModel
      */
     public function getCompte($id_compte)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM compte WHERE id_compte = :id_compte';
-        $compte = $bdd->prepare($sql);
+        $compte = $this->bdd->prepare($sql);
         $compte->execute([':id_compte' => $id_compte]);
 
         return $compte->fetch(PDO::FETCH_ASSOC);
@@ -83,9 +85,8 @@ class CompteModel
      */
     public function getArticles($id_compte)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM article WHERE article.id_compte = :id_compte';
-        $articles = $bdd->prepare($sql);
+        $articles = $this->bdd->prepare($sql);
         $articles->execute([':id_compte' => $id_compte]);
 
         return $articles->fetchAll(PDO::FETCH_ASSOC);
@@ -98,8 +99,7 @@ class CompteModel
      */
     public function incrementerPublications($id_compte)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('UPDATE compte 
+        $sql = $this->bdd->prepare('UPDATE compte 
                     SET publications= publications + 1
                     WHERE id_compte =:id_compte');
         $resultat = $sql->execute([':id_compte' => $id_compte]);
@@ -114,8 +114,7 @@ class CompteModel
      */
     public function decrementerPublications($id_compte)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('UPDATE compte
+        $sql = $this->bdd->prepare('UPDATE compte
                                 SET publications = publications -1
                                 WHERE id_compte=:id_compte');
 
@@ -134,8 +133,7 @@ class CompteModel
      */
     public function setCompte($pseudo = null, $photo = null, $description_compte = null, $id_compte)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('UPDATE compte 
+        $sql = $this->bdd->prepare('UPDATE compte 
                 SET pseudo =:pseudo,
                 photo =:photo,
                 description_compte =:description_compte
@@ -156,8 +154,7 @@ class CompteModel
      */
     public function getAllComFromCompte($id_compte)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT * FROM commentaire
+        $sql = $this->bdd->prepare('SELECT * FROM commentaire
                             INNER JOIN compte ON compte.id_compte = commentaire.id_compte
                             WHERE compte.id_compte = :id_compte');
         $sql->execute([':id_compte' => $id_compte]);
@@ -172,8 +169,7 @@ class CompteModel
      */
     public function deleteCompte($id_compte)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('DELETE FROM compte WHERE id_compte =:id_compte');
+        $sql = $this->bdd->prepare('DELETE FROM compte WHERE id_compte =:id_compte');
         $resultat = $sql->execute([':id_compte' => $id_compte]);
         return $resultat;
     }
@@ -185,8 +181,7 @@ class CompteModel
      */
     public function showProfil($id_compte)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT * FROM compte 
+        $sql = $this->bdd->prepare('SELECT * FROM compte 
                             INNER JOIN article ON article.id_compte = compte.id_compte
                             WHERE compte.id_compte = :id_compte');
         $sql->execute([':id_compte' => $id_compte]);
@@ -199,8 +194,7 @@ class CompteModel
      */
     public function accountSuggestion()
     {
-        $bdd = Bdd::connexion();
-        $sql = $bdd->query('SELECT * FROM compte ORDER BY RAND() LIMIT 3');
+        $sql = $this->bdd->query('SELECT * FROM compte ORDER BY RAND() LIMIT 3');
         $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
     }
@@ -211,8 +205,7 @@ class CompteModel
      */
     public function seeAllAccounts()
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->query('SELECT * FROM compte');
+        $sql = $this->bdd->query('SELECT * FROM compte');
         $resultat = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
     }

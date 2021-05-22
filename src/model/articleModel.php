@@ -2,6 +2,13 @@
 
 class ArticleModel
 {
+    private $bdd = null;
+
+    public function __construct()
+    {
+        $this->bdd = Bdd::Connexion();
+    }
+
     /**
      * Method qui récupère tout les articles d'un compte avec l'id_compte
      *
@@ -10,9 +17,8 @@ class ArticleModel
      */
     public function getAllArticles($id_compte)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM article WHERE article.id_compte = :id_compte ORDER BY article.id_article DESC';
-        $articles = $bdd->prepare($sql);
+        $articles = $this->bdd->prepare($sql);
         $articles->execute([':id_compte' => $id_compte]);
         $resultat = $articles->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($resultat);
@@ -26,10 +32,9 @@ class ArticleModel
      */
     public function getArticle($id_article)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'SELECT * FROM article 
                 WHERE id_article =:id_article';
-        $article = $bdd->prepare($sql);
+        $article = $this->bdd->prepare($sql);
         $article->execute([
             ":id_article" => $id_article
         ]);
@@ -48,11 +53,9 @@ class ArticleModel
      */
     public function createArticle($media, $titre, $contenu, $id_compte)
     {
-        $bdd = Bdd::Connexion();
-
         $sql = 'INSERT INTO article (media,titre,contenu,id_compte )
                 VALUES (:media,:titre,:contenu, :id_compte)';
-        $article = $bdd->prepare($sql);
+        $article = $this->bdd->prepare($sql);
         $resultat = $article->execute([
             ":media" => $media,
             ":titre" => $titre,
@@ -73,14 +76,12 @@ class ArticleModel
      */
     public function setArticle($media, $titre, $contenu, $id_article)
     {
-        $bdd = Bdd::Connexion();
-
         $sql = 'UPDATE article
                 SET media = :media, 
                     titre = :titre, 
                     contenu =:contenu 
                 WHERE id_article =:id_article';
-        $article = $bdd->prepare($sql);
+        $article = $this->bdd->prepare($sql);
 
         $resultat = $article->execute([
             ":media" => $media,
@@ -99,10 +100,9 @@ class ArticleModel
      */
     public function deleteArticle($id_article)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'DELETE FROM article
                 WHERE id_article = :id_article';
-        $article = $bdd->prepare($sql);
+        $article = $this->bdd->prepare($sql);
         $resultat = $article->execute([
             ":id_article" => $id_article
         ]);
@@ -119,10 +119,9 @@ class ArticleModel
      */
     public function deleteAllArticles($id_compte)
     {
-        $bdd = Bdd::Connexion();
         $sql = 'DELETE FROM article
                 WHERE id_compte = :id_compte';
-        $article = $bdd->prepare($sql);
+        $article = $this->bdd->prepare($sql);
         $resultat = $article->execute([
             ":id_compte" => $id_compte
         ]);
@@ -134,8 +133,7 @@ class ArticleModel
      */
     public function lastArticles()
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->query('SELECT * FROM article 
+        $sql = $this->bdd->query('SELECT * FROM article 
                             INNER JOIN compte ON compte.id_compte = article.id_compte
                             GROUP BY article.id_article 
                             ORDER BY article.id_article DESC');
@@ -149,8 +147,7 @@ class ArticleModel
      */
     public function showArticlesByLikes()
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT * FROM articles ORDER BY likes DESC');
+        $sql = $this->bdd->prepare('SELECT * FROM articles ORDER BY likes DESC');
         $articles = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $articles;
     }

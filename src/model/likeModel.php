@@ -2,6 +2,12 @@
 
 class LikeModel
 {
+    private $bdd = null;
+
+    public function __construct()
+    {
+        $this->bdd = Bdd::Connexion();
+    }
     /**
      * Method pour supprimer un like
      *
@@ -9,8 +15,7 @@ class LikeModel
      */
     public function supprimeLike($id_article)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('DELETE FROM likes WHERE id_article = :id_article');
+        $sql = $this->bdd->prepare('DELETE FROM likes WHERE id_article = :id_article');
         $resultat = $sql->execute([
             ':id_article' => $id_article
         ]);
@@ -24,8 +29,7 @@ class LikeModel
      */
     public function supprimeAllLike($id_compte)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('DELETE FROM likes WHERE id_compte = :id_compte');
+        $sql = $this->bdd->prepare('DELETE FROM likes WHERE id_compte = :id_compte');
         $resultat = $sql->execute([
             ':id_compte' => $id_compte
         ]);
@@ -40,8 +44,7 @@ class LikeModel
      */
     public function ajouterLike($id_article, $id_compte)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('INSERT INTO likes (id_article, id_compte)
+        $sql = $this->bdd->prepare('INSERT INTO likes (id_article, id_compte)
                                 VALUE (:id_article, :id_compte)');
         $resultat = $sql->execute([
             ':id_article' => $id_article,
@@ -59,15 +62,13 @@ class LikeModel
      */
     public function enleverLike($id_article, $id_compte)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('DELETE FROM likes
+        $sql = $this->bdd->prepare('DELETE FROM likes
                             WHERE id_article=:id_article AND id_compte=:id_compte');
         $resultat = $sql->execute([
             ':id_article' => $id_article,
             ':id_compte' => $id_compte
         ]);
-        return $resultat;
-        ;
+        return $resultat;;
     }
 
 
@@ -78,8 +79,7 @@ class LikeModel
      */
     public function getLikeForArticle($id_article)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT * FROM likes WHERE id_article =:id_article');
+        $sql = $this->bdd->prepare('SELECT * FROM likes WHERE id_article =:id_article');
         $sql->execute([
             ':id_article' => $id_article
         ]);
@@ -94,8 +94,7 @@ class LikeModel
      */
     public function getNbLikeForArticle($id_article)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT id_like FROM likes WHERE id_article =:id_article');
+        $sql = $this->bdd->prepare('SELECT id_like FROM likes WHERE id_article =:id_article');
         $sql->execute([
             ':id_article' => $id_article
         ]);
@@ -110,8 +109,7 @@ class LikeModel
      */
     public function getLikeForArticleForCompte($id_article, $id_compte)
     {
-        $bdd = Bdd::Connexion();
-        $sql = $bdd->prepare('SELECT * FROM likes WHERE id_article =:id_article AND id_compte=:id_compte');
+        $sql = $this->bdd->prepare('SELECT * FROM likes WHERE id_article =:id_article AND id_compte=:id_compte');
         $sql->execute([
             ':id_article' => $id_article,
             ':id_compte' => $id_compte
