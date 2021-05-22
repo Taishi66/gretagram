@@ -36,7 +36,7 @@ class ValidatorHelper
             $value = $default_value;
         }
 
-        if ($typeOfValue == 'integer') {
+        if (is_integer($typeOfValue)) {
             return (int) $value;
         }
 
