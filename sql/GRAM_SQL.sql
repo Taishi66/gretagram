@@ -4,17 +4,6 @@
 
 
 #------------------------------------------------------------
-# Table: hashtag
-#------------------------------------------------------------
-
-CREATE TABLE hashtag(
-        id_hashtag  Int  Auto_increment  NOT NULL ,
-        nom_hashtag Text NOT NULL
-	,CONSTRAINT hashtag_PK PRIMARY KEY (id_hashtag)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: user
 #------------------------------------------------------------
 
@@ -35,13 +24,14 @@ CREATE TABLE user(
 CREATE TABLE compte(
         id_compte          Int  Auto_increment  NOT NULL ,
         description_compte Varchar (50) NOT NULL ,
-        abonnes            Int,
-        abonnements        Int,
-        publications       Int,
+        abonnes            Int NOT NULL ,
+        abonnements        Int NOT NULL ,
+        publications       Int NOT NULL ,
         id_user            Int NOT NULL
 	,CONSTRAINT compte_PK PRIMARY KEY (id_compte)
 
 	,CONSTRAINT compte_user_FK FOREIGN KEY (id_user) REFERENCES user(id_user)
+	,CONSTRAINT compte_user_AK UNIQUE (id_user)
 )ENGINE=InnoDB;
 
 
@@ -50,17 +40,18 @@ CREATE TABLE compte(
 #------------------------------------------------------------
 
 CREATE TABLE article(
-        id_article Int  Auto_increment  NOT NULL ,
-        img_art    Text NOT NULL ,
-        titre      Varchar (50) NOT NULL ,
-        contenu    Text,
-        date_art   Date NOT NULL ,
-        video      Text,
-        'like'       Int,
-        id_compte  Int NOT NULL
+        id_article               Int  Auto_increment  NOT NULL ,
+        titre                    Varchar (50) NOT NULL ,
+        contenu                  Text NOT NULL ,
+        date_art                 Date NOT NULL ,
+        likes                    Int NOT NULL ,
+        media                    Text NOT NULL ,
+        id_compte                Int NOT NULL ,
+        id_compte_compte_article Int NOT NULL
+	,CONSTRAINT article_AK UNIQUE (id_compte)
 	,CONSTRAINT article_PK PRIMARY KEY (id_article)
 
-	,CONSTRAINT article_compte_FK FOREIGN KEY (id_compte) REFERENCES compte(id_compte)
+	,CONSTRAINT article_compte_FK FOREIGN KEY (id_compte_compte_article) REFERENCES compte(id_compte)
 )ENGINE=InnoDB;
 
 
@@ -71,39 +62,39 @@ CREATE TABLE article(
 CREATE TABLE commentaire(
         id_com      Int  Auto_increment  NOT NULL ,
         contenu_com Text NOT NULL ,
-        id_user     Int NOT NULL ,
+        id_compte   Int NOT NULL ,
         id_article  Int NOT NULL
 	,CONSTRAINT commentaire_PK PRIMARY KEY (id_com)
 
-	,CONSTRAINT commentaire_user_FK FOREIGN KEY (id_user) REFERENCES user(id_user)
+	,CONSTRAINT commentaire_compte_FK FOREIGN KEY (id_compte) REFERENCES compte(id_compte)
 	,CONSTRAINT commentaire_article0_FK FOREIGN KEY (id_article) REFERENCES article(id_article)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: hashtag_art
+# Table: likes
 #------------------------------------------------------------
 
-CREATE TABLE hashtag_art(
-        id_article Int NOT NULL ,
-        id_hashtag Int NOT NULL
-	,CONSTRAINT hashtag_art_PK PRIMARY KEY (id_article,id_hashtag)
+CREATE TABLE likes(
+        id_like    Int  Auto_increment  NOT NULL ,
+        date_like  Date NOT NULL ,
+        id_article Int NOT NULL
+	,CONSTRAINT likes_PK PRIMARY KEY (id_like)
 
-	,CONSTRAINT hashtag_art_article_FK FOREIGN KEY (id_article) REFERENCES article(id_article)
-	,CONSTRAINT hashtag_art_hashtag0_FK FOREIGN KEY (id_hashtag) REFERENCES hashtag(id_hashtag)
+	,CONSTRAINT likes_article_FK FOREIGN KEY (id_article) REFERENCES article(id_article)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: hashtag_com
+# Table: compte_like
 #------------------------------------------------------------
 
-CREATE TABLE hashtag_com(
-        id_hashtag Int NOT NULL ,
-        id_com     Int NOT NULL
-	,CONSTRAINT hashtag_com_PK PRIMARY KEY (id_hashtag,id_com)
+CREATE TABLE compte_like(
+        id_like   Int NOT NULL ,
+        id_compte Int NOT NULL
+	,CONSTRAINT compte_like_PK PRIMARY KEY (id_like,id_compte)
 
-	,CONSTRAINT hashtag_com_hashtag_FK FOREIGN KEY (id_hashtag) REFERENCES hashtag(id_hashtag)
-	,CONSTRAINT hashtag_com_commentaire0_FK FOREIGN KEY (id_com) REFERENCES commentaire(id_com)
+	,CONSTRAINT compte_like_likes_FK FOREIGN KEY (id_like) REFERENCES likes(id_like)
+	,CONSTRAINT compte_like_compte0_FK FOREIGN KEY (id_compte) REFERENCES compte(id_compte)
 )ENGINE=InnoDB;
 

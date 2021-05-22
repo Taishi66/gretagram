@@ -1,8 +1,8 @@
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php?url=$1 [QSA]
-RewriteRule ^article/([0-9]+) article&id_article=$1
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
 
 #protection .env
 <files .env>
@@ -22,10 +22,3 @@ order allow,deny
 deny from all
 </files>
 
-#Protection  contre injections via scripts malveillants du march
-#Options +FollowSymLinks
-#RewriteEngine On
-#RewriteCond %{QUERY_STRING} (<|%3C).*script malveillant.*(>|%3E) [NC,OR]
-#RewriteCond %{QUERY_STRING} GLOBALS(=|[|%[0-9A-Z]{0,2}) [OR]
-#RewriteCond %{QUERY_STRING} _REQUEST(=|[|%[0-9A-Z]{0,2})
-#RewriteRule ^(.*)$ index.php [F,L]

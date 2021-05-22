@@ -5,7 +5,7 @@ l'article visité est le même que l'id_compte du compte connecté-->
     <div class="row no-gutters">
         <div class="col-md-4 btn-art">
             <!-- photo de 'article -->
-            <img src="<?php echo $datas['article']['media']; ?>" class="card-img w-80" alt="...">
+            <img src="<?php echo $datas['article']['media']; ?>" class="w-100" alt="...">
             <div class="d-flex flex-row no-wrap justify-content-around">
                 <!-- like de l'article vérifie (avec condition sur la classe du fontawesome) qu'il n'ait pas déjà été liké par le compte connecté:
                 plein si déjà liké, vide pour l'inverse-->
