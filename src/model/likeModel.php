@@ -68,7 +68,8 @@ class LikeModel
             ':id_article' => $id_article,
             ':id_compte' => $id_compte
         ]);
-        return $resultat;;
+        return $resultat;
+        ;
     }
 
 

@@ -42,7 +42,7 @@
 ?>
 
 <?php if (!empty($datas['article'])) {
-    ?>
+?>
     <div class="container">
         <div class="align-items-center">
             <div class="d-flex flex-wrap justify-content-center">
@@ -50,7 +50,7 @@
                 foreach ($datas['article'] as $data) {
                     echo '
                     <div class="card card-overlay" style="width: 18rem;">
-                        <a href="/Article&id_article=' . $data['id_article'] . '">
+                        <a href="/article&id_article=' . $data['id_article'] . '">
                             <div class="img-overlay" style="
                                 background-image: url(' . $data['media'] . '); 
                                 background-size: cover;
@@ -72,7 +72,7 @@
     </div>
 <?php
 } else {
-                    ?>
+?>
     <div class="card mb-3 mt-5">
         <img class="card-img-top" src="https://picsum.photos/1115/200" alt="Card image cap">
         <div class="card-body">
@@ -81,7 +81,7 @@
         </div>
     </div>
 <?php
-                }
+}
 ?>
 
 <!-- Modal Nouveau Post-->

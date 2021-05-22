@@ -80,7 +80,8 @@ class CommentaireModel
         $resultat = $commentaire->execute([
             ":id_com" => $id_com
         ]);
-        return $resultat;;
+        return $resultat;
+        ;
     }
 
     /**
@@ -95,7 +96,8 @@ class CommentaireModel
         $resultat = $commentaire->execute([
             ":id_article" => $id_article
         ]);
-        return $resultat;;
+        return $resultat;
+        ;
     }
 
 
@@ -112,7 +114,8 @@ class CommentaireModel
         $resultat = $commentaire->execute([
             ":id_compte" => $id_compte
         ]);
-        return $resultat;;
+        return $resultat;
+        ;
     }
 
     /**

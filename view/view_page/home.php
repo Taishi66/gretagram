@@ -102,7 +102,7 @@
                                 <!-- Photo cliquable qui redirige vers le compte de la photo -->
                                 <div class="card-body p-0">
                                     <div class="embed-responsive embed-responsive-1by1">
-                                        <a href="/Article&id_article=<?= $article['id_article'] ?>" style="text-decoration:none; color:black;">
+                                        <a href="/article&id_article=<?= $article['id_article'] ?>" style="text-decoration:none; color:black;">
                                             <img class="embed-responsive-item" src="<?= $article['media'] ?>" /></a>
                                     </div>
                                     <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1">
@@ -142,7 +142,7 @@
                                         <!-- Affichage des commentaires -->
                                         <span class="comment-list" data-article="<?= $article['id_article'] ?>">
                                             <?php if (!empty($article['commentaires'])) {
-                        foreach ($article['commentaires'] as $key => $commentaire) { ?>
+                                                foreach ($article['commentaires'] as $key => $commentaire) { ?>
                                                     <!-- Condition si nombre commentaires > 0 alors on les affiches -->
                                                     <div class="commentaire <?php echo ($key > 0) ? 'hidden' : ''; ?>" data-article="<?= $article['id_article'] ?>">
                                                         <div>
@@ -152,7 +152,7 @@
                                                     </div>
                                                 <?php } ?>
                                             <?php
-                    } else { ?>
+                                            } else { ?>
                                                 <!-- Si commentaire < 0 alors on affiche ce message -->
                                                 <p class="no-comment"> Aucun commentaire </p>
                                             <?php } ?>

@@ -31,7 +31,7 @@
             <?php //Boucle qui crée un thumbnail photo cliquable vers son article complet pour chaque article du compte
             foreach ($datas['compteVisite'] as $data) {
                 echo '<div class="card card-overlay" style="width: 18rem;">
-                <a href="/Article&id_compte=' . $data['id_compte'] . '&id_article=' . $data["id_article"] . '">
+                <a href="/article&id_compte=' . $data['id_compte'] . '&id_article=' . $data["id_article"] . '">
                 <div class="img-overlay" style="
                                 background-image: url(/' . $data['media'] . '); 
                                 background-size: cover;

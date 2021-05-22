@@ -175,7 +175,6 @@ class Router
             $this->get('Explore', 'Compte#afficherToutLesComptes');
             //Route pour rediriger vers la visite d'un compte
             $this->get('Compte/:id_compte', 'Compte#afficheProfil');
-            $this->get('Compte', 'Compte#afficheProfil');
             //Route pour rechercher un profil
             $this->get('Recherche', 'Recherche#recherche');
             //Se déconnecter

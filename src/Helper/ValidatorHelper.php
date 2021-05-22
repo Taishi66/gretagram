@@ -40,6 +40,10 @@ class ValidatorHelper
             return (int) $value;
         }
 
+        /* if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            return $value;
+        }*/
+
         return $value;
     }
 
