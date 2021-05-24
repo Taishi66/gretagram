@@ -5,11 +5,18 @@ class UploadHelper
     public function upload($media)
     {
         $nomFichier = $_FILES[$media]["name"]; //elephanieeec.jpg
-        $trimNomFichier = trim($nomFichier); //supprime les espaces au début et à la fin
-        $sanitizedNomFichier = preg_replace('/[^\w\d\.]/', '', $trimNomFichier); //Supprime les espaces en milieu de chaine
-        $extension = explode(".", $sanitizedNomFichier); // tranforme la chaine decaractere en tableau array()
 
-        $extension = end($extension); // je récupère la dernière donnée du tableau
+        //$sanitizedNomFichier = $this->sanitize_file_name($nomFichier); //Supprime les espaces en milieu de chaine
+
+        $extensionExplosee = explode(".", $nomFichier); // tranforme la chaine decaractere en tableau array()
+        $extension = end($extensionExplosee); // je récupère la dernière donnée du tableau
+
+
+        //remove extension
+        $fichierSansExtension = str_replace('.' . $extension, '', $nomFichier);
+
+        $sanitizedNomFichier = $this->sanitize_file_name($fichierSansExtension); //Supprime les espaces en milieu de chaine
+
         $fichierTmp = $_FILES[$media]["tmp_name"];
 
         // je teste l'extension
@@ -25,15 +32,32 @@ class UploadHelper
             error_log("erreur du mime");
             return false; // si il entre dans la condition il s'arrete
         }
-        $user = CompteFacade::getComptePseudo();
-        $nomModifiee = $sanitizedNomFichier . "/" . $user;
-        $fichierFinal = "uploads/" . basename($nomModifiee);
+        $fichierFinal = "uploads/" . $sanitizedNomFichier . '.' . $extension;
 
         if (move_uploaded_file($fichierTmp, $fichierFinal)) {
             return $fichierFinal;
         } else {
             return false;
         }
+    }
+
+
+
+    function sanitize_file_name($string, $force_lowercase = true, $anal = false)
+    {
+        $strip = array(
+            "~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]",
+            "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
+            "â€”", "â€“", ",", "<", ".", ">", "/", "?"
+        );
+        $clean = trim(str_replace($strip, "", strip_tags($string)));
+        $clean = preg_replace('/\s+/', "-", $clean);
+        $clean = ($anal) ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean;
+        return ($force_lowercase) ?
+            (function_exists('mb_strtolower')) ?
+            mb_strtolower($clean, 'UTF-8') :
+            strtolower($clean) :
+            $clean;
     }
 
     /**

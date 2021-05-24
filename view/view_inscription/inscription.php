@@ -1,7 +1,7 @@
 <!-- TEMPLATE D'INSCRIPTION SI LOGIN IMPOSSIBLE -->
 <div class="container d-flex mt-5 mr-auto">
     <div>
-        <img src="/asset/img/insta.jpg">
+        <img src="/asset/img/insta.jpg" class="ResponsiveImg">
     </div>
     <div class="card p-5">
         <div class="text-center">

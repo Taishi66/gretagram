@@ -1,7 +1,7 @@
 <!--TEMPLATE DE CREATION DE COMPTE APRES INSCRIPTION -->
 <div class="d-flex justify-content-center">
     <div>
-        <img src="/asset/img/signup.png">
+        <img src="/asset/img/signup.png" class="ResponsiveImg">
     </div>
     <div>
         <div class="form-custom mt-5">
