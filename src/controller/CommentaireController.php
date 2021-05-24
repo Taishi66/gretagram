@@ -73,8 +73,8 @@ class CommentaireController extends ManagerController
         $this->setCom($this->afficheCommentaire($id_com));
         if (isset($_POST['submit'])) {
             $this->commentaireModel->deleteCom($id_com);
-            //$this->setMessage('Commentaire supprimé', 'infos');
-            return $this->redirectTo('Profil');
+            $id_article = $this->validatorHelper->getValue('id_article');
+            return $this->redirectTo('article?id_article=' . $id_article);
         }
         return $this->renderController();
     }
