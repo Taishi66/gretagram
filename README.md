@@ -1,4 +1,4 @@
-## Bienvenue `${tonNomEstIci.promis}`, tu viens d'atterrir sur le site Gretagram 😊!
+## Bienvenue `$visiteur[pseudo]`, tu viens d'atterrir sur le site Gretagram 😊!
 
 ### 🔥 Il s'agit en fait d'un clone du véritable instagram que j'ai produit durant mon stage en entreprise, pendant ma formation de développeur web, au GMTE93 🔥
 
