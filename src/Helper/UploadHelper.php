@@ -6,17 +6,13 @@ class UploadHelper
     {
         $nomFichier = $_FILES[$media]["name"]; //elephanieeec.jpg
 
-        //$sanitizedNomFichier = $this->sanitize_file_name($nomFichier); //Supprime les espaces en milieu de chaine
-
         $extensionExplosee = explode(".", $nomFichier); // tranforme la chaine decaractere en tableau array()
         $extension = end($extensionExplosee); // je récupère la dernière donnée du tableau
-
 
         //remove extension
         $fichierSansExtension = str_replace('.' . $extension, '', $nomFichier);
 
-        $sanitizedNomFichier = $this->sanitize_file_name($fichierSansExtension); //Supprime les espaces en milieu de chaine
-
+        $sanitizedNomFichier = $this->sanitize_file_name($fichierSansExtension); //Supprime les espaces et caractère spéciaux 
         $fichierTmp = $_FILES[$media]["tmp_name"];
 
         // je teste l'extension
@@ -40,7 +36,6 @@ class UploadHelper
             return false;
         }
     }
-
 
 
     function sanitize_file_name($string, $force_lowercase = true, $anal = false)
