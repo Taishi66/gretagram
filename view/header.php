@@ -63,13 +63,15 @@
                                     <i class="far fa-heart disabled menu-btn"></i>
                                 </a>
                             </li>
-                            <li class="list-inline-item ml-2 align-middle">
-                                <a href="/Profil" class="link-menu">
-                                    <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
-                                        <img src="/<?= CompteFacade::getComptePhoto(); ?>" style="transform: scale(3); width: 100%; position: absolute; left: 0;">
-                                    </div>
-                                </a>
-                            </li>
+                            <?php if (isset($_SESSION['user'])) { ?>
+                                <li class="list-inline-item ml-2 align-middle">
+                                    <a href="/Profil" class="link-menu">
+                                        <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
+                                            <img src="/<?= CompteFacade::getComptePhoto(); ?>" style="transform: scale(3); width: 100%; position: absolute; left: 0;">
+                                        </div>
+                                    </a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
