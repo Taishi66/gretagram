@@ -63,7 +63,7 @@
                                     <i class="far fa-heart disabled menu-btn"></i>
                                 </a>
                             </li>
-                            <?php if (isset($_SESSION['user'])) { ?>
+                            <?php if (CompteFacade::getComptePhoto()) { ?>
                                 <li class="list-inline-item ml-2 align-middle">
                                     <a href="/Profil" class="link-menu">
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">

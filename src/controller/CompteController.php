@@ -24,19 +24,18 @@ class CompteController extends ManagerController
         $pseudo = $this->validatorHelper->getValue("pseudo");
         $description_compte = $this->validatorHelper->getValue("description_compte");
         $this->template = 'view_inscription/creAccount.php';
-        $this->setMessage('Créez votre compte pour pouvoir partager vos photos!', 'success');
-        $photo = $this->uploadHelper->upload("photo", SessionFacade::getUserName());
+        $photo = $this->uploadHelper->upload("photo");
 
-
-        if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
-            var_dump("ici");
-            $this->compteModel->creAccount($id, $photo, $pseudo, $description_compte);
-            $this->redirectTo('Profil');
-            exit;
-        } elseif (empty($pseudo) || empty($photo) || empty($description_compte)) {
-            $this->setMessage('Compte non enregistrée - champs invalide', 'warning');
+        if (isset($_POST['newAccount'])) {
+            if (!empty($pseudo) && !empty($photo) && !empty($description_compte)) {
+                $this->compteModel->creAccount($id, $photo, $pseudo, $description_compte);
+                $this->redirectTo('Profil');
+                exit;
+            } else {
+                $this->setMessage('Compte non enregistrée - champs invalide', 'warning');
+            }
+            $this->renderController();
         }
-
         return $this->renderController();
     }
 
