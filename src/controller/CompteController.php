@@ -24,6 +24,7 @@ class CompteController extends ManagerController
         $pseudo = $this->validatorHelper->getValue("pseudo");
         $description_compte = $this->validatorHelper->getValue("description_compte");
         $this->template = 'view_inscription/creAccount.php';
+
         $photo = $this->uploadHelper->upload("photo");
 
         if (isset($_POST['newAccount'])) {
