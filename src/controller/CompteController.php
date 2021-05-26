@@ -32,12 +32,13 @@ class CompteController extends ManagerController
                 $this->redirectTo('Profil');
                 exit;
             } else {
-                $this->setMessage('Compte non enregistrée - champs invalide', 'warning');
+                $this->setMessage('Compte non enregistrée - champ invalide - Pour des raisons de sécurité, veuillez choissir une photo .png ou .jpg', 'warning');
             }
             $this->renderController();
         }
         return $this->renderController();
     }
+
 
 
 

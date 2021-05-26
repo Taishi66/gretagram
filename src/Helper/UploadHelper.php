@@ -12,22 +12,23 @@ class UploadHelper
         //remove extension
         $fichierSansExtension = str_replace('.' . $extension, '', $nomFichier);
 
+        //$sanitizedNomFichier = hash_file("md5", $fichierSansExtension);
         $sanitizedNomFichier = $this->sanitize_file_name($fichierSansExtension); //Supprime les espaces et caractère spéciaux 
         $fichierTmp = $_FILES[$media]["tmp_name"];
 
         // je teste l'extension
         // si different de "true" donc "false" entre dans la condition
-        if (!$this->extensionFichier($extension)) {
-            error_log("erreur extension");
-            return false; // s'il entre dans la condition il s'arrête
+        if (isset($_POST['newAccount'])) {
+            if (!$this->extensionFichier($extension)) {
+                error_log("Type image refusée");
+                return false;
+            }
+            if (!$this->typeContenuFichier($fichierTmp)) {
+                error_log("Type image refusée");
+                return false;
+            }
         }
 
-        // je teste le mime type
-        // si different de "true" donc "false" entre dans la condition
-        if (!$this->typeContenuFichier($fichierTmp)) {
-            error_log("erreur du mime");
-            return false; // si il entre dans la condition il s'arrete
-        }
         $fichierFinal = "uploads/" . $sanitizedNomFichier . '.' . $extension;
 
         if (move_uploaded_file($fichierTmp, $fichierFinal)) {
@@ -37,7 +38,7 @@ class UploadHelper
         }
     }
 
-
+    //Function récupéré d'un module prestashop, supprime les espaces et caractères spéciaux, met un "-" entre chaque string
     function sanitize_file_name($string, $force_lowercase = true, $anal = false)
     {
         $strip = array(
@@ -68,8 +69,8 @@ class UploadHelper
 
     /**
      * Teste le type-mime du fichier
-     * @param $type le type du fichier image ou cv
-     * @param $typeMime le type-mime du fichier, on verifie si il ce trouve dans le tableau
+     * @param $type le type du fichier image 
+     * @param $typeMime le type-mime du fichier
      */
     public function typeContenuFichier($fichier)
     {
