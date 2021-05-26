@@ -69,7 +69,7 @@ class CommentaireController extends ManagerController
     public function supprimerCommentaire()
     {
         $this->template = "view_profil/supCom.php";
-        $id_com = $this->validatorHelper->getValue('id_com', 'integer');
+        $id_com = $this->validatorHelper->getValue('id_com', null, 'integer');
         $this->setCom($this->afficheCommentaire($id_com));
         if (isset($_POST['submit'])) {
             $this->commentaireModel->deleteCom($id_com);
