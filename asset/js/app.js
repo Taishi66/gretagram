@@ -14,12 +14,12 @@ $(document).ready(function() {
     //Nouvel évènement onclick sur le button avec la classe toggle-like
     $(document).on('click', 'button.toggle-like', function() {
         var element = $(this);
-        var article = element.data('article'); //data-article
-        var text = element.data('text'); //data-text
+        var article = element.data('article'); //this.data-article
+        var text = element.data('text'); //this.data-text
 
         // Je fais une requête post sur l'url /article
         $.post("/article", {
-                like: "OK", //On force une valeur au paramètre like
+                // like: "true", //On force une valeur au paramètre like pour entrer dans les conditions !empty ou isset
                 id_article: article,
             },
             function(data, status) {
@@ -34,7 +34,7 @@ $(document).ready(function() {
                                 exit;*/
                     var nb_likes = datas.nb_likes;
                     var is_liked = datas.is_liked;
-                    //Si "like" n'estp pas écrit dans la présentation alors il renverra le data-text vide comme dans article.php
+                    //Si "like" n'est pas écrit dans la présentation alors il renverra le data-text vide comme dans article.php
                     var like = (nb_likes > 1 && text != '') ? text + 's' : text;
                     $('.nb_likes[data-article="' + article + '"]').empty().append(nb_likes + ' ' + like);
                     if (is_liked == true) {
