@@ -19,7 +19,7 @@ $(document).ready(function() {
 
         // Je fais une requête post sur l'url /article
         $.post("/article", {
-                // like: "true", //On force une valeur au paramètre like pour entrer dans les conditions !empty ou isset
+                like: "true", //On force une valeur au paramètre like pour entrer dans les conditions !empty ou isset
                 id_article: article,
             },
             function(data, status) {
