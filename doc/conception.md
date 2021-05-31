@@ -3,12 +3,12 @@
 
 **Modèle Conceptuel de Donnée**
 
-![MCD](MCD&UML/MCD/MCDGRAM-DP.png)
+![MCD](MCD&UML/MCD/MCDGRAMsized.png)
 
 
 **Modèle Logique de Donnée**
 
-![MLD](MCD&UML/MCD/MLDGRAM-DP.png)
+![MLD](MCD&UML/MCD/MLDGRAMsized.png)
 
 
 **Unified Modeling Language**
