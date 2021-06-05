@@ -3,7 +3,7 @@
 ### 🔥 Il s'agit en fait d'un clone du véritable instagram que j'ai produit durant mon stage en entreprise, pendant ma formation de développeur web, au GMTE93 🔥
 
 <p align="center">
-  <img align="center" width="40%" alt="GIF" src="/asset/img/gretagram.png"/>
+  <a target="_blank" href="http://gretagram.ga-creation.fr"><img align="center" width="40%" alt="GIF" src="/asset/img/gretagram.png"/></a>
 </p>
 
 ### 🍥 Peux tu nous parler plus en détail du code?
