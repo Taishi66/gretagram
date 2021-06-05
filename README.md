@@ -38,8 +38,8 @@ Error: Too many functionalities missing... Go back to work
 ## 🪅 On peut voir à quoi ça ressemble? 🪅
 
 <p align="center">Oui bien sûr! Il est en ligne depuis peu et tu peux tester la dernière version déployée à ce jour ⬇️ </p>
- <p align="center"><a href="">
-    <img alt="Gretagram" target="_blank" href="http://gretagram.ga-creation.fr" width="40%" src="/asset/img/gramQRCODE.png"/>
+ <p align="center"><a target="_blank" href="http://gretagram.ga-creation.fr">
+    <img alt="Gretagram"  width="40%" src="/asset/img/gramQRCODE.png"/>
  </a></p>
 
 **🚀 Si jamais tu veux récupérer les bases du site et t'amuser avec, n'hésites pas! 🚀**
