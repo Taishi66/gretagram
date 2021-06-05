@@ -27,7 +27,7 @@ Le design est quant à lui réalisé avec **Bootstrap**, le tout avec l'éditeur
 - [ ] Système de Hashtag
 - [ ] Enregistrer les posts qui nous intéressent
 - [ ] (un)Follow et (un)follow back
-- [ ] Avoir plusieurs comptes **oui** mais interchanger sans passer par le login **non**...
+- [ ] Avoir plusieurs comptes...
 
 ```
 Error: Too many functionalities missing... Go back to work
