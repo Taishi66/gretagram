@@ -14,15 +14,14 @@ class InboxController extends ManagerController
         parent::__construct();
     }
 
-    public function envoyerMessage()
+    public function envoyerMessage($id_compte = null)
     {
+        $id_destinataire = $id_compte;
         $id_compte = CompteFacade::getCompteId();
-        $id_destinataire = $this->validatorHelper->getValue('id_compte');
         $contenu_message = $this->validatorHelper->getValue('contenu_message');
         if (isset($_POST['message']) && !empty($contenu_message)) {
-            // $this->inboxModel->sendMessage($id_compte, $id_destinataire, $contenu_message);
-            $this->inboxModel->sendMessage($id_destinataire, $contenu_message);
-            $this->template = "inbox.php";
+            $this->inboxModel->sendMessage($contenu_message, $id_compte, $id_destinataire);
+            $this->template = ("view_page/inbox.php");
             return $this->renderController();
         } else {
             $this->setMessage('Message non envoyé', 'warning');

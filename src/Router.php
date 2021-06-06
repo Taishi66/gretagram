@@ -176,7 +176,7 @@ class Router
             //Route pour rediriger vers la visite d'un compte
             $this->get('Compte/:id_compte', 'Compte#afficheProfil');
             //Pour envoyer un message au compte visité
-            $this->post('Compte/:id_compte', 'Compte#afficheProfil');
+            $this->post('Compte/:id_compte', 'Inbox#envoyerMessage');
             //Pour voir mes discussions 
             $this->get('Inbox', 'Inbox#mesDiscussions');
             //Route pour rechercher un profil

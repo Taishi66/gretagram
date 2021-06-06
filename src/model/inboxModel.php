@@ -25,9 +25,10 @@ class InboxModel
      */
     public function sendMessage($contenu_message = null, $id_compte = null, $id_destinataire = null)
     {
-        $sql = $this->bdd->prepare('INSERT INTO inbox(contenu_message, id_compte, id_destinataire) VALUES :contenu_message, :id_compte, :id_destinataire ');
+        $sql = $this->bdd->prepare('INSERT INTO inbox(contenu_message, id_compte, id_destinataire) 
+                                    VALUES (:contenu_message, :id_compte, :id_destinataire)');
         return $sql->execute([
-            ':contenu_mesage' => $contenu_message,
+            ':contenu_message' => $contenu_message,
             ':id_compte' => $id_compte,
             ':id_destinataire' => $id_destinataire
         ]);

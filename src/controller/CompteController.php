@@ -78,7 +78,6 @@ class CompteController extends ManagerController
         }
 
         $this->template = ('view_profil/compte.php');
-        //$this->setCompte($this->compteModel->showProfil($id_compte));
         $this->setCom($this->commentaireModel->showAllcomFromArticle($id_compte));
         $compteVisite = $this->compteModel->showProfil($id_compte);
         $compteVisite_ = array(); //je crée un array vide
