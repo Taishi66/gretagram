@@ -52,3 +52,29 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-modif">
+            <div class="modal-header modal-modif">
+                <h5 class="modal-title" id="exampleModalLongTitle">Message à <?= $datas['compteVisite'][0]['pseudo']; ?>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Contenu</label>
+                        <textarea type="text" class="form-control" name="contenu_message" id="contenu_message" placeholder="Tapez votre message"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer modal-modif">
+                    <button type="submit" name="message" class="form-control">Envoyer</button>
+                    <button type="submit" class="form-control" data-dismiss="modal">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

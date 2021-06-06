@@ -14,7 +14,7 @@ class ManagerController //
     private $recherche;
     private $compteVisite;
     private $suggestion;
-
+    private $inbox;
     private $nbLikesForArticle;
     private $articleAlreadyLiked;
     public $validatorHelper;
@@ -75,7 +75,9 @@ class ManagerController //
         if (!empty($this->getSuggestion())) {
             $output['suggestion'] = $this->getSuggestion();
         }
-
+        if (!empty($this->getInbox())) {
+            $output['inbox'] = $this->getInbox();
+        }
         if (!empty($this->getNbLikesForArticle())) {
             $output['nbLikesForArticle'] = $this->getNbLikesForArticle();
         }
@@ -161,8 +163,15 @@ class ManagerController //
         return $this->compteVisite;
     }
 
+    public function getInbox()
+    {
+        return $this->inbox;
+    }
 
-
+    public function setInbox($inbox)
+    {
+        return $this->inbox = $inbox;
+    }
 
     public function setNbLikesForArticle($nbLikesForArticle)
     {

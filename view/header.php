@@ -49,8 +49,8 @@
                                 </a>
                             </li>
                             <li class="list-inline-item ml-2">
-                                <a href="" class="link-menu">
-                                    <i class="far fa-paper-plane menu-btn disabled bi bi-house-door-fill"></i>
+                                <a href="/Inbox" class="link-menu">
+                                    <i class="far fa-paper-plane menu-btn bi bi-house-door-fill"></i>
                                 </a>
                             </li>
                             <li class="list-inline-item ml-2">
