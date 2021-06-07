@@ -37,10 +37,11 @@ class Render
 
     public function renderErrorNotFound()
     {
-        ob_start();
-        include('view/404.php');
-        $this->content = ob_get_contents();
-        ob_end_clean();
-        $this->showPage();
+        header('Location: /');
+        //ob_start();
+        //include('view/404.php');
+        //$this->content = ob_get_contents();
+        //ob_end_clean();
+        //$this->showPage();
     }
 }

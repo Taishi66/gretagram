@@ -183,15 +183,8 @@ class Router
             $this->get('Recherche', 'Recherche#recherche');
             //Se déconnecter
             $this->get('Deconnexion', 'User#deconnexion');
-        } else {
-            $this->get('/', 'User#seConnecter');
-            $this->post('/', 'User#seConnecter');
-            //Si user non connecté alors retour à la page d'incription
-            $this->get('Inscription', 'User#nouvelleInscription');
-            $this->post('Inscription', 'User#nouvelleInscription');
-            //Route pour se créer un compte
-            $this->get('NoAccount', 'Compte#nouveauCompte');
-            $this->post('NoAccount', 'Compte#nouveauCompte');
+            //  } else {
+            //    echo '<center><div class="alert alert-primary m-auto p-2">Connectez vous ou inscrivez vous pour pouvoir profiter de Gretagram!</div></center>';
         }
     }
 }
