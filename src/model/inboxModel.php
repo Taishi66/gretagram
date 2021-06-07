@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 class InboxModel
 {
     private $bdd = null;
@@ -34,21 +30,40 @@ class InboxModel
         ]);
     }
 
-    public function seeInbox($id_compte = null)
+    /**
+     * Method getConversation
+     *
+     * @param $id_compte $id_compte [explicite description]
+     *
+     * @return void
+     */
+
+    /**
+     * Method myDiscussions
+     *
+     * @param $id_compte $id_compte [explicite description]
+     *
+     * @return void
+     */
+    public function myDiscussions($id_compte = null)
     {
-        $sql = $this->bdd->prepare('SELECT * FROM compte WHERE id_compte=:id_compte');
+        $sql = $this->bdd->prepare('SELECT DISTINCT pseudo,compte.id_compte,photo FROM compte 
+                                    INNER JOIN inbox ON compte.id_compte = inbox.id_destinataire
+                                    WHERE inbox.id_compte =:id_compte');
         $sql->execute([
             ':id_compte' => $id_compte
         ]);
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function seeDiscussion($id_destinataire = null)
+    public function getCompteMessage($id_compte = null)
     {
-        $sql = $this->bdd->query('SELECT contenu_message FROM inbox WHERE id_destinataire =:id_destinataire');
-        $resultat = $sql->execute([
-            ':id_destinataire' => $id_destinataire
+        $sql = $this->bdd->prepare('SELECT * FROM inbox
+                                    INNER JOIN compte ON inbox.id_destinataire = compte.id_compte
+                                    WHERE compte.id_compte = :id_compte');
+        $sql->execute([
+            ':id_compte' => $id_compte
         ]);
-        return $resultat->fetchAll(PDO::FETCH_ASSOC);
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 }

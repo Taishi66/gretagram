@@ -170,7 +170,7 @@ class ManagerController //
 
     public function setInbox($inbox)
     {
-        return $this->inbox = $inbox;
+        $this->inbox = $inbox;
     }
 
     public function setNbLikesForArticle($nbLikesForArticle)

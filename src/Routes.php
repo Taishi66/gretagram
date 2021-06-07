@@ -38,7 +38,7 @@ class Route
             return false;
         }
         array_shift($matches); //dégage le premier élément d’un tableau
-        $this->matches = $matches; //stock les routes qui matchent dans la variable $matches
+        $this->matches = $matches; //stock toute les routes qui matchent dans la variable $matches
         return true;
     }
 

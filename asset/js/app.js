@@ -127,4 +127,6 @@ $(document).ready(function() {
         );
 
     });
+
+    //partie conversations
 });
