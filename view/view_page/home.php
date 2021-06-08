@@ -134,8 +134,7 @@
                                         <!-- Conditions pour afficher like ou likeS. -->
                                         <strong class="d-block nb_likes" data-article="<?= $article['id_article'] ?>">
                                             <?php echo (!empty($article['nbLikesForArticle'])) ? $article['nbLikesForArticle'] : '0'; ?>
-                                            Like
-                                            <?php echo ($article['nbLikesForArticle'] && $article['nbLikesForArticle'] > 1) ? 's' : ''; ?>
+                                            Like<?php echo ($article['nbLikesForArticle'] && $article['nbLikesForArticle'] > 1) ? 's' : ''; ?>
                                         </strong>
                                         <strong class="d-block"><?= $article['titre'] ?></strong>
                                         <p class="d-block mb-1"><?= $article['contenu'] ?></p>
