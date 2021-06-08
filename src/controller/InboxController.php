@@ -28,7 +28,7 @@ class InboxController extends ManagerController
             $this->inboxModel->sendMessage($contenu_message, $id_compte, $id_destinataire);
             $this->template = ("view_page/conversation.php");
             $this->setCompteVisite($compteVisite);
-            $this->setInbox($this->inboxModel->getCompteMessage($id_destinataire));
+            $this->setInbox($this->inboxModel->getCompteMessageSent($id_destinataire));
             return $this->renderController();
         } else {
             $this->setMessage('Message non envoyé', 'warning');
@@ -47,8 +47,10 @@ class InboxController extends ManagerController
     {
         $id_destinataire = $id_compte;
         $this->template = ("view_page/conversation.php");
-        //  $compteMessage = $this->inboxModel->getCompteMessage($id_destinataire);
-        $this->setInbox($this->inboxModel->getCompteMessage($id_destinataire));
+        $id_compte = CompteFacade::getCompteId();
+        $this->setInbox($this->inboxModel->getCompteMessageSent($id_compte, $id_destinataire));
+        var_dump($this->inboxModel->getCompteMessageSent($id_compte, $id_destinataire));
+        exit;
         return $this->renderController();
     }
 }

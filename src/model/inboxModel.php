@@ -56,13 +56,26 @@ class InboxModel
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getCompteMessage($id_compte = null)
+    public function getCompteMessage($id_destinataire = null)
+    {
+        $sql = $this->bdd->prepare('SELECT compte.*,inbox.* FROM compte
+                                    INNER JOIN inbox ON inbox.id_destinataire = compte.id_compte
+                                    WHERE inbox.id_destinataire = :id_destinataire');
+        $sql->execute([
+            ':id_destinataire' => $id_destinataire
+        ]);
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getCompteMessageSent($id_compte = null, $id_destinataire = null)
     {
         $sql = $this->bdd->prepare('SELECT * FROM inbox
-                                    INNER JOIN compte ON inbox.id_destinataire = compte.id_compte
-                                    WHERE compte.id_compte = :id_compte');
+                                    WHERE (id_compte =:id_compte AND id_destinataire=:id_destinataire)
+                                    OR (id_compte =:id_compte AND id_destinataire=:id_destinataire)
+                                    ORDER BY date_message DESC ');
         $sql->execute([
-            ':id_compte' => $id_compte
+            ':id_compte' => $id_compte,
+            ':id_destinataire' => $id_destinataire
         ]);
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }

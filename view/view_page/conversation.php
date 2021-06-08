@@ -27,10 +27,10 @@
                         <div class="chat-messages p-4">
                             <!-- discussion message -->
                             <?php foreach ($datas['inbox'] as $inbox) {
-                                if (CompteFacade::getCompteId() == $inbox['id_compte']) { ?>
+                                if (CompteFacade::getCompteId() !== $inbox['id_compte']) { ?>
                                     <div class="chat-message-right pb-4">
                                         <div>
-                                            <img src="/<?= $datas['compte']['photo']; ?>" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+                                            <img src="/<?= $datas['compte']['photo']; ?>" class="rounded-circle mr-1" width="40" height="40">
                                             <!-- Heure d'envoie du message -->
                                             <div class="text-muted small text-nowrap mt-2"><?= $inbox['date_message']; ?></div>
                                         </div>
@@ -41,7 +41,7 @@
                                     </div><?php } else { ?>
                                     <div class="chat-message-left pb-4">
                                         <div>
-                                            <img src="/<?= $datas['compte']['photo']; ?>" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+                                            <img src="/<?= $inbox['photo']; ?>" class="rounded-circle mr-1" width="40" height="40">
                                             <!-- Heure d'envoie du message -->
                                             <div class="text-muted small text-nowrap mt-2"><?= $inbox['date_message']; ?></div>
                                         </div>
@@ -49,16 +49,16 @@
                                             <div class="font-weight-bold mb-1"><?= $inbox['pseudo']; ?></div>
                                             <?= $inbox['contenu_message']; ?>
                                         </div>
-                                    <?php } ?>
                                     </div>
                                 <?php } ?>
-                                <!-- formulaire d'envoie message -->
-                                <div class="flex-grow-0 py-3 px-4 border-top">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="contenu_message" placeholder="Type your message">
-                                        <button class="btn btn-primary" name="message">Send</button>
-                                    </div>
-                                </div>
+                            <?php } ?>
+                        </div>
+                        <!-- formulaire d'envoie message -->
+                        <div class="flex-grow-0 py-3 px-4 border-top">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="contenu_message" placeholder="Type your message">
+                                <button class="btn btn-primary" name="message">Send</button>
+                            </div>
                         </div>
                     </div>
                 </div>
