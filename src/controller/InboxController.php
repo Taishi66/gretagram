@@ -45,12 +45,11 @@ class InboxController extends ManagerController
 
     public function maConversation($id_compte = null)
     {
-        $id_destinataire = $id_compte;
         $this->template = ("view_page/conversation.php");
+
+        $id_destinataire = $id_compte;
         $id_compte = CompteFacade::getCompteId();
         $this->setInbox($this->inboxModel->getCompteMessageSent($id_compte, $id_destinataire));
-        var_dump($this->inboxModel->getCompteMessageSent($id_compte, $id_destinataire));
-        exit;
         return $this->renderController();
     }
 }

@@ -1,6 +1,6 @@
 <main class="content">
     <div class="container p-0">
-        <?= DebugFacade::dump($datas) ?>
+        <? DebugFacade::dump($datas) ?>
         <center>
             <h1 class="h3 mb-3 mt-2">Conversation</h1>
         </center>
@@ -11,14 +11,14 @@
                     <div class="py-2 px-4 border-bottom d-none d-lg-block">
                         <div class="d-flex align-items-center py-1">
                             <div class="position-relative">
-                                <img src="/<?= $datas['inbox'][0]['photo']; ?>" class="rounded-circle mr-1" alt="<?= $datas['inbox'][0]['pseudo']; ?>" width="40" height="40">
+                                <img src="/<?= $datas['inbox'][1]['photo']; ?>" class="rounded-circle mr-1" alt="<?= $datas['inbox']['pseudo']; ?>" width="40" height="40">
                             </div>
                             <!-- Destinataire discussion -->
                             <div class="flex-grow-1 pl-3">
-                                <strong><?= $datas['inbox'][0]['pseudo']; ?></strong>
+                                <strong><?= $datas['inbox'][1]['pseudo']; ?></strong>
                             </div>
                             <div>
-                                <button class="btn btn-primary btn-lg mr-1 px-3"><a style="text-decoration:none;color:white;" href="/Compte/<?= $datas['inbox'][0]['id_compte'] ?>">Voir son profil</a></button>
+                                <button class="btn btn-primary btn-lg mr-1 px-3"><a style="text-decoration:none;color:white;" href="/Compte/<?= $datas['inbox'][1]['id_compte'] ?>">Voir son profil</a></button>
                                 <button class="btn btn-light border btn-lg px-3"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                         <div class="chat-messages p-4">
                             <!-- discussion message -->
                             <?php foreach ($datas['inbox'] as $inbox) {
-                                if (CompteFacade::getCompteId() !== $inbox['id_compte']) { ?>
+                                if (CompteFacade::getCompteId() !== $inbox['id_destinataire']) { ?>
                                     <div class="chat-message-right pb-4">
                                         <div>
                                             <img src="/<?= $datas['compte']['photo']; ?>" class="rounded-circle mr-1" width="40" height="40">

@@ -70,8 +70,9 @@ class InboxModel
     public function getCompteMessageSent($id_compte = null, $id_destinataire = null)
     {
         $sql = $this->bdd->prepare('SELECT * FROM inbox
-                                    WHERE (id_compte =:id_compte AND id_destinataire=:id_destinataire)
-                                    OR (id_compte =:id_compte AND id_destinataire=:id_destinataire)
+                                    INNER JOIN compte ON compte.id_compte = inbox.id_compte 
+                                    WHERE (inbox.id_compte =:id_compte AND inbox.id_destinataire=:id_destinataire)
+                                    OR (inbox.id_compte =:id_destinataire AND inbox.id_destinataire=:id_compte)
                                     ORDER BY date_message DESC ');
         $sql->execute([
             ':id_compte' => $id_compte,
