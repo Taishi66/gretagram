@@ -67,6 +67,11 @@ class UserController extends ManagerController
      *
      * @return void
      */
+    /**
+     * Method nouvelleInscription
+     *
+     * @return void
+     */
     public function nouvelleInscription()
     {
         $this->template = 'view_inscription/inscription.php';

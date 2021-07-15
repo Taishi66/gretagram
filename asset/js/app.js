@@ -129,4 +129,8 @@ $(document).ready(function() {
     });
 
     //partie conversations
+    $(".btn-post-message").click(function() {
+        var message = parentElement.find("input[name=contenu_message]").val();
+
+    })
 });

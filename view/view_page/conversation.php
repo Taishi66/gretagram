@@ -57,7 +57,7 @@
                         <div class="flex-grow-0 py-3 px-4 border-top">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="contenu_message" placeholder="Type your message">
-                                <button class="btn btn-primary" name="message">Send</button>
+                                <button class="btn btn-primary btn-post-message" name="message">Send</button>
                             </div>
                         </div>
                     </div>
