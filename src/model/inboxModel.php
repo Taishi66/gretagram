@@ -31,14 +31,6 @@ class InboxModel
     }
 
     /**
-     * Method getConversation
-     *
-     * @param $id_compte $id_compte [explicite description]
-     *
-     * @return void
-     */
-
-    /**
      * Method myDiscussions
      *
      * @param $id_compte $id_compte [explicite description]
@@ -56,6 +48,13 @@ class InboxModel
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Method getCompteMessage
+     *
+     * @param $id_destinataire $id_destinataire [explicite description]
+     *
+     * @return void
+     */
     public function getCompteMessage($id_destinataire = null)
     {
         $sql = $this->bdd->prepare('SELECT compte.*,inbox.* FROM compte
@@ -67,6 +66,14 @@ class InboxModel
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Method getCompteMessageSent
+     *
+     * @param $id_compte $id_compte [explicite description]
+     * @param $id_destinataire $id_destinataire [explicite description]
+     *
+     * @return void
+     */
     public function getCompteMessageSent($id_compte = null, $id_destinataire = null)
     {
         $sql = $this->bdd->prepare('SELECT * FROM inbox
@@ -79,5 +86,44 @@ class InboxModel
             ':id_destinataire' => $id_destinataire
         ]);
         return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    /**
+     * Method insertMsg
+     *ENVOYER UN MESSAGE
+     * @param $incoming_id $incoming_id [receveur]
+     * @param $outgoing_id $outgoing_id [expéditeur]
+     * @param $msg $msg [le msg en question]
+     *
+     * @return void
+     */
+    public function insertMsg($incoming_id = null, $outgoing_id = null, $msg = null)
+    {
+        $sql = $this->bdd->prepare('INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg)
+                                    VALUES(:incoming_msg_id, :outgoing_msg_id, :msg) or die() ');
+        $sql->execute([
+            ':incoming_msg_id' => $incoming_id,
+            ':outgoing_msg_id' => $outgoing_id,
+            ':msg' => $msg
+        ]);
+    }
+
+    public function getChat($incoming_id = null, $outgoing_id = null)
+    {
+        $sql = $this->bdd->prepare('SELECT * FROM messages
+                                    LEFT JOIN compte ON compte.id_compte = message.outgoing_msg_id
+                                    WHERE (outgoing_msg_id = :incoming_id AND incoming_msg_id = :outgoing_msg_id)
+                                    OR (outgoing_msg_id = :outgoing_msg_id AND incoming_msg_id = :incoming_msg_id)
+                                    ORDER BY msg_id');
+        $sql->execute([
+            ':incoming_msg_id' => $incoming_id,
+            ':outgoing_id' => $outgoing_id
+        ]);
+        if (mysqli_num_rows($sql) > 0) {
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            echo 'No messages sent yet';
+        }
     }
 }

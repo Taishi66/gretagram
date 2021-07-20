@@ -17,18 +17,15 @@ class InboxController extends ManagerController
         parent::__construct();
     }
 
-    public function envoyerMessage($id_compte = null)
+    public function envoyerMessage($incoming_id = null, $outgoing_id = null, $msg = null)
     {
-        $id_destinataire = $id_compte;
-        $compteVisite = $this->compteModel->showProfil($id_compte);
-        $id_compte = CompteFacade::getCompteId();
-        $contenu_message = $this->validatorHelper->getValue('contenu_message');
+        $incoming_id = $this->validatorHelper->getValue('incoming_id');
+        $outgoing_id = $this->validatorHelper->getValue('outgoing_id');
+        $msg = $this->validatorHelper->getValue('contenu_message');
 
         if (isset($_POST['message']) && !empty($contenu_message)) {
-            $this->inboxModel->sendMessage($contenu_message, $id_compte, $id_destinataire);
-            $this->template = ("view_page/conversation.php");
-            $this->setCompteVisite($compteVisite);
-            $this->setInbox($this->inboxModel->getCompteMessageSent($id_destinataire));
+            $this->inboxModel->insertMsg($msg, $incoming_id, $outgoing_id);
+            $this->setMessage('envoie réussie');
             return $this->renderController();
         } else {
             $this->setMessage('Message non envoyé', 'warning');

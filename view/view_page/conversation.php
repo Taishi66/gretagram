@@ -30,24 +30,25 @@
                                 if (CompteFacade::getCompteId() !== $inbox['id_destinataire']) { ?>
                                     <div class="chat-message-right pb-4">
                                         <div>
-                                            <img src="/<?= $datas['compte']['photo']; ?>" class="rounded-circle mr-1" width="40" height="40">
-                                            <!-- Heure d'envoie du message -->
-                                            <div class="text-muted small text-nowrap mt-2"><?= $inbox['date_message']; ?></div>
+                                            <img src="/<?= $datas['compte']['photo']; ?>" class="rounded-circle mr-1 border border-solid" width="40" height="40">
                                         </div>
                                         <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
                                             <div class="font-weight-bold mb-1"><?= CompteFacade::getComptePseudo(); ?></div>
                                             <?= $inbox['contenu_message']; ?>
+                                            <!-- Heure d'envoie du message -->
+                                            <div class="text-muted small text-nowrap mt-2"><?= $inbox['date_message']; ?></div>
                                         </div>
                                     </div><?php } else { ?>
                                     <div class="chat-message-left pb-4">
                                         <div>
                                             <img src="/<?= $inbox['photo']; ?>" class="rounded-circle mr-1" width="40" height="40">
-                                            <!-- Heure d'envoie du message -->
-                                            <div class="text-muted small text-nowrap mt-2"><?= $inbox['date_message']; ?></div>
+
                                         </div>
                                         <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
                                             <div class="font-weight-bold mb-1"><?= $inbox['pseudo']; ?></div>
                                             <?= $inbox['contenu_message']; ?>
+                                            <!-- Heure d'envoie du message -->
+                                            <div class="text-muted small text-nowrap mt-2"><?= $inbox['date_message']; ?></div>
                                         </div>
                                     </div>
                                 <?php } ?>

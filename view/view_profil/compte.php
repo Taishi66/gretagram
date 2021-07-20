@@ -64,6 +64,8 @@
                 </button>
             </div>
             <form method="POST" action="" enctype="multipart/form-data">
+                <input type="text" name="incoming_id" value="<?= $datas['compteVisite'][0]['id_compte']; ?>" class="hidden">
+                <input type="text" name="outgoing_id" value="<?= CompteFacade::getCompteId() ?>" class="hidden">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Contenu</label>
