@@ -40,8 +40,8 @@ class InboxModel
     public function myDiscussions($id_compte = null)
     {
         $sql = $this->bdd->prepare('SELECT DISTINCT pseudo,compte.id_compte,photo FROM compte 
-                                    INNER JOIN inbox ON compte.id_compte = inbox.id_destinataire
-                                    WHERE inbox.id_compte =:id_compte');
+                                    INNER JOIN messages ON compte.id_compte = messages.incoming_msg_id
+                                    WHERE messages.outgoing_msg_id =:id_compte');
         $sql->execute([
             ':id_compte' => $id_compte
         ]);
@@ -101,14 +101,23 @@ class InboxModel
     public function insertMsg($incoming_id = null, $outgoing_id = null, $msg = null)
     {
         $sql = $this->bdd->prepare('INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg)
-                                    VALUES(:incoming_msg_id, :outgoing_msg_id, :msg) or die() ');
-        $sql->execute([
+                                    VALUES(:incoming_msg_id, :outgoing_msg_id, :msg)');
+        return $sql->execute([
             ':incoming_msg_id' => $incoming_id,
             ':outgoing_msg_id' => $outgoing_id,
             ':msg' => $msg
         ]);
     }
 
+
+    /**
+     * Method getChat
+     *
+     * @param $incoming_id $incoming_id [explicite description]
+     * @param $outgoing_id $outgoing_id [explicite description]
+     *
+     * @return void
+     */
     public function getChat($incoming_id = null, $outgoing_id = null)
     {
         $sql = $this->bdd->prepare('SELECT * FROM messages

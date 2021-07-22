@@ -23,9 +23,10 @@ class InboxController extends ManagerController
         $outgoing_id = $this->validatorHelper->getValue('outgoing_id');
         $msg = $this->validatorHelper->getValue('contenu_message');
 
-        if (isset($_POST['message']) && !empty($contenu_message)) {
-            $this->inboxModel->insertMsg($msg, $incoming_id, $outgoing_id);
-            $this->setMessage('envoie réussie');
+
+        if (isset($_POST['message']) && !empty($msg)) {
+            $this->inboxModel->insertMsg($incoming_id, $outgoing_id, $msg);
+            $this->template = "view_profil/compte.php";
             return $this->renderController();
         } else {
             $this->setMessage('Message non envoyé', 'warning');
@@ -35,18 +36,18 @@ class InboxController extends ManagerController
 
     public function mesDiscussions()
     {
-        $this->template = ("view_page/inbox.php");
+        $this->template = "view_page/inbox.php";
         $this->setInbox($this->inboxModel->myDiscussions(CompteFacade::getCompteId()));
         return $this->renderController();
     }
 
-    public function maConversation($id_compte = null)
+    public function maConversation($incoming_id = null)
     {
-        $this->template = ("view_page/conversation.php");
+        $this->template = "view_page/conversation.php";
 
-        $id_destinataire = $id_compte;
-        $id_compte = CompteFacade::getCompteId();
-        $this->setInbox($this->inboxModel->getCompteMessageSent($id_compte, $id_destinataire));
+        $incoming_id = $incoming_id;
+        $outgoing_id = CompteFacade::getCompteId();
+        $this->setInbox($this->inboxModel->getChat($incoming_id, $outgoing_id));
         return $this->renderController();
     }
 }
