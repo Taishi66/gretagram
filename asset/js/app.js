@@ -42,19 +42,16 @@ $(document).ready(function() {
                     } else { //Détermine si le coeur du like sera plein ou vide en fonction de s'il est déjà liké par l'user
                         $('.toggle-like[data-article="' + article + '"] i').removeClass('fas').addClass('far')
                     }
-
                 } else {
                     console.log('error')
                 }
             });
-
     })
 
 
     //Partie commentaire
     $(".btn-post-comment").click(function() {
         var parentElement = $(this).parent();
-
         var com = parentElement.find("input[name=comment]").val();
         var article = parentElement.data('article');
         var media_page = parentElement.data('mediapage');
@@ -130,7 +127,35 @@ $(document).ready(function() {
 
     //partie conversations
     $(".btn-post-message").click(function() {
-        var message = parentElement.find("input[name=contenu_message]").val();
+        var parentElement = $(this).parent();
 
-    })
+        var message = parentElement.find("input[name=contenu_message]").val();
+        var destinataire = parentElement.find("input[name=incoming_id]").val();
+        var destinateur = parentElement.find("input[name=outgoing_id]").val();
+
+        $.post("Compte/", {
+            id_compte: destinateur,
+            message: message
+        }, function(data, status) {
+            if (status == 'success') {
+                var datas = JSON.parse(data);
+
+                var message_template = '<div class="chat-message-left pb-4">' +
+                    '<div>' +
+                    '<img src="/' + datas.photo + '" class="rounded-circle mr-1" width="40" height="40">' +
+                    '</div>' +
+                    '<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">' +
+                    '<div class="font-weight-bold mb-1">' + datas.pseudo + '</div>' +
+                    '<?= $inbox['
+                datas.message +
+                    '<div class="text-muted small text-nowrap mt-2">'
+                datas.date_message + '</div>' +
+                    '</div>' +
+                    '</div>';
+            }
+        });
+
+    });
+
+
 });
