@@ -181,7 +181,7 @@ class Router
             $this->get('Inbox/', 'Inbox#mesDiscussions');
             //Pour voir une conversation
             $this->get('Inbox/:id_compte', 'Inbox#maConversation');
-            $this->post('Inbox/', 'Inbox#messageChat');
+            $this->post('Inbox/:id_compte', 'Inbox#messageChat');
             //Route pour rechercher un profil
             $this->get('Recherche', 'Recherche#recherche');
             //Se déconnecter

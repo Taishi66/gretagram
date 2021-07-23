@@ -38,16 +38,18 @@ class InboxController extends ManagerController
         $incoming_id = $this->validatorHelper->getValue('incoming_id');
         $outgoing_id = $this->validatorHelper->getValue('outgoing_id');
         $msg = $this->validatorHelper->getValue('contenu_message');
-        $this->inboxModel->insertMsg($incoming_id, $outgoing_id, $msg);
-        $output = [
-            'pseudo' => CompteFacade::getComptePhoto(),
-            'photo' => CompteFacade::getComptePhoto(),
-            'message' => $msg,
-            'destinataire' => $incoming_id,
-            'destinateur' => $outgoing_id
-        ];
-        echo json_encode($output);
-        exit;
+
+        if (!empty($msg)) {
+            $this->inboxModel->insertMsg($incoming_id, $outgoing_id, $msg);
+            $output = [
+                'pseudo' => CompteFacade::getComptePseudo(),
+                'photo' => CompteFacade::getComptePhoto(),
+                'destinataire' => $incoming_id,
+                'destinateur' => $outgoing_id
+            ];
+            echo json_encode($output);
+            exit;
+        }
     }
 
     public function mesDiscussions()

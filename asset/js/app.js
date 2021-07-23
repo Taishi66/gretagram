@@ -133,7 +133,9 @@ $(document).ready(function() {
         var destinataire = parentElement.find("input[name=incoming_id]").val();
         var destinateur = parentElement.find("input[name=outgoing_id]").val();
 
-        $.post("Compte/", {
+        $.post("Inbox/", {
+            incoming_id: destinataire,
+            outgoing_id: destinateur,
             id_compte: destinateur,
             message: message
         }, function(data, status) {
@@ -153,9 +155,11 @@ $(document).ready(function() {
                     '</div>' +
                     '</div>';
             }
+            $('.chat-messages').prepend(message_template);
+
         });
 
+
+
     });
-
-
 });
