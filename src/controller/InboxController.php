@@ -23,7 +23,6 @@ class InboxController extends ManagerController
         $outgoing_id = $this->validatorHelper->getValue('outgoing_id');
         $msg = $this->validatorHelper->getValue('contenu_message');
 
-
         if (isset($_POST['message']) && !empty($msg)) {
             $this->inboxModel->insertMsg($incoming_id, $outgoing_id, $msg);
             return $this->maConversation($incoming_id);
@@ -33,19 +32,19 @@ class InboxController extends ManagerController
         }
     }
 
-    public function messageChat()
+    public function messageChat($incoming_id = null, $outgoing_id = null, $msg = null)
     {
         $incoming_id = $this->validatorHelper->getValue('incoming_id');
         $outgoing_id = $this->validatorHelper->getValue('outgoing_id');
-        $msg = $this->validatorHelper->getValue('contenu_message');
+        $msg = $this->validatorHelper->getValue('message');
 
         if (!empty($msg)) {
             $this->inboxModel->insertMsg($incoming_id, $outgoing_id, $msg);
+
             $output = [
                 'pseudo' => CompteFacade::getComptePseudo(),
                 'photo' => CompteFacade::getComptePhoto(),
-                'destinataire' => $incoming_id,
-                'destinateur' => $outgoing_id
+                'date_message' => date('Y-m-d H:I:s')
             ];
             echo json_encode($output);
             exit;

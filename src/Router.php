@@ -178,7 +178,7 @@ class Router
             //Pour envoyer un message au compte visité
             $this->post('Compte/:id_compte', 'Inbox#envoyerMessage');
             //Pour voir mes discussions 
-            $this->get('Inbox/', 'Inbox#mesDiscussions');
+            $this->get('Inbox', 'Inbox#mesDiscussions');
             //Pour voir une conversation
             $this->get('Inbox/:id_compte', 'Inbox#maConversation');
             $this->post('Inbox/:id_compte', 'Inbox#messageChat');

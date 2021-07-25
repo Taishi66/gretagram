@@ -68,9 +68,14 @@
                         <div class="flex-grow-0 py-3 px-4 border-top chat-box">
                             <div class="input-group ">
                                 <input type="text" class="hidden" name="outgoing_id" value="<?= CompteFacade::getCompteId(); ?>">
-                                <input type="text" class="hidden" name="incoming_id" value="<?= $datas['inbox'][1]['id_compte']; ?>">
+                                <input type="text" class="hidden" name="incoming_id" value="<?php
+                                                                                            if ($datas['inbox'][0]['id_compte'] === CompteFacade::getCompteId()) {
+                                                                                                echo $datas['inbox'][1]['id_compte'];
+                                                                                            } else {
+                                                                                                echo $datas['inbox'][0]['id_compte'];
+                                                                                            } ?>">
                                 <input type="text" class="rounded form-control input-field" name="contenu_message" placeholder="Type your message">
-                                <button class="btn btn-light btn-post-message w-100 mt-2" name="message">Send</button>
+                                <button type="submit" class="btn btn-light btn-post-message w-100 mt-2" name="message">Send</button>
                                 </input>
                             </div>
                         </div>
