@@ -64,6 +64,7 @@ $(document).ready(function() {
             function(data, status) {
                 if (status == 'success') {
                     var datas = JSON.parse(data);
+                    console.log(data);
                     /*$output = [
                                     'pseudo' => CompteFacade::getComptePseudo(),
                                     'message' => 'commentaire posté!',
@@ -130,35 +131,42 @@ $(document).ready(function() {
         var parentElement = $(this).parent();
 
         var message = parentElement.find("input[name=contenu_message]").val();
-        var destinataire = parentElement.find("input[name=incoming_id]").val();
-        var destinateur = parentElement.find("input[name=outgoing_id]").val();
+        var incoming_id = parentElement.find("input[name=incoming_id]").val();
+        var outgoing_id = parentElement.find("input[name=outgoing_id]").val();
 
-        $.post("Inbox/", {
-            incoming_id: destinataire,
-            outgoing_id: destinateur,
-            id_compte: destinateur,
-            message: message
-        }, function(data, status) {
-            if (status == 'success') {
-                var datas = JSON.parse(data);
+        $.post("/Inbox/" + incoming_id, {
+                message: message,
+                incoming_id: incoming_id,
+                outgoing_id: outgoing_id
+            },
+            function(data, status) {
+                if (status == 'success') {
+                    console.log(data);
 
-                var message_template = '<div class="chat-message-left pb-4">' +
-                    '<div>' +
-                    '<img src="/' + datas.photo + '" class="rounded-circle mr-1" width="40" height="40">' +
-                    '</div>' +
-                    '<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">' +
-                    '<div class="font-weight-bold mb-1">' + datas.pseudo + '</div>' +
-                    '<?= $inbox['
-                datas.message +
-                    '<div class="text-muted small text-nowrap mt-2">'
-                datas.date_message + '</div>' +
-                    '</div>' +
-                    '</div>';
-            }
-            $('.chat-messages').prepend(message_template);
+                    var datas = JSON.parse(data);
 
-        });
+                    var message_template = '<div class="chat-message-left pb-4">' +
+                        '<div>' +
+                        '<img src="/' + datas.photo + '" class="rounded-circle mr-1" width="40" height="40">' +
+                        '</div>' +
+                        '<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">' +
+                        '<div class="font-weight-bold mb-1">' + datas.pseudo + '</div>' +
+                        message +
+                        '<div class="text-muted small text-nowrap mt-2">'
+                    datas.date_message + '</div>' +
+                        '</div>' +
+                        '</div>';
+                }
+                $('.chat-messages').append(message_template);
 
+            });
+        window.setInterval(refeshChat(), 1000);
+        //récupérer l'id du dernier message a partir du PHP, (sql), ce sera le paramètre
+        //de la méthode refreshChat()
+        //
+        function refreshChat() {
+            var id =
+        }
 
 
     });
