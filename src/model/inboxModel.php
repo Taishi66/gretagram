@@ -132,4 +132,18 @@ class InboxModel
         ]);
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getLastMessage($incoming_id = null, $outgoing_id = null)
+    {
+        $sql = $this->bdd->prepare('SELECT MAX(msg_id) FROM messages
+                                    INNER JOIN compte ON compte.id_compte = messages.outgoing_msg_id
+                                    WHERE (outgoing_msg_id = :incoming_id AND incoming_msg_id = :outgoing_id)
+                                    OR (outgoing_msg_id = :outgoing_id AND incoming_msg_id = :incoming_id)
+                                    ORDER BY msg_id');
+        $sql->execute([
+            ':incoming_id' => $incoming_id,
+            ':outgoing_id' => $outgoing_id
+        ]);
+        return $sql;
+    }
 }

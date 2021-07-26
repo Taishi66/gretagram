@@ -152,7 +152,7 @@ $(document).ready(function() {
                         '<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">' +
                         '<div class="font-weight-bold mb-1">' + datas.pseudo + '</div>' +
                         message +
-                        '<div class="text-muted small text-nowrap mt-2">'
+                        '<div class="text-muted small text-nowrap mt-2" data-msg_id=' + datas.msg_id + '>'
                     datas.date_message + '</div>' +
                         '</div>' +
                         '</div>';
@@ -160,14 +160,43 @@ $(document).ready(function() {
                 $('.chat-messages').append(message_template);
 
             });
-        window.setInterval(refeshChat(), 1000);
-        //récupérer l'id du dernier message a partir du PHP, (sql), ce sera le paramètre
-        //de la méthode refreshChat()
-        //
-        function refreshChat() {
-            var id =
-        }
-
-
     });
+    window.setInterval(refreshChat(), 1000);
+    //récupérer l'id du dernier message a partir du PHP, (sql), ce sera le paramètre
+    //de la méthode refreshChat()
+    //
+    function refreshChat() {
+        var parentElement = $(this).parent();
+        var incoming_id = parentElement.data('incoming_id');
+        var msg_id = parentElement.data('msg_id');
+        $.get("/Inbox/" + incoming_id, {
+                msg_id: msg_id
+            },
+            function(data, status) {
+                if (status == 'success') {
+
+                    datas = JSON.parse(data);
+
+                    while (datas.length > 0) {
+                        var message_template = '<div class="chat-message-left pb-4">' +
+                            '<div>' +
+                            '<img src="/' + datas.photo + '" class="rounded-circle mr-1" width="40" height="40">' +
+                            '</div>' +
+                            '<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">' +
+                            '<div class="font-weight-bold mb-1">' + datas.pseudo + '</div>' +
+                            message +
+                            '<div class="text-muted small text-nowrap mt-2" data-msg_id=' + msg_id + '>'
+                        datas.date_message + '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                        if (outgoing_id == outgoing_id) {
+                            $('chat-message').append(message_template);
+                        } else {
+                            $('chat-message').append(message_template);
+                        }
+                    }
+                }
+            });
+    }
 });

@@ -17,7 +17,7 @@ class InboxController extends ManagerController
         parent::__construct();
     }
 
-    public function envoyerMessage($incoming_id = null, $outgoing_id = null, $msg = null)
+    public function messageDirect($incoming_id = null, $outgoing_id = null, $msg = null)
     {
         $incoming_id = $this->validatorHelper->getValue('incoming_id');
         $outgoing_id = $this->validatorHelper->getValue('outgoing_id');
@@ -62,7 +62,25 @@ class InboxController extends ManagerController
     {
         $this->template = "view_page/conversation.php";
         $outgoing_id = CompteFacade::getCompteId();
-        $this->setInbox($this->inboxModel->getChat($incoming_id, $outgoing_id));
-        return $this->renderController();
+        $inbox = $this->setInbox($this->inboxModel->getChat($incoming_id, $outgoing_id));
+
+        $inbox = array($this->inboxModel->getChat);
+        $output = [
+            'msg' => $inbox['msg'],
+            'incoming_msg_id' => $inbox['incoming_msg_id'],
+            'outgoing_msg_id' => $inbox['outgoing_msg_id'],
+            'photo' => $inbox['photo'],
+            'pseudo' => $inbox['pseudo']
+        ];
+
+        $this->renderController();
+        echo json_encode($output);
+        exit;
+    }
+
+    public function refreshChat($incoming_id, $outgoing_id)
+    {
+        $incoming_id = $this->validatorHelper->getValue('incoming_id');
+        $outgoing_id = $this->validatorHelper->getValue('outgoing_id');
     }
 }
