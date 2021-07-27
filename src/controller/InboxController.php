@@ -62,20 +62,30 @@ class InboxController extends ManagerController
     {
         $this->template = "view_page/conversation.php";
         $outgoing_id = CompteFacade::getCompteId();
-        $inbox = $this->setInbox($this->inboxModel->getChat($incoming_id, $outgoing_id));
+        // $incoming_id = $this->validatorHelper->getValue('');
 
-        $inbox = array($this->inboxModel->getChat);
-        $output = [
-            'msg' => $inbox['msg'],
-            'incoming_msg_id' => $inbox['incoming_msg_id'],
-            'outgoing_msg_id' => $inbox['outgoing_msg_id'],
-            'photo' => $inbox['photo'],
-            'pseudo' => $inbox['pseudo']
-        ];
+        $this->setInbox($this->inboxModel->getChat($incoming_id, $outgoing_id));
+
+        return $this->renderController();
+
+
+
+        /*$inbox = array($this->inboxModel->getChat($incoming_id, $outgoing_id));
+        while ($inbox['msg'] > 0) {
+            $output = [
+                'msg' => $inbox['msg'],
+                'photo' => $inbox['photo'],
+                'pseudo' => $inbox['pseudo'],
+                'msg_id' => $inbox['msg_id'],
+                'date_message' => $inbox['date_message'],
+                'incoming_id' => $inbox['incoming_id'],
+                'outgoing_id' => $inbox['outgoing_id']
+            ];
+        }
 
         $this->renderController();
         echo json_encode($output);
-        exit;
+        exit;*/
     }
 
     public function refreshChat($incoming_id, $outgoing_id)

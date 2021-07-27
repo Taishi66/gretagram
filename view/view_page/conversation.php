@@ -39,7 +39,7 @@
                             <!-- discussion message -->
                             <?php foreach ($datas['inbox'] as $inbox) {
                                 if (CompteFacade::getCompteId() !== $inbox['outgoing_msg_id']) { ?>
-                                    <div class="chat-message-right pb-4">
+                                    <div class="chat-message-right pb-4 msg_id" data-msg_id="<?= ($inbox['outgoing_msg_id'] == CompteFacade::getCompteId()) ? $inbox['outgoing_msg_id'] : CompteFacade::getCompteId() ?>">
                                         <div>
                                             <img src="/<?= $inbox['photo']; ?>" class="rounded-circle mr-1 border border-solid" width="40" height="40">
                                         </div>
@@ -50,7 +50,7 @@
                                             <div class="text-muted small text-nowrap mt-2"><?= $inbox['date_message']; ?></div>
                                         </div>
                                     </div><?php } else { ?>
-                                    <div class="chat-message-left pb-4">
+                                    <div class="chat-message-left pb-4 msg_id" data-msg_id="<?= ($inbox['outgoing_msg_id'] == CompteFacade::getCompteId()) ? $inbox['outgoing_msg_id'] : CompteFacade::getCompteId() ?>">
                                         <div>
                                             <img src="/<?= CompteFacade::getComptePhoto(); ?>" class="rounded-circle mr-1" width="40" height="40">
                                         </div>
@@ -68,12 +68,7 @@
                         <div class="flex-grow-0 py-3 px-4 border-top chat-box">
                             <div class="input-group ">
                                 <input type="text" class="hidden" name="outgoing_id" value="<?= CompteFacade::getCompteId(); ?>">
-                                <input type="text" class="hidden" name="incoming_id" value="<?php
-                                                                                            if ($datas['inbox'][0]['id_compte'] === CompteFacade::getCompteId()) {
-                                                                                                echo $datas['inbox'][1]['id_compte'];
-                                                                                            } else {
-                                                                                                echo $datas['inbox'][0]['id_compte'];
-                                                                                            } ?>">
+                                <input type="text" class="hidden" name="incoming_id" value="<?= ($datas['inbox'][0]['id_compte'] === CompteFacade::getCompteId()) ? $datas['inbox'][1]['id_compte'] : $datas['inbox'][0]['id_compte'] ?>">
                                 <input type="text" class="rounded form-control input-field" name="contenu_message" placeholder="Type your message">
                                 <button type="submit" class="btn btn-light btn-post-message w-100 mt-2" name="message">Send</button>
                                 </input>
